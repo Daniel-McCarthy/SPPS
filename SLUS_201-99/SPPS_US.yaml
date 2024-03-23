@@ -1,0 +1,32 @@
+# The NTSC-U release of SPPS (201.99) - Configuration for splat
+name: SPPS 201-99 (US)
+sha1: a299494580e009bca242d5a9773013fdb08d2fff
+options:
+  basename: SLUS_201.99
+  target_path: ./SLUS_201.99
+  platform: ps2
+  compiler: MW
+
+  base_path: .
+  asm_path: asm
+  src_path: ../src
+  build_path: out
+
+  create_undefined_funcs_auto: True
+  undefined_funcs_auto_path: ./undefined_funcs_auto.yaml
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: ./undefined_syms_auto.yaml
+  symbol_addrs_path: ./symbol_addrs.yaml
+  extensions_path: ../tools/splat_ext
+  subalign: 8
+  disasm_unknown: True
+  named_regs_for_c_funcs: False
+
+segments:
+  - [0, databin, elf_header]
+  - name: main
+    type: code
+    start: 0x1000
+    vram: 0x100000
+    subsegments:
+      - [0x0000, asm, entrypoint]
