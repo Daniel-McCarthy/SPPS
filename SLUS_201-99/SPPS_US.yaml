@@ -809,7 +809,7 @@ segments:
       - [0x01FF20, asm, localeconv]
       - [0x01FF48, asm, _lseek_r]
       - [0x01FFA8, asm, __smakebuf]
-      - [0x0200F8, asm, gcc2_compiled.]
+      - [0x0200F8, asm, malloc_extend_top]
       - [0x020350, asm, _malloc_r]
       - [0x020AC8, asm, _mbtowc_r]
       - [0x020B08, asm, memchr]
@@ -863,11 +863,11 @@ segments:
       - [0x022948, asm, strcpy]
       - [0x022A60, asm, strlen]
       - [0x022B98, asm, strncpy]
-      - [0x022D58, asm, gcc2_compiled.]
+      - [0x022D58, asm, __sprint]
       - [0x022DA0, asm, __sbprintf]
       - [0x022E58, asm, vfiprintf]
       - [0x022ED0, asm, _vfiprintf_r]
-      - [0x023AA0, asm, gcc2_compiled.]
+      - [0x023AA0, asm, __sprint]
       - [0x023AE8, asm, __sbprintf]
       - [0x023BA0, asm, vfprintf]
       - [0x023C18, asm, _vfprintf_r]
@@ -915,6 +915,7 @@ segments:
       - [0x0289C8, asm, __negsf2]
       - [0x028A00, asm, __make_fp]
       - [0x028A30, asm, fptodp]
+      # sppbx/main.c
       - [0x028A70, asm, main]
       - [0x029070, asm, gmsysTotalInit]
       - [0x0293E0, asm, gmsysInitIop]
@@ -933,12 +934,14 @@ segments:
       - [0x029AC0, asm, gmsysSetScrActiveWnd]
       - [0x029AF0, asm, gmsysSetScrDivType]
       - [0x029B30, asm, gmsysSetScrDivLine]
+      # ul/source/cdvd.c
       - [0x029BE0, asm, uldvdInitCdvd_DRIVE]
       - [0x029CC0, asm, uldvdSetReadFile_DRIVE]
       - [0x029E30, asm, uldvdReadData_DRIVE]
       - [0x029F80, asm, uldvdStartReadData_DRIVE]
       - [0x02A2D0, asm, uldvdCheckFinish_DRIVE]
       - [0x02A7D0, asm, uldvdCheckReadPer_DRIVE]
+      # ul/source/coord.c
       - [0x02A7E0, asm, ulcodInitCoordinate]
       - [0x02A830, asm, ulcodLinkCoordinate]
       - [0x02A880, asm, ulcodSetVsMatrix]
@@ -946,12 +949,14 @@ segments:
       - [0x02A920, asm, ulcodSetWvMatrix]
       - [0x02A960, asm, ulcodGetLwMatrix]
       - [0x02AA60, asm, ulcodGetWsMatrix]
+      # ul/source/gif.c
       - [0x02AAA0, asm, ulgifTermPacket]
       - [0x02AAE0, asm, ulgifDmaSend]
       - [0x02AB20, asm, ulgifDmaWait]
       - [0x02AB50, asm, ulgifAddCNTReserve]
       - [0x02ABC0, asm, ulgifAddSetGsRegister]
       - [0x02AC40, asm, ulgifAddCNTSetGsRegister]
+      # ul/source/gifpkt.c
       - [0x02ACA0, asm, ulpktInitALPHA]
       - [0x02AD20, asm, ulpktInitF3]
       - [0x02AD80, asm, ulpktInitG3]
@@ -959,6 +964,7 @@ segments:
       - [0x02AE50, asm, ulpktInitG4]
       - [0x02AEC0, asm, ulpktInitFT4]
       - [0x02AFE0, asm, ulpktInitGT4]
+      # ul/source/graph.c
       - [0x02B100, asm, ulgraphSetDefFrameBuff]
       - [0x02BA00, asm, ulgraphCopyDrawToDispBuffer]
       - [0x02C020, asm, ulgraphFlipFrameBuff]
@@ -971,10 +977,12 @@ segments:
       - [0x02D250, asm, ulgraphSetDefDrawEnv]
       - [0x02D560, asm, ulgraphPutDrawEnv]
       - [0x02D5E0, asm, ulgraphEffectDepthOfField]
+      # ul/source/heap.c
       - [0x02E200, asm, ulInitHeap]
       - [0x02E2C0, asm, ulMalloc]
       - [0x02E3E0, asm, ulFree]
       - [0x02E480, asm, ulDumpHeapInfo]
+      # ul/source/mcard.c
       - [0x02E6B0, asm, ulmcSysInit]
       - [0x02E700, asm, ulmcSysReset]
       - [0x02E8C0, asm, ulmcSetUseSlot]
@@ -995,24 +1003,32 @@ segments:
       - [0x02FEB0, asm, ulmcDeleteAll]
       - [0x02FF90, asm, ulmcClearIconSys]
       - [0x0300A0, asm, ulmcCheckSlotNo]
+      # ul/source/mdlpr.c
       - [0x0300E0, asm, ulmdlPrimPhysiqueStripGT]
       - [0x0302C0, asm, ulmdlPrimMeshStripGT]
+      # ul/source/mdlpra.c
       - [0x0304B0, asm, ulmdlPrimPhysiqueStripGTalpha]
       - [0x030790, asm, ulmdlPrimMeshStripGTalpha]
+      # ul/source/mdlprAmb.c
       - [0x030A80, asm, ulmdlPrimPhysiqueStripGT_Ambient]
       - [0x030C40, asm, ulmdlPrimMeshStripGT_Ambient]
+      # ul/source/mdlprEnv.c
       - [0x030E10, asm, ulmdlPrimPhysiqueStripGT_Envmap]
       - [0x031000, asm, ulmdlPrimMeshStripGT_Envmap]
+      # ul/source/mdlprHlt.c
       - [0x031200, asm, ulmdlPrimPhysiqueStripGT_Highlight]
       - [0x031420, asm, ulmdlPrimMeshStripGT_Highlight]
+      # ul/source/mdlprSdw.c
       - [0x031650, asm, ulmdlPrimPhysiqueStripGT_Shadow]
       - [0x0317F0, asm, ulmdlPrimMeshStripGT_Shadow]
+      # ul/source/model.c
       - [0x031980, asm, ul3dScaleMatrixXYZ]
       - [0x0319E0, asm, ulmdlInitModel]
       - [0x031DA0, asm, ulmdlSetModelTexture]
       - [0x031EE0, asm, ulmdlSetObjCoordinate]
       - [0x032540, asm, ulmdlDrawModelPkt]
       - [0x032A50, asm, ulmdlCalcPhysiqueStrip]
+      # ul/source/pad.c
       - [0x032B00, asm, ulpadInit]
       - [0x032BD0, asm, ulpadInitData]
       - [0x032D60, asm, ulpadOpenPort]
@@ -1038,6 +1054,7 @@ segments:
       - [0x035C70, asm, ulpadChangePress]
       - [0x035DB0, asm, ulpadSetActData]
       - [0x035F50, asm, ulpadSynActData]
+      # ul/source/sd.c
       - [0x036010, asm, ulsdInit]
       - [0x036070, asm, ulsdSetMasterVol]
       - [0x036130, asm, ulsdSetEffectReturnVol]
@@ -1048,15 +1065,19 @@ segments:
       - [0x036460, asm, ulsdSetEffectEndAddr]
       - [0x0364E0, asm, ulsdSetEffectEnable]
       - [0x036560, asm, ulsdEntryBatch]
+      # ul/source/sprintf.c
       - [0x0365F0, asm, number]
       - [0x036890, asm, skip_atoi]
       - [0x036930, asm, sprintf_sub]
       - [0x036E50, asm, ulstdSprintf]
       - [0x036EF0, asm, ulstdPrintf]
+      # ul/source/system.c
       - [0x036FA0, asm, ulsysInitSystem]
       - [0x0373C0, asm, ulsysSetScreenMode]
+      # ul/source/vif1.c
       - [0x037470, asm, ulvif1DmaSend]
       - [0x0374B0, asm, ulvif1DmaWait]
+      # ul/source/mv2ext.c
       - [0x0374E0, asm, audioDecCreate]
       - [0x037660, asm, audioDecDelete]
       - [0x0376E0, asm, audioDecResume]
@@ -1071,8 +1092,10 @@ segments:
       - [0x038140, asm, audioChangeInputVolume]
       - [0x038190, asm, ulmov2dispCreate]
       - [0x038290, asm, ulmov2dispSetTags]
+      # ul/source/mv2ext.h
       - [0x038840, asm, DmaAddr]
       - [0x038860, asm, UncAddr]
+      # ul/source/mv2ext.c
       - [0x038890, asm, ulmov2LoadImage]
       - [0x0388E0, asm, ulmov2vblankHandler]
       - [0x038BF0, asm, ulmov2handler_endimage]
@@ -1138,6 +1161,7 @@ segments:
       - [0x03BD50, asm, voBufIsEmpty]
       - [0x03BD80, asm, voBufGetTag]
       - [0x03BE40, asm, voBufDecCount]
+      # ul/source/movie2.c
       - [0x03BE80, asm, ulmov2InitMovie]
       - [0x03BEA0, asm, ulmov2SetMovie_DRIVE]
       - [0x03C4F0, asm, ulmov2GetState]
@@ -1152,6 +1176,7 @@ segments:
       - [0x03CB80, asm, ulmov2GetMpegFrame]
       - [0x03CBA0, asm, ulmov2IsPlaying]
       - [0x03CBB0, asm, defMain]
+      # ul/source/graph2.c
       - [0x03CBD0, asm, ulgraphAlphaInitBuf]
       - [0x03CC50, asm, ulgraphAlphaResetBuf]
       - [0x03CCA0, asm, ulgraphAlphaOpenPacket]
@@ -1159,6 +1184,7 @@ segments:
       - [0x03CDD0, asm, ulgraphAlphaSortPacket]
       - [0x03CE40, asm, _ulgraphAlphaSort]
       - [0x03CFE0, asm, ulgraphAlphaDrawPacket]
+      # ul/source/TEX.c
       - [0x03D030, asm, ultexResetTex]
       - [0x03D050, asm, ultexGetOffset]
       - [0x03D060, asm, ultexGetNTex]
@@ -1176,8 +1202,10 @@ segments:
       - [0x03EFE0, asm, ultexSetTexPath3]
       - [0x03F150, asm, ultexGetTEX0]
       - [0x03F320, asm, ultexGetAlign]
+      # ul/source/mdlprTon.c
       - [0x03F360, asm, ulmdlPrimPhysiqueStripGT_Toon]
       - [0x03F650, asm, ulmdlPrimMeshStripGT_Toon]
+      # ul/source/vumodel.c
       - [0x03F940, asm, ulvumdlInitModel]
       - [0x03FCE0, asm, ulvumdlDrawModel]
       - [0x040380, asm, ulvumdlDrawModelAlpha]
@@ -1187,15 +1215,19 @@ segments:
       - [0x041130, asm, ulvumdlGetMatrix]
       - [0x0411E0, asm, ulvumdlInitVerShadeWind]
       - [0x0412E0, asm, ulvumdlCalcVerShadeWind]
+      # ul/source/xmem.c
       - [0x041490, asm, xmemInitHeap]
       - [0x041500, asm, xmemMalloc]
       - [0x041620, asm, xmemMalloc2]
       - [0x041730, asm, xmemFree]
       - [0x0418F0, asm, xmemMallocStat]
       - [0x041A40, asm, xmemCheckExistMemory]
+      # ul/source/spr.c
       - [0x041B20, asm, ulsprMemcpy]
+      # ul/source/strconv.c
       - [0x041BF0, asm, ulstrAsciitoSjis]
       - [0x041F00, asm, tmgraphSetMatrix]
+      # sppbx/tmgraph.c
       - [0x042280, asm, tmgraphGetFogCoef]
       - [0x042360, asm, tmgraphCheckClipFlag]
       - [0x042450, asm, tmgraphScissorAlphaPolyT]
@@ -1204,6 +1236,7 @@ segments:
       - [0x042C60, asm, tmgraphCheckClip]
       - [0x042CB0, asm, tmgraphRTPSpriteAddAlphaBufT__]
       - [0x043240, asm, tmgraphRTPAddAlphaBufG_T__]
+      # sppbx/tmcrs.c
       - [0x043660, asm, tmcrsInit]
       - [0x043A70, asm, tmcrsEnd]
       - [0x043B30, asm, tmcrsReset]
@@ -1324,7 +1357,9 @@ segments:
       - [0x055450, asm, David_tmcrsInitBlockBound]
       - [0x0557D0, asm, David_tmcrsGetObjectCollision2]
       - [0x0558B0, asm, David_tmcrsGetObjectCollision]
+      # sppbx/tmalpha.c
       - [0x055FA0, asm, tmalphaSetTestReg]
+      # sppbx/maanim.c
       - [0x056340, asm, maQuatSlerp]
       - [0x0564F0, asm, bezierVector]
       - [0x0565D0, asm, euler2Quat]
@@ -1366,6 +1401,7 @@ segments:
       - [0x05D9F0, asm, maSecMotionMode]
       - [0x05DA20, asm, maModelChangeSet]
       - [0x05DDD0, asm, maModelChangeInitEnd]
+      # sppbx/ktmot.c
       - [0x05DE00, asm, ktmotInit]
       - [0x05DF70, asm, ktmotInitInfo]
       - [0x05DFF0, asm, ktmotInitFlip]
@@ -1382,6 +1418,7 @@ segments:
       - [0x063410, asm, ktmotGetNumFrame]
       - [0x063490, asm, ktmotSetFlip]
       - [0x063590, asm, ktmotUpdateFlip]
+      # sppbx/ktact.c
       - [0x063CA0, asm, ktactInitCtrl]
       - [0x064980, asm, iktactMakeParam_cmn_max_speed]
       - [0x064A60, asm, iktactMakeParam_max_speed]
@@ -1411,7 +1448,9 @@ segments:
       - [0x0671E0, asm, ktactSetSeinfo]
       - [0x067390, asm, ktactGetRotVector]
       - [0x0674E0, asm, iktactGetLenXZ]
+      # sppbx/ktsbcore.h
       - [0x067530, asm, isbcoreSqrtf]
+      # sppbx/ktact.c
       - [0x067550, asm, ktactPlaySE]
       - [0x0677A0, asm, ktactCtrl]
       - [0x068800, asm, iktactGetLen]
@@ -1531,6 +1570,7 @@ segments:
       - [0x083E10, asm, David_ktactGetHit_hit2]
       - [0x0843B0, asm, David_ktactGetHit_obs2]
       - [0x084650, asm, David_ktactGetHit_obs]
+      # sppbx/nmfont.c
       - [0x0849A0, asm, nmfontSetTexData]
       - [0x0849F0, asm, nmfontSetLang]
       - [0x084A10, asm, nmfontInitOption]
@@ -1555,8 +1595,10 @@ segments:
       - [0x088AC0, asm, nmfontGetPackOfs]
       - [0x0891E0, asm, nmfontSwitchBil]
       - [0x0892E0, asm, nmfontChangeVertex]
+      # sppbx/ktmenu.c
       - [0x089380, asm, ktmenuInit]
       - [0x089420, asm, ktmenuAdd]
+      # sppbx/ktmnufnc.c
       - [0x089530, asm, ktmfSetMenu]
       - [0x089700, asm, ktmfMenuFunc_continue]
       - [0x089720, asm, ktmfMenuFunc_restart]
@@ -1564,6 +1606,7 @@ segments:
       - [0x089770, asm, ktmfMenuFunc_exit]
       - [0x089790, asm, ktmfMenuFunc_finish]
       - [0x089820, asm, ktmfdbgMenuFunc_2d]
+      # sppbx/spinit.c
       - [0x089860, asm, spinitInit]
       - [0x089B10, asm, spinitInitRecord]
       - [0x089C00, asm, spinitInitOption]
@@ -1577,6 +1620,7 @@ segments:
       - [0x08A260, asm, spinitGetCreateClock]
       - [0x08A2B0, asm, spinitGetClockSub]
       - [0x08A520, asm, spinitModule]
+      # sppbx/spload.c
       - [0x08A680, asm, sploadInit]
       - [0x08A960, asm, sploadFrame]
       - [0x08ABE0, asm, sploadEnd]
@@ -1631,7 +1675,9 @@ segments:
       - [0x097490, asm, sploadGetGame2D]
       - [0x0974A0, asm, sploadGetGameEtc]
       - [0x0974B0, asm, sploadGetCommonOffset]
+      # sppbx/tmlink.c
       - [0x0974C0, asm, tmlinkMappingData]
+      # sppbx/gmpad.c
       - [0x097550, asm, gmsysPadInit]
       - [0x0975A0, asm, gmsysPadMain]
       - [0x097770, asm, gmsysPadReset]
@@ -1640,6 +1686,7 @@ segments:
       - [0x097880, asm, gmsysPadInitPadOpe]
       - [0x0978F0, asm, gmsysPadInitPadData]
       - [0x0979A0, asm, gmsysPadSetPadInfoLink]
+      # sppbx/ktrider.c
       - [0x097AD0, asm, spRiderInit]
       - [0x097B80, asm, spRiderEnd]
       - [0x097BF0, asm, spRiderMain]
@@ -1651,6 +1698,7 @@ segments:
       - [0x098A40, asm, spInitRiderCtrl]
       - [0x098D80, asm, spRiderSetPos]
       - [0x098DF0, asm, spRiderSetPos2]
+      # sppbx/spfree.c
       - [0x099020, asm, spFreeRideInit]
       - [0x0991E0, asm, spFreeRideEnd]
       - [0x099270, asm, spFreeRideFrame]
@@ -1693,6 +1741,7 @@ segments:
       - [0x09F7E0, asm, spFade]
       - [0x09FA80, asm, spEnterEventCameraMode]
       - [0x09FA90, asm, spExitEventCameraMode]
+      # sppbx/tmevent.c
       - [0x09FAA0, asm, tmevInit]
       - [0x09FF30, asm, tmevReset]
       - [0x0A0720, asm, tmevMainEvent]
@@ -1769,10 +1818,12 @@ segments:
       - [0x0A42C0, asm, tmevDefDrawPlayerEvent]
       - [0x0A42E0, asm, tmevDefFinishPlayerEvent]
       - [0x0A4300, asm, tmevDefEnd]
+      # sppbx/ayselect.c
       - [0x0A4310, asm, aySelectModInit]
       - [0x0A44B0, asm, aySelectModFrame]
       - [0x0A4CA0, asm, aySelectModEnd]
       - [0x0A4D00, asm, aySetCharScale]
+      # sppbx/aycomfnk.c
       - [0x0A4F80, asm, ayFrameReset]
       - [0x0A5010, asm, aySetPolyComFT4]
       - [0x0A5410, asm, aySetPolyComGT4]
@@ -1793,8 +1844,10 @@ segments:
       - [0x0A6F80, asm, aySetPolyComF3]
       - [0x0A70D0, asm, aySetPolyComG3]
       - [0x0A7260, asm, aySetVert3]
+      # ?
       - [0x0A7470, asm, ayDrawNum]
       - [0x0A78C0, asm, ayDrawCredits]
+      # sppbx/aymcard.c
       - [0x0A7AD0, asm, ayMcSysInit]
       - [0x0A7B20, asm, ayMcSysClear]
       - [0x0A7BD0, asm, ayMcStartLoad]
@@ -1811,7 +1864,9 @@ segments:
       - [0x0B0F60, asm, ayMcMesDraw]
       - [0x0B1370, asm, ayMcSysEnd]
       - [0x0B13A0, asm, ayMcGetStep]
+      # 
       - [0x0B13B0, asm, aySetTimeStr]
+      # sppbx/aymodsel.c
       - [0x0B15B0, asm, ayModeSelInit]
       - [0x0B1650, asm, ayModeSelFrame]
       - [0x0B20A0, asm, ayModeSelEnd]
@@ -1820,14 +1875,17 @@ segments:
       - [0x0B2AC0, asm, aySetMode]
       - [0x0B2DA0, asm, ayDrawMode]
       - [0x0B37A0, asm, ayDrawMark]
+      # 
       - [0x0B3DE0, asm, ayReleaseCommand]
       - [0x0B4060, asm, ayReleaseCheat]
       - [0x0B4100, asm, ayReleaseGap]
       - [0x0B41C0, asm, ayReleaseMovie]
       - [0x0B4210, asm, ayReleaseChara]
+      # sppbx/aymovie.c
       - [0x0B4370, asm, ayMovieModInit]
       - [0x0B44E0, asm, ayMovieModFrame]
       - [0x0B4E30, asm, ayMovieModEnd]
+      # sppbx/aychrsel.c
       - [0x0B4E70, asm, ayCharSelInit]
       - [0x0B4FC0, asm, ayCharSelFrame]
       - [0x0B66C0, asm, ayCharSelEnd]
@@ -1852,6 +1910,7 @@ segments:
       - [0x0C1510, asm, aySetMotFlg]
       - [0x0C1530, asm, ayCalcCharNext]
       - [0x0C15D0, asm, ayLevelGoalDraw]
+      # sppbx/kncamera.c
       - [0x0C24E0, asm, knCameraInit]
       - [0x0C2960, asm, knCameraSetScrZ]
       - [0x0C29B0, asm, knCameraCalc]
@@ -1879,6 +1938,7 @@ segments:
       - [0x0C7100, asm, knAngAxisToQuat]
       - [0x0C7170, asm, knQuatToAngAxis]
       - [0x0C7400, asm, knQuatSlerp]
+      # sppbx/ayoption.c
       - [0x0C75B0, asm, ayOptionInit]
       - [0x0C77C0, asm, ayGetExponent]
       - [0x0C7840, asm, ayOptionFrame]
@@ -1903,6 +1963,7 @@ segments:
       - [0x0D5DE0, asm, aySetKeyDiff]
       - [0x0D5F10, asm, ayOptBlackOut]
       - [0x0D6030, asm, aySetKeyOparate]
+      # sppbx/nmvc.c
       - [0x0D6670, asm, nmvcInit]
       - [0x0D66C0, asm, nmvcInitOption]
       - [0x0D6710, asm, nmvcFrame]
@@ -1931,6 +1992,7 @@ segments:
       - [0x0D75C0, asm, nmvcChangeSin]
       - [0x0D7670, asm, nmvcInitFig]
       - [0x0D76F0, asm, nmvcCheckState]
+      # sppbx/nmsnd.c
       - [0x0D7910, asm, nmsndInit]
       - [0x0D7B80, asm, nmsndFrame]
       - [0x0D7D20, asm, nmsndRestart]
@@ -1947,6 +2009,7 @@ segments:
       - [0x0D89A0, asm, nmsndGetChanState]
       - [0x0D89D0, asm, nmsndInitMod]
       - [0x0D8AF0, asm, nmsndEndPub]
+      # sppbx/nmbgm.c
       - [0x0D8CA0, asm, nmbgmInit]
       - [0x0D8CE0, asm, nmbgmFrame]
       - [0x0D8E20, asm, nmbgmSetTbl]
@@ -1974,6 +2037,7 @@ segments:
       - [0x0D9830, asm, nmbgmInitQue]
       - [0x0D9860, asm, nmbgmProcessQue]
       - [0x0D9C40, asm, nmbgmCheckRandom]
+      # sppbx/nmsq.c
       - [0x0D9D20, asm, nmsqInit]
       - [0x0D9D70, asm, nmsqFrame]
       - [0x0D9E40, asm, nmsqSetWave]
@@ -1999,6 +2063,7 @@ segments:
       - [0x0DA8D0, asm, nmsqInitQue]
       - [0x0DA920, asm, nmsqProcessQue]
       - [0x0DABF0, asm, nmsqCheckState]
+      # sppbx/nmdisp.c
       - [0x0DAE10, asm, nmdispInit]
       - [0x0DB0F0, asm, nmdispInitReplay]
       - [0x0DB110, asm, nmdispInitEnv]
@@ -2216,6 +2281,7 @@ segments:
       - [0x10E640, asm, nmdispRenewTrick]
       - [0x10E890, asm, nmdispSetTrickFall]
       - [0x10EA80, asm, nmdispChanState]
+      # sppbx/nmdraw.c
       - [0x10ED40, asm, nmdrawFade]
       - [0x10EE80, asm, nmdrawKeyOperate]
       - [0x10F690, asm, nmdrawBar]
@@ -2237,9 +2303,12 @@ segments:
       - [0x114C90, asm, nmdrawSwitchBil]
       - [0x114DA0, asm, nmdrawChangeVertex]
       - [0x114E40, asm, nmdrawInitLSF4]
+      # sppbx/knreplay.c
       - [0x114EA0, asm, knIntroInit]
       - [0x1150E0, asm, knIntroMain]
+      # sppbx/kncore.h
       - [0x115C20, asm, knCoreSubVectorXYZ]
+      # sppbx/knreplay.c
       - [0x115C40, asm, knIntroSetData]
       - [0x115D10, asm, knIntroSetData2]
       - [0x115F60, asm, knIntroRotCamera]
@@ -2276,6 +2345,7 @@ segments:
       - [0x11B0A0, asm, knReplayCameraShakeTYPE2]
       - [0x11B2B0, asm, knReplayAxisRotMatrix]
       - [0x11B560, asm, knReplayGetLenScale]
+      # sppbx/spev01.c
       - [0x11B5E0, asm, spev01Init]
       - [0x11BD20, asm, spev01ResetEvent]
       - [0x11C0E0, asm, spev01MainEvent]
@@ -2324,6 +2394,7 @@ segments:
       - [0x1259C0, asm, spev01SetTowerCollision]
       - [0x125A90, asm, spev01ResetLiftMan]
       - [0x125DD0, asm, spev01MoveLiftMan]
+      # sppbx/ktsbcore.c
       - [0x126CE0, asm, sbcoreInit]
       - [0x126FA0, asm, sbcoreInitPLANE]
       - [0x127050, asm, sbcoreInitPLANESET]
@@ -2354,6 +2425,7 @@ segments:
       - [0x12AA90, asm, sbcoreGetMirrorVector_angle]
       - [0x12AC90, asm, sbcoreGetInnerAngle90]
       - [0x12AD10, asm, sbcoreGetInnerAngle180]
+      # sppbx/aycreate.c
       - [0x12AD80, asm, ayCreateInit]
       - [0x12ADC0, asm, ayCreateFrame]
       - [0x12BE00, asm, ayCreateClear]
@@ -2374,6 +2446,7 @@ segments:
       - [0x133020, asm, ayDrawConfirm]
       - [0x133BE0, asm, aySetKeyOparate]
       - [0x133DD0, asm, ayGetTricktype]
+      # sppbx/akEffect.c
       - [0x133FC0, asm, akSrandf]
       - [0x133FD0, asm, akRandf]
       - [0x134010, asm, spfxSetTexData]
@@ -2404,6 +2477,7 @@ segments:
       - [0x13A120, asm, akfxInitSnowFall]
       - [0x13A260, asm, akfxSnowFall]
       - [0x13AAF0, asm, akfxFreeSnowFall]
+      # sppbx/ayresult.c
       - [0x13AB50, asm, ayResultInit]
       - [0x13ABB0, asm, ayResultFrame]
       - [0x13C230, asm, ayResultEnd]
@@ -2429,6 +2503,7 @@ segments:
       - [0x148CC0, asm, ayDrawBackBoard]
       - [0x1490D0, asm, ayChangeCharID]
       - [0x149190, asm, ayDrawEnding]
+      # sppbx/spev04.c
       - [0x149230, asm, spev04Init]
       - [0x149430, asm, spev04ResetEvent]
       - [0x149580, asm, spev04MainEvent]
@@ -2529,6 +2604,7 @@ segments:
       - [0x15A4A0, asm, spev04ResetLight]
       - [0x15A8A0, asm, spev04CheckWarp]
       - [0x15ABF0, asm, spev04MatchWarp]
+      # sppbx/tieffect.c
       - [0x15AC40, asm, tifxInitSpur]
       - [0x15ACD0, asm, tifxcolorspur]
       - [0x15AD20, asm, tifxinitspur]
@@ -2573,6 +2649,7 @@ segments:
       - [0x15FEC0, asm, tifxCalcSteam]
       - [0x160350, asm, tievSetSteam]
       - [0x1605E0, asm, tifxFinalSteam]
+      # sppbx/spev08.c
       - [0x160630, asm, spev08Init]
       - [0x160C10, asm, spev08ResetEvent]
       - [0x160F40, asm, spev08MainEvent]
@@ -2594,6 +2671,7 @@ segments:
       - [0x165080, asm, spev08ActionEV19]
       - [0x165410, asm, spev08SetLoopSound]
       - [0x1657B0, asm, spev08Liftman]
+      # sppbx/nmact.c
       - [0x166070, asm, nmactInit]
       - [0x1660A0, asm, nmactEndGame]
       - [0x166100, asm, nmactFrame]
@@ -2617,6 +2695,7 @@ segments:
       - [0x168770, asm, nmactCalcCamera]
       - [0x1688A0, asm, nmactCalcSlideLevel]
       - [0x1689F0, asm, nmactCalcRailLevel]
+      # sppbx/spev02.c
       - [0x168B10, asm, spev02Init]
       - [0x168D50, asm, spev02ResetEvent]
       - [0x168E80, asm, spev02MainEvent]
@@ -2691,6 +2770,7 @@ segments:
       - [0x173850, asm, spev02CheckWarp]
       - [0x173AF0, asm, spev02MatchWarp]
       - [0x173B00, asm, spev02CheckDraw]
+      # sppbx/spev03.c
       - [0x173D60, asm, spev03Init]
       - [0x174260, asm, spev03ResetEvent]
       - [0x174E90, asm, spev03MainEvent]
@@ -2713,6 +2793,7 @@ segments:
       - [0x17A230, asm, spev03CheckPlantGaps]
       - [0x17A380, asm, spev03CheckGrindGaps]
       - [0x17B020, asm, spev03CheckFog]
+      # sppbx/spev06.c
       - [0x17B560, asm, spev06Init]
       - [0x17BCF0, asm, spev06ResetEvent]
       - [0x17C180, asm, spev06MainEvent]
@@ -2737,6 +2818,7 @@ segments:
       - [0x182340, asm, spev06DispSlalomInfo]
       - [0x182630, asm, spev06ActionGate]
       - [0x182790, asm, spev06Liftman]
+      # sppbx/spev07.c
       - [0x183060, asm, tiev07AddSmokeP2P]
       - [0x183130, asm, spev07DisableMdlMotion]
       - [0x183180, asm, spev07PlayMdlMotion]
@@ -2769,6 +2851,7 @@ segments:
       - [0x18ABA0, asm, spev07DrawPlayerEvent]
       - [0x18ABC0, asm, spev07FinishPlayerEvent]
       - [0x18ABE0, asm, spev07End]
+      # sppbx/spev05.c
       - [0x18AC70, asm, spev05Init]
       - [0x18B530, asm, spev05ResetEvent]
       - [0x18C1D0, asm, spev05MainEvent]
@@ -2800,6 +2883,7 @@ segments:
       - [0x1921E0, asm, spev05SnowMobileMoveEvent]
       - [0x193440, asm, spev05LiftManMoveReset]
       - [0x1936D0, asm, spev05LiftManMoveEvent]
+      # sppbx/kncore.c
       - [0x194160, asm, knCoreInitRand]
       - [0x194180, asm, knCoreRandBase]
       - [0x1941E0, asm, knCoreRand]
@@ -2825,6 +2909,7 @@ segments:
       - [0x195FF0, asm, knCoreGetAngle]
       - [0x1960A0, asm, knCoreBezier]
       - [0x196150, asm, knCoreSpline1]
+      # sppbx/nmevent.c
       - [0x1962A0, asm, nmeventInit]
       - [0x1962B0, asm, nmeventPlay]
       - [0x196350, asm, nmeventPlay2]
@@ -2833,6 +2918,7 @@ segments:
       - [0x1964C0, asm, nmeventPlayWarp]
       - [0x196560, asm, nmeventPlayVoice]
       - [0x1965F0, asm, nmeventSearchRes]
+      # sppbx/akEvEfct.c
       - [0x1966C0, asm, akevInitEffect]
       - [0x196C80, asm, akevResetEffect]
       - [0x196E50, asm, akevResetEffect2]
@@ -2868,12 +2954,15 @@ segments:
       - [0x199DD0, asm, akevFreeFirework]
       - [0x199E10, asm, akevInitLift]
       - [0x19A070, asm, akevMoveLift]
+      # sppbx/akSelEff.c
       - [0x19A610, asm, akselInitSnowFall]
       - [0x19A800, asm, akselSnowFall]
       - [0x19B410, asm, akselFreeSnowFall]
+      # sppbx/akShadow.c
       - [0x19B470, asm, aksdwDrawShadowVuMdl]
       - [0x19B740, asm, _DrawShadow]
       - [0x19BF60, asm, aksdwMakeShadowMatrix]
+      # sppbx/nmtrick.c
       - [0x19C250, asm, nmtrickInit]
       - [0x19C2A0, asm, nmtrickInitInfo]
       - [0x19C420, asm, nmtrickInitInfo2]
@@ -2891,18 +2980,22 @@ segments:
       - [0x1A05F0, asm, nmtrickMakeStr]
       - [0x1A1390, asm, nmtrickSetSpType]
       - [0x1A1420, asm, nmtrickDelInfo]
+      # sppbx/tiutill.c
       - [0x1A1960, asm, tiutRand]
       - [0x1A1A00, asm, tiutVu0DistanceP2P]
       - [0x1A1A40, asm, tiutVu0CrossL2L]
       - [0x1A1C40, asm, tiutVu0AxisRotate]
+      # sppbx/akSpSub.c
       - [0x1A1E70, asm, aksubFlipFrameBuff]
       - [0x1A1F40, asm, aksubClipScreen]
+      # sppbx/tmetc.c
       - [0x1A2430, asm, tmetcInit]
       - [0x1A26D0, asm, tmetcEnd]
       - [0x1A26E0, asm, tmetcReset]
       - [0x1A2750, asm, tmetcGetRank]
       - [0x1A2AF0, asm, tmetcGetVerticalPoint]
       - [0x1A2BA0, asm, tmetcGetAcc]
+      # sppbx/tievent.c
       - [0x1A2D00, asm, tievInitCloudSea]
       - [0x1A2FA0, asm, tievFreeCloudSea]
       - [0x1A2FF0, asm, tievShowCloudSea]
@@ -2935,7 +3028,8 @@ segments:
       - [0x1A6900, asm, tievDrawCannon]
       - [0x1A6F20, asm, tievCalcCannon]
       - [0x1A7590, asm, tievCannon]
-      - [0x1A7600, asm, gcc2_compiled.]
+      # Library
+      - [0x1A7600, asm, GetRomName]
       - [0x1A76A0, asm, IsT10K]
       - [0x1A76E0, asm, sceScfGetLanguage]
       - [0x1A7740, asm, sceScfSetT10kConfig]
@@ -3275,4 +3369,6 @@ segments:
       - [0x1AF740, asm, init_mp3.3]
       - [0x1AF750, asm, dch]
       - [0x1AF778, asm, sceDmaDebugMode]
-  - [0x1AF780, databin, test]
+
+  - [0x1AF780, databin]
+  - [0x1AF788]
