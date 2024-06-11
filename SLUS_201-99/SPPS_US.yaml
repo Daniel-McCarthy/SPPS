@@ -16,7 +16,7 @@ options:
   undefined_funcs_auto_path: ./undefined_funcs_auto.yaml
   create_undefined_syms_auto: True
   undefined_syms_auto_path: ./undefined_syms_auto.yaml
-  symbol_addrs_path: ./symbol_addrs.yaml
+  symbol_addrs_path: ./symbol_addresses.txt
   extensions_path: ../tools/splat_ext
   subalign: 8
   disasm_unknown: True
