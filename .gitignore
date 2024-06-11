@@ -5,6 +5,8 @@ SLUS_201.99
 
 .splat/
 *.ld
+asm/
+assets/
 
 # Compiler Configurations
 MW-3.0/
