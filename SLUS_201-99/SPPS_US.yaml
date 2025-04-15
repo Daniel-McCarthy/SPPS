@@ -5,7 +5,7 @@ options:
   basename: SLUS_201.99
   target_path: ./SLUS_201.99
   platform: ps2
-  compiler: MW
+  compiler: MWCCPS2
 
   base_path: .
   asm_path: asm
