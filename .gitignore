@@ -3,7 +3,13 @@ SLUS_201-99/asm
 SLUS_201-99/assets
 SLUS_201.99
 
+# Splat files
+checksum.sha1
+build.ninja
+.splache
 .splat/
+
+# Build output
 *.ld
 asm/
 assets/
