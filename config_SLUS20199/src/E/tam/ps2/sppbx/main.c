@@ -1,5 +1,5 @@
-// main.c
-// Last updated 4/14/2025
+// main.c context
+// Last updated 4/17/2025
 // SPPS NTSC-U 201.99 Final
 
 extern signed int _fbss;
@@ -14,8 +14,8 @@ typedef __int128 s128;
 typedef unsigned __int128 u_int128;
 
 #define SCE_GIF_SET_TAG(nloop, eop, pre, prim, flg, nreg) \
-    ((u_long)(nloop) | ((u_long)(eop)<<15) | ((u_long)(pre) << 46) | \
-    ((u_long)(prim)<<47) | ((u_long)(flg)<<58) | ((u_long)(nreg)<<60))
+    ((unsigned long)(nloop) | ((unsigned long)(eop)<<15) | ((unsigned long)(pre) << 46) | \
+    ((unsigned long)(prim)<<47) | ((unsigned long)(flg)<<58) | ((unsigned long)(nreg)<<60))
 
 #define SCE_GIF_PACKED_AD   0x0e
 
@@ -46,10 +46,6 @@ void sceVu0UnitMatrix(sceVu0FMATRIX a);
 // C function includes
 float sqrtf(float a);
 float atan2f(float y, float x);
-
-// Other included functions
-signed int ulgraphSetDefFrameBuff(VgmsysFrameBuffer* fb, unsigned short psm, unsigned short zpsm, signed short w, signed short h, unsigned short ztest, unsigned short mode);
-
 
 // Size: 0x10, DWARF: 0x55B
 typedef struct _sceDmaTag
@@ -91,8 +87,6 @@ typedef struct sceGifTag
 } sceGifTag __attribute__((aligned(16)));
 
 // Static data /////////////////////////////////////////////////////////
-
-char d62[] = "<No vgmsysInitFunc[%d]>\n";
 
 // spfree.c structs ////////////////////////////////////////////////////
 
@@ -761,8 +755,8 @@ VspenvDemo vspenvDemo; // Address: 0x3473D0
 // Size: 0x20, DWARF: 0xCC2
 VgmsysAbuf* vgmsysAbuf; // Address: 0x2E79C0
 __int128* vgmsysAbufmem; // Address: 0x2E79C4
-signed int* _stack; // Address: 0x1FF0000
-signed int* _end; // Address: 0x3C9900
+signed int _stack[]; // Address: 0x1FF0000
+signed int _end[]; // Address: 0x3C9900
 
 signed int main();
 static void gmsysTotalInit();
@@ -782,6 +776,10 @@ void gmsysSetScrFlipMode(signed int div30fr);
 void gmsysSetScrActiveWnd(signed int wid);
 void gmsysSetScrDivType(signed int type);
 void gmsysSetScrDivLine(signed int line);
+
+// Other included functions
+signed int ulgraphSetDefFrameBuff(VgmsysFrameBuffer* fb, unsigned short psm, unsigned short zpsm, signed short w, signed short h, unsigned short ztest, unsigned short mode);
+
 
 signed int main() {
     signed int temp_v1;
@@ -925,8 +923,8 @@ static void gmsysTotalInit() {
     void* top_vif1pkt; // r21 $s5
     signed int texbp; // r22 $s6
 
-    heapstart = (void*)D_003C9900;
-    heapend = (void*)((int)D_01FF0000 + 0xFFF80000);
+    heapstart = &_end;
+    heapend = (void*)((int)&_stack + 0xFFF80000);
     heap1size = 0x01800000;
     top_gifpkt = heapend;
     top_vif1pkt = (void*)((int)top_gifpkt + 0x40000);
@@ -1129,3 +1127,6 @@ void gmsysSetScrDivLine(signed int line) {
         return;
     }
 }
+
+// Other included functions
+signed int ulgraphSetDefFrameBuff(VgmsysFrameBuffer* fb, unsigned short psm, unsigned short zpsm, signed short w, signed short h, unsigned short ztest, unsigned short mode);
