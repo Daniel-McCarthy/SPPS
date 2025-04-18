@@ -13,9 +13,11 @@ build.ninja
 *.ld
 asm/
 assets/
+build/
 
 # Compiler Configurations
 MWCCPS2-2.4/
 
 # Misc
 Archive/
+wibo
