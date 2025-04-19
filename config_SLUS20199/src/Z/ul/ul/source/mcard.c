@@ -586,20 +586,20 @@ signed int ulmcDeleteAll(signed int slot) {
 
 void ulmcClearIconSys(Is* is /* 0x10(r29) */, char* tname /* 0x20(r29) */, char* fnview /* 0x30(r29) */, char* fncopy /* 0x40(r29) */, char* fndel /* 0x50(r29) */) {
     memset(is, 0, 0x3C4);
-    is->Head[0] = 0x50;
-    is->Head[1] = 0x53;
-    is->Head[2] = 0x32;
-    is->Head[3] = 0x44;
-    if (tname != 0) {
+    is->Head[0] = 'P';
+    is->Head[1] = 'S';
+    is->Head[2] = '2';
+    is->Head[3] = 'D';
+    if (tname) {
         ulstdSprintf(is->TitleName, "%s", tname);
     }
-    if (fnview != 0) {
+    if (fnview) {
         ulstdSprintf(is->FnameView, "%s", fnview);
     }
-    if (fncopy != 0) {
+    if (fncopy) {
         ulstdSprintf(is->FnameCopy, "%s", fncopy);
     }
-    if (fndel != 0) {
+    if (fndel) {
         ulstdSprintf(is->FnameDel, "%s", fndel);
     }
 }
