@@ -33,9 +33,21 @@ PIP 	:= $(PYTHON) -m pip
 
 WIBO := tools/wibo/wibo
 
-MWCC := $(WIBO) tools/MWCCPS2-2.4/mwccps2.exe
-MWLD := $(WIBO) tools/MWCCPS2-2.4/mwldps2.exe
-MWCC_ARGS := -version -O0,p -opt display -sym on -char unsigned -str readonly
+COMPILER_LOCATION := tools/compiler/MWCCPS2-2.4
+COMPILER_PS2SUPPORT_DIR := $(COMPILER_LOCATION)/PS2_Support
+MWLibraries		  := $(COMPILER_LOCATION)/Stationery/PlayStation2_-_2.0.0/c
+MWCIncludes		  := $(COMPILER_PS2SUPPORT_DIR)
+export MWLibraries
+export MWCIncludes
+
+MWCC := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwccps2.exe
+MWLD := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwldps2.exe
+MWCC_ARGS := -O0,p -sym on -char unsigned -str readonly
+
+US_LD_SCRIPT	:= config_SLUS20199/out/SLUS_201.99.ld
+
+US_SRC_FILES	:= $(foreach dir,$(US_SRC_DIR),$(wildcard $(dir)/*.c))
+US_ASM_FILES	:= $(foreach dir,$(US_ASM_DIR),$(wildcard $(dir)/*.s))
 
 # Make install - Installs Python dependencies.
 install:
@@ -52,6 +64,14 @@ build-us:
 # 	python3 ./$(US_DIR)/configure.py
 # 	ninja -C ./$(US_DIR)
 	$(MAKE) clean-and-reconstruct-build-dir
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/main.c -o ./$(BUILD_OBJS_DIR)/main.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/gmpad.c -o ./$(BUILD_OBJS_DIR)/gmpad.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmenu.c -o ./$(BUILD_OBJS_DIR)/ktmenu.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmnufnc.c -o ./$(BUILD_OBJS_DIR)/ktmnufnc.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/spinit.c -o ./$(BUILD_OBJS_DIR)/spinit.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/tmlink.c -o ./$(BUILD_OBJS_DIR)/tmlink.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/cdvd.c -o ./$(BUILD_OBJS_DIR)/cdvd.o
+	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/mcard.c -o ./$(BUILD_OBJS_DIR)/mcard.o
 
 clean-us:
 	@echo "Cleaning output and build directories"
