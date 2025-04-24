@@ -56,6 +56,8 @@ build-us:
 clean-us:
 	@echo "Cleaning output and build directories"
 	$(RM) -r $(US_OUTPUT_DIR)/ $(US_DIR)/.splat/
+	$(RM) $(US_DIR)/undefined_funcs_auto.yaml
+	$(RM) $(US_DIR)/undefined_syms_auto.yaml
 
 clean-and-reconstruct-build-dir:
 	@echo "Cleaning the build directory"
