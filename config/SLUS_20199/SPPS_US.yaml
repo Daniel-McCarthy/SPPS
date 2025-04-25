@@ -3,23 +3,23 @@ name: SPPS 201-99 (US)
 sha1: a299494580e009bca242d5a9773013fdb08d2fff
 options:
   basename: SLUS_201.99
-  target_path: ./config_SLUS20199/SLUS_201.99
+  target_path: ./config/SLUS_20199/SLUS_201.99
   platform: ps2
   compiler: MWCCPS2
   endianness: little
 
-  base_path: ..
-  ld_script_path: ./config_SLUS20199/out/SLUS_201.99.ld
-  asm_path: ./config_SLUS20199/out/asm
-  asset_path: ./config_SLUS20199/out/assets
-  build_path: ./config_SLUS20199/out/
-  src_path: ./config_SLUS20199/src
+  base_path: ../../
+  ld_script_path: ./config/SLUS_20199/out/SLUS_201.99.ld
+  asm_path: ./config/SLUS_20199/out/asm
+  asset_path: ./config/SLUS_20199/out/assets
+  build_path: ./config/SLUS_20199/out/
+  src_path: ./config/SLUS_20199/src
 
   create_undefined_funcs_auto: True
-  undefined_funcs_auto_path: ./config_SLUS20199/undefined_funcs_auto.yaml
+  undefined_funcs_auto_path: ./config/SLUS_20199/undefined_funcs_auto.yaml
   create_undefined_syms_auto: True
-  undefined_syms_auto_path: ./config_SLUS20199/undefined_syms_auto.yaml
-  symbol_addrs_path: ./config_SLUS20199/symbol_addresses.txt
+  undefined_syms_auto_path: ./config/SLUS_20199/undefined_syms_auto.yaml
+  symbol_addrs_path: ./config/SLUS_20199/symbol_addresses.txt
   extensions_path: ./tools/splat_ext
   #section_order
   #auto_all_sections

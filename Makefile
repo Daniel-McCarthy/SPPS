@@ -2,13 +2,13 @@
 
 INCLUDE_DIR		:= include
 
-US_DIR 			:= config_SLUS20199
-US_OUTPUT_DIR 	:= config_SLUS20199/out
-US_ASSETS_DIR	:= config_SLUS20199/out/assets
-US_ASM_DIR 		:= config_SLUS20199/out/asm
-US_SRC_DIR		:= config_SLUS20199/src
-US_YAML_FILE 	:= config_SLUS20199/SPPS_US.yaml
-US_ROM_FILE		:= config_SLUS20199/SLUS_201.99
+US_DIR 			:= config/SLUS_20199
+US_OUTPUT_DIR 	:= config/SLUS_20199/out
+US_ASSETS_DIR	:= config/SLUS_20199/out/assets
+US_ASM_DIR 		:= config/SLUS_20199/out/asm
+US_SRC_DIR		:= config/SLUS_20199/src
+US_YAML_FILE 	:= config/SLUS_20199/SPPS_US.yaml
+US_ROM_FILE		:= config/SLUS_20199/SLUS_201.99
 
 US_SRC_SPPBX_DIR := $(US_SRC_DIR)/E/tam/ps2/sppbx
 US_SRC_SOURCE_DIR := $(US_SRC_DIR)/Z/ul/ul/source
@@ -44,7 +44,7 @@ MWCC := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwccps2.exe
 MWLD := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwldps2.exe
 MWCC_ARGS := -O0,p -sym on -char unsigned -str readonly
 
-US_LD_SCRIPT	:= config_SLUS20199/out/SLUS_201.99.ld
+US_LD_SCRIPT	:= config/SLUS_20199/out/SLUS_201.99.ld
 
 US_SRC_FILES	:= $(foreach dir,$(US_SRC_DIR),$(wildcard $(dir)/*.c))
 US_ASM_FILES	:= $(foreach dir,$(US_ASM_DIR),$(wildcard $(dir)/*.s))
