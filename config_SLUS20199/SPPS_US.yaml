@@ -57,7 +57,7 @@ segments:
       # sppbx/main.c
       - [0x028A70, asm, E/tam/ps2/sppbx/main]
       # ul/source/cdvd.c
-      - [0x029BE0, asm, Z/ul/ul/source/cdvd]
+      - [0x029BE0, c, Z/ul/ul/source/cdvd]
       # ul/source/coord.c
       - [0x02A7E0, asm, Z/ul/ul/source/coord]
       # ul/source/gif.c
@@ -69,7 +69,7 @@ segments:
       # ul/source/heap.c
       - [0x02E200, asm, Z/ul/ul/source/heap]
       # ul/source/mcard.c
-      - [0x02E6B0, asm, Z/ul/ul/source/mcard]
+      - [0x02E6B0, c, Z/ul/ul/source/mcard]
       # ul/source/mdlpr.c
       - [0x0300E0, asm, Z/ul/ul/source/mdlpr]
       # ul/source/mdlpra.c
@@ -131,17 +131,17 @@ segments:
       # sppbx/nmfont.c
       - [0x0849A0, asm, E/tam/ps2/sppbx/nmfont]
       # sppbx/ktmenu.c
-      - [0x089380, asm, E/tam/ps2/sppbx/ktmenu]
+      - [0x089380, c, E/tam/ps2/sppbx/ktmenu]
       # sppbx/ktmnufnc.c
-      - [0x089530, asm, E/tam/ps2/sppbx/ktmnufnc]
+      - [0x089530, c, E/tam/ps2/sppbx/ktmnufnc]
       # sppbx/spinit.c
-      - [0x089860, asm, E/tam/ps2/sppbx/spinit]
+      - [0x089860, c, E/tam/ps2/sppbx/spinit]
       # sppbx/spload.c
       - [0x08A680, asm, E/tam/ps2/sppbx/spload]
       # sppbx/tmlink.c
-      - [0x0974C0, asm, E/tam/ps2/sppbx/tmlink]
+      - [0x0974C0, c, E/tam/ps2/sppbx/tmlink]
       # sppbx/gmpad.c
-      - [0x097550, asm, E/tam/ps2/sppbx/gmpad]
+      - [0x097550, c, E/tam/ps2/sppbx/gmpad]
       # sppbx/ktrider.c
       - [0x097AD0, asm, E/tam/ps2/sppbx/ktrider]
       # sppbx/spfree.c
