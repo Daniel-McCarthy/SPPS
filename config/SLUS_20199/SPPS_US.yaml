@@ -47,7 +47,7 @@ segments:
     type: code
     start: 0x0080
     vram: 0x100000
-    bas_size: 0x1AF700
+    bas_size: 0xE1824 #0x1AF700
     subsegments:
       - [0x0080, pad, nops]
       - [0x000088, asm, _start]
