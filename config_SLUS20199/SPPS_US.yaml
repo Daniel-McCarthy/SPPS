@@ -748,16 +748,16 @@ segments:
       - [0x1CEE80, databin] # @308
       - [0x1CEEA0, databin] # @309
       - [0x1CEEB0, databin] # @310
-      - [0x1CEEC0, databin] # vknIntro_ChrCamData
-      - [0x1CF080, databin] # axis$139
-      - [0x1CF090, databin] # length$272
-      - [0x1CF0A0, databin] # dis$593
+      - [0x1CEEC0, databin, knreplay/vknIntro_ChrCamData] #
+      - [0x1CF080, databin, knreplay/axis$139] #
+      - [0x1CF090, databin, knreplay/length$272] #
+      - [0x1CF0A0, databin, knreplay/dis$593] #
       - [0x1CF0B0, databin] # @771
-      - [0x1CF0C0, databin] # vspev01Lift1Pos
-      - [0x1CF3E0, databin] # vspev01Lift2Pos
-      - [0x1CF5C0, databin] # vspev01SmokeInfo
-      - [0x1CFAC0, databin] # @65
-      - [0x1CFB00, databin] # @134
+      - [0x1CF0C0, bss, spev01/vspev01Lift1Pos]
+      - [0x1CF3E0, bss, spev01/vspev01Lift2Pos]
+      - [0x1CF5C0, bss, spev01/vspev01SmokeInfo]
+      - [0x1CFAC0, data, spev01/@65] #f32[] initializer
+      - [0x1CFB00, data, spev01/@134] #f32[] initializer
       - [0x1CFB20, databin] # @268
       - [0x1CFB40, databin] # @870
       - [0x1CFBA0, databin] # @1103
@@ -789,7 +789,7 @@ segments:
       - [0x1D0560, databin] # @1266
       - [0x1D0578, databin] # @1407
       - [0x1D0590, databin] # @662
-      - [0x1D05B0, databin] # vaytblEnding
+      - [0x1D05B0, data, ayresult/vaytblEnding] #string
       - [0x1D06D0, databin] # @492
       - [0x1D0730, databin] # @493
       - [0x1D0750, databin] # @494
@@ -814,18 +814,18 @@ segments:
       - [0x1D0A60, databin] # @1973
       - [0x1D0A70, databin] # @2046
       - [0x1D0AA0, databin] # @2108
-      - [0x1D0AF0, databin] # vspev04LiftPos
-      - [0x1D0D20, databin] # vspev04Gond1Pos
-      - [0x1D0E00, databin] # vspev04Gond2Pos
-      - [0x1D0EF0, databin] # vspev04SBallPos
-      - [0x1D10C0, databin] # vspev04RecoverPos
-      - [0x1D1290, databin] # sp_tbl$151
-      - [0x1D12F0, databin] # crane_no$751
+      - [0x1D0AF0, data, spev04/vspev04LiftPos] # f32[35][4]
+      - [0x1D0D20, data, spev04/vspev04Gond1Pos] # f32[14][4]
+      - [0x1D0E00, data, spev04/vspev04Gond2Pos] # f32[15][4]
+      - [0x1D0EF0, data, spev04/vspev04SBallPos] # f32[29][4]
+      - [0x1D10C0, data, spev04/vspev04RecoverPos] # f32[29][4]
+      - [0x1D1290, data, spev04/sp_tbl$151] # int[22]
+      - [0x1D12F0, data, spev04/crane_no$751] # int[4]
       - [0x1D1300, databin] # @798
       - [0x1D1310, databin] # @814
-      - [0x1D1320, databin] # @815
-      - [0x1D1330, databin] # @893
-      - [0x1D1340, databin] # lift_pos$969
+      - [0x1D1320, data, spev04/@815] # float[4] (voice_len)
+      - [0x1D1330, data, spev04/@893] # int[4] (sprt_tbl)
+      - [0x1D1340, data, spev04/lift_pos$969] # f32[4][4]
       - [0x1D1380, databin] # pos$1034
       - [0x1D13E0, databin] # @1754
       - [0x1D1400, databin] # pos$1755
@@ -873,11 +873,11 @@ segments:
       - [0x1D2400, databin] # @406
       - [0x1D2430, databin] # @407
       - [0x1D2450, databin] # @408
-      - [0x1D2470, databin] # lift_pos$630
-      - [0x1D24A0, databin] # cafe_tbl$683
+      - [0x1D2470, data, spev02/lift_pos$630]
+      - [0x1D24A0, data, spev02/cafe_tbl$683]
       - [0x1D24C0, databin] # @1261
-      - [0x1D24E0, databin] # pos$1262
-      - [0x1D2530, databin] # mov$1263
+      - [0x1D24E0, data, spev02/pos$1262]
+      - [0x1D2530, data, spev02/mov$1263]
       - [0x1D2580, databin] # vspev03Mokuzai
       - [0x1D2640, databin] # vspev03SnowFall
       - [0x1D2700, databin] # vspev03SnowFall2
@@ -888,7 +888,7 @@ segments:
       - [0x1D2920, databin] # @95
       - [0x1D2940, databin] # @96
       - [0x1D2960, databin] # @97
-      - [0x1D2980, databin] # light$119
+      - [0x1D2980, data, spev03/light$119]
       - [0x1D29D0, databin] # @144
       - [0x1D2A10, databin] # @145
       - [0x1D2A20, databin] # @243
@@ -899,21 +899,21 @@ segments:
       - [0x1D2AB0, databin] # @439
       - [0x1D2AC0, databin] # @445
       - [0x1D2AD0, databin] # @451
-      - [0x1D2AE0, databin] # vspev03LiftStartIdx$545
-      - [0x1D2B20, databin] # vspev03LiftStartRot$546
+      - [0x1D2AE0, data, spev03/vspev03LiftStartIdx$545]
+      - [0x1D2B20, data, spev03/vspev03LiftStartRot$546]
       - [0x1D2B60, databin] # @548
-      - [0x1D2B70, databin] # vspev03LiftList$560
+      - [0x1D2B70, data, spev03/vspev03LiftList$560]
       - [0x1D3040, databin] # @562
       - [0x1D3050, databin] # @591
-      - [0x1D3060, databin] # vspev03BunnyList$597
+      - [0x1D3060, data, spev03/vspev03BunnyList$597]
       - [0x1D3130, databin] # @618
       - [0x1D3140, databin] # @653
-      - [0x1D3150, databin] # vspev03EagleList$659
+      - [0x1D3150, data, spev03/vspev03EagleList$659]
       - [0x1D3230, databin] # @737
       - [0x1D3240, databin] # @755
-      - [0x1D3250, databin] # pos_list$932
-      - [0x1D3270, databin] # draw_list$933
-      - [0x1D3290, databin] # fog_list$934
+      - [0x1D3250, data, spev03/pos_list$932]
+      - [0x1D3270, data, spev03/draw_list$933]
+      - [0x1D3290, data, spev03/fog_list$934]
       - [0x1D32B0, databin] # vspev06TexScrInfo
       - [0x1D3310, databin] # vspev06SteamInfo
       - [0x1D33D0, databin] # vspev06FountainPos
@@ -928,13 +928,13 @@ segments:
       - [0x1D3A50, databin] # vspev06LiftPos2
       - [0x1D3AA0, databin] # vspev06LiftPos3
       - [0x1D3AF0, databin] # vspev06SquawLight
-      - [0x1D3BE0, databin] # light$69
+      - [0x1D3BE0, data, spev06/light$69]
       - [0x1D3C30, databin] # @157
-      - [0x1D3C60, databin] # crash$310
+      - [0x1D3C60, data, spev06/crash$310]
       - [0x1D3C80, databin] # @431
-      - [0x1D3C90, databin] # se$886
-      - [0x1D3CF0, databin] # cam$887
-      - [0x1D3D30, databin] # pos$945
+      - [0x1D3C90, data, spev06/se$886]
+      - [0x1D3CF0, data, spev06/cam$887]
+      - [0x1D3D30, data, spev06/pos$945]
       - [0x1D3DB0, databin] # @1009
       - [0x1D3DD0, databin] # @1035
       - [0x1D3E10, databin] # vspev07TexScrInfo
@@ -951,72 +951,72 @@ segments:
       - [0x1D4CB0, databin] # spev07Lift2Cell
       - [0x1D4CC0, databin] # spev07Agent1
       - [0x1D4D60, databin] # spev07Agent2
-      - [0x1D4E00, databin] # pos$79
-      - [0x1D4E10, databin] # obj$80
-      - [0x1D4E20, databin] # info$81
-      - [0x1D4EC0, databin] # pos$114
-      - [0x1D4ED0, databin] # pos$140
-      - [0x1D4EE0, databin] # info$141
-      - [0x1D4F80, databin] # pos$162
-      - [0x1D4FA0, databin] # trg$163
-      - [0x1D4FC0, databin] # bus1start$164
-      - [0x1D4FD0, databin] # bus1end$165
-      - [0x1D4FE0, databin] # bus2start$166
-      - [0x1D4FF0, databin] # bus2end$167
-      - [0x1D5000, databin] # info1$168
-      - [0x1D50A0, databin] # info2$169
-      - [0x1D5140, databin] # info3$170
-      - [0x1D51E0, databin] # pos$204
-      - [0x1D5200, databin] # trg$205
-      - [0x1D5220, databin] # viewstart$207
-      - [0x1D5230, databin] # viewend$208
-      - [0x1D5240, databin] # tower1start$209
-      - [0x1D5250, databin] # tower1end$210
-      - [0x1D5260, databin] # tower2start$211
-      - [0x1D5270, databin] # tower2end$212
-      - [0x1D5280, databin] # info$213
-      - [0x1D5320, databin] # info2$214
-      - [0x1D53C0, databin] # info3$215
-      - [0x1D5440, databin] # sl_pos$216
-      - [0x1D5480, databin] # sl_obj$217
+      - [0x1D4E00, data, spev07/pos$79]
+      - [0x1D4E10, data, spev07/obj$80]
+      - [0x1D4E20, data, spev07/info$81]
+      - [0x1D4EC0, data, spev07/pos$114]
+      - [0x1D4ED0, data, spev07/pos$140]
+      - [0x1D4EE0, data, spev07/info$141]
+      - [0x1D4F80, data, spev07/pos$162]
+      - [0x1D4FA0, data, spev07/trg$163]
+      - [0x1D4FC0, data, spev07/bus1start$164]
+      - [0x1D4FD0, data, spev07/bus1end$165]
+      - [0x1D4FE0, data, spev07/bus2start$166]
+      - [0x1D4FF0, data, spev07/bus2end$167]
+      - [0x1D5000, data, spev07/info1$168]
+      - [0x1D50A0, data, spev07/info2$169]
+      - [0x1D5140, data, spev07/info3$170]
+      - [0x1D51E0, data, spev07/pos$204]
+      - [0x1D5200, data, spev07/trg$205]
+      - [0x1D5220, data, spev07/viewstart$207]
+      - [0x1D5230, data, spev07/viewend$208]
+      - [0x1D5240, data, spev07/tower1start$209]
+      - [0x1D5250, data, spev07/tower1end$210]
+      - [0x1D5260, data, spev07/tower2start$211]
+      - [0x1D5270, data, spev07/tower2end$212]
+      - [0x1D5280, data, spev07/info$213]
+      - [0x1D5320, data, spev07/info2$214]
+      - [0x1D53C0, data, spev07/info3$215]
+      - [0x1D5440, data, spev07/sl_pos$216]
+      - [0x1D5480, data, spev07/sl_obj$217]
       - [0x1D5490, databin] # @230
       - [0x1D54A0, databin] # @231
-      - [0x1D54B0, databin] # pos$266
-      - [0x1D54E0, databin] # trg$267
-      - [0x1D5510, databin] # ava1start$268
-      - [0x1D5520, databin] # ava1end$269
-      - [0x1D5530, databin] # ava2start$270
-      - [0x1D5540, databin] # ava2end$271
-      - [0x1D5550, databin] # ava3start$272
-      - [0x1D5560, databin] # ava3end$273
-      - [0x1D5570, databin] # ava4start$274
-      - [0x1D5580, databin] # ava4end$275
-      - [0x1D5590, databin] # info$280
-      - [0x1D5630, databin] # llpos$281
-      - [0x1D5650, databin] # llobj$282
+      - [0x1D54B0, data, spev07/pos$266]
+      - [0x1D54E0, data, spev07/trg$267]
+      - [0x1D5510, data, spev07/ava1start$268]
+      - [0x1D5520, data, spev07/ava1end$269]
+      - [0x1D5530, data, spev07/ava2start$270]
+      - [0x1D5540, data, spev07/ava2end$271]
+      - [0x1D5550, data, spev07/ava3start$272]
+      - [0x1D5560, data, spev07/ava3end$273]
+      - [0x1D5570, data, spev07/ava4start$274]
+      - [0x1D5580, data, spev07/ava4end$275]
+      - [0x1D5590, data, spev07/info$280]
+      - [0x1D5630, data, spev07/llpos$281]
+      - [0x1D5650, data, spev07/llobj$282]
       - [0x1D5660, databin] # @295
       - [0x1D5670, databin] # @296
-      - [0x1D5680, databin] # pos$329
-      - [0x1D5690, databin] # trg$330
-      - [0x1D56A0, databin] # mapstart$331
-      - [0x1D56B0, databin] # mapend$332
-      - [0x1D56C0, databin] # info$333
-      - [0x1D5760, databin] # info2$334
-      - [0x1D57E0, databin] # info1$443
-      - [0x1D5880, databin] # info2$444
-      - [0x1D5920, databin] # info3$445
-      - [0x1D59C0, databin] # info4$446
-      - [0x1D5A60, databin] # pos$457
-      - [0x1D5A70, databin] # info1$458
-      - [0x1D5B10, databin] # info2$459
-      - [0x1D5BB0, databin] # info$498
+      - [0x1D5680, data, spev07/pos$329]
+      - [0x1D5690, data, spev07/trg$330]
+      - [0x1D56A0, data, spev07/mapstart$331]
+      - [0x1D56B0, data, spev07/mapend$332]
+      - [0x1D56C0, data, spev07/info$333]
+      - [0x1D5760, data, spev07/info2$334]
+      - [0x1D57E0, data, spev07/info1$443]
+      - [0x1D5880, data, spev07/info2$444]
+      - [0x1D5920, data, spev07/info3$445]
+      - [0x1D59C0, data, spev07/info4$446]
+      - [0x1D5A60, data, spev07/pos$457]
+      - [0x1D5A70, data, spev07/info1$458]
+      - [0x1D5B10, data, spev07/info2$459]
+      - [0x1D5BB0, data, spev07/info$498]
       - [0x1D5C50, databin] # @556
-      - [0x1D5C60, databin] # snowcat$571
-      - [0x1D5C70, databin] # lasther$572
-      - [0x1D5C80, databin] # liftexp$573
-      - [0x1D5C90, databin] # snowmob$574
-      - [0x1D5CA0, databin] # spev07BonkDram1$939
-      - [0x1D5CC0, databin] # spev07BonkDram2$940
+      - [0x1D5C60, data, spev07/snowcat$571]
+      - [0x1D5C70, data, spev07/lasther$572]
+      - [0x1D5C80, data, spev07/liftexp$573]
+      - [0x1D5C90, data, spev07/snowmob$574]
+      - [0x1D5CA0, data, spev07/spev07BonkDram1$939]
+      - [0x1D5CC0, data, spev07/spev07BonkDram2$940]
       - [0x1D5CE0, databin] # @1024
       - [0x1D5DA0, databin] # @1038
       - [0x1D5E00, databin] # @1039
