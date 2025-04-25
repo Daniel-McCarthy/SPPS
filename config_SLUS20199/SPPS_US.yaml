@@ -471,7 +471,7 @@ segments:
       - [0x1B2E40, databin] # __malloc_max_total_mem
       - [0x1B2E48, databin] # __malloc_current_mallinfo
       # Game rodata/bss/data
-      - [0x1B2E70, bss main/vgmsysSetScreenMode]
+      - [0x1B2E70, bss, main/vgmsysSetScreenMode]
       - [0x1B2E80, databin, mdlpr/black$14] # (may be data or sdata)
       - [0x1B2E90, databin, mdlpr/black$24] # (may be data or sdata)
       - [0x1B2EA0, databin, model/Constant]
