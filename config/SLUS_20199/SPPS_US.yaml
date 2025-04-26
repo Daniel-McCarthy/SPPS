@@ -3847,122 +3847,36 @@ segments:
       - [0x1E76C8, databin] # D_002E7648
       - [0x1E7700, databin] # __static_init
       - [0x1E7704, databin] # __data_end
-      - [0x1E7780, databin] # vgmsysScrMode
-      - [0x1E7784, databin] # vsppScrWidth
-      - [0x1E7788, databin] # vsppScrHeight
-      - [0x1E778C, databin] # vsppMediaType
-      - [0x1E7790, databin] # @296
-      - [0x1E7798, databin] # @656
-      - [0x1E779C, databin] # vktactParamG_jump_up
-      - [0x1E77A0, databin] # vktactParamG_jump_down
-      - [0x1E77A4, databin] # vktactParamG_air
-      - [0x1E77A8, databin] # vktactParamG_hpair
-      - [0x1E77AC, databin] # vktactParamHangRate
-      - [0x1E77B0, databin] # vktactParamSpt_time
-      - [0x1E77B4, databin] # vktactParamSpt_charge_time
-      - [0x1E77B8, databin] # vktactParamSpt_one_stock_tp
-      - [0x1E77BC, databin] # vktactParamBal_lean_gravity_min
-      - [0x1E77C0, databin] # vktactParamBal_lean_gravity_max
-      - [0x1E77C4, databin] # vktactParamBal_lean_limit
-      - [0x1E77C8, databin] # vktactParamBal_lean_start_dir
-      - [0x1E77CC, databin] # vktactParamBal_lean_acc_inp
-      - [0x1E77D0, databin] # vktactParamBal_lean_acc_fr_base
-      - [0x1E77D4, databin] # vktactParamBal_lean_acc_fr_rate
-      - [0x1E77D8, databin] # vktactParamBal_start_input
-      - [0x1E77DC, databin] # vktactParamPts_hold_pts_rate_grab
-      - [0x1E77E0, databin] # vktactParamPts_hold_pts_rate_plant
-      - [0x1E77E4, databin] # vktactParamPts_hold_pts_rate_grind
-      - [0x1E77E8, databin] # vktactParamPts_switch_bonus
-      - [0x1E77EC, databin] # vktactParamPts_perfect_bonus
-      - [0x1E77F0, databin] # vktactParamPts_sloppy_bonus
-      - [0x1E77F4, databin] # vktactParamPts_sicktime_bonus
-      - [0x1E77F8, databin] # vktactParamPts_sicktime_start
-      - [0x1E77FC, databin] # vktactParamHpOver_accel
-      - [0x1E7800, databin] # vktactParamHpOver_jump_rate
-      - [0x1E7808, databin] # vktactMatTumbleAng_touch
-      - [0x1E7810, databin] # vktactCmdToRevert
-      - [0x1E7818, databin] # vktactCmdToJump
-      - [0x1E7820, databin] # @366
-      - [0x1E7828, databin] # @1860
-      - [0x1E7830, databin] # @1861
-      - [0x1E7838, databin] # @1862
-      - [0x1E7840, databin] # @1863
-      - [0x1E7848, databin] # vktmfdbgMenuText2
-      - [0x1E7850, databin] # vktmfdbgMenuFunc2
-      - [0x1E7858, databin] # vktmfdbgMenuUseNum2
-      - [0x1E7860, databin] # vktmfdbgMenuNumText_2d
-      - [0x1E7868, databin] # @293
-      - [0x1E7870, databin] # vspDisp2D
-      - [0x1E7874, databin] # vayCode
-      - [0x1E7878, databin] # @1219
-      - [0x1E7880, databin] # @1785
-      - [0x1E7888, databin] # @1786
-      - [0x1E7890, databin] # vknViewFlg_2P
-      - [0x1E7898, databin] # max$232
-      - [0x1E789C, databin] # rate1$295
-      - [0x1E78A0, databin] # rate2$296
-      - [0x1E78A4, databin] # rate3$297
-      - [0x1E78A8, databin] # a$432
-      - [0x1E78AC, databin] # b$433
-      - [0x1E78B0, databin] # dt$477
-      - [0x1E78B4, databin] # angy$553
-      - [0x1E78B8, databin] # f$554
-      - [0x1E78BC, databin] # @58
-      - [0x1E78C0, databin] # @59
-      - [0x1E78C8, databin] # vnmtblPauseCareerItem
-      - [0x1E78D0, databin] # vnmtblPauseMatchItem
-      - [0x1E78D8, databin] # vnmtblPauseFreeItem
-      - [0x1E78E0, databin] # vnmtblTutoEnd
-      - [0x1E78E8, databin] # @250
-      - [0x1E78F0, databin] # @258
-      - [0x1E78F8, databin] # cut_max$53
-      - [0x1E78FC, databin] # rate$310
-      - [0x1E7900, databin] # vspev01Length
-      - [0x1E7908, databin] # @1252
-      - [0x1E7910, databin] # @1263
-      - [0x1E7918, databin] # @1255
-      - [0x1E7920, databin] # @1969
-      - [0x1E7924, databin] # rad180
-      - [0x1E7928, databin] # def$434
-      - [0x1E792C, databin] # xsize$435
-      - [0x1E7930, databin] # ysize$436
-      - [0x1E7934, databin] # acc$437
-      - [0x1E7938, databin] # distance$439
-      - [0x1E793C, databin] # abe$440
-      - [0x1E7940, databin] # add$441
-      - [0x1E7944, databin] # sub$442
-      - [0x1E7948, databin] # time$443
-      - [0x1E794C, databin] # skip$444
-      - [0x1E7950, databin] # cnt$569
-      - [0x1E7954, databin] # deg$659
-      - [0x1E7958, databin] # num$660
-      - [0x1E7960, databin] # @506
-      - [0x1E7968, databin] # @522
-      - [0x1E7970, databin] # @146
-      - [0x1E7978, databin] # distance$258
-      - [0x1E797C, databin] # frame$973
-      - [0x1E7980, databin] # vspev07TexScrInfo_num
-      - [0x1E7984, databin] # spev07Lift1Rail_num
-      - [0x1E7988, databin] # spev07Lift2Rail_num
-      - [0x1E798C, databin] # spev07LiftPos_num
-      - [0x1E7990, databin] # spev07Lift1ID_num
-      - [0x1E7994, databin] # spev07Lift2ID_num
-      - [0x1E7998, databin] # @177
-      - [0x1E79A0, databin] # vknRandSeed
-      - [0x1E79A4, databin] # max$180
-      - [0x1E79A8, databin] # hit_on$221
-      - [0x1E79AC, databin] # hit_on$301
-      - [0x1E79B0, databin] # hit_on$386
-      - [0x1E79B4, databin] # _randcnt
-      - [0x1E79B8, databin] # xsize$86
-      - [0x1E79BC, databin] # ysize$87
-      - [0x1E79C0, databin] # acc$88
-      - [0x1E79C4, databin] # up$89
-      - [0x1E79C8, databin] # abe$90
-      - [0x1E79CC, databin] # add$91
-      - [0x1E79D0, databin] # sub$92
-      - [0x1E79D4, databin] # time$93
-      - [0x1E79D8, databin] # skip$94
+
+      # before sdata should be rodata
+
+      # sdata section
+      # sdata is after __data_end
+
+      - [0x1E7780, .sdata, E/tam/ps2/sppbx/main]
+      - [0x1E7790, sdata, Z/ul/ul/source/pad]
+      - [0x1E7798, sdata, Z/ul/ul/source/mv2ext]
+      - [0x1E779C, sdata, E/tam/ps2/sppbx/ktact]
+      - [0x1E7848, sdata, E/tam/ps2/sppbx/ktmnufnc]
+      - [0x1E7868, sdata, E/tam/ps2/sppbx/spload]
+      - [0x1E7874, sdata, E/tam/ps2/sppbx/aymcard]
+      - [0x1E7878, sdata, E/tam/ps2/sppbx/aychrsel]
+      - [0x1E7890, sdata, E/tam/ps2/sppbx/kncamera]
+      - [0x1E78BC, sdata, E/tam/ps2/sppbx/ayoption]
+      - [0x1E78C8, sdata, E/tam/ps2/sppbx/nmdisp]
+      - [0x1E78E8, sdata, E/tam/ps2/sppbx/nmdraw]
+      - [0x1E78F8, sdata, E/tam/ps2/sppbx/knreplay]
+      - [0x1E7900, sdata, E/tam/ps2/sppbx/spev01]
+      - [0x1E7918, sdata, E/tam/ps2/sppbx/ayresult]
+      - [0x1E7924, sdata, E/tam/ps2/sppbx/tieffect]
+      - [0x1E7960, sdata, E/tam/ps2/sppbx/spev02]
+      - [0x1E7970, sdata, E/tam/ps2/sppbx/spev03]
+      - [0x1E7980, sdata, E/tam/ps2/sppbx/spev07]
+      - [0x1E7998, sdata, E/tam/ps2/sppbx/spev05]
+      - [0x1E79A0, sdata, E/tam/ps2/sppbx/kncore]
+      - [0x1E79B4, sdata, E/tam/ps2/sppbx/tiutill]
+      - [0x1E79B8, sdata, E/tam/ps2/sppbx/tievent]
+      # sdata right before sbss
       # - [1E7A00, databin] # after @771
   - [0x1E7A00, databin, end]
   - [0x58653C]
