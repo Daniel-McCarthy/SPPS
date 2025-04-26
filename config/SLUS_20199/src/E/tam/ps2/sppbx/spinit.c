@@ -318,6 +318,28 @@ typedef struct MemCard
     VspenvSecret secret; // Offset: 0x770, DWARF: 0xA80CA
 } MemCard;
 
+// Size: 0x5D0E0, DWARF: 0xA8DCB
+typedef struct VspenvEnv
+{
+    // Size: 0xA0, DWARF: 0xA8989
+    VspenvGame game; // Offset: 0x0, DWARF: 0xA8DE7
+    // Size: 0x1668, DWARF: 0xA801A
+    MemCard mc; // Offset: 0xA0, DWARF: 0xA8E0A
+    // Size: 0x2DCEC, DWARF: 0xA8560
+    VspenvReplay replay[2]; // Offset: 0x1708, DWARF: 0xA8E2B
+} VspenvEnv;
+
+// Size: 0x20, DWARF: 0xA91D4
+typedef struct VspenvDemo
+{
+    unsigned long time_out; // Offset: 0x0, DWARF: 0xA91F0
+    unsigned long play_time_out; // Offset: 0x8, DWARF: 0xA9215
+    signed int usr_end; // Offset: 0x10, DWARF: 0xA923F
+    signed int to; // Offset: 0x14, DWARF: 0xA9263
+    signed int play_to; // Offset: 0x18, DWARF: 0xA9282
+    signed int demo; // Offset: 0x1C, DWARF: 0xA92A6
+} VspenvDemo;
+
 char* vsptblCharacterName[12]; // Address: 0x2B5880
 char* vsptblBoardName[12][7]; // Address: 0x2B58B0
 char* vsptblCourseName[24]; // Address: 0x2B5A00
@@ -350,16 +372,7 @@ VspenvSecret* vspenvSecret; // Address: 0x2E7B04
 VspenvGame* vspenvGame; // Address: 0x2E7B14
 char* vsptblLevelGoalStr[8][3]; // Address: 0x3A45E0
 char* vsptblCheats[10]; // Address: 0x3A45B0
-// Size: 0x5D0E0, DWARF: 0xA8DCB
-struct
-{
-    // Size: 0xA0, DWARF: 0xA8989
-    VspenvGame game; // Offset: 0x0, DWARF: 0xA8DE7
-    // Size: 0x1668, DWARF: 0xA801A
-    MemCard mc; // Offset: 0xA0, DWARF: 0xA8E0A
-    // Size: 0x2DCEC, DWARF: 0xA8560
-    VspenvReplay replay[2]; // Offset: 0x1708, DWARF: 0xA8E2B
-} vspenvEnv; // Address: 0x3474D0
+VspenvEnv vspenvEnv; // Address: 0x3474D0
 // Size: 0x2DCEC, DWARF: 0xA8560
 VspenvReplay* vspenvReplay[2]; // Address: 0x2E7B08
 // Size: 0x4, DWARF: 0xA7FDA
@@ -371,15 +384,7 @@ void(aySelectModInit)(signed int); // Address: 0x1A4290
 void(ayMovieModInit)(signed int); // Address: 0x1B42F0
 void(sploadInit)(signed int); // Address: 0x18A600
 // Size: 0x20, DWARF: 0xA91D4
-struct
-{
-    unsigned long time_out; // Offset: 0x0, DWARF: 0xA91F0
-    unsigned long play_time_out; // Offset: 0x8, DWARF: 0xA9215
-    signed int usr_end; // Offset: 0x10, DWARF: 0xA923F
-    signed int to; // Offset: 0x14, DWARF: 0xA9263
-    signed int play_to; // Offset: 0x18, DWARF: 0xA9282
-    signed int demo; // Offset: 0x1C, DWARF: 0xA92A6
-} vspenvDemo; // Address: 0x3473D0
+VspenvDemo vspenvDemo; // Address: 0x3473D0
 
 //// Function Declarations ///////////////////////////////////////////////////////////
 
