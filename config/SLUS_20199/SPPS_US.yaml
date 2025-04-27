@@ -3925,6 +3925,48 @@ segments:
       - { type: sbss, vram: 0x2e80cc, name: E/tam/ps2/sppbx/nmtrick }
 
       # Bss section (Same location as __bss_start)
+      - { type: bss, vram: 0x2E80DC, name: sdk }
+      - { type: bss, vram: 0x2eea90, name: E/tam/ps2/sppbx/main }
+      - { type: bss, vram: 0x2ef2e0, name: Z/ul/ul/source/cdvd }
+      - { type: bss, vram: 0x2f2350, name: Z/ul/ul/source/coord }
+      - { type: bss, vram: 0x2f23d0, name: Z/ul/ul/source/heap }
+      - { type: bss, vram: 0x2f2400, name: Z/ul/ul/source/mcard }
+      - { type: bss, vram: 0x2f3350, name: Z/ul/ul/source/pad }
+      - { type: bss, vram: 0x2f3850, name: Z/ul/ul/source/sd }
+      - { type: bss, vram: 0x2f3a50, name: Z/ul/ul/source/system }
+      - { type: bss, vram: 0x2f3db0, name: Z/ul/ul/source/mv2ext }
+      - { type: bss, vram: 0x2f3f40, name: Z/ul/ul/source/movie2 }
+      - { type: bss, vram: 0x2f4740, name: E/tam/ps2/sppbx/tmcrs }
+      - { type: bss, vram: 0x307ec0, name: E/tam/ps2/sppbx/ktact }
+      - { type: bss, vram: 0x346f70, name: E/tam/ps2/sppbx/nmfont }
+      - { type: bss, vram: 0x347010, name: E/tam/ps2/sppbx/ktmenu }
+      - { type: bss, vram: 0x3473d0, name: E/tam/ps2/sppbx/spinit }
+      - { type: bss, vram: 0x3a4640, name: E/tam/ps2/sppbx/spload }
+      - { type: bss, vram: 0x3bd360, name: E/tam/ps2/sppbx/gmpad }
+      - { type: bss, vram: 0x3bd480, name: E/tam/ps2/sppbx/ktrider }
+      - { type: bss, vram: 0x3bd4a0, name: E/tam/ps2/sppbx/spfrees }
+      - { type: bss, vram: 0x3bfd30, name: E/tam/ps2/sppbx/tmevent }
+      - { type: bss, vram: 0x3c0be0, name: E/tam/ps2/sppbx/aymodsel }
+      - { type: bss, vram: 0x3c0c40, name: E/tam/ps2/sppbx/aychrsel }
+      - { type: bss, vram: 0x3c0ca0, name: E/tam/ps2/sppbx/kncamera }
+      - { type: bss, vram: 0x3c0f00, name: E/tam/ps2/sppbx/nmvc }
+      - { type: bss, vram: 0x3c27f0, name: E/tam/ps2/sppbx/nmbgm }
+      - { type: bss, vram: 0x3c2840, name: E/tam/ps2/sppbx/nmsq }
+      - { type: bss, vram: 0x3c2ab0, name: E/tam/ps2/sppbx/nmdisp }
+      - { type: bss, vram: 0x3c6a30, name: E/tam/ps2/sppbx/nmdraw }
+      - { type: bss, vram: 0x3c6a50, name: E/tam/ps2/sppbx/knreplay }
+      - { type: bss, vram: 0x3c6e00, name: E/tam/ps2/sppbx/spev01 }
+      - { type: bss, vram: 0x3c70e0, name: E/tam/ps2/sppbx/spev04 }
+      - { type: bss, vram: 0x3c7430, name: E/tam/ps2/sppbx/spev08 }
+      - { type: bss, vram: 0x3c7520, name: E/tam/ps2/sppbx/spev02 }
+      - { type: bss, vram: 0x3c7870, name: E/tam/ps2/sppbx/spev03 }
+      - { type: bss, vram: 0x3c78e0, name: E/tam/ps2/sppbx/spev07 }
+      - { type: bss, vram: 0x3c7ad0, name: E/tam/ps2/sppbx/spev05 }
+      - { type: bss, vram: 0x3c8010, name: E/tam/ps2/sppbx/nmevent }
+      - { type: bss, vram: 0x3c8110, name: E/tam/ps2/sppbx/akEvEfct }
+      - { type: bss, vram: 0x3c8840, name: E/tam/ps2/sppbx/nmtrick }
+      - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }
+      - { type: bss, vram: 0x3C9900, name: vubss } # 2C9980
       # - [1E7A00, databin] # after @771
   - [0x1E7A00, databin, end]
   - [0x58653C]
