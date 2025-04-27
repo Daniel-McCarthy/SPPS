@@ -27,7 +27,6 @@ _pictureSpatialScalableExtension = 0x10BFD0;
 _pictureTemporalScalableExtension = 0x10BFE0;
 kCopy = 0x10D6C8;
 serialPutchar = 0x10E330;
-vuprgDrawModelConstant = 0x2A7F80;
 vuprgDrawModel = 0x2A8000;
 ltmasmSendPrgVu0 = 0x2A9340;
 ltmasmSendPrgVu1 = 0x2A9CE0;

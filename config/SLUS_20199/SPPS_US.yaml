@@ -155,6 +155,7 @@ segments:
       - [0x1B3100, data, E/tam/ps2/sppbx/ktmot]
       - [0x1B5130, data, E/tam/ps2/sppbx/ktact]
       - [0x1B5880, .data, E/tam/ps2/sppbx/ktmnufnc]
+      - [0x1B5900, .data, E/tam/ps2/sppbx/spinit]
       - [0x1B8030, data, E/tam/ps2/sppbx/spload]
       - [0x1B8600, data, E/tam/ps2/sppbx/ktrider]
       - [0x1B8620, data, E/tam/ps2/sppbx/spfree]
@@ -246,7 +247,6 @@ segments:
       - [0x1E74B0, rodata, E/tam/ps2/sppbx/akEvEfct]
       - [0x1E74D0, rodata, E/tam/ps2/sppbx/nmtrick]
       - [0x1E75F0, rodata, end_rodata]
-
       # - [0x1E7704, databin] # __data_end
       # rodata end
 
