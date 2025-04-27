@@ -51,7 +51,7 @@ segments:
       - [0x000138, asm, _exit]
       - [0x000140, asm, _root]
       - [0x000150, databin, sdk]
-      - [0x028A70, asm, E/tam/ps2/sppbx/main]
+      - [0x028A70, c, E/tam/ps2/sppbx/main]
       - [0x029BE0, c, Z/ul/ul/source/cdvd]
       - [0x02A7E0, asm, Z/ul/ul/source/coord]
       - [0x02AAA0, asm, Z/ul/ul/source/gif]
@@ -144,7 +144,7 @@ segments:
       # SDK/Lib data end
 
       # Game data
-      - [0x1B2E70, data, E/tam/ps2/sppbx/main]
+      - [0x1B2E70, .data, E/tam/ps2/sppbx/main]
       - [0x1B2E80, data, Z/ul/ul/source/mdlpr]
       - [0x1B2EA0, data, Z/ul/ul/source/model]
       - [0x1B2F50, data, Z/ul/ul/source/movie2]
@@ -154,8 +154,7 @@ segments:
       - [0x1B3050, data, E/tam/ps2/sppbx/maanim]
       - [0x1B3100, data, E/tam/ps2/sppbx/ktmot]
       - [0x1B5130, data, E/tam/ps2/sppbx/ktact]
-      - [0x1B5880, data, E/tam/ps2/sppbx/ktmnufnc]
-      - [0x1B5900, data, E/tam/ps2/sppbx/spinit]
+      - [0x1B5880, .data, E/tam/ps2/sppbx/ktmnufnc]
       - [0x1B8030, data, E/tam/ps2/sppbx/spload]
       - [0x1B8600, data, E/tam/ps2/sppbx/ktrider]
       - [0x1B8620, data, E/tam/ps2/sppbx/spfree]
@@ -258,7 +257,7 @@ segments:
       - [0x1E7790, sdata, Z/ul/ul/source/pad]
       - [0x1E7798, sdata, Z/ul/ul/source/mv2ext]
       - [0x1E779C, sdata, E/tam/ps2/sppbx/ktact]
-      - [0x1E7848, sdata, E/tam/ps2/sppbx/ktmnufnc]
+      - [0x1E7848, .sdata, E/tam/ps2/sppbx/ktmnufnc]
       - [0x1E7868, sdata, E/tam/ps2/sppbx/spload]
       - [0x1E7870, sdata, E/tam/ps2/sppbx/spfree]
       - [0x1E7874, sdata, E/tam/ps2/sppbx/aymcard]
@@ -281,8 +280,8 @@ segments:
       # sdata right before sbss
 
       # Sbss section (Same location as _fbss)
-      - { type: sbss, vram: 0x2E7980, name: E/tam/ps2/sppbx/main } # 1E7A00
-      - { type: sbss, vram: 0x2e79d0, name: Z/ul/ul/source/cdvd }
+      - { type: .sbss, vram: 0x2E7980, name: E/tam/ps2/sppbx/main } # 1E7A00
+      - { type: .sbss, vram: 0x2e79d0, name: Z/ul/ul/source/cdvd }
       - { type: sbss, vram: 0x2e79d8, name: Z/ul/ul/source/coord }
       - { type: sbss, vram: 0x2e79e0, name: Z/ul/ul/source/pad }
       - { type: sbss, vram: 0x2e79f4, name: Z/ul/ul/source/sd }
@@ -292,10 +291,10 @@ segments:
       - { type: sbss, vram: 0x2e7a30, name: Z/ul/ul/source/TEX }
       - { type: sbss, vram: 0x2e7a38, name: E/tam/ps2/sppbx/ktact }
       - { type: sbss, vram: 0x2e7af0, name: E/tam/ps2/sppbx/nmfont }
-      - { type: sbss, vram: 0x2e7af4, name: E/tam/ps2/sppbx/ktmenu }
-      - { type: sbss, vram: 0x2e7b04, name: E/tam/ps2/sppbx/spinit }
+      - { type: .sbss, vram: 0x2e7af4, name: E/tam/ps2/sppbx/ktmenu }
+      - { type: .sbss, vram: 0x2e7b04, name: E/tam/ps2/sppbx/spinit }
       - { type: sbss, vram: 0x2e7b18, name: E/tam/ps2/sppbx/spload }
-      - { type: sbss, vram: 0x2e7b20, name: E/tam/ps2/sppbx/gmpad }
+      - { type: .sbss, vram: 0x2e7b20, name: E/tam/ps2/sppbx/gmpad }
       - { type: sbss, vram: 0x2e7b40, name: E/tam/ps2/sppbx/spfree }
       - { type: sbss, vram: 0x2e7b88, name: E/tam/ps2/sppbx/tmevent }
       - { type: sbss, vram: 0x2e7bb4, name: E/tam/ps2/sppbx/ayselect }
@@ -328,11 +327,11 @@ segments:
 
       # Bss section (Same location as __bss_start)
       - { type: bss, vram: 0x2E80DC, name: sdk }
-      - { type: bss, vram: 0x2eea90, name: E/tam/ps2/sppbx/main }
-      - { type: bss, vram: 0x2ef2e0, name: Z/ul/ul/source/cdvd }
+      - { type: .bss, vram: 0x2eea90, name: E/tam/ps2/sppbx/main }
+      - { type: .bss, vram: 0x2ef2e0, name: Z/ul/ul/source/cdvd }
       - { type: bss, vram: 0x2f2350, name: Z/ul/ul/source/coord }
       - { type: bss, vram: 0x2f23d0, name: Z/ul/ul/source/heap }
-      - { type: bss, vram: 0x2f2400, name: Z/ul/ul/source/mcard }
+      - { type: .bss, vram: 0x2f2400, name: Z/ul/ul/source/mcard }
       - { type: bss, vram: 0x2f3350, name: Z/ul/ul/source/pad }
       - { type: bss, vram: 0x2f3850, name: Z/ul/ul/source/sd }
       - { type: bss, vram: 0x2f3a50, name: Z/ul/ul/source/system }
@@ -341,10 +340,10 @@ segments:
       - { type: bss, vram: 0x2f4740, name: E/tam/ps2/sppbx/tmcrs }
       - { type: bss, vram: 0x307ec0, name: E/tam/ps2/sppbx/ktact }
       - { type: bss, vram: 0x346f70, name: E/tam/ps2/sppbx/nmfont }
-      - { type: bss, vram: 0x347010, name: E/tam/ps2/sppbx/ktmenu }
-      - { type: bss, vram: 0x3473d0, name: E/tam/ps2/sppbx/spinit }
+      - { type: .bss, vram: 0x347010, name: E/tam/ps2/sppbx/ktmenu }
+      - { type: .bss, vram: 0x3473d0, name: E/tam/ps2/sppbx/spinit }
       - { type: bss, vram: 0x3a4640, name: E/tam/ps2/sppbx/spload }
-      - { type: bss, vram: 0x3bd360, name: E/tam/ps2/sppbx/gmpad }
+      - { type: .bss, vram: 0x3bd360, name: E/tam/ps2/sppbx/gmpad }
       - { type: bss, vram: 0x3bd480, name: E/tam/ps2/sppbx/ktrider }
       - { type: bss, vram: 0x3bd4a0, name: E/tam/ps2/sppbx/spfrees }
       - { type: bss, vram: 0x3bfd30, name: E/tam/ps2/sppbx/tmevent }
