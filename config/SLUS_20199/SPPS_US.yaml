@@ -21,8 +21,6 @@ options:
   undefined_syms_auto_path: ./config/SLUS_20199/undefined_syms_auto.yaml
   symbol_addrs_path: ./config/SLUS_20199/symbol_addresses.txt
   extensions_path: ./tools/splat_ext
-  #section_order
-  #auto_all_sections
   section_order: [".text", ".data", ".rodata", ".sdata", ".sbss", ".bss"]
   subalign: 8
   disasm_unknown: True
@@ -138,13 +136,8 @@ segments:
       - [0x1A1E70, asm, E/tam/ps2/sppbx/akSpSub]
       - [0x1A2430, asm, E/tam/ps2/sppbx/tmetc]
       - [0x1A2D00, asm, E/tam/ps2/sppbx/tievent]
-      # Library
+      # Library/SDK
       - [0x1A7600, databin, sdk2]
-
-  # - [0x1AF780, databin, test]
-      # sdk
-      # - [0x1AF5A4, databin] # D_FLT_002AF524
-      # - [0x1AF5B4, databin] # D_FLT_002AF534
 
       # 1AF690 # vutext end
       # 1AF6B0 # data start
