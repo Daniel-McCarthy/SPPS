@@ -1047,8 +1047,10 @@ segments:
       - [0x1D9D00, rodata, E/tam/ps2/sppbx/maanim]
       - [0x1D9D20, rodata, E/tam/ps2/sppbx/ktmot]
       - [0x1DA260, rodata, E/tam/ps2/sppbx/ktact]
+      # border from normal$406 to f_arrange$411 is unclear between ktact and ktmnufnc
       - [0x1DAB00, .rodata, E/tam/ps2/sppbx/ktmnufnc]
       - [0x1DAB48, .rodata, E/tam/ps2/sppbx/spinit]
+      # border from @12 to @650 unclear
       - [0x1DDDC0, rodata, E/tam/ps2/sppbx/spload]
       - [0x1DE8E0, rodata, E/tam/ps2/sppbx/ktrider]
       - [0x1DE900, rodata, E/tam/ps2/sppbx/spfree]
@@ -1057,6 +1059,7 @@ segments:
       - [0x1DEAB8, .rodata, E/tam/ps2/sppbx/aymcard]
       - [0x1DEFD0, rodata, E/tam/ps2/sppbx/aymodsel]
       - [0x1DF050, rodata, E/tam/ps2/sppbx/aymovie]
+      # border of aymovie and aychrsel is unclear between @33 and @34
       - [0x1DF8C0, rodata, E/tam/ps2/sppbx/aychrsel]
       - [0x1DFFE8, rodata, E/tam/ps2/sppbx/ayoption]
       - [0x1E0B60, rodata, E/tam/ps2/sppbx/nmvc]
