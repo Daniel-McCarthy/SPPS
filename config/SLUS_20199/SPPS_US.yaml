@@ -3769,6 +3769,7 @@ segments:
       - [0x1E779C, sdata, E/tam/ps2/sppbx/ktact]
       - [0x1E7848, sdata, E/tam/ps2/sppbx/ktmnufnc]
       - [0x1E7868, sdata, E/tam/ps2/sppbx/spload]
+      - [0x1E7870, sdata, E/tam/ps2/sppbx/spfree]
       - [0x1E7874, sdata, E/tam/ps2/sppbx/aymcard]
       - [0x1E7878, sdata, E/tam/ps2/sppbx/aychrsel]
       - [0x1E7890, sdata, E/tam/ps2/sppbx/kncamera]
