@@ -6,7 +6,7 @@ US_DIR 			:= config/SLUS_20199
 US_OUTPUT_DIR 	:= config/SLUS_20199/out
 US_ASSETS_DIR	:= config/SLUS_20199/out/assets
 US_ASM_DIR 		:= config/SLUS_20199/out/asm
-US_SRC_DIR		:= config/SLUS_20199/src
+US_SRC_DIR		:= src/SLUS_20199
 US_YAML_FILE 	:= config/SLUS_20199/SPPS_US.yaml
 US_ROM_FILE		:= config/SLUS_20199/SLUS_201.99
 
@@ -40,9 +40,11 @@ MWCIncludes		  := $(COMPILER_PS2SUPPORT_DIR)
 export MWLibraries
 export MWCIncludes
 
-MWCC := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwccps2.exe
+MWCC_PATH := $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwccps2.exe
+MWCC := $(WIBO) $(MWCC_PATH)
 MWLD := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwldps2.exe
-MWCC_ARGS := -O0,p -sym on -char unsigned -str readonly
+MWCC_ARGS := -Iinclude -O0,p -sym on -char unsigned -str readonly
+MWCCGAP := $(PYTHON) tools/mwccgap/mwccgap.py
 
 US_LD_SCRIPT	:= config/SLUS_20199/out/SLUS_201.99.ld
 
@@ -86,3 +88,8 @@ clean-and-reconstruct-build-dir:
 	@echo "Reconstructing build folders"
 	@mkdir $(BUILD_DIR)
 	@mkdir $(BUILD_OBJS_DIR)
+
+mwccgap:
+	@echo "Running mwccgap"
+	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/main.c ./$(BUILD_OBJS_DIR)/main.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
+	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/tmlink.c ./$(BUILD_OBJS_DIR)/tmlink.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)

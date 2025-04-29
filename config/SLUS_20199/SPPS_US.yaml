@@ -13,7 +13,7 @@ options:
   asm_path: ./config/SLUS_20199/out/asm
   asset_path: ./config/SLUS_20199/out/assets
   build_path: ./config/SLUS_20199/out/
-  src_path: ./config/SLUS_20199/src
+  src_path: ./src/SLUS_20199/
 
   create_undefined_funcs_auto: True
   undefined_funcs_auto_path: ./config/SLUS_20199/undefined_funcs_auto.yaml
