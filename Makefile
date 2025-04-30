@@ -90,6 +90,7 @@ clean-and-reconstruct-build-dir:
 	@mkdir $(BUILD_DIR)
 	@mkdir $(BUILD_OBJS_DIR)
 
+.PHONY: mwccgap
 mwccgap:
 	@echo "Running mwccgap"
 	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/spinit.c ./$(BUILD_OBJS_DIR)/spinit.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
