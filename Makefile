@@ -7,7 +7,7 @@ US_OUTPUT_DIR 	:= config/SLUS_20199/out
 US_ASSETS_DIR	:= config/SLUS_20199/out/assets
 US_ASM_DIR 		:= config/SLUS_20199/out/asm
 US_SRC_DIR		:= src/SLUS_20199
-US_YAML_FILE 	:= config/SLUS_20199/SPPS_US.yaml
+US_YAML_FILE	:= config/SLUS_20199/SPPS_US.yaml
 US_ROM_FILE		:= config/SLUS_20199/SLUS_201.99
 US_UNDEF_SYMS_AUTO 	:= $(US_DIR)/undefined_syms_auto.yaml
 US_UNDEF_FUNCS_AUTO := $(US_DIR)/undefined_funcs_auto.yaml
@@ -76,9 +76,6 @@ splat-us:
 
 # Make build-us - Builds the US version of SPPS.
 build-us:
-# 	python3 ./$(US_DIR)/configure.py
-# 	ninja -C ./$(US_DIR)
-	$(MAKE) clean-and-reconstruct-build-dir
 	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/main.c -o ./$(BUILD_OBJS_DIR)/main.o
 	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/gmpad.c -o ./$(BUILD_OBJS_DIR)/gmpad.o
 	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmenu.c -o ./$(BUILD_OBJS_DIR)/ktmenu.o
