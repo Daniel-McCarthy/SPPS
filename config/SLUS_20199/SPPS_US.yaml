@@ -12,7 +12,7 @@ options:
   ld_script_path: ./config/SLUS_20199/out/SLUS_201.99.ld
   asm_path: ./config/SLUS_20199/out/asm
   asset_path: ./config/SLUS_20199/out/assets
-  build_path: ./config/SLUS_20199/out/
+  build_path: ./build
   src_path: ./src/SLUS_20199/
 
   create_undefined_funcs_auto: True
@@ -29,6 +29,7 @@ options:
   asm_function_macro: glabel
   asm_jtbl_label_macro: jlabel
   asm_data_macro: dlabel
+  asm_inc_header: .set noat    /* allow use of $at register from MWCC */
 
   rodata_string_guesser_level: 2
   data_string_guesser_level: 2
