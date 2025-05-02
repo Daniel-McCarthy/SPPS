@@ -50,7 +50,7 @@ segments:
     bss_size: 0xE1F80 # (Comes from __bss_end -_fbss)
     subsegments:
       - [0x000080, pad, nops]
-      - [0x000088, asm, _start]
+      - [0x000088, asm, __start]
       - [0x000138, asm, _exit]
       - [0x000140, asm, _root]
       - [0x028A70, c, E/tam/ps2/sppbx/main]

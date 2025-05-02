@@ -21,7 +21,7 @@
 // Text Section
 // SDK/Lib functions start
 //ENTRYPOINT                               = 0x00100008; // (Region->GLOBAL) (Type->NOTYPE) 
-_start                                   = 0x00100008; // (Region->GLOBAL) (Type->NOTYPE) 
+__start                                  = 0x00100008; // type:func (Region->GLOBAL) (Type->NOTYPE) 
 _exit                                    = 0x001000B8; // (Region->GLOBAL) (Type->NOTYPE) 
 _root                                    = 0x001000C0; // (Region->LOCAL)  (Type->NOTYPE) 
 _f_ulltof                                = 0x001000D0; // type:func    (Size->60)    
