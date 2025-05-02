@@ -13,10 +13,10 @@
 //ltmvu0HitCheck2                          = 0x00000000; // (Region->GLOBAL) (Type->NOTYPE) 
 //ltmvu0SetMatrix                          = 0x00000000; // (Region->GLOBAL) (Type->NOTYPE) 
 //ltmvu0VertexCheck                        = 0x00000000; // (Region->GLOBAL) (Type->NOTYPE) 
-//_align_segment                           = 0x00000080; // (Region->GLOBAL) (Type->NOTYPE) 
-//_stack_size                              = 0x00010000; // (Region->GLOBAL) (Type->NOTYPE) 
-//__data_size                              = 0x00038054; // (Region->GLOBAL) (Type->NOTYPE) 
-//__bss_size                               = 0x000E1824; // (Region->GLOBAL) (Type->NOTYPE) 
+_align_segment                           = 0x00000080; // (Region->GLOBAL) (Type->NOTYPE) 
+_stack_size                              = 0x00010000; // (Region->GLOBAL) (Type->NOTYPE) 
+__data_size                              = 0x00038054; // (Region->GLOBAL) (Type->NOTYPE) 
+__bss_size                               = 0x000E1824; // (Region->GLOBAL) (Type->NOTYPE) 
 
 // Text Section
 // SDK/Lib functions start
