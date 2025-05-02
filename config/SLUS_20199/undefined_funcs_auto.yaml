@@ -1,3 +1,0 @@
-sceScfGetDateNotation = 0x2A77C8;
-sceScfGetTimeNotation = 0x2A78C8;
-sceScfGetLocalTimefromRTC = 0x2A7EC8;

@@ -139,7 +139,7 @@ segments:
       - [0x1A2430, asm, E/tam/ps2/sppbx/tmetc]
       - [0x1A2D00, asm, E/tam/ps2/sppbx/tievent]
       # Library/SDK
-      - [0x1A7600, databin, sdk2]
+      - [0x1A7600, asm, sdk2]
       - [0x1A8000, data, vutext] # .vutext 0x1A8000-0x1AF6AF
 
       # SDK/Lib data start
