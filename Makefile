@@ -28,7 +28,7 @@ OBJDUMP         := $(CROSS)objdump
 GCC             := $(CROSS)gcc
 STRIP           := $(CROSS)strip
 
-AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections
+AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections -mno-pdr
 
 PYTHON 	:= python3
 # SPLAT  	:= $(PYTHON) -m splat split
@@ -115,7 +115,7 @@ $(BUILD_DIR)/%.c.o: $(US_SRC_DIR)/%.c
 
 # Pattern: to build a .elf we need all the .o files
 $(OUTPUT_ELF): $(C_O_FILES) $(ASM_O_FILES)
-	$(GNULD) -T $(US_LD_SCRIPT) -T $(US_UNDEF_SYMS_AUTO) -T $(US_UNDEF_FUNCS_AUTO) -o $@ $^
+	$(GNULD) -EL -T $(US_LD_SCRIPT) -T $(US_UNDEF_SYMS_AUTO) -T $(US_UNDEF_FUNCS_AUTO) -o $@ $^
 
 
 clean-us:
@@ -132,7 +132,22 @@ clean-build-dir:
 	@echo "Reconstructing build folders"
 	@mkdir $(BUILD_DIR)
 
-.PHONY: mwccgap
+clean-c-objects:
+	find $(BUILD_DIR) -name '*.c.o' -type f -delete
+
+clean-asm-objects:
+	find $(BUILD_DIR) -name '*.s.o' -type f -delete
+
+mwld:
+	@echo "Running mwld"
+	$(MWLD) -nodead -o $(OUTPUT_ELF) $(INCLUDE_DIR)/mwcc.lcf \
+		$(shell find $(BUILD_DIR) -name '*.o')
+
+mwld-convert:
+	@echo "Running mwld"
+	$(MWLD) -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
+		$(shell find $(BUILD_DIR) -name '*.o')
+
 convert-ld:
 	@$(PYTHON) tools/Scripts/convert_ld_to_lcf.py
 
