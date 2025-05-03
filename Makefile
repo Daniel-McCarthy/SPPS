@@ -148,6 +148,15 @@ mwld-convert:
 	$(MWLD) -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 
+remove-unneeded-sections:
+	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" bss
+	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" data
+	$(PYTHON) tools/Scripts/remove_object_section.py ".sbss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py ".bss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py ".sdata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py ".rodata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py ".data.s.o" text
+
 convert-ld:
 	@$(PYTHON) tools/Scripts/convert_ld_to_lcf.py
 
@@ -158,6 +167,7 @@ rebuild:
 	$(MAKE) compile
 	$(MAKE) assemble
 	$(MAKE) convert-ld
+	$(MAKE) remove-unneeded-sections
 mwccgap:
 	@echo "Running mwccgap"
 	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/spinit.c ./$(BUILD_OBJS_DIR)/spinit.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
