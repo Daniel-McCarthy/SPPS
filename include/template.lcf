@@ -26,7 +26,7 @@ SECTIONS
 	.main	:
 	{
 		# We can define gp here directly
-		# _gp = 0x2EF6F0;
+		_gp = 0x2EF6F0;
 
 		#	text sections
 		.	= ALIGN(0x80);
