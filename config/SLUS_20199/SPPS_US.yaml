@@ -49,10 +49,7 @@ segments:
     gp_value: 0x2ef6f0
     bss_size: 0xE1F80 # (Comes from __bss_end -_fbss)
     subsegments:
-      - [0x000080, pad, nops]
-      - [0x000088, asm, __start]
-      - [0x000138, asm, _exit]
-      - [0x000140, asm, _root]
+      - [0x000080, asm, crt0]
       - [0x000150, asm, sdk]
       - [0x028A70, asm, E/tam/ps2/sppbx/main]
       - [0x029BE0, asm, Z/ul/ul/source/cdvd]
@@ -193,10 +190,11 @@ segments:
       - [0x1D6C50, data, E/tam/ps2/sppbx/akShadow]
       - [0x1D6DC0, data, E/tam/ps2/sppbx/tiutill]
       - [0x1D6F50, data, E/tam/ps2/sppbx/tievent]
+      - [0x1D7174, data, sdk_data]
       # data end
 
       # rodata start
-      - [0x1D7210, rodata, sdk_rodata]
+      - [0x1D7210, rodata, sdk]
       - [0x1D9540, rodata, E/tam/ps2/sppbx/main]
       - [0x1D96F0, rodata, Z/ul/ul/source/cdvd]
       - [0x1D9700, rodata, Z/ul/ul/source/heap]
@@ -249,7 +247,7 @@ segments:
       - [0x1E7490, rodata, E/tam/ps2/sppbx/nmevent]
       - [0x1E74B0, rodata, E/tam/ps2/sppbx/akEvEfct]
       - [0x1E74D0, rodata, E/tam/ps2/sppbx/nmtrick]
-      - [0x1E75F0, rodata, end_rodata]
+      - [0x1E75F0, rodata, sdk2]
       # - [0x1E7704, databin] # __data_end
       # rodata end
 
@@ -280,6 +278,7 @@ segments:
       - [0x1E79A0, sdata, E/tam/ps2/sppbx/kncore]
       - [0x1E79B4, sdata, E/tam/ps2/sppbx/tiutill]
       - [0x1E79B8, sdata, E/tam/ps2/sppbx/tievent]
+      - [0x1E7A00, sdata, sdk_lib_sdata]
       # sdata right before sbss
 
       # Sbss section (Same location as _fbss)
@@ -369,8 +368,7 @@ segments:
       - { type: bss, vram: 0x3c8010, name: E/tam/ps2/sppbx/nmevent }
       - { type: bss, vram: 0x3c8110, name: E/tam/ps2/sppbx/akEvEfct }
       - { type: bss, vram: 0x3c8840, name: E/tam/ps2/sppbx/nmtrick }
-      - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }
-      - { type: bss, vram: 0x3C9900, name: vubss } # 2C9980
+      - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc, size: 0xA0 }
+      # - { type: bss, vram: 0x3C9900, name: vubss, size: 0x75C } # 2C9980 # 0x75C bytes remaining in bss
       # - [1E7A00, databin] # after @771
-  - [0x1E7A00, databin, end]
   - [0x58653C]
