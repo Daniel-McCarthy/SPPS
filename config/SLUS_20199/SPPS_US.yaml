@@ -278,7 +278,6 @@ segments:
       - [0x1E79A0, sdata, E/tam/ps2/sppbx/kncore]
       - [0x1E79B4, sdata, E/tam/ps2/sppbx/tiutill]
       - [0x1E79B8, sdata, E/tam/ps2/sppbx/tievent]
-      - [0x1E7A00, sdata, sdk_lib_sdata]
       # sdata right before sbss
 
       # Sbss section (Same location as _fbss)
@@ -368,7 +367,8 @@ segments:
       - { type: bss, vram: 0x3c8010, name: E/tam/ps2/sppbx/nmevent }
       - { type: bss, vram: 0x3c8110, name: E/tam/ps2/sppbx/akEvEfct }
       - { type: bss, vram: 0x3c8840, name: E/tam/ps2/sppbx/nmtrick }
-      - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc, size: 0xA0 }
+      - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }
       # - { type: bss, vram: 0x3C9900, name: vubss, size: 0x75C } # 2C9980 # 0x75C bytes remaining in bss
       # - [1E7A00, databin] # after @771
+  - [0x1E7A00, databin]
   - [0x58653C]
