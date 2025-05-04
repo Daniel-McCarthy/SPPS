@@ -8118,12 +8118,11 @@ vgmsysFrameBuffer                        = 0x002EEB10; //  (Size->1936)
 _vgmsysVif1Pkt                           = 0x002EF2A0; // (Size->32)    
 _vgmsysGifPkt                            = 0x002EF2C0; // (Size->20)  
 // cdvd.c  
-vuldvdFD                                 = 0x002EF2E0; // (Size->36)    
-vuldvdQue                                = 0x002EF310; // (Size->4096)  
-_gp                                      = 0x002EF6F0; // (Region->GLOBAL) (Type->NOTYPE) 
-vuldvdData                               = 0x002F0310; // (Size->8192)  
-vuldvdHead                               = 0x002F2310; // (Size->16)    
-vuldvdSystem                             = 0x002F2320; // (Size->48)   
+vuldvdFD                                 = 0x002EF2E0; // size:0x24
+vuldvdQue                                = 0x002EF310; // size:0x1000
+vuldvdData                               = 0x002F0310; // size:0x2000
+vuldvdHead                               = 0x002F2310; // size:0x10    
+vuldvdSystem                             = 0x002F2320; // size:0x30
 // coord.c 
 vulcodWVmat                              = 0x002F2350; // (Size->64)    
 vulcodVSmat                              = 0x002F2390; // (Size->64) 
