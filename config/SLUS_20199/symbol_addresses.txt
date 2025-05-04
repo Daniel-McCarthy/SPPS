@@ -8124,14 +8124,14 @@ vuldvdData                               = 0x002F0310; // size:0x2000
 vuldvdHead                               = 0x002F2310; // size:0x10    
 vuldvdSystem                             = 0x002F2320; // size:0x30
 // coord.c 
-vulcodWVmat                              = 0x002F2350; // (Size->64)    
-vulcodVSmat                              = 0x002F2390; // (Size->64) 
+vulcodWVmat                              = 0x002F2350; // size:0x40   
+vulcodVSmat                              = 0x002F2390; // size:0x40
 // heap.c   
-heapinfo                                 = 0x002F23D0; // (Size->40) 
+heapinfo                                 = 0x002F23D0; // size:0x28
 // mcard.c   
-vulmcCardData                            = 0x002F2400; // (Size->2560)  
-vulmcDir                                 = 0x002F2E00; // (Size->1280)  
-vulmcSysInfo                             = 0x002F3300; // (Size->68)   
+vulmcCardData                            = 0x002F2400; // size:0xA00
+vulmcDir                                 = 0x002F2E00; // size:0x500 
+vulmcSysInfo                             = 0x002F3300; // size:0x44 
 // pad.c 
 vulpadInfo                               = 0x002F3350; // (Size->736)   
 vulpadActBuf                             = 0x002F3630; // (Size->12)    
