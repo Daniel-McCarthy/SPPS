@@ -8113,10 +8113,11 @@ sceSd_gCd                                = 0x002EEA40; // (Region->LOCAL)  (Type
 
 // Game BSS Start
 // main.c
-vgmsysInitFunc                           = 0x002EEA90; //  (Size->128)   
-vgmsysFrameBuffer                        = 0x002EEB10; //  (Size->1936)  
-_vgmsysVif1Pkt                           = 0x002EF2A0; // (Size->32)    
-_vgmsysGifPkt                            = 0x002EF2C0; // (Size->20)  
+vgmsysInitFunc                           = 0x002EEA90; // size:0x80   
+vgmsysFrameBuffer                        = 0x002EEB10; // size:0x790 
+_vgmsysVif1Pkt                           = 0x002EF2A0; // size:0x20
+_vgmsysGifPkt                            = 0x002EF2C0; // size:0x20 
+
 // cdvd.c  
 vuldvdFD                                 = 0x002EF2E0; // size:0x24
 vuldvdQue                                = 0x002EF310; // size:0x1000
@@ -8133,8 +8134,8 @@ vulmcCardData                            = 0x002F2400; // size:0xA00
 vulmcDir                                 = 0x002F2E00; // size:0x500 
 vulmcSysInfo                             = 0x002F3300; // size:0x44 
 // pad.c 
-vulpadInfo                               = 0x002F3350; // (Size->736)   
-vulpadActBuf                             = 0x002F3630; // (Size->12)    
+vulpadInfo                               = 0x002F3350; // size:0x2E0   
+vulpadActBuf                             = 0x002F3630; // size:0xC  
 vulpadDmaBuf                             = 0x002F3640; // (Size->512)   
 vulpadOption                             = 0x002F3840; // (Size->16)   
 // sd.c 
@@ -8400,8 +8401,8 @@ _Effect                                  = 0x003C8110; // (Size->1840)
 // nmtrick.c 
 vnmtrickInfo                             = 0x003C8840; // (Size->4128)  
 // tmetc.c
-vtmetcSystem                             = 0x003C9860; // (Size->40)
-errno                                    = 0x003C9888; // (Size->4)     
+vtmetcSystem                             = 0x003C9860; // size:0x28
+errno                                    = 0x003C9888; // size:0x4
 // BSS END //
 
 //.vu.ss                                   = 0x003C9900; // (Region->LOCAL)  (Type->SECTION) # vubss start?
