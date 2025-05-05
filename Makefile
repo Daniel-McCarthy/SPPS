@@ -121,6 +121,7 @@ $(OUTPUT_ELF): $(C_O_FILES) $(ASM_O_FILES)
 	$(GNULD) -EL -T $(US_LD_SCRIPT) -T $(US_UNDEF_SYMS_AUTO) -T $(US_UNDEF_FUNCS_AUTO) -o $@ $^
 
 
+# Cleans splat related temporary files
 clean-us:
 	@echo "Cleaning output and build directories"
 	$(RM) -r $(US_OUTPUT_DIR)/ $(US_DIR)/.splat/
@@ -129,28 +130,34 @@ clean-us:
 	$(RM) -r .splat/
 	$(RM) -r .splache $(US_DIR)/.splache
 
+# Cleans the full build directory
 clean-build-dir:
 	@echo "Cleaning the build directory"
 	$(RM) -r $(BUILD_DIR)/
 	@echo "Reconstructing build folders"
 	@mkdir $(BUILD_DIR)
 
+# Clean compiled .o files from the build dir
 clean-c-objects:
 	find $(BUILD_DIR) -name '*.c.o' -type f -delete
 
+# Clean assembly .o files from the build dir
 clean-asm-objects:
 	find $(BUILD_DIR) -name '*.s.o' -type f -delete
 
+# Runs the MWLD linker to create an ELF using the generic MWLD linker script.
 mwld:
 	@echo "Running mwld"
 	$(MWLD) -nodead -o $(OUTPUT_ELF) $(INCLUDE_DIR)/mwcc.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 
+# Runs the MWLD linker to create an ELF using the our generated .lcf file.
 mwld-convert:
 	@echo "Running mwld"
 	$(MWLD) -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 
+# Removes uneeded sections from the object files as a work around for unresolved linker issues.
 remove-unneeded-sections:
 	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" bss
 	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" data
@@ -160,9 +167,11 @@ remove-unneeded-sections:
 	$(PYTHON) tools/Scripts/remove_object_section.py ".rodata.s.o" text
 	$(PYTHON) tools/Scripts/remove_object_section.py ".data.s.o" text
 
+# Configure an MWLD .lcf file from the Splat generated GNU .ld file.
 convert-ld:
 	@$(PYTHON) tools/Scripts/convert_ld_to_lcf.py
 
+# Freshly split, compile, and assemble to prepare for linking.
 rebuild:
 	@echo "Rebuilding the project"
 	$(MAKE) clean-build-dir
