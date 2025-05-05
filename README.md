@@ -17,3 +17,6 @@ To run splat for the US version of the game, run at the root directory:
 `python3 -m splat split ./config/SLUS_20199/SPPS_US.yaml`
 Or with Make:
 `make splat-us`
+
+For rebuilding the iso, the `mkisofs` program will be required. It can be installed on debian systems as such:
+`sudo apt install genisoimage`

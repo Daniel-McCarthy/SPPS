@@ -1,6 +1,8 @@
 .PHONY: install splat-us build-us clean-us
 
-INCLUDE_DIR		:= include
+INCLUDE_DIR     := include
+ISO_DIR         := iso
+ISO_EXTRACT_DIR := iso/extract
 
 US_DIR 			:= config/SLUS_20199
 US_OUTPUT_DIR 	:= config/SLUS_20199/out
@@ -9,6 +11,7 @@ US_ASM_DIR 		:= config/SLUS_20199/out/asm
 US_SRC_DIR		:= src/SLUS_20199
 US_YAML_FILE	:= config/SLUS_20199/SPPS_US.yaml
 US_ROM_FILE		:= config/SLUS_20199/SLUS_201.99
+US_ISO_FILE		:= $(ISO_DIR)/SLUS_20199.iso
 US_UNDEF_SYMS_AUTO 	:= $(US_DIR)/undefined_syms_auto.yaml
 US_UNDEF_FUNCS_AUTO := $(US_DIR)/undefined_funcs_auto.yaml
 
@@ -172,3 +175,35 @@ mwccgap:
 	@echo "Running mwccgap"
 	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/spinit.c ./$(BUILD_OBJS_DIR)/spinit.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
 	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/tmlink.c ./$(BUILD_OBJS_DIR)/tmlink.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
+
+clean-iso-dir:
+	@echo "Cleaning ISO directory"
+	-$(RM) -r "$(ISO_EXTRACT_DIR)"
+	@mkdir "$(ISO_EXTRACT_DIR)"
+	-$(RM) "$(ISO_DIR)/SLUS_201.99.rebuilt.iso"
+	@echo "✅ Done."
+
+build-iso:
+	$(MAKE) clean-iso-dir
+	@if [ -f "$(US_ISO_FILE)" ]; then \
+		echo "✅ Found ISO: $(US_ISO_FILE)"; \
+		echo "📦 Extracting ISO..."; \
+		7z x "$(US_ISO_FILE)" -o"$(ISO_EXTRACT_DIR)" >/dev/null; \
+		echo "Removing the extracted ELF..."; \
+		$(RM) "$(ISO_EXTRACT_DIR)/SLUS_201.99"; \
+		echo "Copying built ELF into ISO folder..."; \
+		cp "$(OUTPUT_ELF)" "$(ISO_EXTRACT_DIR)/SLUS_201.99"; \
+		echo "📀 Rebuilding ISO as $(ISO_DIR)/SLUS_201.99.rebuilt.iso..."; \
+		mkisofs -l -o "$(ISO_DIR)/SLUS_201.99.rebuilt.iso" "$(ISO_EXTRACT_DIR)"; \
+	else \
+		echo "❌ ISO not found at path: $(US_ISO_FILE)"; \
+		exit 1; \
+	fi
+
+	@if [ -f "$(ISO_DIR)/SLUS_201.99.rebuilt.iso" ]; then \
+		echo "✅ Rebuilt ISO: $(ISO_DIR)/SLUS_201.99.rebuilt.iso"; \
+	else \
+		echo "❌ Failed to rebuild ISO"; \
+		exit 1; \
+	fi
+
