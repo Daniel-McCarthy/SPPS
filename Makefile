@@ -156,6 +156,23 @@ mwld-convert:
 	@echo "Running mwld"
 	$(MWLD) -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
+	
+	@bash -c ' \
+	if [ -f "$(OUTPUT_ELF)" ]; then \
+		echo "Built ELF: $(OUTPUT_ELF)"; \
+		expected_crc32=$$(7z h "$(US_ROM_FILE)" | sed -n "/CRC32/s/.*\([A-F0-9]\{8\}\).*/\1/p"); \
+		new_elf_crc32=$$(7z h "$(OUTPUT_ELF)" | sed -n "/CRC32/s/.*\([A-F0-9]\{8\}\).*/\1/p"); \
+		echo "Expected ELF CRC32: $$expected_crc32"; \
+		echo "Rebuilt ELF CRC32: $$new_elf_crc32"; \
+		if [ "$$expected_crc32" = "$$new_elf_crc32" ]; then \
+			echo "✅ Match: ELFs are identical."; \
+		else \
+			echo "❌ ELF CRC mismatch. Linked ELF CRC32 $$new_elf_crc32 != $$expected_crc32"; \
+		fi; \
+	else \
+		echo "❌ Failed to build ELF"; \
+		exit 1; \
+	fi'
 
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 remove-unneeded-sections:
@@ -180,6 +197,8 @@ rebuild:
 	$(MAKE) assemble
 	$(MAKE) convert-ld
 	$(MAKE) remove-unneeded-sections
+	@echo "✅ Rebuild Done."
+
 mwccgap:
 	@echo "Running mwccgap"
 	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/spinit.c ./$(BUILD_OBJS_DIR)/spinit.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
