@@ -207,3 +207,12 @@ build-iso:
 		exit 1; \
 	fi
 
+download-wibo:
+	@echo Downloading wibo
+	@mkdir tools/wibo
+	wget -o ./tools/wibo/wibo https://github.com/decompals/wibo/releases/download/0.6.16/wibo
+	chmod +x $(WIBO)
+
+setup:
+	$(MAKE) download-wibo
+
