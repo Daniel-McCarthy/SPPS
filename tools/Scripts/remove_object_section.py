@@ -27,7 +27,7 @@ def remove_section(obj_file, section):
 	"""Use objcopy to remove the section from the object file."""
 	print(f"[*] Removing section '{section}' from {obj_file}")
 	subprocess.run(
-		['mips-linux-gnu-objcopy', f'--remove-section=.{section}', obj_file],
+		['mipsel-linux-gnu-objcopy', f'--remove-section=.{section}', obj_file],
 		check=True
 	)
 
