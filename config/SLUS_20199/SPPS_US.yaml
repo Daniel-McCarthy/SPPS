@@ -41,7 +41,7 @@ options:
   migrate_rodata_to_functions: True
 
 segments:
-  - [0, databin, elf_header]
+  - [0, bin, elf_header]
   - name: main
     type: code
     start: 0x0080
@@ -370,5 +370,14 @@ segments:
       - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }
       # - { type: bss, vram: 0x3C9900, name: vubss, size: 0x75C } # 2C9980 # 0x75C bytes remaining in bss
       # - [1E7A00, databin] # after @771
-  - [0x1E7A00, databin]
+  - [0x1E7A00, bin, shstrtab]
+  - [0x1E7A60, bin, strtab]
+  - [0x1FF7C0, bin, symtab]
+  - [0x2209F0, bin, debug]
+  - [0x456D60, bin, line]
+  - [0x50C370, bin, mwcats]
+  - [0x5102B0, bin, relmain]
+  - [0x586318, bin, comment]
+  - [0x586344, bin, reginfo]
+  - [0x58635C, bin, end]
   - [0x58653C]
