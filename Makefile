@@ -201,7 +201,7 @@ rebuild:
 rebuild-full:
 	$(MAKE) rebuild
 	$(MAKE) mwld-convert
-	$(MAKE) build-iso
+	$(MAKE) build-iso-with-mkiso-script
 
 mwccgap:
 	@echo "Running mwccgap"
@@ -215,22 +215,49 @@ clean-iso-dir:
 	-$(RM) "$(ISO_DIR)/SLUS_201.99.rebuilt.iso"
 	@echo "✅ Done."
 
-build-iso:
+extract-iso:
+	@echo "Extracting ISO"
+	@if [ -f "$(US_ISO_FILE)" ]; then \
+		echo "✅ Found ISO: $(US_ISO_FILE)"; \
+		echo "📦 Extracting header.ims..."; \
+		dd if="$(US_ISO_FILE)" of="iso/_header.ims" bs=2048 count=321; \
+		echo "📦 Extracting ISO..."; \
+		7z x "$(US_ISO_FILE)" -o"$(ISO_EXTRACT_DIR)" >/dev/null; \
+		echo "Extraction complete."; \
+	else \
+		echo "❌ ISO not found at path: $(US_ISO_FILE)"; \
+		exit 1; \
+	fi
+
+build-iso-with-mkiso-script:
 	$(MAKE) clean-iso-dir
 	@if [ -f "$(US_ISO_FILE)" ]; then \
 		echo "✅ Found ISO: $(US_ISO_FILE)"; \
 		echo "📦 Extracting ISO..."; \
-		7z x "$(US_ISO_FILE)" -o"$(ISO_EXTRACT_DIR)" >/dev/null; \
+		$(PYTHON) tools/mkiso.py --mode extract --iso iso/SLUS_20199.iso; \
+		# 7z x "$(US_ISO_FILE)" -o"$(ISO_EXTRACT_DIR)" >/dev/null; \
 		echo "Removing the extracted ELF..."; \
 		$(RM) "$(ISO_EXTRACT_DIR)/SLUS_201.99"; \
 		echo "Copying built ELF into ISO folder..."; \
 		cp "$(OUTPUT_ELF)" "$(ISO_EXTRACT_DIR)/SLUS_201.99"; \
 		echo "📀 Rebuilding ISO as $(ISO_DIR)/SLUS_201.99.rebuilt.iso..."; \
-		mkisofs -l -o "$(ISO_DIR)/SLUS_201.99.rebuilt.iso" "$(ISO_EXTRACT_DIR)"; \
+		$(PYTHON) tools/mkiso.py --mode insert --output_filename "SLUS_201.99.rebuilt.iso"; \
 	else \
 		echo "❌ ISO not found at path: $(US_ISO_FILE)"; \
 		exit 1; \
 	fi
+
+	@if [ -f "$(ISO_DIR)/SLUS_201.99.rebuilt.iso" ]; then \
+		echo "✅ Rebuilt ISO: $(ISO_DIR)/SLUS_201.99.rebuilt.iso"; \
+	else \
+		echo "❌ Failed to rebuild ISO"; \
+		exit 1; \
+	fi
+
+build-iso-from-current-folder-state:
+	echo "📀 Rebuilding ISO as $(ISO_DIR)/SLUS_201.99.rebuilt.iso..."; \
+
+	$(PYTHON) tools/mkiso.py --mode insert
 
 	@if [ -f "$(ISO_DIR)/SLUS_201.99.rebuilt.iso" ]; then \
 		echo "✅ Rebuilt ISO: $(ISO_DIR)/SLUS_201.99.rebuilt.iso"; \
