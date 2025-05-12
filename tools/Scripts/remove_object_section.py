@@ -64,7 +64,6 @@ def main():
 		try:
 			sizes = get_section_sizes(file)
 			if f".{section}" not in sizes:
-				print(f"[-] Section '.{section}' not found in {file}, skipping.")
 				continue
 
 			size = sizes[f".{section}"]
