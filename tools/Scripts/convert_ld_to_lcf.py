@@ -11,6 +11,11 @@ def get_linker_file_lines(splat_linker_file_lines):
 	rodata_o_lines = []
 
 	for line in splat_linker_file_lines:
+		# Skip .bin and other non-assembly/non-code files
+		if "s.o" not in line and ".c.o" not in line:
+			continue
+
+		# Include only the .o lines and organize them by section type
 		if ("(.text);" in line):
 			text_o_lines.append(line)
 			continue
