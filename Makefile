@@ -268,6 +268,17 @@ build-iso-from-current-folder-state:
 		exit 1; \
 	fi
 
+download-mwcc:
+	-@mkdir -p $(COMPILER_LOCATION)
+	wget https://github.com/decompme/compilers/releases/download/compilers/mwcps2-2.4-001213.tar.gz 
+	@echo "📦 Extracting MWCC..."
+	# | tar xzv -C $(BIN_DIR)
+	7z x mwcps2-2.4-001213.tar.gz >/dev/null;
+	7z x mwcps2-2.4-001213.tar -o./$(COMPILER_LOCATION) >/dev/null;
+	-$(RM) "mwcps2-2.4-001213.tar.gz"
+	-$(RM) "mwcps2-2.4-001213.tar"
+	@echo "✅ MWCC Download Done."
+
 download-decompals-binutils:
 	@echo Downloading decompals binutils
 	-$(RM) -r tools/binutils
@@ -286,7 +297,4 @@ download-wibo:
 	-@mkdir tools/wibo
 	wget -P ./tools/wibo/ https://github.com/decompals/wibo/releases/download/0.6.16/wibo
 	chmod +x $(WIBO)
-
-setup:
-	$(MAKE) download-wibo
 
