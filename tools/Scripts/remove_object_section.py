@@ -47,7 +47,6 @@ def main():
 		for filename in filenames:
 			if filename.endswith(extension):
 				files.append(os.path.join(root, filename))
-	print(files)
 
 	# Don't remove .bss from .bss.s.o files
 	if section == 'bss':
