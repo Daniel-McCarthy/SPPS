@@ -21,15 +21,14 @@ US_SRC_SOURCE_DIR := $(US_SRC_DIR)/Z/ul/ul/source
 BUILD_DIR		:= build
 OUTPUT_ELF		:= $(BUILD_DIR)/SLUS_201.99.elf
 
-# Set prefix to mips binutils binaries
-CROSS = mips-linux-gnu-
+BINUTILS_DIR    := ./tools/binutils/mips-ps2-decompals-
 
-AS              := $(CROSS)as
-GNULD           := $(CROSS)ld
-OBJCOPY         := $(CROSS)objcopy
-OBJDUMP         := $(CROSS)objdump
-GCC             := $(CROSS)gcc
-STRIP           := $(CROSS)strip
+AS              := $(BINUTILS_DIR)as
+GNULD           := $(BINUTILS_DIR)ld
+OBJCOPY         := $(BINUTILS_DIR)objcopy
+OBJDUMP         := $(BINUTILS_DIR)objdump
+GCC             := $(BINUTILS_DIR)gcc
+STRIP           := $(BINUTILS_DIR)strip
 
 AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections -mno-pdr
 
@@ -51,8 +50,7 @@ MWCC := $(WIBO) $(MWCC_PATH)
 MWLD := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwldps2.exe
 MWCC_ARGS := -Iinclude -O0,p -sym on -char unsigned -str readonly
 MWCCGAP := $(PYTHON) tools/mwccgap/mwccgap.py
-MWCCGAP_ARGS := --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
-
+MWCCGAP_ARGS := --mwcc-path $(MWCC_PATH) --as-path $(AS) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
 S_FILES := $(shell find $(US_ASM_DIR) -name '*.s' -not -path *nonmatchings* 2>/dev/null) # recursively grabs .s files not in nonmatchings and suppresses errors
 C_FILES := $(shell find $(US_SRC_DIR) -name '*.c' -not -path *nonmatchings* 2>/dev/null) # recursively grabs .c files not in nonmatchings and suppresses errors
 
@@ -240,6 +238,19 @@ build-iso:
 		echo "❌ Failed to rebuild ISO"; \
 		exit 1; \
 	fi
+
+download-decompals-binutils:
+	@echo Downloading decompals binutils
+	-$(RM) -r tools/binutils
+	-@mkdir tools/binutils
+	wget https://github.com/decompals/binutils-mips-ps2-decompals/releases/latest/download/binutils-mips-ps2-decompals-linux-x86-64.tar.gz
+	@echo "📦 Extracting binutils..."
+	7z x binutils-mips-ps2-decompals-linux-x86-64.tar.gz >/dev/null;
+	7z x binutils-mips-ps2-decompals-linux-x86-64.tar -o./tools/binutils >/dev/null;
+	-$(RM) "binutils-mips-ps2-decompals-linux-x86-64.tar.gz"
+	-$(RM) "binutils-mips-ps2-decompals-linux-x86-64.tar"
+	@find tools/binutils -type f -exec chmod +x {} \;
+	@echo "✅ Decompals Binutils Download Done."
 
 download-wibo:
 	@echo Downloading wibo
