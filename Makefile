@@ -184,6 +184,19 @@ remove-unneeded-sections:
 	$(PYTHON) tools/Scripts/remove_object_section.py ".rodata.s.o" text
 	$(PYTHON) tools/Scripts/remove_object_section.py ".data.s.o" text
 
+remove-unneeded-objects:
+	$(RM) $(BUILD_DIR)/data/elf_header.s.o
+	$(RM) $(BUILD_DIR)/data/shstrtab.s.o
+	$(RM) $(BUILD_DIR)/data/strtab.s.o
+	$(RM) $(BUILD_DIR)/data/symtab.s.o
+	$(RM) $(BUILD_DIR)/data/debug.s.o
+	$(RM) $(BUILD_DIR)/data/line.s.o
+	$(RM) $(BUILD_DIR)/data/mwcats.s.o
+	$(RM) $(BUILD_DIR)/data/relmain.s.o
+	$(RM) $(BUILD_DIR)/data/comment.s.o
+	$(RM) $(BUILD_DIR)/data/reginfo.s.o
+	$(RM) $(BUILD_DIR)/data/end.s.o
+
 # Configure an MWLD .lcf file from the Splat generated GNU .ld file.
 convert-ld:
 	@$(PYTHON) tools/Scripts/convert_ld_to_lcf.py
@@ -195,6 +208,7 @@ rebuild:
 	$(MAKE) splat-us
 	$(MAKE) compile
 	$(MAKE) assemble
+	$(MAKE) remove-unneeded-objects
 	$(MAKE) convert-ld
 	$(MAKE) remove-unneeded-sections
 	@echo "✅ Rebuild Done."
