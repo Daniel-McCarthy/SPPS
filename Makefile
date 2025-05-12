@@ -65,9 +65,11 @@ US_LD_SCRIPT	:= $(US_OUTPUT_DIR)/SLUS_201.99.ld
 US_SRC_FILES	:= $(foreach dir,$(US_SRC_DIR),$(wildcard $(dir)/*.c))
 US_ASM_FILES	:= $(foreach dir,$(US_ASM_DIR),$(wildcard $(dir)/*.s))
 
-# Make install - Installs Python dependencies.
+# Make install - Installs Python required and other required dependencies.
 install:
 	$(PIP) install -r requirements.txt
+	$(MAKE) download-wibo
+	$(MAKE) download-decompals-binutils
 
 # Make splat-us - Runs Splat for the US version of SPPS.
 splat-us:
