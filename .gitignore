@@ -2,6 +2,10 @@
 SLUS_201-99/asm
 SLUS_201-99/assets
 SLUS_201.99
+SLUS_201.99.elf
+SLUS_20199.iso
+SLUS_201.99.rebuilt.iso
+iso/extract
 
 # Splat files
 checksum.sha1
@@ -11,9 +15,12 @@ build.ninja
 
 # Build output
 *.ld
+*.iso
+*.o
 asm/
 assets/
 build/
+iso/sort.txt
 
 # Compiler Configurations
 MWCCPS2-2.4/
@@ -21,4 +28,5 @@ MWCCPS2-2.4/
 # Misc
 Archive/
 wibo
+binutils/
 venv/
