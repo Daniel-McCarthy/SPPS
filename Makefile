@@ -148,14 +148,35 @@ clean-asm-objects:
 # Runs the MWLD linker to create an ELF using the generic MWLD linker script.
 mwld:
 	@echo "Running mwld"
-	$(MWLD) -nodead -o $(OUTPUT_ELF) $(INCLUDE_DIR)/mwcc.lcf \
+	$(MWLD) -map -nodead -o $(OUTPUT_ELF).2 $(INCLUDE_DIR)/mwcc.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
+	@readelf -S $(OUTPUT_ELF).2 > $(OUTPUT_ELF).2.sections.txt
+	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
+
+	@bash -c ' \
+	if [ -f "$(OUTPUT_ELF)" ]; then \
+		echo "Built ELF: $(OUTPUT_ELF)"; \
+		expected_crc32=$$(7z h "$(US_ROM_FILE)" | sed -n "/CRC32/s/.*\([A-F0-9]\{8\}\).*/\1/p"); \
+		new_elf_crc32=$$(7z h "$(OUTPUT_ELF).2" | sed -n "/CRC32/s/.*\([A-F0-9]\{8\}\).*/\1/p"); \
+		echo "Expected ELF CRC32: $$expected_crc32"; \
+		echo "Rebuilt ELF CRC32: $$new_elf_crc32"; \
+		if [ "$$expected_crc32" = "$$new_elf_crc32" ]; then \
+			echo "✅ Match: ELFs are identical."; \
+		else \
+			echo "❌ ELF CRC mismatch. Linked ELF CRC32 $$new_elf_crc32 != $$expected_crc32"; \
+		fi; \
+	else \
+		echo "❌ Failed to build ELF"; \
+		exit 1; \
+	fi'
 
 # Runs the MWLD linker to create an ELF using the our generated .lcf file.
 mwld-convert:
 	@echo "Running mwld"
-	$(MWLD) -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
+	$(MWLD) -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
+	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
+	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
 	
 	@bash -c ' \
 	if [ -f "$(OUTPUT_ELF)" ]; then \
@@ -213,6 +234,24 @@ rebuild:
 	$(MAKE) remove-unneeded-sections
 	@echo "✅ Rebuild Done."
 
+rebuild-full-std-linker:
+	@echo "Rebuilding the project - with MW linker script"
+	$(MAKE) clean-build-dir
+	$(MAKE) splat-us
+	$(MAKE) compile
+	$(MAKE) assemble
+	# $(MAKE) remove-unneeded-objects
+	$(MAKE) remove-unneeded-sections
+	$(MAKE) mwld
+	# $(MAKE) extract-iso-with-mkiso-script
+	# echo "Removing the extracted ELF..."; \
+	# $(RM) "$(ISO_EXTRACT_DIR)/SLUS_201.99"; \
+	# echo "Copying built ELF into ISO folder..."; \
+	# cp "$(OUTPUT_ELF)" "$(ISO_EXTRACT_DIR)/SLUS_201.99"; \
+	# echo "📀 Rebuilding ISO as $(ISO_DIR)/SLUS_201.99.rebuilt.iso..."; \
+	# $(PYTHON) tools/mkiso.py --mode insert --output_filename "SLUS_201.99.rebuilt.iso"; \
+	@echo "✅ Rebuild Done."
+
 # Full build: Split, compile, and create the full ISO from the linked ELF.
 rebuild-full:
 	$(MAKE) rebuild
@@ -242,6 +281,24 @@ extract-iso:
 		echo "Extraction complete."; \
 	else \
 		echo "❌ ISO not found at path: $(US_ISO_FILE)"; \
+		exit 1; \
+	fi
+
+extract-iso-with-mkiso-script:
+	@echo "Extracting ISO"
+	@if [ -f "$(US_ISO_FILE)" ]; then \
+		echo "✅ Found ISO: $(US_ISO_FILE)"; \
+		echo "📦 Extracting ISO..."; \
+		$(PYTHON) tools/mkiso.py --mode extract --iso iso/SLUS_20199.iso; \
+	else \
+		echo "❌ ISO not found at path: $(US_ISO_FILE)"; \
+		exit 1; \
+	fi
+
+	@if [ -f "$(ISO_DIR)/SLUS_201.99.rebuilt.iso" ]; then \
+		echo "✅ Rebuilt ISO: $(ISO_DIR)/SLUS_201.99.rebuilt.iso"; \
+	else \
+		echo "❌ Failed to rebuild ISO"; \
 		exit 1; \
 	fi
 
