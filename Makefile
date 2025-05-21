@@ -87,6 +87,7 @@ build-us:
 	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/tmlink.c -o ./$(BUILD_OBJS_DIR)/tmlink.o
 	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/cdvd.c -o ./$(BUILD_OBJS_DIR)/cdvd.o
 	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/mcard.c -o ./$(BUILD_OBJS_DIR)/mcard.o
+# Converts paths in the linker script from full paths to relative from the build dir (This is done at linking time)
 fix-linker-paths:
 	@echo "Fixing linker paths"
 	@$(PYTHON) tools/Scripts/update_linker_paths.py $(US_LD_SCRIPT) $(US_ASM_DIR) $(US_SRC_DIR)
@@ -369,3 +370,6 @@ download-wibo:
 	wget -P ./tools/wibo/ https://github.com/decompals/wibo/releases/download/0.6.16/wibo
 	chmod +x $(WIBO)
 
+setup-venv:
+	$(PYTHON) -m venv venv
+	$(MAKE) venv
