@@ -77,16 +77,6 @@ splat-us:
 	@echo "Running Splat for US 201.99"
 	$(PYTHON) -m splat split ./$(US_YAML_FILE)
 
-# Make build-us - Builds the US version of SPPS.
-build-us:
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/main.c -o ./$(BUILD_OBJS_DIR)/main.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/gmpad.c -o ./$(BUILD_OBJS_DIR)/gmpad.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmenu.c -o ./$(BUILD_OBJS_DIR)/ktmenu.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmnufnc.c -o ./$(BUILD_OBJS_DIR)/ktmnufnc.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/spinit.c -o ./$(BUILD_OBJS_DIR)/spinit.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/tmlink.c -o ./$(BUILD_OBJS_DIR)/tmlink.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/cdvd.c -o ./$(BUILD_OBJS_DIR)/cdvd.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/mcard.c -o ./$(BUILD_OBJS_DIR)/mcard.o
 # Converts paths in the linker script from full paths to relative from the build dir (This is done at linking time)
 fix-linker-paths:
 	@echo "Fixing linker paths"
