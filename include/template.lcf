@@ -29,7 +29,6 @@ SECTIONS
 		_gp = 0x2EF6F0;
 
 		#	text sections
-		.	= ALIGN(0x80);
 		crt0.s.o	(.text)
 		.	= ALIGN(0x10);
 		ALIGNALL(0x8);
@@ -39,13 +38,9 @@ SECTIONS
 		#<REPLACE_W_TEXT_FILES>
 
 		#GROUP(ROOT)	(.text)
-		WRITEW	0x0;	# text section patch for EE pipeline
-		WRITEW	0x0;	# text section patch for EE pipeline
 
 		######### (.data) .o files ###################
 		__data_start	= .;
-		.	= ALIGN(0x80);
-		ALIGNALL(0x8);
 		#GROUP(ROOT)	(.vutext)
 		# TODO: Implement these
 		# vutext first
@@ -56,7 +51,6 @@ SECTIONS
 		######### (.rodata) .o files ###################
 
 		. = ALIGN(0x80);
-		ALIGNALL(0x8);
 		crt0.s.o (.rodata)
 
 		#<REPLACE_W_RODATA_FILES>
