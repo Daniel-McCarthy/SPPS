@@ -24,6 +24,7 @@ iso/sort.txt
 
 # Compiler Configurations
 MWCCPS2-2.4/
+tools/compiler/
 
 # Misc
 Archive/
