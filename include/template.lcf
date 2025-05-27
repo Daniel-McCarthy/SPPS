@@ -16,12 +16,12 @@ KEEP_SECTION
 
 SECTIONS
 {
-		#	define for crt0
-		_heap_size	= -1;
-		_stack	= -1;
-		_stack_size	= 0x00100000;
-		#	define for lcf
-		_align_segment	= 0x80;
+	#	define for crt0
+	_heap_size	= -1;
+	_stack	= -1;
+	_stack_size	= 0x00100000;
+	#	define for lcf
+	_align_segment	= 0x80;
 
 	.main	:
 	{
