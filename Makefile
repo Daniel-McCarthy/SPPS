@@ -30,6 +30,8 @@ OBJDUMP         := $(BINUTILS_DIR)objdump
 GCC             := $(BINUTILS_DIR)gcc
 STRIP           := $(BINUTILS_DIR)strip
 
+REMOVE_SECTION_ARGS := --objcopy_path $(OBJCOPY) --objdump_path $(OBJDUMP)
+
 AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections -mno-pdr
 
 PYTHON 	:= python3
@@ -188,13 +190,13 @@ mwld-convert:
 
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 remove-unneeded-sections:
-	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" bss
-	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" data
-	$(PYTHON) tools/Scripts/remove_object_section.py ".sbss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".bss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".sdata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".rodata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".data.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" bss
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" data
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sbss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".bss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sdata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".rodata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".data.s.o" text
 
 remove-unneeded-objects:
 	$(RM) $(BUILD_DIR)/data/elf_header.s.o
