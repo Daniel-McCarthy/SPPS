@@ -1,2 +1,0 @@
-__bss_end = 0x3C9900;
-_stack = 0x1FF0000;

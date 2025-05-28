@@ -190,11 +190,11 @@ segments:
       - [0x1D6C50, data, E/tam/ps2/sppbx/akShadow]
       - [0x1D6DC0, data, E/tam/ps2/sppbx/tiutill]
       - [0x1D6F50, data, E/tam/ps2/sppbx/tievent]
-      - [0x1D7174, data, sdk_data]
+      - [0x1D7210, data, sdk_data]
       # data end
 
       # rodata start
-      - [0x1D7210, rodata, sdk]
+      - [0x1D7220, rodata, sdk]
       - [0x1D9540, rodata, E/tam/ps2/sppbx/main]
       - [0x1D96F0, rodata, Z/ul/ul/source/cdvd]
       - [0x1D9700, rodata, Z/ul/ul/source/heap]
