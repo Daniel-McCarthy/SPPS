@@ -109,9 +109,6 @@ $(BUILD_DIR)/%.c.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(MWCCGAP) $< $@ $(MWCCGAP_ARGS)
 
-# Pattern: to build a .elf we need all the .o files
-$(OUTPUT_ELF): $(C_O_FILES) $(ASM_O_FILES)
-	$(GNULD) -EL -T $(US_LD_SCRIPT) -T $(US_UNDEF_SYMS_AUTO) -T $(US_UNDEF_FUNCS_AUTO) -o $@ $^
 
 
 # Cleans splat related temporary files
