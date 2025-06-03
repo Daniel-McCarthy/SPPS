@@ -248,6 +248,11 @@ rebuild-full:
 	$(MAKE) mwld-convert
 	$(MAKE) build-iso-with-mkiso-script
 
+# Generates a new build and generates the MWLD .lcf linker script
+rebuild-link:
+	$(MAKE) rebuild
+	$(MAKE) mwld-convert
+
 mwccgap:
 	@echo "Running mwccgap"
 	$(MWCCGAP) $(US_SRC_SPPBX_DIR)/spinit.c ./$(BUILD_OBJS_DIR)/spinit.o --mwcc-path $(MWCC_PATH) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
