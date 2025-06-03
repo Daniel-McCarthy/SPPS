@@ -163,6 +163,7 @@ mwld:
 # Runs the MWLD linker to create an ELF using the our generated .lcf file.
 mwld-convert:
 	@echo "Running mwld"
+	$(MWLD) -g -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
