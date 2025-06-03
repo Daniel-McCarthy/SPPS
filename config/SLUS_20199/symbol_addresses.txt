@@ -4101,7 +4101,7 @@ __malloc_max_sbrked_mem                  = 0x002B2DB8; //  (Size->8)
 __malloc_max_total_mem                   = 0x002B2DC0; //  (Size->8)     
 __malloc_current_mallinfo                = 0x002B2DC8; //  (Size->40)    
 // Main.c .data
-vgmsysSetScreenMode                      = 0x002B2DF0; // (Size->12)    
+vgmsysSetScreenMode                      = 0x002B2DF0; // size:0xC
 // mdlpr.c .data
 black$14                                 = 0x002B2E00; // (Size->16)    
 black$24                                 = 0x002B2E10; // (Size->16)    
