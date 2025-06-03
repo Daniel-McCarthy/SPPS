@@ -12,8 +12,8 @@
     "\label":
 .endm
 
-.macro dlabel label
-    .global "\label"
+.macro dlabel label, visibility=global
+    .\visibility "\label"
     "\label":
 .endm
 
