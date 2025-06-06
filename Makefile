@@ -30,6 +30,8 @@ OBJDUMP         := $(BINUTILS_DIR)objdump
 GCC             := $(BINUTILS_DIR)gcc
 STRIP           := $(BINUTILS_DIR)strip
 
+REMOVE_SECTION_ARGS := --objcopy_path $(OBJCOPY) --objdump_path $(OBJDUMP)
+
 AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections -mno-pdr
 
 PYTHON 	:= python3
@@ -107,9 +109,6 @@ $(BUILD_DIR)/%.c.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(MWCCGAP) $< $@ $(MWCCGAP_ARGS)
 
-# Pattern: to build a .elf we need all the .o files
-$(OUTPUT_ELF): $(C_O_FILES) $(ASM_O_FILES)
-	$(GNULD) -EL -T $(US_LD_SCRIPT) -T $(US_UNDEF_SYMS_AUTO) -T $(US_UNDEF_FUNCS_AUTO) -o $@ $^
 
 
 # Cleans splat related temporary files
@@ -139,7 +138,7 @@ clean-asm-objects:
 # Runs the MWLD linker to create an ELF using the generic MWLD linker script.
 mwld:
 	@echo "Running mwld"
-	$(MWLD) -map -nodead -o $(OUTPUT_ELF).2 $(INCLUDE_DIR)/mwcc.lcf \
+	$(MWLD) -g -map -m __start -nodead -o $(OUTPUT_ELF).2 $(INCLUDE_DIR)/mwcc.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF).2 > $(OUTPUT_ELF).2.sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
@@ -164,7 +163,7 @@ mwld:
 # Runs the MWLD linker to create an ELF using the our generated .lcf file.
 mwld-convert:
 	@echo "Running mwld"
-	$(MWLD) -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
+	$(MWLD) -g -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
@@ -188,13 +187,13 @@ mwld-convert:
 
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 remove-unneeded-sections:
-	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" bss
-	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" data
-	$(PYTHON) tools/Scripts/remove_object_section.py ".sbss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".bss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".sdata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".rodata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".data.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" bss
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" data
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sbss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".bss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sdata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".rodata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".data.s.o" text
 
 remove-unneeded-objects:
 	$(RM) $(BUILD_DIR)/data/elf_header.s.o
@@ -248,6 +247,11 @@ rebuild-full:
 	$(MAKE) rebuild
 	$(MAKE) mwld-convert
 	$(MAKE) build-iso-with-mkiso-script
+
+# Generates a new build and generates the MWLD .lcf linker script
+rebuild-link:
+	$(MAKE) rebuild
+	$(MAKE) mwld-convert
 
 mwccgap:
 	@echo "Running mwccgap"

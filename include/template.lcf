@@ -50,7 +50,6 @@ SECTIONS
 
 		######### (.rodata) .o files ###################
 
-		. = ALIGN(0x80);
 		crt0.s.o (.rodata)
 
 		#<REPLACE_W_RODATA_FILES>
@@ -76,7 +75,6 @@ SECTIONS
 
 		######### (.bss) .o files ###################
 		__bss_start	= .;
-		. = ALIGN(0x8);
 		#crt0.s.o (.bss)
 		#<REPLACE_W_BSS_FILES>
 		# TODO: Include (COMMON) for .C files

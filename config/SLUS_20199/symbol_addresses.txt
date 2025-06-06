@@ -4101,7 +4101,7 @@ __malloc_max_sbrked_mem                  = 0x002B2DB8; //  (Size->8)
 __malloc_max_total_mem                   = 0x002B2DC0; //  (Size->8)     
 __malloc_current_mallinfo                = 0x002B2DC8; //  (Size->40)    
 // Main.c .data
-vgmsysSetScreenMode                      = 0x002B2DF0; // (Size->12)    
+vgmsysSetScreenMode                      = 0x002B2DF0; // size:0xC
 // mdlpr.c .data
 black$14                                 = 0x002B2E00; // (Size->16)    
 black$24                                 = 0x002B2E10; // (Size->16)    
@@ -4787,12 +4787,12 @@ clip2$560                                = 0x002D70A0; // (Size->16)
 uv$561                                   = 0x002D70B0; // size:0x20     
 rgb1$562                                 = 0x002D70D0; // size:0x10    
 rgb2$563                                 = 0x002D70E0; // size:0x10    
-info$598                                 = 0x002D70F0; // size:0xA0 //SmokeInfo  
+info$598                                 = 0x002D70F0; // size:0xA0 type:u8 //SmokeInfo  
 // end of game .c. file .data
-//__ps2_libinfo__                          = 0x002D7190; // (Size->16)    
+__ps2_libinfo__                          = 0x002D7190; // size:0x10
 //.data                                    = 0x002D7190; // (Region->LOCAL)  (Type->SECTION)
-gConfig                                  = 0x002D71A0; // (Size->8)     
-gRomName                                 = 0x002D71A8; // (Size->15)    
+gConfig                                  = 0x002D71A0; // size:0x8  
+gRomName                                 = 0x002D71A8; // size:0xF type:u8
 //.rodata                                  = 0x002D7200; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7238; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7268; // (Region->LOCAL)  (Type->SECTION)
@@ -4806,7 +4806,7 @@ gRomName                                 = 0x002D71A8; // (Size->15)
 //.rodata                                  = 0x002D7A00; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7A18; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7A50; // (Region->LOCAL)  (Type->SECTION)
-////.rodata                                  = 0x002D7AF8; // (Region->LOCAL)  (Type->SECTION)
+//.rodata                                  = 0x002D7AF8; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7C40; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7C68; // (Region->LOCAL)  (Type->SECTION)
 //.rodata                                  = 0x002D7CE0; // (Region->LOCAL)  (Type->SECTION)
@@ -7454,12 +7454,17 @@ _overlay_group_addresses                 = 0x002E7680; // (Region->GLOBAL) (Type
 //__static_init_end                        = 0x002E7680; // (Region->GLOBAL) (Type->NOTYPE) 
 //__static_init                            = 0x002E7680; // (Region->GLOBAL) (Type->NOTYPE) 
 __data_end                               = 0x002E7684; // (Region->GLOBAL) (Type->NOTYPE) 
+// SData start
+// Main.c sdata
 vgmsysScrMode                            = 0x002E7700; // (Size->4)     
 vsppScrWidth                             = 0x002E7704; //  (Size->4)     
 vsppScrHeight                            = 0x002E7708; //  (Size->4)     
-vsppMediaType                            = 0x002E770C; // (Size->4)     
+vsppMediaType                            = 0x002E770C; // (Size->4)   
+// Pad.c sdata  
 @296                                     = 0x002E7710; // allow_duplicated:True (Size->6)
+// Mv2ext.c sdata
 @656                                     = 0x002E7718; // allow_duplicated:True (Size->4)     
+// Ktact.c sdata
 vktactParamG_jump_up                     = 0x002E771C; // (Size->4)     
 vktactParamG_jump_down                   = 0x002E7720; // (Size->4)     
 vktactParamG_air                         = 0x002E7724; // (Size->4)     
@@ -7494,16 +7499,22 @@ vktactCmdToJump                          = 0x002E7798; // (Size->8)
 @1861                                    = 0x002E77B0; // allow_duplicated:True (Size->8)
 @1862                                    = 0x002E77B8; // allow_duplicated:True (Size->8)
 @1863                                    = 0x002E77C0; // allow_duplicated:True (Size->8)
+// Ktmnufnc.c sdata
 vktmfdbgMenuText2                        = 0x002E77C8; // (Size->8)     
 vktmfdbgMenuFunc2                        = 0x002E77D0; // (Size->8)     
 vktmfdbgMenuUseNum2                      = 0x002E77D8; // (Size->8)     
-vktmfdbgMenuNumText_2d                   = 0x002E77E0; // (Size->8)     
+vktmfdbgMenuNumText_2d                   = 0x002E77E0; // (Size->8)   
+// Spload.c sdata  
 @293                                     = 0x002E77E8; // allow_duplicated:True (Size->8)
+// Spfree.c sdata
 vspDisp2D                                = 0x002E77F0; //  (Size->4)     
-vayCode                                  = 0x002E77F4; // (Size->4)     
+// Aymcard.c sdata
+vayCode                                  = 0x002E77F4; // (Size->4)  
+// Aychrsel.c sdata   
 @1219                                    = 0x002E77F8; // allow_duplicated:True (Size->8)
 @1785                                    = 0x002E7800; // allow_duplicated:True (Size->7)
 @1786                                    = 0x002E7808; // allow_duplicated:True (Size->3)
+// Kncamera.c sdata
 vknViewFlg_2P                            = 0x002E7810; // (Size->8)     
 max$232                                  = 0x002E7818; // (Size->4)     
 rate1$295                                = 0x002E781C; // (Size->4)     
@@ -7513,22 +7524,28 @@ a$432                                    = 0x002E7828; // (Size->4)
 b$433                                    = 0x002E782C; // (Size->4)     
 dt$477                                   = 0x002E7830; // (Size->4)     
 angy$553                                 = 0x002E7834; // (Size->4)     
-f$554                                    = 0x002E7838; // (Size->4)     
+f$554                                    = 0x002E7838; // (Size->4)  
+// Ayoption.c sdata   
 @58                                      = 0x002E783C; // allow_duplicated:True (Size->4)
 @59                                      = 0x002E7840; // allow_duplicated:True (Size->4)
+// Nmdisp.c sdata
 vnmtblPauseCareerItem                    = 0x002E7848; // (Size->7)     
 vnmtblPauseMatchItem                     = 0x002E7850; // (Size->6)     
 vnmtblPauseFreeItem                      = 0x002E7858; // (Size->7)     
 vnmtblTutoEnd                            = 0x002E7860; // (Size->8)     
 @250                                     = 0x002E7868; // allow_duplicated:True (Size->6)
 @258                                     = 0x002E7870; // allow_duplicated:True (Size->8)
+// Knreplay.c sdata
 cut_max$53                               = 0x002E7878; // (Size->4)     
-rate$310                                 = 0x002E787C; // (Size->4)     
+rate$310                                 = 0x002E787C; // (Size->4)  
+// Spev01.c sdata   
 vspev01Length                            = 0x002E7880; // (Size->4)     
 @1252                                    = 0x002E7888; // allow_duplicated:True (Size->8)
 @1263                                    = 0x002E7890; // allow_duplicated:True (Size->8)
+// Ayresult.c sdata
 @1255                                    = 0x002E7898; // allow_duplicated:True (Size->8)
 @1969                                    = 0x002E78A0; // allow_duplicated:True (Size->4)
+// Tieffect.c sdata
 rad180                                   = 0x002E78A4; // (Size->4)     
 def$434                                  = 0x002E78A8; // (Size->4)     
 xsize$435                                = 0x002E78AC; // (Size->4)     
@@ -7542,25 +7559,32 @@ time$443                                 = 0x002E78C8; // (Size->4)
 skip$444                                 = 0x002E78CC; // (Size->4)     
 cnt$569                                  = 0x002E78D0; // (Size->4)     
 deg$659                                  = 0x002E78D4; // (Size->4)     
-num$660                                  = 0x002E78D8; // (Size->4)     
+num$660                                  = 0x002E78D8; // (Size->4)   
+// Spev02.c sdata  
 @506                                     = 0x002E78E0; // allow_duplicated:True (Size->8)
 @522                                     = 0x002E78E8; // allow_duplicated:True (Size->8)
+// Spev03.c sdata
 @146                                     = 0x002E78F0; // allow_duplicated:True (Size->8)
 distance$258                             = 0x002E78F8; // (Size->4)     
-frame$973                                = 0x002E78FC; // (Size->4)     
+frame$973                                = 0x002E78FC; // (Size->4) 
+// Spev07.c sdata    
 vspev07TexScrInfo_num                    = 0x002E7900; // (Size->4)     
 spev07Lift1Rail_num                      = 0x002E7904; // (Size->4)     
 spev07Lift2Rail_num                      = 0x002E7908; // (Size->4)     
 spev07LiftPos_num                        = 0x002E790C; // (Size->4)     
 spev07Lift1ID_num                        = 0x002E7910; // (Size->4)     
-spev07Lift2ID_num                        = 0x002E7914; // (Size->4)     
+spev07Lift2ID_num                        = 0x002E7914; // (Size->4)  
+// Spev05.c sdata   
 @177                                     = 0x002E7918; // allow_duplicated:True (Size->8)
+// Kncore.c sdata
 vknRandSeed                              = 0x002E7920; // (Size->4)     
 max$180                                  = 0x002E7924; // (Size->4)     
 hit_on$221                               = 0x002E7928; // (Size->4)     
 hit_on$301                               = 0x002E792C; // (Size->4)     
-hit_on$386                               = 0x002E7930; // (Size->4)     
-_randcnt                                 = 0x002E7934; // (Size->2)     
+hit_on$386                               = 0x002E7930; // (Size->4)  
+// Tiutill.c sdata   
+_randcnt                                 = 0x002E7934; // (Size->2)    
+// Tievent.c sdata 
 xsize$86                                 = 0x002E7938; // (Size->4)     
 ysize$87                                 = 0x002E793C; // (Size->4)     
 acc$88                                   = 0x002E7940; // (Size->4)     
@@ -7570,11 +7594,11 @@ add$91                                   = 0x002E794C; // (Size->4)
 sub$92                                   = 0x002E7950; // (Size->4)     
 time$93                                  = 0x002E7954; // (Size->4)     
 skip$94                                  = 0x002E7958; // (Size->4)     
-vgmsysNextScrMode                        = 0x002E7980; // (Size->4)     
-
+// SData end
 // SBSS Section Start
-//_fbss                                    = 0x002E7980; // (Region->GLOBAL) (Type->NOTYPE) 
-// main.c
+// Main.c sbss
+//_fbss 0x002E7980 (Linker symbol)
+vgmsysNextScrMode                        = 0x002E7980; // (Size->4)      
 vgmsysPreScrMode                         = 0x002E7984; // (Size->4)     
 vgmsysScrChangeCol                       = 0x002E7988; // (Size->4)     
 vgmsysDivide30Frame                      = 0x002E798C; // (Size->4)     
@@ -7991,7 +8015,7 @@ vnmtrickCrsEnv                           = 0x002E80D8; // (Size->4)
 
 // BSS Section Start
 // SDK and Lib BSS
-__bss_start                              = 0x002E80DC; // (Region->GLOBAL) (Type->NOTYPE)  
+// __bss_start 0x002E80DC (Linker symbol)
 _args                                    = 0x002E8100; // (Region->LOCAL)  (Type->NOTYPE) 
 local_mb                                 = 0x002E8248; // (Region->LOCAL)  (Type->NOTYPE) 
 local_addr                               = 0x002E824C; // (Region->LOCAL)  (Type->NOTYPE) 
@@ -7999,7 +8023,7 @@ _dma_num                                 = 0x002E8250; // (Region->LOCAL)  (Type
 _ch4dmaFlg                               = 0x002E8254; // (Region->LOCAL)  (Type->NOTYPE) 
 _d4_qwc                                  = 0x002E8258; // (Region->LOCAL)  (Type->NOTYPE) 
 _d4_madr                                 = 0x002E825C; // (Region->LOCAL)  (Type->NOTYPE) 
-_sprtagdata                              = 0x002E8280; // (Size->512)   
+_sprtagdata                              = 0x002E8280; // size:0x200   
 _bstag                                   = 0x002E8480; // (Size->2064)  
 stack.6                                  = 0x002E8C90; // (Region->LOCAL)  (Type->NOTYPE) 
 topSema                                  = 0x002E9090; // (Region->LOCAL)  (Type->NOTYPE) 
@@ -8099,279 +8123,280 @@ vulmcSysInfo                             = 0x002F3300; // size:0x44
 // pad.c 
 vulpadInfo                               = 0x002F3350; // size:0x2E0   
 vulpadActBuf                             = 0x002F3630; // size:0xC  
-vulpadDmaBuf                             = 0x002F3640; // (Size->512)   
-vulpadOption                             = 0x002F3840; // (Size->16)   
+vulpadDmaBuf                             = 0x002F3640; // size:0x200  
+vulpadOption                             = 0x002F3840; // size:0x10   
 // sd.c 
-vulsdBatch                               = 0x002F3850; // (Size->512) 
+vulsdBatch                               = 0x002F3850; // size:0x200
 // system.c  
-vulsysSystem                             = 0x002F3A50; //  (Size->864)  
+vulsysSystem                             = 0x002F3A50; // size:0x360 
 // mv2ext.c 
-vulmovTagAddr                            = 0x002F3DB0; // (Size->24)    
-vulmov2Sysinfo                           = 0x002F3DD0; //  (Size->272)   
-vulmov2videoDecStack                     = 0x002F3F00; // (Size->4)     
+vulmovTagAddr                            = 0x002F3DB0; // size:0x18   
+vulmov2Sysinfo                           = 0x002F3DD0; // size:0x110  
+vulmov2videoDecStack                     = 0x002F3F00; // size:0x4    
 // movie2.c
-defStack                                 = 0x002F3F40; // (Size->2048)  
+defStack                                 = 0x002F3F40; // size:0x800
 // tmcrs.c
-g_davidBodyBoundIndices                  = 0x002F4740; //  (Size->32768) 
-g_davidBodyBounds                        = 0x002FC740; //  (Size->32768) 
-vtmcrsLocalPacket                        = 0x00304740; // (Size->16)    
-vtmcrsLocalPacketAddr                    = 0x00304750; // (Size->4096)  
-vtmcrsEventSystem                        = 0x00305750; // (Size->20)    
-vtmcrsEventModel                         = 0x00305770; // (Size->1536)  
-vtmcrsObjectData                         = 0x00305D70; // (Size->40)    
-vtmcrsBG                                 = 0x00305DA0; // (Size->96)    
-vtmcrsAnimTexData                        = 0x00305E00; // (Size->1280)  
-vtmcrsScrollTexData                      = 0x00306300; // (Size->1280)  
-vtmcrsTexSystem                          = 0x00306800; // (Size->4208)  
-vtmcrsBonkData                           = 0x00307870; // (Size->16)    
-vtmcrsRailData                           = 0x00307880; // (Size->16)    
-vtmcrsVectordata                         = 0x00307890; // (Size->16)    
-vtmcrsHitData                            = 0x003078A0; // (Size->16)    
-vtmcrsAlphaModel                         = 0x003078B0; // (Size->16)    
-vtmcrsDrawModel                          = 0x003078C0; // (Size->480)   
-vtmcrsBaseModel                          = 0x00307AA0; // (Size->160)   
-vtmcrsSystem                             = 0x00307B40; // (Size->868)   
-vtmcrsDivideNum                          = 0x00307EB0; //  (Size->16)
+g_davidBodyBoundIndices                  = 0x002F4740; // size:0x8000
+g_davidBodyBounds                        = 0x002FC740; // size:0x8000
+vtmcrsLocalPacket                        = 0x00304740; // size:0x10   
+vtmcrsLocalPacketAddr                    = 0x00304750; // size:0x1000
+vtmcrsEventSystem                        = 0x00305750; // size:0x14
+vtmcrsEventModel                         = 0x00305770; // size:0x600
+vtmcrsObjectData                         = 0x00305D70; // size:0x28  
+vtmcrsBG                                 = 0x00305DA0; // size:0x60    
+vtmcrsAnimTexData                        = 0x00305E00; // size:0x500 
+vtmcrsScrollTexData                      = 0x00306300; // size:0x500
+vtmcrsTexSystem                          = 0x00306800; // size:0x1070 
+vtmcrsBonkData                           = 0x00307870; // size:0x10    
+vtmcrsRailData                           = 0x00307880; // size:0x10    
+vtmcrsVectordata                         = 0x00307890; // size:0x10    
+vtmcrsHitData                            = 0x003078A0; // size:0x10    
+vtmcrsAlphaModel                         = 0x003078B0; // size:0x10    
+vtmcrsDrawModel                          = 0x003078C0; // size:0x1E0
+vtmcrsBaseModel                          = 0x00307AA0; // size:0xA0   
+vtmcrsSystem                             = 0x00307B40; // size:0x364 
+vtmcrsDivideNum                          = 0x00307EB0; // size:0x10
 // ktact.c    
-@528                                     = 0x00307EC0; // allow_duplicated:True (Size->16)
-@4383                                    = 0x00307ED0; // allow_duplicated:True (Size->16)
-@4384                                    = 0x00307EE0; // allow_duplicated:True (Size->16)
-@4385                                    = 0x00307EF0; // allow_duplicated:True (Size->16)
-@4386                                    = 0x00307F00; // allow_duplicated:True (Size->16)
-col_obs$6401                             = 0x00307F10; // (Size->1536)  
-col_obs$6372                             = 0x00308510; // (Size->12288) 
-col_hit$6310                             = 0x0030B510; // (Size->196608)
-col_hp$5169                              = 0x0033B510; // (Size->3072)  
-col_rail$5168                            = 0x0033C110; // (Size->1536)  
-col_hp$5090                              = 0x0033C710; // (Size->3072)  
-col_rail$5089                            = 0x0033D310; // (Size->3072)  
-col_vec$5052                             = 0x0033DF10; // (Size->6144)  
-col_hit$4547                             = 0x0033F710; // (Size->24576) 
-vktactColObj_head                        = 0x00345710; // (Size->1536)  
-vktactColHit_head                        = 0x00345D10; // (Size->1536)  
-vktactColObj_body                        = 0x00346310; // (Size->1536)  
-vktactColHit_body                        = 0x00346910; // (Size->1536)  
-vktactColSliding                         = 0x00346F10; // (Size->96)    
+@528                                     = 0x00307EC0; // allow_duplicated:True size:0x10
+@4383                                    = 0x00307ED0; // allow_duplicated:True size:0x10
+@4384                                    = 0x00307EE0; // allow_duplicated:True size:0x10
+@4385                                    = 0x00307EF0; // allow_duplicated:True size:0x10
+@4386                                    = 0x00307F00; // allow_duplicated:True size:0x10
+col_obs$6401                             = 0x00307F10; // size:0x600 
+col_obs$6372                             = 0x00308510; // size:0x3000
+col_hit$6310                             = 0x0030B510; // size:0x30000
+col_hp$5169                              = 0x0033B510; // size:0xC00 
+col_rail$5168                            = 0x0033C110; // size:0x600 
+col_hp$5090                              = 0x0033C710; // size:0xC00 
+col_rail$5089                            = 0x0033D310; // size:0xC00
+col_vec$5052                             = 0x0033DF10; // size:0x1800  
+col_hit$4547                             = 0x0033F710; // size:0x6000
+vktactColObj_head                        = 0x00345710; // size:0x600 
+vktactColHit_head                        = 0x00345D10; // size:0x600  
+vktactColObj_body                        = 0x00346310; // size:0x600 
+vktactColHit_body                        = 0x00346910; // size:0x600  
+vktactColSliding                         = 0x00346F10; // size:0x60    
 // nmfont.c
-vnmfontTexData                           = 0x00346F70; // (Size->32)    
-vnmfontScrRate                           = 0x00346F90; // (Size->16)    
-vnmfontScrSize                           = 0x00346FA0; // (Size->16)    
-vnmfontOption                            = 0x00346FB0; // (Size->96)    
+vnmfontTexData                           = 0x00346F70; // size:0x20    
+vnmfontScrRate                           = 0x00346F90; // size:0x10   
+vnmfontScrSize                           = 0x00346FA0; // size:0x10    
+vnmfontOption                            = 0x00346FB0; // size:0x60 
 // ktmenu.c
-vktmenuList                              = 0x00347010; // (Size->960) 
+vktmenuList                              = 0x00347010; // size:0x3C0 
 // spinit.c  
-vspenvDemo                               = 0x003473D0; //  (Size->32)    
-vspenvBestTime                           = 0x003473F0; //  (Size->32)    
-vspenvRecord                             = 0x00347410; //  (Size->192)   
-vspenvEnv                                = 0x003474D0; //  (Size->381152)
-vsptblCheats                             = 0x003A45B0; //  (Size->40)    
-vsptblLevelGoalStr                       = 0x003A45E0; //  (Size->96)    
+vspenvDemo                               = 0x003473D0; // size:0x20    
+vspenvBestTime                           = 0x003473F0; // size:0x20    
+vspenvRecord                             = 0x00347410; // size:0xC0  
+vspenvEnv                                = 0x003474D0; // size:0x5D0E0
+vsptblCheats                             = 0x003A45B0; // size:0x28    
+vsptblLevelGoalStr                       = 0x003A45E0; // size:0x60   
 // spload.c
-vsploadEnvMap                            = 0x003A4640; // (Size->32)    
-vsploadCreate                            = 0x003A4660; // (Size->464)   
-vsploadReplayHead                        = 0x003A4830; // (Size->16)    
-vsploadLocalAddr                         = 0x003A4840; // (Size->1024)  
-vsploadLocalPacket                       = 0x003A4C40; // (Size->16)    
-vsploadGameEtc                           = 0x003A4C50; // (Size->156)   
-vsploadGame2D                            = 0x003A4CF0; // (Size->1280)  
-vsploadCourse                            = 0x003A51F0; // (Size->956)   
-vsploadCharacter                         = 0x003A55B0; // (Size->4848)  
-vsploadGameCommon                        = 0x003A68A0; // (Size->16)    
-vsploadSelect                            = 0x003A68B0; // (Size->91936) 
-vsploadMovie                             = 0x003BCFD0; // (Size->16)    
-vsploadVibration                         = 0x003BCFE0; // (Size->96)    
-vsploadIcon                              = 0x003BD040; // (Size->28)    
-vsploadCommon                            = 0x003BD060; // (Size->608)   
-vsploadSystem                            = 0x003BD2C0; // (Size->48)    
-vsploadSoundData                         = 0x003BD2F0; // (Size->100)   
+vsploadEnvMap                            = 0x003A4640; // size:0x20    
+vsploadCreate                            = 0x003A4660; // size:0x1D0   
+vsploadReplayHead                        = 0x003A4830; // size:0x10   
+vsploadLocalAddr                         = 0x003A4840; // size:0x400 
+vsploadLocalPacket                       = 0x003A4C40; // size:0x10    
+vsploadGameEtc                           = 0x003A4C50; // size:0x9C  
+vsploadGame2D                            = 0x003A4CF0; // size:0x500  
+vsploadCourse                            = 0x003A51F0; // size:0x3BC   
+vsploadCharacter                         = 0x003A55B0; // size:0x12F0 
+vsploadGameCommon                        = 0x003A68A0; // size:0x10     
+vsploadSelect                            = 0x003A68B0; // size:0x16720 
+vsploadMovie                             = 0x003BCFD0; // size:0x10    
+vsploadVibration                         = 0x003BCFE0; // size:0x60   
+vsploadIcon                              = 0x003BD040; // size:0x1C    
+vsploadCommon                            = 0x003BD060; // size:0x260  
+vsploadSystem                            = 0x003BD2C0; // size:0x30    
+vsploadSoundData                         = 0x003BD2F0; // size:0x64   
 // gmpad.c
-vgmsysPadNull                            = 0x003BD360; // (Size->96)    
-vgmsysPadInfo                            = 0x003BD3C0; // (Size->192)  
+vgmsysPadNull                            = 0x003BD360; // size:0x60    
+vgmsysPadInfo                            = 0x003BD3C0; // size:0x20  
 // ktrider.c 
-vspRider                                 = 0x003BD480; //  (Size->32)  
+vspRider                                 = 0x003BD480; // size:0x20 
 // spfree.c  
-vspDispVsScore                           = 0x003BD4A0; //  (Size->16)    
-vspDispResult                            = 0x003BD4B0; //  (Size->4168)  
-vspDispEnvChar                           = 0x003BE500; //  (Size->112)   
-vspDispEnv                               = 0x003BE570; //  (Size->32)    
-vspVsData                                = 0x003BE590; //  (Size->4236)  
-vspModeData                              = 0x003BF620; //  (Size->92)    
-vspLocalVif1Pkt                          = 0x003BF680; // (Size->32)    
-vspLocalGifPkt                           = 0x003BF6A0; // (Size->16)    
-vspSystemMatrix                          = 0x003BF6B0; //  (Size->1664) 
+vspDispVsScore                           = 0x003BD4A0; // size:0x10    
+vspDispResult                            = 0x003BD4B0; // size:0x1048 
+vspDispEnvChar                           = 0x003BE500; // size:0x70  
+vspDispEnv                               = 0x003BE570; // size:0x20    
+vspVsData                                = 0x003BE590; // size:0x108C  
+vspModeData                              = 0x003BF620; // size:0x5C    
+vspLocalVif1Pkt                          = 0x003BF680; // size:0x20    
+vspLocalGifPkt                           = 0x003BF6A0; // size:0x10    
+vspSystemMatrix                          = 0x003BF6B0; // size:0x680
 // tmevent.c 
-vtmevLight                               = 0x003BFD30; // (Size->160)   
-vtmevCourse                              = 0x003BFDD0; // (Size->96)    
-vtmevObject                              = 0x003BFE30; // (Size->800)   
-vtmevFlag                                = 0x003C0150; // (Size->1024)  
-vtmevCounter                             = 0x003C0550; // (Size->528)   
-vtmevVs                                  = 0x003C0760; // (Size->672)   
-vtmevWarpSystem                          = 0x003C0A00; // (Size->400)   
-vtmevSystem                              = 0x003C0B90; // (Size->80)   
+vtmevLight                               = 0x003BFD30; // size:0xA0  
+vtmevCourse                              = 0x003BFDD0; // size:0x60    
+vtmevObject                              = 0x003BFE30; // size:0x320  
+vtmevFlag                                = 0x003C0150; // size:0x400
+vtmevCounter                             = 0x003C0550; // size:0x210  
+vtmevVs                                  = 0x003C0760; // size:0x2A0   
+vtmevWarpSystem                          = 0x003C0A00; // size:0x190   
+vtmevSystem                              = 0x003C0B90; // size:0x50   
 // aymodsel.c 
-vakSnowFall                              = 0x003C0BE0; // (Size->96)   
+vakSnowFall                              = 0x003C0BE0; // size:0x60   
 // aychrsel.c 
-vayChardata                              = 0x003C0C40; // (Size->88)  
+vayChardata                              = 0x003C0C40; // size:0x58  
 // kncamera.c  
-vknCamera                                = 0x003C0CA0; // (Size->608)   
+vknCamera                                = 0x003C0CA0; // size:0x260   
 // nmvc.c
-vnmvcState                               = 0x003C0F00; // (Size->128)   
-vnmvcOperate                             = 0x003C0F80; // (Size->128)   
-vnmvcOption                              = 0x003C1000; // (Size->32)    
-vnmvcResult                              = 0x003C1020; // (Size->48)    
-vnmsndResult                             = 0x003C1080; // (Size->120)   
-vnmsndFrameSend                          = 0x003C1100; // (Size->1808)  
-vnmsndFrame                              = 0x003C1840; // (Size->1808)  
-vnmsndInit                               = 0x003C1F80; // (Size->64)    
-vnmsndRpcBuf                             = 0x003C1FC0; // (Size->2048)  
-vnmsndCd                                 = 0x003C27C0; // (Size->40)   
+vnmvcState                               = 0x003C0F00; // size:0x80  
+vnmvcOperate                             = 0x003C0F80; // size:0x80  
+vnmvcOption                              = 0x003C1000; // size:0x20    
+vnmvcResult                              = 0x003C1020; // size:0x30    
+vnmsndResult                             = 0x003C1080; // size:0x78   
+vnmsndFrameSend                          = 0x003C1100; // size:0x710  
+vnmsndFrame                              = 0x003C1840; // size:0x710  
+vnmsndInit                               = 0x003C1F80; // size:0x40    
+vnmsndRpcBuf                             = 0x003C1FC0; // size:0x800  
+vnmsndCd                                 = 0x003C27C0; // size:0x28   
 // nmbgm.c 
-vnmbgmQue                                = 0x003C27F0; // (Size->32)    
-vnmbgmOption                             = 0x003C2810; // (Size->16)    
-vnmbgmResult                             = 0x003C2820; // (Size->32)  
+vnmbgmQue                                = 0x003C27F0; // size:0x20    
+vnmbgmOption                             = 0x003C2810; // size:0x10    
+vnmbgmResult                             = 0x003C2820; // size:0x20  
 // nmsq.c  
-vnmsqQue                                 = 0x003C2840; // (Size->32)    
-vnmsqSesqState                           = 0x003C2860; // (Size->256)   
-vnmsqSesqOperate                         = 0x003C2960; // (Size->256)   
-vnmsqOption                              = 0x003C2A60; // (Size->32)    
-vnmsqHdAddr                              = 0x003C2A80; // (Size->16)    
-vnmsqResult                              = 0x003C2A90; // (Size->32)    
+vnmsqQue                                 = 0x003C2840; // size:0x20    
+vnmsqSesqState                           = 0x003C2860; // size:0x100   
+vnmsqSesqOperate                         = 0x003C2960; // size:0x100   
+vnmsqOption                              = 0x003C2A60; // size:0x20    
+vnmsqHdAddr                              = 0x003C2A80; // size:0x10    
+vnmsqResult                              = 0x003C2A90; // size:0x20    
 // nmdisp.c
-vnmdispHighScorePos                      = 0x003C2AB0; // (Size->28)    
-vnmdispCombList                          = 0x003C2AD0; // (Size->456)   
-vnmdispStatisticsPos                     = 0x003C2CA0; // (Size->64)    
-vnmdispCareerItem                        = 0x003C2CE0; // (Size->16)    
-vnmdispLevelCareerPos                    = 0x003C2CF0; // (Size->20)    
-vnmdispLevelMark                         = 0x003C2D10; // (Size->72)    
-vnmdispLevelGoalsPos                     = 0x003C2D60; // (Size->44)    
-vnmdispHorseMesPos                       = 0x003C2D90; // (Size->16)    
-vnmdispHorseWord                         = 0x003C2DA0; // (Size->16)    
-vnmdispLosePos                           = 0x003C2DB0; // (Size->16)    
-vnmdispWinPos                            = 0x003C2DC0; // (Size->16)    
-vnmdispLineImagePos                      = 0x003C2DD0; // (Size->20)    
-vnmdispLineImage                         = 0x003C2DF0; // (Size->40)    
-vnmdispOutMes                            = 0x003C2E20; // (Size->16)    
-vnmdispLevelMesInfo                      = 0x003C2E30; // (Size->32)    
-vnmdispLevelMesPos                       = 0x003C2E50; // (Size->32)    
-vnmdispLevelMes                          = 0x003C2E70; // (Size->64)    
-vnmdispSpMeter                           = 0x003C2EB0; // (Size->16)    
-vnmdispTotalScore                        = 0x003C2EC0; // (Size->16)    
-vnmdispTrickPtsInfo                      = 0x003C2ED0; // (Size->1056)  
-vnmdispTrickPtsDraw                      = 0x003C32F0; // (Size->32)    
-vnmdispTrickPts                          = 0x003C3310; // (Size->16)    
-vnmdispTrickNameInfo                     = 0x003C3320; // (Size->12384) 
-vnmdispTrickNameList                     = 0x003C6380; // (Size->456)   
-vnmdispTrickName                         = 0x003C6550; // (Size->16)    
-vnmdispBalance                           = 0x003C6560; // (Size->16)    
-vnmdispBalanceInfo                       = 0x003C6570; // (Size->32)    
-vnmdispStance                            = 0x003C6590; // (Size->16)    
-vnmdispGapList                           = 0x003C65A0; // (Size->72)    
-vnmdispPauseDebugPos                     = 0x003C65F0; // (Size->20)    
-vnmdispLevelGoalList                     = 0x003C6610; // (Size->72)    
-vnmdispTrickList                         = 0x003C6660; // (Size->648)   
-vnmdispPauseSoundPos                     = 0x003C68F0; // (Size->24)    
-vnmdispPauseSelectPos                    = 0x003C6910; // (Size->16)    
-vnmdispPausePos                          = 0x003C6920; // (Size->40)    
-vnmdispBestTime                          = 0x003C6950; // (Size->32)    
-vnmdispRecord                            = 0x003C6970; // (Size->192)   
+vnmdispHighScorePos                      = 0x003C2AB0; // size:0x1C    
+vnmdispCombList                          = 0x003C2AD0; // size:0x1C8   
+vnmdispStatisticsPos                     = 0x003C2CA0; // size:0x40    
+vnmdispCareerItem                        = 0x003C2CE0; // size:0x10    
+vnmdispLevelCareerPos                    = 0x003C2CF0; // size:0x14    
+vnmdispLevelMark                         = 0x003C2D10; // size:0x48    
+vnmdispLevelGoalsPos                     = 0x003C2D60; // size:0x2C    
+vnmdispHorseMesPos                       = 0x003C2D90; // size:0x10    
+vnmdispHorseWord                         = 0x003C2DA0; // size:0x10    
+vnmdispLosePos                           = 0x003C2DB0; // size:0x10    
+vnmdispWinPos                            = 0x003C2DC0; // size:0x10    
+vnmdispLineImagePos                      = 0x003C2DD0; // size:0x14    
+vnmdispLineImage                         = 0x003C2DF0; // size:0x28    
+vnmdispOutMes                            = 0x003C2E20; // size:0x10    
+vnmdispLevelMesInfo                      = 0x003C2E30; // size:0x20    
+vnmdispLevelMesPos                       = 0x003C2E50; // size:0x20    
+vnmdispLevelMes                          = 0x003C2E70; // size:0x40    
+vnmdispSpMeter                           = 0x003C2EB0; // size:0x10    
+vnmdispTotalScore                        = 0x003C2EC0; // size:0x10    
+vnmdispTrickPtsInfo                      = 0x003C2ED0; // size:0x420  
+vnmdispTrickPtsDraw                      = 0x003C32F0; // size:0x20    
+vnmdispTrickPts                          = 0x003C3310; // size:0x10    
+vnmdispTrickNameInfo                     = 0x003C3320; // size:0x3060 
+vnmdispTrickNameList                     = 0x003C6380; // size:0x1C8   
+vnmdispTrickName                         = 0x003C6550; // size:0x10    
+vnmdispBalance                           = 0x003C6560; // size:0x10    
+vnmdispBalanceInfo                       = 0x003C6570; // size:0x20    
+vnmdispStance                            = 0x003C6590; // size:0x10    
+vnmdispGapList                           = 0x003C65A0; // size:0x48    
+vnmdispPauseDebugPos                     = 0x003C65F0; // size:0x14    
+vnmdispLevelGoalList                     = 0x003C6610; // size:0x48    
+vnmdispTrickList                         = 0x003C6660; // size:0x288   
+vnmdispPauseSoundPos                     = 0x003C68F0; // size:0x18    
+vnmdispPauseSelectPos                    = 0x003C6910; // size:0x10    
+vnmdispPausePos                          = 0x003C6920; // size:0x28    
+vnmdispBestTime                          = 0x003C6950; // size:0x20    
+vnmdispRecord                            = 0x003C6970; // size:0xC0   
 // nmdraw.c
-vnmdrawScrRate                           = 0x003C6A30; // (Size->16)    
-vnmdrawScrSize                           = 0x003C6A40; // (Size->16)  
+vnmdrawScrRate                           = 0x003C6A30; // size:0x10    
+vnmdrawScrSize                           = 0x003C6A40; // size:0x10  
 // knreplay.c  
-old$648                                  = 0x003C6A50; // (Size->16)    
-vknEvent                                 = 0x003C6A60; // (Size->64)    
-vknIntro                                 = 0x003C6AA0; // (Size->320)   
-vknReplay                                = 0x003C6BE0; // (Size->384)   
-vknMainData                              = 0x003C6D60; // (Size->160) 
+old$648                                  = 0x003C6A50; // size:0x10    
+vknEvent                                 = 0x003C6A60; // size:0x40   
+vknIntro                                 = 0x003C6AA0; // size:0x140   
+vknReplay                                = 0x003C6BE0; // size:0x180   
+vknMainData                              = 0x003C6D60; // size:0xA0
 // spev01.c  
-vspev01Smoke                             = 0x003C6E00; // (Size->32)    
-vspev01Shutter                           = 0x003C6E20; // (Size->120)   
-vspev01LiftMan                           = 0x003C6EA0; // (Size->96)    
-vspev01Camera                            = 0x003C6F00; // (Size->192)   
-vspev01Logo                              = 0x003C6FC0; // (Size->288)   
+vspev01Smoke                             = 0x003C6E00; // size:0x20    
+vspev01Shutter                           = 0x003C6E20; // size:0x78   
+vspev01LiftMan                           = 0x003C6EA0; // size:0x60    
+vspev01Camera                            = 0x003C6F00; // size:0xC0   
+vspev01Logo                              = 0x003C6FC0; // size:0x120   
 // spev04.c
-vspev04Debug                             = 0x003C70E0; // (Size->12)    
-vspev04Light                             = 0x003C70F0; // (Size->160)   
-vspev04SeFountain                        = 0x003C7190; // (Size->16)    
-vspev04SeSnowBall                        = 0x003C71A0; // (Size->16)    
-vspev04SeLift                            = 0x003C71B0; // (Size->16)    
-vspev04LampBreak                         = 0x003C71C0; // (Size->16)    
-vspev04Staff                             = 0x003C71D0; // (Size->192)   
-vspev04SnowBall                          = 0x003C7290; // (Size->64)    
-vspev04Gond2                             = 0x003C72D0; // (Size->48)    
-vspev04Gond1                             = 0x003C7300; // (Size->48)    
-vspev04TexNeon2                          = 0x003C7330; // (Size->120)   
-vspev04TexNeon                           = 0x003C73B0; // (Size->120)   
+vspev04Debug                             = 0x003C70E0; // size:0xC    
+vspev04Light                             = 0x003C70F0; // size:0xA0  
+vspev04SeFountain                        = 0x003C7190; // size:0x10    
+vspev04SeSnowBall                        = 0x003C71A0; // size:0x10    
+vspev04SeLift                            = 0x003C71B0; // size:0x10    
+vspev04LampBreak                         = 0x003C71C0; // size:0x10    
+vspev04Staff                             = 0x003C71D0; // size:0xC0   
+vspev04SnowBall                          = 0x003C7290; // size:0x40   
+vspev04Gond2                             = 0x003C72D0; // size:0x30    
+vspev04Gond1                             = 0x003C7300; // size:0x30    
+vspev04TexNeon2                          = 0x003C7330; // size:0x78   
+vspev04TexNeon                           = 0x003C73B0; // size:0x78   
 // spev08.c
-vspev08TexScrool                         = 0x003C7430; // (Size->240)
+vspev08TexScrool                         = 0x003C7430; // size:0xF0
 // spev02.c   
-vspev02Light                             = 0x003C7520; // (Size->160)   
-vspev02SeYuppie                          = 0x003C75C0; // (Size->80)    
-vspev02SeWagon                           = 0x003C7610; // (Size->16)    
-vspev02SeLift                            = 0x003C7620; // (Size->16)    
-vspev02Staff                             = 0x003C7630; // (Size->96)    
-vspev02Yuppie                            = 0x003C7690; // (Size->240)   
-vspev02Gond2                             = 0x003C7780; // (Size->48)    
-vspev02Gond1                             = 0x003C77B0; // (Size->48)    
-vspev02Gear                              = 0x003C77E0; // (Size->144)  
+vspev02Light                             = 0x003C7520; // size:0xA0  
+vspev02SeYuppie                          = 0x003C75C0; // size:0x50    
+vspev02SeWagon                           = 0x003C7610; // size:0x10    
+vspev02SeLift                            = 0x003C7620; // size:0x10    
+vspev02Staff                             = 0x003C7630; // size:0x60    
+vspev02Yuppie                            = 0x003C7690; // size:0xF0   
+vspev02Gond2                             = 0x003C7780; // size:0x30    
+vspev02Gond1                             = 0x003C77B0; // size:0x30    
+vspev02Gear                              = 0x003C77E0; // size:0x90  
 // spev03.c 
-@264                                     = 0x003C7870; // allow_duplicated:True (Size->16)
-@547                                     = 0x003C7880; // allow_duplicated:True (Size->16)
-@561                                     = 0x003C7890; // allow_duplicated:True (Size->16)
-@598                                     = 0x003C78A0; // allow_duplicated:True (Size->16)
-@660                                     = 0x003C78B0; // allow_duplicated:True (Size->16)
-@688                                     = 0x003C78C0; // allow_duplicated:True (Size->16)
-@370                                     = 0x003C78D0; // allow_duplicated:True (Size->16)
+@264                                     = 0x003C7870; // allow_duplicated:True size:0x10
+@547                                     = 0x003C7880; // allow_duplicated:True size:0x10
+@561                                     = 0x003C7890; // allow_duplicated:True size:0x10
+@598                                     = 0x003C78A0; // allow_duplicated:True size:0x10
+@660                                     = 0x003C78B0; // allow_duplicated:True size:0x10
+@688                                     = 0x003C78C0; // allow_duplicated:True size:0x10
+@370                                     = 0x003C78D0; // allow_duplicated:True size:0x10
 // spev07.c
-ava3now$278                              = 0x003C78E0; // (Size->16)    
-ava2now$277                              = 0x003C78F0; // (Size->16)    
-ava1now$276                              = 0x003C7900; // (Size->16)    
-viewnow$206                              = 0x003C7910; // (Size->16)    
-vspev07TexScrool                         = 0x003C7920; // (Size->120)   
-spev07Blind                              = 0x003C79A0; // (Size->80)    
-spev07Cannon                             = 0x003C79F0; // (Size->144)   
-spev07MultiSpark                         = 0x003C7A80; // (Size->48)    
-spev07MultiSmoke                         = 0x003C7AB0; // (Size->32)   
+ava3now$278                              = 0x003C78E0; // size:0x10    
+ava2now$277                              = 0x003C78F0; // size:0x10    
+ava1now$276                              = 0x003C7900; // size:0x10    
+viewnow$206                              = 0x003C7910; // size:0x10    
+vspev07TexScrool                         = 0x003C7920; // size:0x78   
+spev07Blind                              = 0x003C79A0; // size:0x50    
+spev07Cannon                             = 0x003C79F0; // size:0x90   
+spev07MultiSpark                         = 0x003C7A80; // size:0x30    
+spev07MultiSmoke                         = 0x003C7AB0; // size:0x20   
 // spev05.c
-@176spev05                               = 0x003C7AD0; // allow_duplicated:True (Size->16)
-@354spev05                               = 0x003C7AE0; // allow_duplicated:True (Size->16)
-@411spev05                               = 0x003C7AF0; // allow_duplicated:True (Size->16)
-@438spev05                               = 0x003C7B00; // allow_duplicated:True (Size->16)
-@479spev05                               = 0x003C7B10; // allow_duplicated:True (Size->16)
-@497spev05                               = 0x003C7B20; // allow_duplicated:True (Size->16)
-@708spev05                               = 0x003C7B30; // allow_duplicated:True (Size->16)
-@718spev05                               = 0x003C7B40; // allow_duplicated:True (Size->16)
-@720spev05                               = 0x003C7B50; // allow_duplicated:True (Size->16)
-@775spev05                               = 0x003C7B60; // allow_duplicated:True (Size->16)
-@895spev05                               = 0x003C7B70; // allow_duplicated:True (Size->16)
-@907spev05                               = 0x003C7B80; // allow_duplicated:True (Size->16)
-@909spev05                               = 0x003C7B90; // allow_duplicated:True (Size->16)
-@999spev05                               = 0x003C7BA0; // allow_duplicated:True (Size->16)
-@1041spev05                              = 0x003C7BB0; // allow_duplicated:True (Size->16)
-vspev05SnowMobileCtrl                    = 0x003C7BC0; // (Size->160)   
-vspev05Smoke2                            = 0x003C7C60; // (Size->32)    
-vspev05SnowMobilePos                     = 0x003C7C80; // (Size->16)    
-spev05Blind                              = 0x003C7C90; // (Size->80)    
-vspev05CloudSea                          = 0x003C7CE0; // (Size->160)   
-vspev05LiftData                          = 0x003C7D80; // (Size->648)   
+@176spev05                               = 0x003C7AD0; // allow_duplicated:True size:0x10
+@354spev05                               = 0x003C7AE0; // allow_duplicated:True size:0x10
+@411spev05                               = 0x003C7AF0; // allow_duplicated:True size:0x10
+@438spev05                               = 0x003C7B00; // allow_duplicated:True size:0x10
+@479spev05                               = 0x003C7B10; // allow_duplicated:True size:0x10
+@497spev05                               = 0x003C7B20; // allow_duplicated:True size:0x10
+@708spev05                               = 0x003C7B30; // allow_duplicated:True size:0x10
+@718spev05                               = 0x003C7B40; // allow_duplicated:True size:0x10
+@720spev05                               = 0x003C7B50; // allow_duplicated:True size:0x10
+@775spev05                               = 0x003C7B60; // allow_duplicated:True size:0x10
+@895spev05                               = 0x003C7B70; // allow_duplicated:True size:0x10
+@907spev05                               = 0x003C7B80; // allow_duplicated:True size:0x10
+@909spev05                               = 0x003C7B90; // allow_duplicated:True size:0x10
+@999spev05                               = 0x003C7BA0; // allow_duplicated:True size:0x10
+@1041spev05                              = 0x003C7BB0; // allow_duplicated:True size:0x10
+vspev05SnowMobileCtrl                    = 0x003C7BC0; // size:0xA0  
+vspev05Smoke2                            = 0x003C7C60; // size:0x20  
+vspev05SnowMobilePos                     = 0x003C7C80; // size:0x10    
+spev05Blind                              = 0x003C7C90; // size:0x50    
+vspev05CloudSea                          = 0x003C7CE0; // size:0xA0  
+vspev05LiftData                          = 0x003C7D80; // size:0x288   
 // knevent.c
-vknPop_Rot                               = 0x003C8010; // (Size->16)    
-vknPop_Pos                               = 0x003C8020; // (Size->16)    
-vknCore                                  = 0x003C8030; // (Size->160)   
-vknGameEvent                             = 0x003C80D0; // (Size->64)    
+vknPop_Rot                               = 0x003C8010; // size:0x10    
+vknPop_Pos                               = 0x003C8020; // size:0x10    
+vknCore                                  = 0x003C8030; // size:0x10 
+vknGameEvent                             = 0x003C80D0; // size:0x40   
 // akEvEffct.c
-_Effect                                  = 0x003C8110; // (Size->1840) 
+_Effect                                  = 0x003C8110; // size:0x730 
 // nmtrick.c 
-vnmtrickInfo                             = 0x003C8840; // (Size->4128)  
+vnmtrickInfo                             = 0x003C8840; // size:0x1020  
 // tmetc.c
 vtmetcSystem                             = 0x003C9860; // size:0x28
 errno                                    = 0x003C9888; // size:0x4
 // BSS END //
 
 //.vu.ss                                   = 0x003C9900; // (Region->LOCAL)  (Type->SECTION) # vubss start?
-__bss_end                                = 0x003C9900; // (Region->GLOBAL) (Type->NOTYPE) 
-_stack                                   = 0x01FF0000; // (Region->GLOBAL) (Type->NOTYPE) 
-_heap_size                               = 0xFFFFFFFF; // (Region->GLOBAL) (Type->NOTYPE) 
+__bss_end                                = 0x003C9900; // ignore:true
+_stack                                   = 0x01FF0000; // ignore:true
+_heap_size                               = 0xFFFFFFFF; // ignore:true
+_gp                                      = 0x002EF6F0; // ignore:true
 
 D_10000                                  = 0x10000; // ignore:true
 D_FFFF                                   = 0xFFFF; // ignore:true
