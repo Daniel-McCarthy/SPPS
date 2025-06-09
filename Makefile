@@ -18,6 +18,16 @@ US_UNDEF_FUNCS_AUTO := $(US_DIR)/undefined_funcs_auto.yaml
 US_SRC_SPPBX_DIR := $(US_SRC_DIR)/E/tam/ps2/sppbx
 US_SRC_SOURCE_DIR := $(US_SRC_DIR)/Z/ul/ul/source
 
+JP_DIR 			:= config/SLPM_65198
+JP_OUTPUT_DIR 	:= config/SLPM_65198/out
+JP_ASSETS_DIR	:= config/SLPM_65198/out/assets
+JP_ASM_DIR 		:= config/SLPM_65198/out/asm
+JP_SRC_DIR		:= src/SLPM_65198
+JP_YAML_FILE	:= config/SLPM_65198/SPPS_JP.yaml
+JP_ROM_FILE		:= config/SLPM_65198/SLPM_651.98
+JP_UNDEF_SYMS_AUTO 	:= $(JP_DIR)/undefined_syms_auto.yaml
+JP_UNDEF_FUNCS_AUTO := $(JP_DIR)/undefined_funcs_auto.yaml
+
 BUILD_DIR		:= build
 OUTPUT_ELF		:= $(BUILD_DIR)/SLUS_201.99.elf
 
@@ -79,6 +89,12 @@ splat-us:
 	@echo "Running Splat for US 201.99"
 	$(PYTHON) -m splat split ./$(US_YAML_FILE)
 
+# Make splat-jp - Runs Splat for the Japanese version of SPPS.
+splat-jp:
+	$(MAKE) clean-jp
+	@echo "Running Splat for SLPM 651.98"
+	$(PYTHON) -m splat split ./$(JP_YAML_FILE)
+
 # Converts paths in the linker script from full paths to relative from the build dir (This is done at linking time)
 fix-linker-paths:
 	@echo "Fixing linker paths"
@@ -119,6 +135,14 @@ clean-us:
 	$(RM) $(US_DIR)/undefined_syms_auto.yaml
 	$(RM) -r .splat/
 	$(RM) -r .splache $(US_DIR)/.splache
+
+clean-jp:
+	@echo "Cleaning output and build directories"
+	$(RM) -r $(JP_OUTPUT_DIR)/ $(JP_DIR)/.splat/
+	$(RM) $(JP_DIR)/undefined_funcs_auto.yaml
+	$(RM) $(JP_DIR)/undefined_syms_auto.yaml
+	$(RM) -r .splat/
+	$(RM) -r .splache $(JP_DIR)/.splache
 
 # Cleans the full build directory
 clean-build-dir:

@@ -1,0 +1,15 @@
+sceSifInitRpc               = 0x1104F0; // type:func // func_001104F0
+
+main                        = 0x1C0610; // type:func // func_001C0610
+gmsysTotalInit              = 0x1C0C10; // type:func // func_001C0C10
+gmsysInitIop                = 0x129360; // type:func // func_001C0F80
+
+
+uldvdInitCdvd_DRIVE         = 0x29BD10; // type:func // func_0029BD10
+
+ulstdSprintf                = 0x2A8F80; // type:func // func_002A8F80
+
+
+// Main.c sdata
+
+vsppMediaType               = 0x2F584C; // size:0x4 // D_002F584C

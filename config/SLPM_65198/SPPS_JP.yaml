@@ -1,0 +1,64 @@
+# The NTSC-UJ release of SPPS (651.98) - Configuration for splat
+name: SPPS 651-98 (US)
+sha1: 4bef9b618837a84ffc1f6db7b1018ee459c56771
+options:
+  basename: SLPM_651.98
+  target_path: ./config/SLPM_65198/SLPM_651.98
+  platform: ps2
+  compiler: MWCCPS2
+  endianness: little
+
+  base_path: ../../
+  ld_script_path: ./config/SLPM_65198/out/SLPM_651.98.ld
+  asm_path: ./config/SLPM_65198/out/asm
+  asset_path: ./config/SLPM_65198/out/assets
+  build_path: ./build
+  src_path: ./src/SLPM_65198/
+
+  create_undefined_funcs_auto: True
+  undefined_funcs_auto_path: ./config/SLPM_65198/undefined_funcs_auto.yaml
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: ./config/SLPM_65198/undefined_syms_auto.yaml
+  symbol_addrs_path: ./config/SLPM_65198/symbol_addresses.txt
+  extensions_path: ./tools/splat_ext
+  section_order: [".text", ".data", ".rodata", ".sdata", ".sbss", ".bss"]
+  subalign: 8
+  disasm_unknown: True
+  named_regs_for_c_funcs: False
+  use_legacy_include_asm: False
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+  asm_inc_header: |
+    .set noat    /* allow use of $at register from MWCC */
+    .set ACC, $ACC
+    .set Q, $Q
+
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  find_file_boundaries: True
+  pair_rodata_to_text: True
+  auto_decompile_empty_functions: True
+  do_c_func_detection: True
+  suggestion_rodata_section_start: True
+  migrate_rodata_to_functions: True
+
+segments:
+  - [0, bin, elf_header]
+  - name: main
+    type: code
+    start: 0x0080
+    vram: 0x100000
+    gp_value: 0x2fd6f0
+    bss_size: 0xE1F80 # (Comes from __bss_end -_fbss)
+    subsegments:
+      - [0x000080, asm, crt0]
+      - [0x000150, asm, sdk]
+      - [0x0C0690, asm, E/tam/ps2/sppbx/main]
+  - [0x1F5A00, bin, shstrtab]
+  # - [0x000000, bin, strtab]
+  # - [0x000000, bin, symtab]
+  - [0x1F5A2D, bin, comment]
+  - [0x1F5A58, bin, reginfo]
+  - [0x1F5A70, bin, end]
+  - [0x1F5BB0]
