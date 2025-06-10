@@ -1,5 +1,21 @@
-sceSifInitRpc               = 0x1104F0; // type:func // func_001104F0
+// Crt0 Text ASM
+_start                      = 0x100008; // type:func // func_00100008
+_root                       = 0x1000C0; // type:func // func_001000C0
+_f_ulltof                   = 0x1000D0; // type:func // func_001000D0
+_dpflt                      = 0x100110; // type:func // func_00100110
+_dpfgt                      = 0x100130; // type:func // func_00100130
+_exit                       = 0x1000B8; // type:func // func_001000B8
+FlushCache                  = 0x10DE20; // type:func // func_0010DE20
+_InitSys                    = 0x1167C0; // type:func // func_001167C0
+Exit                        = 0x116A30; // type:func // func_00116A30
 
+// SDK/Lib Text ASM
+sceSifInitRpc               = 0x1104F0; // type:func // func_001104F0
+sceSifRebootIop             = 0x115CE8; // type:func // func_00115CE8
+
+__floatdisf                 = 0x125768; // type:func // func_00125768
+
+// Main.c ASM Text
 main                        = 0x1C0610; // type:func // func_001C0610
 gmsysTotalInit              = 0x1C0C10; // type:func // func_001C0C10
 gmsysInitIop                = 0x129360; // type:func // func_001C0F80
@@ -13,3 +29,7 @@ ulstdSprintf                = 0x2A8F80; // type:func // func_002A8F80
 // Main.c sdata
 
 vsppMediaType               = 0x2F584C; // size:0x4 // D_002F584C
+
+_fbss                       = 0x2F5980; // D_002F5980
+_args                       = 0x2F6180; // D_002F6180
+_gp                         = 0x2FD6F0; // D_002FD6F0
