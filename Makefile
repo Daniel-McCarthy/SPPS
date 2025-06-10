@@ -391,3 +391,8 @@ download-wibo:
 setup-venv:
 	$(PYTHON) -m venv venv
 	$(MAKE) venv
+
+# Runs spimdisasm against the Japanese version of SPPS generating asm enriched with our symbol_addresses.txt
+spim-jp:
+	$(PYTHON) -m spimdisasm elfObjDisasm $(JP_ROM_FILE) $(JP_DIR) --symbol-addrs $(JP_DIR)/symbol_addresses.txt
+	mv $(JP_DIR)/SLPM_651_.text.s $(JP_DIR)/SLPM_65198-spim-w-symbols.txt
