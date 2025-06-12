@@ -1,0 +1,1 @@
+mapfile_parser>=2.9.4,<3.0.0
