@@ -20,6 +20,7 @@ __bss_size                               = 0x000E1824; // (Region->GLOBAL) (Type
 
 // Text Section
 // SDK/Lib functions start
+// SDK ver. 2.3
 //ENTRYPOINT                               = 0x00100008; // (Region->GLOBAL) (Type->NOTYPE) 
 __start                                  = 0x00100008; // type:func (Region->GLOBAL) (Type->NOTYPE) 
 _exit                                    = 0x001000B8; // (Region->GLOBAL) (Type->NOTYPE) 
@@ -8394,6 +8395,7 @@ errno                                    = 0x003C9888; // size:0x4
 
 //.vu.ss                                   = 0x003C9900; // (Region->LOCAL)  (Type->SECTION) # vubss start?
 __bss_end                                = 0x003C9900; // ignore:true
+__bss_size                               = 0x000E1824; // ignore:true
 _stack                                   = 0x01FF0000; // ignore:true
 _heap_size                               = 0xFFFFFFFF; // ignore:true
 _gp                                      = 0x002EF6F0; // ignore:true
