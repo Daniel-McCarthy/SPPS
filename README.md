@@ -50,3 +50,18 @@ make install-dev # optional, for development work only
 # Extract the elf file (or run make extract-iso) and copy it to /config/SLUS_20199/SLUS_201.99
 ```
 Note: instead of using the standard `mipsel-gnu-linux-binutils` the [Decompals binutils](https://github.com/decompals/binutils-mips-ps2-decompals) is downloaded and used. It is statically linked against Glibc therefore an up-to-date glibc may be required.
+
+# Special Thanks
+
+A huge thanks is due to [@ethteck](https://github.com/ethteck), [@mkst](https://github.com/mkst), [@encounter](https://github.com/encounter), [@Decompals](https://github.com/decompals), and [@chaoticgd](https://github.com/chaoticgd) for the excellent and foundational tooling that has paved the way for huge improvements in way decompilation is done. Without them and their hard work (and to the contributors to these projects), this project would not exist.
+
+- [splat](https://github.com/ethteck/splat) - Used for splitting the elf binaries and managing (alongside [spimdisasm](https://github.com/Decompollaborate/spimdisasm)) and generating MIPS assembly out of the binary.
+- [decomp.me](https://github.com/decompme/decomp.me) - A vital platform making the process of matching functions significantly easier and smoother.
+- [mwccgap](https://github.com/mkst/mwccgap) - A tool adding support for `#INCLUDE_ASM` to MWCC allowing matching to the function level rather than TU level.
+- [decomp-toolkit](https://github.com/encounter/decomp-toolkit) - A great project assisting decompilation - for this project the DWARF symbol support was of great use.
+- [decompals binutils](https://github.com/decompals/binutils-mips-ps2-decompals) - A project maintaining an EE supporting set of the `binutils` including patches to improve them.
+- [ghidra-emotionengine-reloaded](https://github.com/chaoticgd/ghidra-emotionengine-reloaded) - A Ghidra plugin supporting PS2 EE cpu MIPS instruction set support and handling of symbols.
+
+And a *big* thanks to [@Mc-muffin](https://github.com/Mc-muffin), [@1superchip](https://github.com/1superchip), and [@benoitren](https://git.sr.ht/~benoitren) for huge amounts of help on matching functions, and all sorts of help along the way.
+And thanks to pool7 for his tireless archival of the MW compilers among other tools greatly relied on by the community.
+
