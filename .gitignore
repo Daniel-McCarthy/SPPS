@@ -34,9 +34,10 @@ iso/extract
 MWCCPS2-2.4/
 tools/compiler/
 
-# Misc
+# Misc & Tools
 Archive/
 wibo
+coddog
 binutils/
 venv/
 sdk/

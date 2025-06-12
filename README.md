@@ -5,11 +5,11 @@
 - 7Zip
 - Optional: venv
 
-To install the required python modules, run at the root directory:
-
-`python3 -m pip install -r requirements.txt`
-Or with Make:
+To install the required python modules and other dependencies, run at the root directory:
 `make install`
+
+And for development only dependencies, run:
+`python3 -m pip install -r requirements-dev.txt` or `make install-dev`
 
 To clone the Mwccgap submodule (if not cloned in with the git repo):
 
@@ -44,6 +44,7 @@ source venv/bin/activate
 # Install dependencies
 sudo apt install 7zip
 make install
+make install-dev # optional, for development work only
 
 # Copy your ISO file to iso/SLUS_20199.iso
 # Extract the elf file (or run make extract-iso) and copy it to /config/SLUS_20199/SLUS_201.99

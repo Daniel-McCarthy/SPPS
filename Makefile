@@ -79,6 +79,9 @@ install:
 	$(MAKE) download-decompals-binutils
 	$(MAKE) download-mwcc
 
+# Make install-dev - Installs Python dev dependencies and other tools purely for development needs (not essential for building).
+	$(PIP) install -r requirements-dev.txt
+	$(MAKE) download-coddog
 
 # Make splat-us - Runs Splat for the US version of SPPS.
 splat-us:
@@ -384,6 +387,18 @@ download-wibo:
 	-@mkdir tools/wibo
 	wget -P ./tools/wibo/ https://github.com/decompals/wibo/releases/download/0.6.16/wibo
 	chmod +x $(WIBO)
+
+# Optional: Downloads coddog for function matching functionality for development
+download-coddog:
+	@echo Downloading coddog
+	-@mkdir tools/coddog
+	wget https://github.com/ethteck/coddog/releases/download/0.4.0/coddog_0.4.0_x86_64-unknown-linux-musl.tar.gz
+	@echo "📦 Extracting coddog..."
+	7z x coddog_0.4.0_x86_64-unknown-linux-musl.tar.gz >/dev/null;
+	7z x coddog_0.4.0_x86_64-unknown-linux-musl.tar -o./tools/coddog >/dev/null;
+	-$(RM) "coddog_0.4.0_x86_64-unknown-linux-musl.tar.gz"
+	-$(RM) "coddog_0.4.0_x86_64-unknown-linux-musl.tar"
+
 
 setup-venv:
 	$(PYTHON) -m venv venv
