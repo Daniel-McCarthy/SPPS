@@ -1,0 +1,30 @@
+name: Shaun Palmer's Pro Snowboarder
+repo: https://github.com/Daniel-McCarthy/SPPS
+platform: ps2
+versions:
+- name: us
+  fullname: SPPS US
+  sha1: a299494580e009bca242d5a9773013fdb08d2fff
+  paths:
+    target: "SLUS_201.99"
+    build_dir: "build"
+    map: "build/SLUS_201.99.elf.xMAP"
+    compiled_target: "build/SLUS_201.99.elf"
+    elf: "build/SLUS_201.99.elf"
+
+    expected_dir: "/config/SLUS_20199/out/expected/"
+    asm: "/config/SLUS_20199/out/asm"
+    nonmatchings: "/config/SLUS_20199/out/asm/nonmatchings"
+- name: jp
+  fullname: SPPS JP
+  sha1: 4bef9b618837a84ffc1f6db7b1018ee459c56771
+  paths:
+    target: "SLPM_651.98"
+    build_dir: "build"
+    map: "build/SLPM_651.98.elf.xMAP"
+    compiled_target: "build/SLPM_651.98.elf"
+    elf: "build/SLPM_651.98.elf"
+
+    expected_dir: "/config/SLPM_65198/out/expected/"
+    asm: "/config/SLPM_65198/out/asm"
+    nonmatchings: "/config/SLPM_65198/out/asm/nonmatchings"
