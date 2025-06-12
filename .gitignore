@@ -24,6 +24,8 @@ build.ninja
 *.ld
 *.iso
 *.o
+*.elf
+*.s
 asm/
 assets/
 build/
