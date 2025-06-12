@@ -30,6 +30,8 @@ versions:
     asm: "/config/SLPM_65198/out/asm"
     nonmatchings: "/config/SLPM_65198/out/asm/nonmatchings"
 tools:
+  decompme:
+    preset: 131
   permuter:
     decompme_compilers:
       /tools/compiler/MWCCPS2-2.4: mwcps2-2.4-001213
