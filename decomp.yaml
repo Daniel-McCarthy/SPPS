@@ -29,3 +29,7 @@ versions:
     expected_dir: "/config/SLPM_65198/out/expected/"
     asm: "/config/SLPM_65198/out/asm"
     nonmatchings: "/config/SLPM_65198/out/asm/nonmatchings"
+tools:
+  permuter:
+    decompme_compilers:
+      /tools/compiler/MWCCPS2-2.4: mwcps2-2.4-001213

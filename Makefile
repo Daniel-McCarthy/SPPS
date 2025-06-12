@@ -51,15 +51,10 @@ PIP 	:= $(PYTHON) -m pip
 WIBO := tools/wibo/wibo
 
 COMPILER_LOCATION := tools/compiler/MWCCPS2-2.4
-COMPILER_PS2SUPPORT_DIR := $(COMPILER_LOCATION)/PS2_Support
-MWLibraries		  := $(COMPILER_LOCATION)/Stationery/PlayStation2_-_2.0.0/c
-MWCIncludes		  := $(COMPILER_PS2SUPPORT_DIR)
-export MWLibraries
-export MWCIncludes
 
-MWCC_PATH := $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwccps2.exe
+MWCC_PATH := $(COMPILER_LOCATION)/mwccps2.exe
 MWCC := $(WIBO) $(MWCC_PATH)
-MWLD := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwldps2.exe
+MWLD := $(WIBO) $(COMPILER_LOCATION)/mwldps2.exe
 MWCC_ARGS := -Iinclude -O0,p -sym on -char unsigned -str readonly
 MWCCGAP := $(PYTHON) tools/mwccgap/mwccgap.py
 MWCCGAP_ARGS := --mwcc-path $(MWCC_PATH) --as-path $(AS) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
@@ -82,6 +77,8 @@ install:
 	$(PIP) install -r requirements.txt
 	$(MAKE) download-wibo
 	$(MAKE) download-decompals-binutils
+	$(MAKE) download-mwcc
+
 
 # Make splat-us - Runs Splat for the US version of SPPS.
 splat-us:
