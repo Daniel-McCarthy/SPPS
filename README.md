@@ -1,5 +1,5 @@
 ## Prerequisites:
-- The SPPS SLUS_201.99 elf binary.
+- The SPPS SLUS_201.99 or SLPM_651.98 elf binary.
 - Linux or WSL
 - Python3 interpreter
 - 7Zip
@@ -20,8 +20,8 @@ To run splat for the US version of the game, run at the root directory:
 Or with Make:
 `make splat-us`
 
-For rebuilding the iso, the `mkisofs` program will be required. It can be installed on debian systems as such:
-`sudo apt install genisoimage`
+To run splat, compile and link the resulting elf file, run:
+`make rebuild`
 
 For your python environment, it is is highly recommended to configure a virtual environment. Here are the steps for Ubuntu:
 ```
