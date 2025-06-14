@@ -157,49 +157,407 @@ _RotMatrixZ_01                          = 0x104DC8; // type:label // L00104DC8
 _RotMatrixZ_02                          = 0x104DD0; // type:label // L00104DD0
 _loopRotMatrixZ                         = 0x104E14; // type:label // L00104E14
 sceVu0RotMatrixX                        = 0x104E48; // type:func // func_00104E48
-SetGsCrt                    = 0x10D7A0; // type:func // L0010D7A0
-RemoveIntcHandler           = 0x10D8A0; // type:func // func_0010D8A0
-FlushCache                  = 0x10DE20; // type:func // func_0010DE20
-GsGetIMR                    = 0x10DEC0; // type:func // func_0010DEC0
-GsPutIMR                    = 0x10DEE0; // type:func // func_0010DEE0
-DisableIntc                 = 0x10E670; // type:func // func_0010E670
-_InitSys                    = 0x1167C0; // type:func // func_001167C0
-Exit                        = 0x116A30; // type:func // func_00116A30
+_RotMatrixX_01                          = 0x104E70; // type:label // L00104E70
+_RotMatrixX_02                          = 0x104E78; // type:label // L00104E78
+_loopRotMatrixX                         = 0x104EC0; // type:label // L00104EC0
+sceVu0RotMatrixY                        = 0x104EF0; // type:func // func_00104EF0
+_RotMatrixY_01                          = 0x104F18; // type:label // L00104F18
+_RotMatrixY_02                          = 0x104F20; // type:label // L00104F20
+_loopRotMatrixY                         = 0x104F68; // type:label // L00104F68
+sceVu0RotMatrix                         = 0x104F98; // type:func // func_00104F98
+sceVu0ClampVector                       = 0x104FE8; // type:func // func_00104FE8
+sceVu0CameraMatrix                      = 0x105010; // type:func // func_00105010
+sceVu0NormalLightMatrix                 = 0x1050C0; // type:func // func_001050C0
+sceVu0LightColorMatrix                  = 0x105180; // type:func // func_00105180
+sceVu0ViewScreenMatrix                  = 0x1051E8; // type:func // func_001051E8
+sceVu0DropShadowMatrix                  = 0x1052F0; // type:func // func_001052F0
+sceVu0RotTransPersN                     = 0x105480; // type:func // func_00105480
+_rotTPN_loop                            = 0x105490; // type:label // L00105490
+_rotTPN                                 = 0x1054BC; // type:label // L001054BC
+sceVu0RotTransPers                      = 0x1054D8; // type:func // func_001054D8
+_rotTP                                  = 0x105514; // type:label // L00105514
+sceVu0CopyVectorXYZ                     = 0x105520; // type:func // func_00105520
+sceVu0InterVectorXYZ                    = 0x105540; // type:func // func_00105540
+sceVu0ScaleVectorXYZ                    = 0x105570; // type:func // func_00105570
+sceVu0ClipScreen                        = 0x105588; // type:func // func_00105588
+sceVu0ClipScreen3                       = 0x1055D0; // type:func // func_001055D0
+sceVu0ClipAll                           = 0x105630; // type:func // func_00105630
+loop_clip_all                           = 0x105654; // type:label // L00105654
+end_clip_all                            = 0x1056B4; // type:label // L001056B4
+sceVpu0Reset                            = 0x1056C0; // type:func // func_001056C0
+_motionComp0                            = 0x105720; // type:func // func_00105720
+_getAllRefs                             = 0x105A88; // type:func
+_getRef0                                = 0x106190; // type:func
+_doMC                                   = 0x1065B0; // type:func
+_rix_000                                = 0x1067D0; // type:func
+_ri0_000                                = 0x106848; // type:func
+_rix_001                                = 0x1068E0; // type:func
+_ri0_001                                = 0x106998; // type:func
+_rix_010                                = 0x106A68; // type:func
+_ri0_010                                = 0x106B18; // type:func
+_rix_011                                = 0x106BD0; // type:func
+_ri0_011                                = 0x106CC8; // type:func
+_rix_100                                = 0x106DC8; // type:func
+_ri0_100                                = 0x106E68; // type:func
+_rix_101                                = 0x106F18; // type:func
+_ri0_101                                = 0x106FF8; // type:func
+_rix_110                                = 0x1070E0; // type:func
+_ri0_110                                = 0x1071B8; // type:func
+_rix_111                                = 0x107288; // type:func
+_ri0_111                                = 0x1073A8; // type:func
+_copyAddRefImage                        = 0x1074C0; // type:func
+_copyRefImage                           = 0x107520; // type:func
+_maxval                                 = 0x107560; // 00107560 // dlabel
+_ipuSetMPEG1                            = 0x107578; // type:func // func_00107578
+_waitBdecOut                            = 0x1075A0; // type:func // func_001075A0
+_dmVector                               = 0x107790; // type:func // func_00107790
+_dualPrimeVector                        = 0x1077B0; // type:func // func_001077B0
+_mbAddressIncrement                     = 0x107938; // type:func // func_00107938
+_pictureData0                           = 0x107A48; // type:func // func_00107A48
+_sliceA0                                = 0x107B50; // type:func // func_00107B50
+_slice0                                 = 0x107C80; // type:func // func_00107C80 
+_skipMB0                                = 0x107E70; // type:func // func_00107E70
+_decMB0                                 = 0x107F30; // type:func // func_00107F30
+_decode_motion_vector                   = 0x1083D8; // type:func // func_001083D8
+_motionVectors                          = 0x108460; // type:func // func_00108460
+_motionVector                           = 0x108600; // type:func // func_00108600
+_sendIpuCommand                         = 0x108750; // type:func // func_00108750
+_waitIpuIdle                            = 0x108780; // type:func // func_00108780
+_waitIpuIdle64                          = 0x108828; // type:func // func_00108828
+_ipuVdec                                = 0x1088D8; // type:func // func_001088D8
+_peepBit                                = 0x108A50; // type:func // func_00108A50
+_flushBuf                               = 0x108B58; // type:func // func_00108B58
+_nextBit                                = 0x108C48; // type:func // func_00108C48
+_nextStartCode                          = 0x108D98; // type:func // func_00108D98
+_sliceB                                 = 0x108E18; // type:func // func_00108E18
+_nextHeader                             = 0x108E80; // type:func // func_00108E80
+//_pictureHeader ??                         = 0x108F90; // type:func // func_00108F90
+
+_extensionAndUserData                   = 0x109058; // type:func // func_00109058
+_updateTempTackData                     = 0x109370; // type:func // func_00109370
+_groupOfPicturesHeader                  = 0x109430; // type:func // func_00109430
+_quantMatrixExtension                   = 0x1094D0; // type:func // func_001094D0
+// func_00109598  ??
+_pictureDisplayExtension                = 0x109598; // type:func // func_00109598
+_copyrightExtension                     = 0x109690; // type:func // func_00109690 ??
+_decPicture                             = 0x109720; // type:func // func_00109720
+_outputFrame                            = 0x1097F0; // type:func // func_001097F0
+_updateRefImage                         = 0x109880; // type:func // func_00109880
+_isOutSizeOK                            = 0x109B38; // type:func // func_00109B38
+_cpr8                                   = 0x109BD8; // type:func // func_00109BD8
+_markOutput                             = 0x109E48; // type:func // func_00109E48
+_getPtsDtsFlags                         = 0x109E70; // type:func // func_00109E70
+_dispRefImage                           = 0x10A000; // type:func // func_0010A000
+_dispRefImageField                      = 0x10A110; // type:func // func_0010A110
+// func_0010A2C8
+// func_0010A338 == _doCSC ?
+// func_0010A450 == _ch3dmaCSC ?
+// func_0010A5C8 == _doCSC2
+_ch4dma                                 = 0x10A778; // type:func // func_0010A778
+_csc_storeRefImage                      = 0x10A880; // type:func // func_0010A880
+_sysbitInit                             = 0x10AAF8; // type:func // func_0010AAF8
+_sysbitNext                             = 0x10AB30; // type:func // func_0010AB30
+_sysbitFlush                            = 0x10AB50; // type:func // func_0010AB50
+_sysbitGet                              = 0x10ABE8; // type:func // func_0010ABE8
+_sysbitMarker                           = 0x10AC38; // type:func // func_0010AC38
+_sysbitJump                             = 0x10AC80; // type:func // func_0010AC80
+_sysbitPtr                              = 0x10ACD8; // type:func // func_0010ACD8
+_type2id                                = 0x10AD08; // type:func // func_0010AD08
+_id2type                                = 0x10AD90; // type:func // func_0010AD90
+sceMpegDemuxPssRing                     = 0x10AF90; // type:func // func_0010AF90
+sceMpegDemuxPss                         = 0x10B288; // type:func // func_0010B288
+sceMpegAddStrCallback                   = 0x10B2A8; // type:func // func_0010B2A8
+_pack_header                            = 0x10B3A0; // type:func // func_0010B3A0
+_system_header                          = 0x10B4F0; // type:func // func_0010B4F0
+_PES_packet                             = 0x10B560; // type:func // func_0010B560
+sceMpegInit                             = 0x10BB10; // type:func // func_0010BB10
+sceMpegCreate                           = 0x10BBB0; // type:func // func_0010BBB0
+// no sceMpegDelete?
+// func_0010BDB8 == sceMpegAddBs ? 
+sceMpegGetPicture                       = 0x10BDE8; // type:func // func_0010BDE8
+sceMpegGetPictureRAW8xy                 = 0x10BE30; // type:func
+func_10BE78                             = 0x10BE78; // type:func // unknown, had to be split from misdetected function
+
+sceMpegSetDecodeMode                    = 0x10BEC8; // type:func
+sceMpegGetDecodeMode                    = 0x10BEDC; // type:func
+sceMpegIsEnd                            = 0x10BF00; // type:func
+sceMpegIsRefBuffEmpty                   = 0x10BF10; // type:func
+sceMpegReset                            = 0x10BF20; // type:func
+sceMpegClearRefBuff                     = 0x10BF70; // type:func
+sceMpegAddCallback                      = 0x10BFC8; // type:func
+_dispatchMpegCallback                   = 0x10BFF0; // type:func
+_dispatchMpegCbNodata                   = 0x10C040; // type:func // func_0010C040
+sceMpegSetDefaultPtsGap                 = 0x10C068; // type:func
+sceMpegResetDefaultPtsGap               = 0x10C080; // type:func
+sceMpegSetImageBuff                     = 0x10C090; // type:func
+sceMpegDispWidth                        = 0x10C0A0; // type:func
+sceMpegDispHeight                       = 0x10C0B0; // type:func
+sceMpegDispCenterOffX                   = 0x10C0C0; // type:func
+sceMpegDispCenterOffY                   = 0x10C0D0; // type:func
+sceSetBrokenLink                        = 0x10C0E0; // type:func
+sceSetPtm                               = 0x10C0F0; // type:func
+_alalcInit                              = 0x10C108; // type:func
+_alalcSetDynamic                        = 0x10C120; // type:func
+_alalcFree                              = 0x10C130; // type:func
+_alalcAlloc                             = 0x10C140; // type:func
+_alalcRest                              = 0x10C1A8; // type:func
+_getpic                                 = 0x10C1C8; // type:func // func_0010C1C8
+_decodeOrSkipFrame                      = 0x10C338; // type:func // func_0010C338
+_decodeOrSkip                           = 0x10C450; // type:func // func_0010C450
+_decodeOrSkipField                      = 0x10C498; // type:func // func_0010C498
+_sceMpegFlush                           = 0x10C5F8; // type:func // func_0010C5F8
+_initSeqAgain                           = 0x10C660; // type:func // L0010C660
+_lastFrame                              = 0x10C670; // type:func // func_0010C670
+_clearOnce                              = 0x10C6F0; // type:func // func_0010C6F0
+_clearEach                              = 0x10C750; // type:func // func_0010C750
+_ErrMessage                             = 0x10C810; // type:func // func_0010C810
+_Error1                                 = 0x10C820; // type:func // func_0010C820
+_Error                                  = 0x10C858; // type:func // func_0010C858
+_sendDataToIPU                          = 0x10C8B0; // type:func
+_RefImageInit                           = 0x10C9A0; // type:func // func_0010C9A0
+_sequenceHeader                         = 0x10C9C0; // type:func // func_0010C9C0
+_initSeq                                = 0x10CAE8; // type:func // L0010CAE8
+_initRefImages                          = 0x10CD90; // type:func // func_0010CD90
+_setDefaultQM                           = 0x10CE70; // type:func // func_0010CE70
+_sequenceExtension                      = 0x10CF48; // type:func
+_sequenceDisplayExtension               = 0x10D070; // type:func
+_sequenceScalableExtension              = 0x10D100; // type:func
+_unknown_extension                      = 0x10D110; // type:func
+_pictureSpatialScalableExtension        = 0x10D120; // type:func
+_pictureTemporalScalableExtension       = 0x10D130; // type:func
+_defStopDMA                             = 0x10D140; // type:func // T_0010D140
+_defRestartDMA                          = 0x10D150; // type:func // T_0010D150
+setD3_CHCR                              = 0x10D160; // type:func // func_0010D160
+setD4_CHCR                              = 0x10D1C8; // type:func // func_0010D1C8
+sceIpuStopDMA                           = 0x10D230; // type:func // L0010D230
+sceIpuRestartDMA                        = 0x10D318; // type:func // L0010D318
+sceIpuSync                              = 0x10D468; // type:func // L0010D468
+setD4_CHCR                              = 0x10D4D0; // type:func // func_0010D4D0
+sceIpuInit                              = 0x10D538; // type:func // L0010D538
+RFU000_FullReset                        = 0x10D780; // type:func // func_0010D780
+ResetEE                                 = 0x10D790; // type:func // func_0010D790
+SetGsCrt                                = 0x10D7A0; // type:func // L0010D7A0
+RFU003                                  = 0x10D7B0; // type:func // func_0010D7B0
+Exit                                    = 0x10D7C0; // type:func // func_0010D7C0
+RFU005                                  = 0x10D7D0; // type:func
+LoadExecPS2                             = 0x10D7E0; // type:func
+ExecPS2                                 = 0x10D7F0; // type:func // func_0010D7F0
+RFU008                                  = 0x10D800; // type:func // func_0010D800
+RFU009                                  = 0x10D810; // type:func // func_0010D810
+AddSbusIntcHandler                      = 0x10D820; // type:func // func_0010D820
+RemoveSbusIntcHandler                   = 0x10D830; // type:func // func_0010D830
+Interrupt2Iop                           = 0x10D840; // type:func // func_0010D840
+SetVTLBRefillHandler                    = 0x10D850; // type:func // func_0010D850
+SetVCommonHandler                       = 0x10D860; // type:func // func_0010D860
+SetVInterruptHandler                    = 0x10D870; // type:func // func_0010D870
+AddIntcHandler                          = 0x10D880; // type:func // func_0010D880
+AddIntcHandler2                         = 0x10D890; // type:func // func_0010D890
+RemoveIntcHandler                       = 0x10D8A0; // type:func // func_0010D8A0
+AddDmacHandler                          = 0x10D8B0; // type:func // func_0010D8B0
+AddDmacHandler2                         = 0x10D8C0; // type:func // func_0010D8C0
+RemoveDmacHandler                       = 0x10D8D0; // type:func // func_0010D8D0
+_EnableIntc                             = 0x10D8E0; // type:func // func_0010D8E0
+_DisableIntc                            = 0x10D8F0; // type:func // func_0010D8F0
+_EnableDmac                             = 0x10D900; // type:func // func_0010D900
+_DisableDmac                            = 0x10D910; // type:func // func_0010D910
+SetAlarm                                = 0x10D920; // type:func // func_0010D920
+ReleaseAlarm                            = 0x10D930; // type:func // func_0010D930
+_iEnableIntc                            = 0x10D940; // type:func // func_0010D940
+_iDisableIntc                           = 0x10D950; // type:func // func_0010D950
+_iEnableDmac                            = 0x10D960; // type:func // func_0010D960
+_iDisableDmac                           = 0x10D970; // type:func // func_0010D970
+iSetAlarm                               = 0x10D980; // type:func // func_0010D980
+iReleaseAlarm                           = 0x10D990; // type:func // func_0010D990
+CreateThread                            = 0x10D9A0; // type:func // func_0010D9A0
+DeleteThread                            = 0x10D9B0; // type:func // func_0010D9B0
+StartThread                             = 0x10D9C0; // type:func // func_0010D9C0
+ExitThread                              = 0x10D9D0; // type:func // func_0010D9D0
+ExitDeleteThread                        = 0x10D9E0; // type:func // func_0010D9E0
+TerminateThread                         = 0x10D9F0; // type:func // func_0010D9F0
+iTerminateThread                        = 0x10DA00; // type:func // func_0010DA00
+DisableDispatchThread                   = 0x10DA10; // type:func // func_0010DA10
+EnableDispatchThread                    = 0x10DA20; // type:func // func_0010DA20
+ChangeThreadPriority                    = 0x10DA30; // type:func // func_0010DA30
+iChangeThreadPriority                   = 0x10DA40; // type:func // func_0010DA40
+RotateThreadReadyQueue                  = 0x10DA50; // type:func // func_0010DA50
+_iRotateThreadReadyQueue                = 0x10DA60; // type:func // func_0010DA60
+ReleaseWaitThread                       = 0x10DA70; // type:func // func_0010DA70
+iReleaseWaitThread                      = 0x10DA80; // type:func // func_0010DA80
+GetThreadId                             = 0x10DA90; // type:func // func_0010DA90
+ReferThreadStatus                       = 0x10DAA0; // type:func // func_0010DAA0
+iReferThreadStatus                      = 0x10DAB0; // type:func // func_0010DAB0
+SleepThread                             = 0x10DAC0; // type:func // func_0010DAC0
+WakeupThread                            = 0x10DAD0; // type:func // func_0010DAD0
+_iWakeupThread                          = 0x10DAE0; // type:func // func_0010DAE0
+CancelWakeupThread                      = 0x10DAF0; // type:func // func_0010DAF0
+iCancelWakeupThread                     = 0x10DB00; // type:func // func_0010DB00
+SuspendThread                           = 0x10DB10; // type:func // func_0010DB10
+_iSuspendThread                         = 0x10DB20; // type:func // func_0010DB20
+ResumeThread                            = 0x10DB30; // type:func // func_0010DB30
+iResumeThread                           = 0x10DB40; // type:func // func_0010DB40
+JoinThread                              = 0x10DB50; // type:func // func_0010DB50
+RFU060                                  = 0x10DB60; // type:func // func_0010DB60
+RFU061                                  = 0x10DB70; // type:func // func_0010DB70
+EndOfHeap                               = 0x10DB80; // type:func // func_0010DB80
+RFU063                                  = 0x10DB90; // type:func // func_0010DB90
+CreateSema                              = 0x10DBA0; // type:func // func_0010DBA0
+DeleteSema                              = 0x10DBB0; // type:func // func_0010DBB0
+SignalSema                              = 0x10DBC0; // type:func // func_0010DBC0
+iSignalSema                             = 0x10DBD0; // type:func // func_0010DBD0
+WaitSema                                = 0x10DBE0; // type:func // func_0010DBE0
+PollSema                                = 0x10DBF0; // type:func // func_0010DBF0
+iPollSema                               = 0x10DC00; // type:func // func_0010DC00
+ReferSemaStatus                         = 0x10DC10; // type:func // func_0010DC10
+iReferSemaStatus                        = 0x10DC20; // type:func // func_0010DC20
+RFU073                                  = 0x10DC30; // type:func // func_0010DC30
+SetOsdConfigParam                       = 0x10DC40; // type:func // func_0010DC40
+GetOsdConfigParam                       = 0x10DC50; // type:func // func_0010DC50
+GetGsHParam                             = 0x10DC60; // type:func // func_0010DC60
+GetGsVParam                             = 0x10DC70; // type:func // func_0010DC70
+SetGsHParam                             = 0x10DC80; // type:func // func_0010DC80
+SetGsVParam                             = 0x10DC90; // type:func // func_0010DC90
+RFU080_CreateEventFlag                  = 0x10DCA0; // type:func // func_0010DCA0
+RFU081_DeleteEventFlag                  = 0x10DCB0; // type:func // func_0010DCB0
+RFU082_SetEventFlag                     = 0x10DCC0; // type:func // func_0010DCC0
+RFU083_iSetEventFlag                    = 0x10DCD0; // type:func // func_0010DCD0
+RFU084_ClearEventFlag                   = 0x10DCE0; // type:func // func_0010DCE0
+RFU085_iClearEventFlag                  = 0x10DCF0; // type:func // func_0010DCF0
+RFU086_WaitEvnetFlag                    = 0x10DD00; // type:func // func_0010DD00
+RFU087_PollEvnetFlag                    = 0x10DD10; // type:func // func_0010DD10
+RFU088_iPollEvnetFlag                   = 0x10DD20; // type:func // func_0010DD20
+RFU089_ReferEventFlagStatus             = 0x10DD30; // type:func // func_0010DD30
+RFU090_iReferEventFlagStatus            = 0x10DD40; // type:func // func_0010DD40
+RFU091                                  = 0x10DD50; // type:func // func_0010DD50
+EnableIntcHandler                       = 0x10DD60; // type:func // func_0010DD60
+iEnableIntcHandler                      = 0x10DD70; // type:func // func_0010DD70
+DisableIntcHandler                      = 0x10DD80; // type:func // func_0010DD80
+iDisableIntcHandler                     = 0x10DD90; // type:func // func_0010DD90
+EnableDmacHandler                       = 0x10DDA0; // type:func // func_0010DDA0
+iEnableDmacHandler                      = 0x10DDB0; // type:func // func_0010DDB0
+DisableDmacHandler                      = 0x10DDC0; // type:func // func_0010DDC0
+iDisableDmacHandler                     = 0x10DDD0; // type:func // func_0010DDD0
+KSeg0                                   = 0x10DDE0; // type:func // func_0010DDE0
+EnableCache                             = 0x10DDF0; // type:func // func_0010DDF0
+DisableCache                            = 0x10DE00; // type:func // func_0010DE00
+GetCop0                                 = 0x10DE10; // type:func // func_0010DE10
+FlushCache                              = 0x10DE20; // type:func // func_0010DE20
+CpuConfig                               = 0x10DE30; // type:func // func_0010DE30
+iGetCop0                                = 0x10DE40; // type:func // func_0010DE40
+iFlushCache                             = 0x10DE50; // type:func // func_0010DE50
+iCpuConfig                              = 0x10DE60; // type:func // func_0010DE60
+sceSifStopDma                           = 0x10DE70; // type:func // func_0010DE70
+SetCPUTimerHandler                      = 0x10DE80; // type:func // func_0010DE80
+SetCPUTimer                             = 0x10DE90; // type:func // func_0010DE90
+SetOsdConfigParam2                      = 0x10DEA0; // type:func // func_0010DEA0
+GetOsdConfigParam2                      = 0x10DEB0; // type:func // func_0010DEB0
+GsGetIMR                                = 0x10DEC0; // type:func // func_0010DEC0
+iGsGetIMR                               = 0x10DED0; // type:func // func_0010DED0
+GsPutIMR                                = 0x10DEE0; // type:func // func_0010DEE0
+iGsPutIMR                               = 0x10DEF0; // type:func // func_0010DEF0
+// more to add from func_0010DF00 and after
+
+DisableIntc                             = 0x10E670; // type:func // func_0010E670
+// more to add from func_0010E6D8 and after
+
+sceSifInitRpc                           = 0x1104F0; // type:func // func_001104F0
+// more to add from func_00110690 and after
+
+sceSifLoadModule                        = 0x1157E8; // type:func // func_001157E8
+// more to add after sceSifLoadModule
+
+sceSifRebootIop                         = 0x115CE8; // type:func // func_00115CE8
+// more to add from func_00115EE0 and after
+
+_InitSys                                = 0x1167C0; // type:func // func_001167C0
+// more to add from func_00116800 and after
+
+Exit                                    = 0x116A30; // type:func // func_00116A30
+// more to add from func_00116A90 and after
+
 
 // SDK/Lib Text ASM
-sceSifInitRpc               = 0x1104F0; // type:func // func_001104F0
-sceSifRebootIop             = 0x115CE8; // type:func // func_00115CE8
 
-printf                      = 0x122908; // type:func // func_00122908
-__floatdisf                 = 0x125768; // type:func // func_00125768
-dpcmp                       = 0x127418; // type:func // func_00127418
+printf                                  = 0x122908; // type:func // func_00122908
+// more to add from func_00122958 and after
+__floatdisf                             = 0x125768; // type:func // func_00125768
+// more to add from func_00125848 and after
+dpcmp                                   = 0x127418; // type:func // func_00127418
+// more to add from func_00127468 and after
+
+// more to add above from func_001C05E0 and before
 
 // Main.c ASM Text
-main                        = 0x1C0610; // type:func // func_001C0610
-gmsysTotalInit              = 0x1C0C10; // type:func // func_001C0C10
-gmsysInitIop                = 0x129360; // type:func // func_001C0F80
+main                                    = 0x1C0610; // type:func // func_001C0610
+gmsysTotalInit                          = 0x1C0C10; // type:func // func_001C0C10
+gmsysInitIop                            = 0x1C0F80; // type:func // func_001C0F80
+gmsysSetModule                          = 0x1C1260; // func_001C1260
+gmsysInitGsRegister                     = 0x1C12B0; // func_001C12B0
+gmsysSetScreenMode_normal               = 0x1C1410; // func_001C1410
+gmsysSetScreenMode_on_play              = 0x1C1420; // func_001C1420
+gmsysSetScrMode__normal                 = 0x1C1430; // func_001C1430
+gmsysSetScrMode__depth_of_field         = 0x1C14B0; // func_001C14B0
+gmsysSetScrMode__anti_alias             = 0x1C1530; // func_001C1530
+gmsysResetBlurPow                       = 0x1C15C0; // func_001C15C0
+gmsysSetBlurPow                         = 0x1C1610; // func_001C1610
+gmsysSetWndBlurPow                      = 0x1C1660; // func_001C1660
+gmsysSetScrChangeColor                  = 0x1C16C0; // func_001C16C0
+gmsysSetScrFlipMode                     = 0x1C1710; // func_001C1710
+gmsysSetScrActiveWnd                    = 0x1C1730; // func_001C1730
+gmsysSetScrDivType                      = 0x1C1760; // func_001C1760
+gmsysSetScrDivLine                      = 0x1C17A0; // func_001C17A0
+
+nmfontSetScrRate                        = 0x1C1850; // func_001C1850
 
 
-uldvdInitCdvd_DRIVE         = 0x29BD10; // type:func // func_0029BD10
+ktactGetHit_base                        = 0x1C1D90; // func_001C1D90
 
-ulstdSprintf                = 0x2A8F80; // type:func // func_002A8F80
+ulgifDmaSend                            = 0x29CC10; // func_0029CC10
+ulgifDmaWait                            = 0x29CC50; // func_0029CC50
+
+uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD10
+
+ulgraphSetDefFrameBuff                  = 0x29D230; // func_0029D230
+
+ulstdSprintf                            = 0x2A8F80; // type:func // func_002A8F80
 
 
 // Main.c sdata
-gp.6                        = 0x2BBE90; // D_002BBE90
-init_vif_regs.3             = 0x2BBEA0; // D_002BBEA0
-dch                         = 0x2BBED0; // D_002BBED0
-sceDmaDebugMode             = 0x2BBEF8; // D_002BBEF8
-isclr                       = 0x2BBF10; // D_002BBF10
-ststbl                      = 0x2BBF38; // D_002BBF38
-stdtbl                      = 0x2BBF48; // D_002BBF48
-mfdtbl                      = 0x2BBF58; // D_002BBF58
-sceDmaCurrentEnv            = 0x2BBF68; // D_002BBF68
-S5432                       = 0x2BBF80; // D_002BBF80
-init_vif_regs.126           = 0x2BBF90; // D_002BBF90
+gp.6                                    = 0x2BBE90; // D_002BBE90
+init_vif_regs.3                         = 0x2BBEA0; // D_002BBEA0
+dch                                     = 0x2BBED0; // D_002BBED0
+sceDmaDebugMode                         = 0x2BBEF8; // D_002BBEF8
+isclr                                   = 0x2BBF10; // D_002BBF10
+ststbl                                  = 0x2BBF38; // D_002BBF38
+stdtbl                                  = 0x2BBF48; // D_002BBF48
+mfdtbl                                  = 0x2BBF58; // D_002BBF58
+sceDmaCurrentEnv                        = 0x2BBF68; // D_002BBF68
+S5432                                   = 0x2BBF80; // D_002BBF80
+init_vif_regs.126                       = 0x2BBF90; // D_002BBF90
+_showCount                              = 0x2BC018; // D_002BC018
+_strmap                                 = 0x2BC058; // D_002BC058
 
-vsppMediaType               = 0x2F584C; // size:0x4 // D_002F584C
+vnmfontScrSize                          = 0x2D6C20; // D_FLT_002D6C20
+// vnmfontScrRate ?
 
-_fbss                       = 0x2F5980; // D_002F5980
-_args                       = 0x2F6180; // D_002F6180
-_gp                         = 0x2FD6F0; // D_002FD6F0
+vsppMediaType                           = 0x2F584C; // size:0x4 // D_002F584C
+vgmsysGifPkt                            = 0x2F5B1C; // D_002F5B1C
+vsppScrWidth                            = 0x2F5844; // D_002F5844
+vsppScrHeight                           = 0x2F5848; // D_002F5848
+vgmsysScrChangeCol                      = 0x2F5AD8; // D_002F5AD8
+vgmsysDivide30Frame                     = 0x2F5ADC; // D_002F5ADC
+vgmsysDivideActiveWid                   = 0x2F5AE0; // D_002F5AE0
+vgmsysDivideType                        = 0x2F5AE4; // D_002F5AE4
+vgmsysDivideLine                        = 0x2F5AE8; // D_002F5AE8
+vgmsysWndBlurPow                        = 0x2F5AF0; // D_002F5AF0
+vgmsysBlurPow                           = 0x2F5AF8; // D_002F5AF8
+
+#_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
+_fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
+_args                                   = 0x2F6180; // D_002F6180
+_gp                                     = 0x2FD6F0; // D_002FD6F0
+
+vgmsysInitFunc                          = 0x33D6E0; // D_0033D6E0
+vgmsysFrameBuffer                       = 0x33DEE6; // D_0033DEE6 // figure out actual start and give size, because otherwise multiple values will point to this
+// vgmsysFrameBuffer (D_0033D760 also points to this)
+// vgmsysFrameBuffer ()
+vspenvDemo                              = 0x3485B0; // D_003485B0 // Need to add size
