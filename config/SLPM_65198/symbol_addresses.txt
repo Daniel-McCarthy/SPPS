@@ -474,6 +474,7 @@ _InitSys                                = 0x1167C0; // type:func // func_001167C
 Exit                                    = 0x116A30; // type:func // func_00116A30
 // more to add from func_00116A90 and after
 
+atan2f                                  = 0x11E3D0; // func_0011E3D0
 
 // SDK/Lib Text ASM
 
@@ -485,6 +486,56 @@ dpcmp                                   = 0x127418; // type:func // func_0012741
 // more to add from func_00127468 and after
 
 // more to add above from func_001C05E0 and before
+
+ktactInitBalance                        = 0x18D4E0; // func_0018D4E0
+iktactGetLenXZ                          = 0x18F310; // func_0018F310
+iktactGetLen                            = 0x1906C0; // func_001906C0
+ktactGetNoheightReflection              = 0x19CB20; // func_0019CB20
+ktactMove                               = 0x199DC0; // func_00199DC0
+ktactSetNextPos                         = 0x19C2D0; // func_0019C2D0
+ktactMoveAdjPos_halfpipe                = 0x19C790; // func_0019C790
+ktactMoveCrash                          = 0x19C950; // func_0019C950
+ktactGetNoheightReflection              = 0x19CB20; // func_0019CB20
+ktactCheckWall                          = 0x19CC80; // func_0019CC80
+ktactGetWallPlane                       = 0x19CFA0; // func_0019CFA0
+ktactCheckShadow                        = 0x19D100; // func_0019D100
+ktactProcHitBody                        = 0x19D240; // func_0019D240
+ktactProcVerticalPlane                  = 0x19D510; // func_0019D510
+ktactCheckManual                        = 0x19D770; // func_0019D770
+ktactMergeHitList                       = 0x19DB00; // func_0019DB00
+ktactMergeHitList_0                     = 0x19DD10; // func_0019DD10
+ktactMergeHitList_1                     = 0x19DFC0; // func_0019DFC0
+ktactForcedBailout                      = 0x19E210; // func_0019E210
+ktactUpdateState                        = 0x19E7A0; // func_0019E7A0
+ktactUpdateStateByMot                   = 0x19FFE0; // func_0019FFE0
+ktactUpdateFlipPole                     = 0x1A12C0; // func_001A12C0
+ktactGetCmnMaxSpeed                     = 0x1A1440;
+ktactSetCrashPow_normal                 = 0x1A15D0; // func_001A15D0
+ktactSetCrashPow_touch                  = 0x1A2300; // func_001A2300
+ktactSetSlant_speed                     = 0x1A2E30; // func_001A2E30
+ktactSetSlant_char_rot                  = 0x1A2F60; // func_001A2F60
+ktactSetNormalPole                      = 0x1A3070; // func_001A3070
+ktactGetWaistPos                        = 0x1A3660; // func_001A3660
+ktactSetHorizonParam                    = 0x1A3760; // func_001A3760
+ktactUpdateBalanceAdj                   = 0x1A3D10; // func_001A3D10
+ktactSetVerticalityParam                = 0x1A3A70; // func_001A3A70
+ktactSideSlantToD2C                     = 0x1A4270; // func_001A4270
+ktactRail2SbcorePlane                   = 0x1A56E0; // func_001A56E0
+ktactGetHit_rail_hp                     = 0x1A5CC0; // func_001A5CC0
+ktactGetHit_hp                          = 0x1A6920; // func_001A6920
+ktactGetHit_out                         = 0x1A6DD0; // func_001A6DD0
+ktactGetCharHitPlane                    = 0x1AB050; // func_001AB050
+ktactReserveTumble2                     = 0x1ABCE0; // func_001ABCE0
+ktactProcReserveTumble                  = 0x1ABCF0; // func_001ABCF0
+ktactGetLimitAng_down                   = 0x1AC3B0; // func_001AC3B0
+sbcoreInitPLANE                         = 0x1B4D00; // func_001B4D00
+sbcoreSetNextPosOnVertexList            = 0x1B4FC0; // func_001B4FC0
+sbcoreSetNextPosOnVertexListHP          = 0x1B5640; // func_001B5640
+sbcoreGetRotMatrix                      = 0x1B7ED0; // func_001B7ED0
+sbcoreGetShadowVector                   = 0x1B8060; // func_001B8060
+sbcoreGetInnerAngle90                   = 0x1B8A00; // func_001B8A00
+sbcoreGetInnerAngle180                  = 0x1B8A80; // func_001B8A80
+sbcoreMove                              = 0x1B5E10; // func_001B5E10
 
 // Main.c ASM Text
 main                                    = 0x1C0610; // type:func // func_001C0610
@@ -508,8 +559,16 @@ gmsysSetScrDivLine                      = 0x1C17A0; // func_001C17A0
 
 nmfontSetScrRate                        = 0x1C1850; // func_001C1850
 
+// func_001C1910 // ?
+nmfontSetFCol                           = 0x1C1940; // func_001C1940
+// func_001C1A10 // ?
+nmfontSetType                           = 0x1C1A40 // func_001C1A40
+// func_001C1A60 // ?
+// func_001C1B00 // ?
 
 ktactGetHit_base                        = 0x1C1D90; // func_001C1D90
+
+tmcrsCheckObjectCollision               = 0x28BE10; // func_0028BE10
 
 ulgifDmaSend                            = 0x29CC10; // func_0029CC10
 ulgifDmaWait                            = 0x29CC50; // func_0029CC50
@@ -536,13 +595,31 @@ init_vif_regs.126                       = 0x2BBF90; // D_002BBF90
 _showCount                              = 0x2BC018; // D_002BC018
 _strmap                                 = 0x2BC058; // D_002BC058
 
+vktactPlantTumbleFrame                  = 0x2D4360; // D_002D4360
+vktactMatSideSlip                       = 0x2D4430; // D_002D4430
+vktactTTCrashSpDown_touch               = 0x2D44B0; // D_FLT_002D44B0
+
 vnmfontScrSize                          = 0x2D6C20; // D_FLT_002D6C20
+vnmfontOption                           = 0x2D6C40; // D_002D6C40
 // vnmfontScrRate ?
+
+vnmfontOption                           = 0x2D6C4E; // D_002D6C8E
+
+vktactMatTumbleAng_touch                = 0x2F57E4; // D_FLT_002F57E4
 
 vsppMediaType                           = 0x2F584C; // size:0x4 // D_002F584C
 vgmsysGifPkt                            = 0x2F5B1C; // D_002F5B1C
 vsppScrWidth                            = 0x2F5844; // D_002F5844
 vsppScrHeight                           = 0x2F5848; // D_002F5848
+
+vktactNumObj_head                       = 0x2F5A90; // D_002F5A90
+vktactNumHit_head                       = 0x2F5A94; // D_002F5A94
+vktactNumObj_body                       = 0x2F5A98; // D_002F5A98
+vktactNumHit_body                       = 0x2F5A9C; // D_002F5A9C
+vktactIsSliding                         = 0x2F5AB0; // D_002F5AB0
+vktactNumObj                            = 0x2F5AB4; // D_002F5AB4
+vktactNumVec                            = 0x2F5AB8; // D_002F5AB8
+vktactNumHit                            = 0x2F5ABC; // D_002F5ABC
 vgmsysScrChangeCol                      = 0x2F5AD8; // D_002F5AD8
 vgmsysDivide30Frame                     = 0x2F5ADC; // D_002F5ADC
 vgmsysDivideActiveWid                   = 0x2F5AE0; // D_002F5AE0
@@ -556,8 +633,22 @@ _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSet
 _args                                   = 0x2F6180; // D_002F6180
 _gp                                     = 0x2FD6F0; // D_002FD6F0
 
+vspModeData                             = 0x347EA0; // D_00347EA0
+// D_00347EC8 == (vspModeData + 0x28)
+
+vktactColObj_head                       = 0x33BAA0; // D_0033BAA0
+vktactColHit_head                       = 0x33C0A0; // D_0033C0A0
+vktactColObj_body                       = 0x33C6A0; // D_0033C6A0
+vktactColHit_body                       = 0x33CCA0; // D_0033CCA0
+
+vktactColSliding                        = 0x33D2A0; // D_0033D2A0 // TODO: add size
+// D_0033D2E4 == vktactColSliding + 0x4
+
+vspRider                                = 0x33D6C0; // D_0033D6C0
+
 vgmsysInitFunc                          = 0x33D6E0; // D_0033D6E0
 vgmsysFrameBuffer                       = 0x33DEE6; // D_0033DEE6 // figure out actual start and give size, because otherwise multiple values will point to this
 // vgmsysFrameBuffer (D_0033D760 also points to this)
 // vgmsysFrameBuffer ()
 vspenvDemo                              = 0x3485B0; // D_003485B0 // Need to add size
+vspenvEnv                               = 0x3486B0; // D_003486B0
