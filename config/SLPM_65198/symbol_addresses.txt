@@ -475,6 +475,7 @@ Exit                                    = 0x116A30; // type:func // func_00116A3
 // more to add from func_00116A90 and after
 
 sinf                                    = 0x11E040; // func_0011E040
+acosf                                   = 0x11E2D0; // func_0011E2D0
 atan2f                                  = 0x11E3D0; // func_0011E3D0
 
 // SDK/Lib Text ASM
@@ -483,21 +484,56 @@ printf                                  = 0x122908; // type:func // func_0012290
 // more to add from func_00122958 and after
 __floatdisf                             = 0x125768; // type:func // func_00125768
 // more to add from func_00125848 and after
+__muldi3                               = 0x125EB0; // func_00125EB0
+__udivdi3                               = 0x125F10; // func_00125F10
 dpcmp                                   = 0x127418; // type:func // func_00127418
 // more to add from func_00127468 and after
 
 // more to add above from func_001C05E0 and before
 
+akevResetEffect2                        = 0x12F620; // func_0012F620
+
+// ktact.c text start
+ktactInitCtrl                           = 0x18BA90; // func_0018BA90
+iktactMakeParam_cmn_max_speed           = 0x18C770; // func_0018C770
+iktactMakeParam_max_speed               = 0x18C850; // func_0018C850
+ktactGetChrParamX10                     = 0x18C930; // func_0018C930
+ktactGetBrdParamX10                     = 0x18CA00; // func_0018CA00
+ktactInitParam2                         = 0x18CA90; // func_0018CA90
+ktactSetParam                           = 0x18CC90; // func_0018CC90
+ktactInitPos                            = 0x18D270; // func_0018D270
 ktactInitRequest                        = 0x18D370; // func_0018D370
+ktactInitInput                          = 0x18D440; // func_0018D440
 ktactInitBalance                        = 0x18D4E0; // func_0018D4E0
 ktactResetBalance                       = 0x18D530; // func_0018D530
+ktactInitTLinkAll                       = 0x18D830; // func_0018D830
+ktactInitTLink                          = 0x18D8B0; // func_0018D8B0
+ktactResetTrickPointOneSet              = 0x18D940; // func_0018D940
+ktactCommandInit                        = 0x18D9F0; // func_0018D9F0
+ktactCommandReset                       = 0x18DB00; // func_0018DB00
 ktactCommandResetAll                    = 0x18DB50; // func_0018DB50
 ktactCommandResetAllForGrind            = 0x18DCD0; // func_0018DCD0
 ktactCommandResetAllForRevert           = 0x18DE70; // func_0018DE70
 ktactCommandResetAllForJump             = 0x18DFA0; // func_0018DFA0
-ktactCommandResetAllForTrick            = 0x18E1B0; // func_0018E1B0
+ktactCommandResetAllForTrick            = 0x18E1B0; // func_0018E1B0    
+ktactCommandSet                         = 0x18E440; // func_0018E440
+ktactResetNumPlayTrickInLink            = 0x18EA40; // func_0018EA40
+ktactRecoverNumPlayTrick                = 0x18EAC0; // func_0018EAC0
+ktactSetCaminfo                         = 0x18EB80; // func_0018EB80
+ktactSetSeinfo                          = 0x18F010; // func_0018F010
+ktactGetRotVector                       = 0x18F1C0; // func_0018F1C0
 iktactGetLenXZ                          = 0x18F310; // func_0018F310
+isbcoreSqrtf                            = 0x18F360; // func_0018F360
+ktactPlaySE                             = 0x18F380; // func_0018F380
+ktactCtrl                               = 0x18F5E0; // func_0018F5E0
 iktactGetLen                            = 0x1906C0; // func_001906C0
+ktactSetPadCnt                          = 0x190700; // func_00190700
+ktactCheckCommand                       = 0x190AB0; // func_00190AB0
+ktactCheckCmd                           = 0x191660; // func_00191660
+ktactCheckCmd_1                         = 0x191C40; // func_00191C40
+ktactCheckCmd_2                         = 0x191DE0; // func_00191DE0
+ktactCheckCmd_3                         = 0x192040; // func_00192040
+ktactSetRequest                         = 0x1921B0; // func_001921B0
 ktactSetSlidingState                    = 0x1935D0; // func_001935D0
 ktactSetSS_grind                        = 0x1943C0; // func_001943C0
 ktactSetInput0                          = 0x194660; // func_00194660
@@ -516,16 +552,14 @@ ktactAdjSpeed_grind                     = 0x197DB0; // func_00197DB0
 ktactAdjSpeed_halfpipe                  = 0x1983A0; // func_001983A0
 ktactAdjSpeed_bonk                      = 0x198420; // func_00198420
 ktactAdjSpeedG                          = 0x1984D0; // func_001984D0
-ktactAdjSpeedLimit                      = 0x1998A0; // func_001998A0
+ktactGetAdjSpeedOnAir                   = 0x1989F0; // func_001989F0
 ktactAdjSpeedJump                       = 0x198B40; // func_00198B40
 iktactMakeParam_jumppower               = 0x198FD0; // func_00198FD0
-
-ktactGetAdjSpeedOnAir                   = 0x1989F0; // func_001989F0
 ktactAdjSpeedAccel                      = 0x1990B0; // func_001990B0
 ktactAdjSpeedBoard                      = 0x199780; // func_00199780
+ktactAdjSpeedLimit                      = 0x1998A0; // func_001998A0
 ktactAdjSpeedEtc                        = 0x199D40; // func_00199D40
 ktactMove                               = 0x199DC0; // func_00199DC0
-ktactGetNoheightReflection              = 0x19CB20; // func_0019CB20
 ktactSetNextPos                         = 0x19C2D0; // func_0019C2D0
 ktactMoveAdjPos_halfpipe                = 0x19C790; // func_0019C790
 ktactMoveCrash                          = 0x19C950; // func_0019C950
@@ -542,6 +576,11 @@ ktactMergeHitList_1                     = 0x19DFC0; // func_0019DFC0
 ktactForcedBailout                      = 0x19E210; // func_0019E210
 ktactUpdateState                        = 0x19E7A0; // func_0019E7A0
 ktactUpdateStateByMot                   = 0x19FFE0; // func_0019FFE0
+ktactUpdateTrickLink                    = 0x1A0940; // func_001A0940
+ktactUpdateGap                          = 0x1A0E50; // func_001A0E50
+ktactUpdateSpecialTrick                 = 0x1A0ED0; // func_001A0ED0
+ktactUpdateBoost                        = 0x1A1000; // func_001A1000
+ktactUpdateParam                        = 0x1A1180; // func_001A1180
 ktactUpdateFlipPole                     = 0x1A12C0; // func_001A12C0
 ktactGetCmnMaxSpeed                     = 0x1A1440;
 ktactSetCrashPow_normal                 = 0x1A15D0; // func_001A15D0
@@ -549,23 +588,117 @@ ktactSetCrashPow_touch                  = 0x1A2300; // func_001A2300
 ktactSetSlant_speed                     = 0x1A2E30; // func_001A2E30
 ktactSetSlant_char_rot                  = 0x1A2F60; // func_001A2F60
 ktactSetNormalPole                      = 0x1A3070; // func_001A3070
+ktactGetDispRotMatrix                   = 0x1A3350; // func_001A3350
 ktactGetWaistPos                        = 0x1A3660; // func_001A3660
 ktactSetHorizonParam                    = 0x1A3760; // func_001A3760
 ktactUpdateBalanceAdj                   = 0x1A3D10; // func_001A3D10
 ktactSetVerticalityParam                = 0x1A3A70; // func_001A3A70
 ktactEdgeSpeed                          = 0x1A3EE0; // func_001A3EE0
+ktactSpeedAdj                           = 0x1A3F30; // func_001A3F30
 ktactSideSlantToD2C                     = 0x1A4270; // func_001A4270
+ktactGetHit_base                        = 0x1A43B0; // func_001A43B0
+ktactGetHit_hit                         = 0x1A4680; // func_001A4680
+ktactGetHit_base2                       = 0x1A4E00; // func_001A4E00
+ktactTmcrsCol2KtactPos                  = 0x1A5360; // func_001A5360
+ktactSbcorePlane2TmcrsCol               = 0x1A5610; // func_001A5610
 ktactRail2SbcorePlane                   = 0x1A56E0; // func_001A56E0
 ktactGetHit_rail_hp                     = 0x1A5CC0; // func_001A5CC0
 ktactGetHit_hp                          = 0x1A6920; // func_001A6920
 ktactGetHit_out                         = 0x1A6DD0; // func_001A6DD0
+ktactGetHit_bonk                        = 0x1A6F20; // func_001A6F20
+ktactGetBlockArea                       = 0x1A7170; // func_001A7170
+ktactSetHeadHipMatrix                   = 0x1A77F0; // func_001A77F0
+ktactSetHeadHipOffset                   = 0x1A7880; // func_001A7880
+sbcoreGetHit                            = 0x1A7A50; // func_001A7A50
+sbcoreGetHit2                           = 0x1A81B0; // func_001A81B0
+ktactUpdateTrickPoint                   = 0x1A87B0; // func_001A87B0
+ktactGetTrickPointOneSet                = 0x1A95C0; // func_001A95C0
+ktactGetTrickLinkRate                   = 0x1A96B0; // func_001A96B0
+ktactAddSpecialTrickCharge              = 0x1A9910; // func_001A9910
+ktactAddBoostCharge                     = 0x1A9B00; // func_001A9B00
+ktactSetGap                             = 0x1A9C40; // func_001A9C40
+ktactSetRecover                         = 0x1A9CA0; // func_001A9CA0
+ktactSetGrindToHp                       = 0x1A9DC0; // func_001A9DC0
+ktactSetAccelOnGrind                    = 0x1A9E30; // func_001A9E30
+ktactSetAccelWay                        = 0x1A9E80; // func_001A9E80
+ktactCtrlIntro                          = 0x1A9F00; // func_001A9F00
+ktactCtrlReady                          = 0x1AA0A0; // func_001AA0A0
+ktactCtrlFinish                         = 0x1AA1C0; // func_001AA1C0
+ktactCtrlHorseReady                     = 0x1AABC0; // func_001AABC0
+ktactGetIntroMotion                     = 0x1AAC60; // func_001AAC60
+ktactGetEndMotion                       = 0x1AAD30; // func_001AAD30
 ktactGetCharHitPlane                    = 0x1AB050; // func_001AB050
 ktactReserveTumble2                     = 0x1ABCE0; // func_001ABCE0
 ktactProcReserveTumble                  = 0x1ABCF0; // func_001ABCF0
+ktactGetChangedTrickNo                  = 0x1AC1E0; // func_001AC1E0
 ktactGetLimitAng_down                   = 0x1AC3B0; // func_001AC3B0
+David_ktactGetHit_hit2                  = 0x1AC4C0; // func_001AC4C0
+David_ktactGetHit_obs2                  = 0x1ACA60; // func_001ACA60
+David_ktactGetHit_obs                   = 0x1ACD00; // func_001ACD00
+// End of ktact.c
+// ktmnufnc.c start
+ktmenuInit                              = 0x1AD050; // func_001AD050
+ktmenuAdd                               = 0x1AD0F0; // func_001AD0F0
+ktmfSetMenu                             = 0x1AD210; // func_001AD210
+ktmfMenuFunc_continue                   = 0x1AD3E0; // func_001AD3E0
+ktmfMenuFunc_restart                    = 0x1AD400; // func_001AD400
+ktmfMenuFunc_retire                     = 0x1AD430; // func_001AD430
+ktmfMenuFunc_exit                       = 0x1AD450; // func_001AD450
+ktmfMenuFunc_finish                     = 0x1AD470; // func_001AD470
+ktmfdbgMenuFunc_2d                      = 0x1AD500; // func_001AD500
+// ktmnufnc.c end
+// ktmot.c start
+ktmotInit                               = 0x1AD540; // func_001AD540
+ktmotInitInfo                           = 0x1AD6B0; // func_001AD6B0
+ktmotInitFlip                           = 0x1AD730; // func_001AD730
+ktmotCtrl                               = 0x1AD7C0; // func_001AD7C0
+ktmotCtrlAct                            = 0x1AD910; // func_001AD910
+ktmotSetNewAnim                         = 0x1B12C0; // func_001B12C0
+ktmotSetNewAnim2                        = 0x1B1430; // func_001B1430
+ktmotEndFreeMotion                      = 0x1B14F0; // func_001B14F0
+ktmotCtrlNormal                         = 0x1B1520; // func_001B1520
+ktmotUpdateCount                        = 0x1B1B60; // func_001B1B60
+ktmotCtrlSecondly                       = 0x1B1CE0; // func_001B1CE0
+ktmotCtrlIK                             = 0x1B1EC0; // func_001B1EC0
+ktmotSetMatrix                          = 0x1B2A30; // func_001B2A30
+ktmotGetNumFrame                        = 0x1B2BF0; // func_001B2BF0
+ktmotSetFlip                            = 0x1B2C70; // func_001B2C70
+ktmotUpdateFlip                         = 0x1B2D70; // func_001B2D70
+// ktmot end
+// sprider start
+spRiderInit                             = 0x1B3480; // func_001B3480
+spRiderEnd                              = 0x1B3530; // func_001B3530
+spRiderMain                             = 0x1B35A0; // func_001B35A0
+spRiderWriteData                        = 0x1B3780; // func_001B3780
+spRiderUpdateDetail                     = 0x1B39B0; // func_001B39B0
+spRiderReset                            = 0x1B3B90; // func_001B3B90
+spInitRider                             = 0x1B3C30; // func_001B3C30
+spInitRiderDisp                         = 0x1B3E80; // func_001B3E80
+spInitRiderCtrl                         = 0x1B4460; // func_001B4460
+spRiderSetPos                           = 0x1B47A0; // func_001B47A0
+spRiderSetPos2                          = 0x1B4810; // func_001B4810
+// sprider end
+// sbcore start
+sbcoreInit                              = 0x1B4A40; // func_001B4A40
 sbcoreInitPLANE                         = 0x1B4D00; // func_001B4D00
+sbcoreInitPLANESET                      = 0x1B4DB0; // func_001B4DB0
+sbcoreSetNextPos                        = 0x1B4F20; // func_001B4F20
+isbcoreGetNextPos                       = 0x1B4F60; // func_001B4F60
 sbcoreSetNextPosOnVertexList            = 0x1B4FC0; // func_001B4FC0
+isbcoreGetLen                           = 0x1B5600; // func_001B5600
 sbcoreSetNextPosOnVertexListHP          = 0x1B5640; // func_001B5640
+isbcoreGetLenXZ                         = 0x1B5DC0; // func_001B5DC0
+sbcoreMove                              = 0x1B5E10; // func_001B5E10
+sbcoreCheckSliding                      = 0x1B6150; // func_001B6150
+sbcoreCheckGrind                        = 0x1B70D0; // func_001B70D0
+sbcoreAdjTouch                          = 0x1B7390; // func_001B7390
+sbcoreGetCheckTouchArea                 = 0x1B7510; // func_001B7510
+sbcoreGetCheckHeightArea                = 0x1B7620; // func_001B7620
+sbcoreGetCheckHeightArea_onair          = 0x1B76B0; // func_001B76B0
+sbcoreUpdateReliefGap                   = 0x1B78B0; // func_001B78B0
+sbcoreAdjOnSliding                      = 0x1B7C00; // func_001B7C00
+sbcoreUpdateOnSliding                   = 0x1B7CE0; // func_001B7CE0
+sbcoreUpdateOnAir                       = 0x1B7E20; // func_001B7E20
 sbcoreGetRotMatrix                      = 0x1B7ED0; // func_001B7ED0
 sbcoreGetShadowVector                   = 0x1B8060; // func_001B8060
 sbcoreGetShadowRotVector                = 0x1B80F0; // func_001B80F0
@@ -573,7 +706,17 @@ sbcoreGetShadowVector2                  = 0x1B8320; // func_001B8320
 sbcoreGetShadowVector3                  = 0x1B8440; // func_001B8440
 sbcoreGetInnerAngle90                   = 0x1B8A00; // func_001B8A00
 sbcoreGetInnerAngle180                  = 0x1B8A80; // func_001B8A80
-sbcoreMove                              = 0x1B5E10; // func_001B5E10
+// sbcore end
+// maanim start
+maQuatSlerp                             = 0x1B8AF0; // func_001B8AF0
+bezierVector                            = 0x1B8CA0; // func_001B8CA0
+euler2Quat                              = 0x1B8D80; // func_001B8D80
+
+maVuMdlIKCtrl                           = 0x1BD5C0; // func_001BD5C0
+
+maSecMotionMode                         = 0x1C0200; // func_001C0200
+
+maModelChangeSet                        = 0x1C0230; // func_001C0230
 
 // Main.c ASM Text
 main                                    = 0x1C0610; // type:func // func_001C0610
@@ -606,7 +749,44 @@ nmfontSetType                           = 0x1C1A40 // func_001C1A40
 
 ktactGetHit_base                        = 0x1C1D90; // func_001C1D90
 
+nmactPlay                               = 0x1C8AF0; // func_001C8AF0
+
+nmactStop                               = 0x1C9200; // func_001C9200
+
+nmactPlaySlip                           = 0x1C9D30; // func_001C9D30
+
+nmactPlayLand                           = 0x1CA140; // func_001CA140
+nmactPlayVoice                          = 0x1CA3D0; // func_001CA3D0
+nmactPlayBoost                          = 0x1CA510; // func_001CA510
+nmactDualSwitch                         = 0x1CA650; // func_001CA650
+
+nmdispInputTrick                        = 0x2004A0; // func_002004A0
+nmdispEndTrick                          = 0x200CD0; // func_00200CD0
+
+nmtrickSetLand                          = 0x20F1A0; // func_0020F1A0
+
+nmtrickSetFakie                         = 0x20F7F0; // func_0020F7F0
+
+nmtrickSetJump                          = 0x20F830; // func_0020F830
+
+nmtrickSetTrick                         = 0x20F9E0; // func_0020F9E0
+
+nmtrickSetSpin                          = 0x210C90; // func_00210C90
+
+spSetWndFade                            = 0x269C40; // func_00269C40
+
+sploadGetCharacter                      = 0x277EC0; // func_00277EC0
+
+tmcrsGetBonkCollision                   = 0x285F20; // func_00285F20
+
 tmcrsCheckObjectCollision               = 0x28BE10; // func_0028BE10
+
+tmcrsGetObjectBonkCollision             = 0x28D2F0; // func_0028D2F0
+
+tmcrsGetArea                            = 0x292E10; // func_00292E10
+
+David_PutRaysInVU0                      = 0x294230; // func_00294230
+David_GetBaseCollision2                 = 0x2942B0; // func_002942B0
 
 ulgifDmaSend                            = 0x29CC10; // func_0029CC10
 ulgifDmaWait                            = 0x29CC50; // func_0029CC50
@@ -615,8 +795,20 @@ uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD1
 
 ulgraphSetDefFrameBuff                  = 0x29D230; // func_0029D230
 
+ul3dScaleMatrixXYZ                      = 0x2A3AB0; // func_002A3AB0
+
+ulpadSetRepFrame                        = 0x2A53E0; // func_002A53E0
+
 ulstdSprintf                            = 0x2A8F80; // type:func // func_002A8F80
 
+
+ulvumdlGetMatrix                        = 0x2B3260; // func_002B3260
+
+ulvumdlInitVerShadeWind                 = 0x2B3310; // func_002B3310
+
+ulvumdlCalcVerShadeWind                 = 0x2B3410; // func_002B3410
+
+ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
 
 // Main.c sdata
 gp.6                                    = 0x2BBE90; // D_002BBE90
@@ -633,12 +825,43 @@ init_vif_regs.126                       = 0x2BBF90; // D_002BBF90
 _showCount                              = 0x2BC018; // D_002BC018
 _strmap                                 = 0x2BC058; // D_002BC058
 
+vktactMinParam                          = 0x2D42D0; // size:0x30 // TODO: double check size // D_002D42F4
+vktactCmnParam                          = 0x2D4300; // size:0x30 // TODO: double check size // D_002D4300
+vktactMaxParam                          = 0x2D4330; // size:0x30 // TODO: double check size // D_002D4354
+
 vktactPlantTumbleFrame                  = 0x2D4360; // D_002D4360
 vktactMatAccelRate                      = 0x2D43D0; // D_FLT_002D43D0
 vktactMatSideSlip                       = 0x2D4430; // D_002D4430
 vktactTTCrashSpDown_touch               = 0x2D44B0; // D_FLT_002D44B0
 vktactMatMaxSpRate                      = 0x2D43A0; // D_FLT_002D43A0
+
+vktactMatEdgeAdj                        = 0x2D4400; // D_FLT_002D4400
+
 vktactTrkToMot                          = 0x2D4530; // D_002D4530
+
+vktactCmdToGrab                         = 0x2D4610; // D_002D4610
+
+vktactCmdToFlip                         = 0x2D4650; // D_002D4650
+
+vktactCmdToBonk                         = 0x2D46B0; // D_002D46B0
+
+vktactCmdToGrind                        = 0x2D4690; // D_002D4690
+
+vktactCmdToPlant                        = 0x2D46D0; // D_002D46D0
+
+vktactCmdToManual                       = 0x2D46F0; // D_002D46F0
+
+vktmfMenuText                           = 0x2D4A40; // D_002D4A40
+
+vktmfMenuFunc                           = 0x2D4A60; // D_002D4A60
+
+vktmfMenuMinMax                         = 0x2D4A90; // D_002D4A90
+
+vktmfdbgMenuMinMax2                     = 0x2D4AB0; // D_002D4AB0
+
+vktmotFlipKey                           = 0x2D6880; // D_002D6880
+
+vktmotMotSpeed                          = 0x2D6940; // D_002D6940
 
 vnmfontScrSize                          = 0x2D6C20; // D_FLT_002D6C20
 vnmfontOption                           = 0x2D6C40; // D_002D6C40
@@ -646,10 +869,18 @@ vnmfontOption                           = 0x2D6C40; // D_002D6C40
 
 vnmfontOption                           = 0x2D6C4E; // D_002D6C8E
 
+vsptblGapPoint                          = 0x2DF7F0; // D_002DF7F0
+
+vsptblTrickPoint                        = 0x2E0470; // D_002E0470
+
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
 vktactParamG_jump_down                  = 0x2F577C; // D_002F577C
 vktactParamG_air                        = 0x2F5780; // D_002F5780
 vktactParamG_hpair                      = 0x2F5784; // D_002F5784
+vktactParamHangRate                     = 0x2F5788; // D_002F5788
+vktactParamSpt_time                     = 0x2F578C; // D_002F578C
+vktactParamSpt_charge_time              = 0x2F5790; // D_002F5790
+vktactParamSpt_one_stock_tp             = 0x2F5794; // D_002F5794
 vktactParamBal_lean_gravity_min         = 0x2F5798; // D_002F5798
 vktactParamBal_lean_gravity_max         = 0x2F579C; // D_002F579C
 vktactParamBal_lean_limit               = 0x2F57A0; // D_002F57A0
@@ -658,19 +889,54 @@ vktactParamBal_lean_acc_inp             = 0x2F57A8; // D_002F57A8
 vktactParamBal_lean_acc_fr_base         = 0x2F57AC; // D_002F57AC
 vktactParamBal_lean_acc_fr_rate         = 0x2F57B0; // D_002F57B0
 vktactParamBal_start_input              = 0x2F57B4; // D_002F57B4
+vktactParamPts_hold_pts_rate_grab       = 0x2F57B8; // D_002F57B8
+vktactParamPts_hold_pts_rate_plant      = 0x2F57BC; // D_002F57BC
+vktactParamPts_hold_pts_rate_grind      = 0x2F57C0; // D_002F57C0
+vktactParamPts_switch_bonus             = 0x2F57C4; // D_002F57C4
+vktactParamPts_perfect_bonus            = 0x2F57C8; // D_002F57C8
+vktactParamPts_sloppy_bonus             = 0x2F57CC; // D_002F57CC
+vktactParamPts_sicktime_bonus           = 0x2F57D0; // D_002F57D0
+vktactParamPts_sicktime_start           = 0x2F57D4; // D_002F57D4
 vktactParamHpOver_accel                 = 0x2F57D8; // D_002F57D8
 vktactParamHpOver_jump_rate             = 0x2F57DC; // D_002F57DC
 // vktactMatTumbleAng_touch == D_FLT_002F57E0 also?
 vktactMatTumbleAng_touch                = 0x2F57E4; // D_FLT_002F57E4
+vktactCmdToRevert                       = 0x2F57E8; // D_002F57E8
+
+vktactCmdToJump                         = 0x2F57F0; // D_002F57F0
+
+vktmfdbgMenuText2                       = 0x2F5820; // D_002F5820
+
+vktmfdbgMenuFunc2                       = 0x2F5828; // D_002F5828
+
+vktmfdbgMenuUseNum2                     = 0x2F5830; // D_002F5830
+
+vktmfdbgMenuNumText_2d                  = 0x2F5838; // D_002F5838
+
+vspDisp2D                               = 0x2F58E0; // D_002F58E0
 
 vsppMediaType                           = 0x2F584C; // size:0x4 // D_002F584C
 vgmsysGifPkt                            = 0x2F5B1C; // D_002F5B1C
 vsppScrWidth                            = 0x2F5844; // D_002F5844
 vsppScrHeight                           = 0x2F5848; // D_002F5848
 
+vgmsysPad                               = 0x2F59D8; // size:0x8 // D_002F59D8
+
+vktactParamMaxLanding                   = 0x2F5A18; // D_FLT_002F5A18
+vktactParamMinLanding                   = 0x2F5A1C; // D_FLT_002F5A1C
+vktactParamCmnLanding                   = 0x2F5A20; // D_FLT_002F5A20
+vktactParamMaxGrind                     = 0x2F5A24; // D_FLT_002F5A24
+vktactParamCmnGrind                     = 0x2F5A28; // D_FLT_002F5A28
+vktactParamMaxSpin                      = 0x2F5A2C; // D_FLT_002F5A2C
 vktactParamMaxSpin                      = 0x2F5A30; // D_FLT_002F5A30
 vktactParamMinSpin                      = 0x2F5A34; // D_FLT_002F5A34
 vktactParamCmnSpin                      = 0x2F5A38; // D_FLT_002F5A38
+vktactParamMaxCmnSpeed                  = 0x2F5A3C; // D_FLT_002F5A3C
+vktactParamMinCmnSpeed                  = 0x2F5A40; // D_FLT_002F5A40
+vktactParamCmnCmnSpeed                  = 0x2F5A44; // D_FLT_002F5A44
+vktactParamMaxMaxSpeed                  = 0x2F5A48; // D_FLT_002F5A48
+vktactParamMinMaxSpeed                  = 0x2F5A4C; // D_FLT_002F5A4C
+vktactParamCmnMaxSpeed                  = 0x2F5A50; // D_FLT_002F5A50
 vktactParamMaxQuickTurn                 = 0x2F5A54; // D_FLT_002F5A54
 vktactParamMinQuickTurn                 = 0x2F5A58; // D_FLT_002F5A58
 vktactParamCmnQuickTurn                 = 0x2F5A5C; // D_FLT_002F5A5C
@@ -686,6 +952,14 @@ vktactParamCmnJumpPower                 = 0x2F5A80; // D_FLT_002F5A80
 vktactParamMaxRetRate                   = 0x2F5A84; // D_002F5A84
 vktactParamMinRetRate                   = 0x2F5A88; // D_002F5A88
 vktactParamCmnRetRate                   = 0x2F5A8C; // D_002F5A8C
+// ktact end
+// ktmnufnc start
+vktmenuResumable                        = 0x2F5AC0; // D_002F5AC0
+vktmenuDispCount                        = 0x2F5AC4; // D_002F5AC4
+vktmenuCurrentItem                      = 0x2F5AC8; // D_002F5AC8
+
+vktmenuNumItem                          = 0x2F5ACC; // D_002F5ACC
+
 vktactNumObj_head                       = 0x2F5A90; // D_002F5A90
 vktactNumHit_head                       = 0x2F5A94; // D_002F5A94
 vktactNumObj_body                       = 0x2F5A98; // D_002F5A98
@@ -706,14 +980,22 @@ vgmsysDivideLine                        = 0x2F5AE8; // D_002F5AE8
 vgmsysWndBlurPow                        = 0x2F5AF0; // D_002F5AF0
 vgmsysBlurPow                           = 0x2F5AF8; // D_002F5AF8
 
+vspInitHorse                            = 0x2F6044; // D_002F6044
+vspEndRunReplay                         = 0x2F6048; // D_002F6048
+vspEndRun                               = 0x2F604C; // D_002F604C
+
+vspenvOption                            = 0x2F6060; // D_002F6060
 vspenvGame                              = 0x2F6064; // D_002F6064
+vspReplay                               = 0x2F6010; // D_002F6010
+
 #_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
 _args                                   = 0x2F6180; // D_002F6180
 _gp                                     = 0x2FD6F0; // D_002FD6F0
 
-vspModeData                             = 0x347EA0; // D_00347EA0
-// D_00347EC8 == (vspModeData + 0x28)
+vspDispEnv                              = 0x346DF0; // D_00346DF0
+
+col_hit$4547                            = 0x335AA0; // D_00335AA0
 
 vktactColObj_head                       = 0x33BAA0; // D_0033BAA0
 vktactColHit_head                       = 0x33C0A0; // D_0033C0A0
@@ -723,11 +1005,21 @@ vktactColHit_body                       = 0x33CCA0; // D_0033CCA0
 vktactColSliding                        = 0x33D2A0; // D_0033D2A0 // TODO: add size
 // D_0033D2E4 == vktactColSliding + 0x4
 
+vktmenuList                             = 0x33D300; // D_0033D300
+
 vspRider                                = 0x33D6C0; // D_0033D6C0
 
 vgmsysInitFunc                          = 0x33D6E0; // D_0033D6E0
 vgmsysFrameBuffer                       = 0x33DEE6; // D_0033DEE6 // figure out actual start and give size, because otherwise multiple values will point to this
 // vgmsysFrameBuffer (D_0033D760 also points to this)
 // vgmsysFrameBuffer ()
+vspDispEnvChar                          = 0x346D80; // D_00346D80
 vspenvDemo                              = 0x3485B0; // D_003485B0 // Need to add size
 vspenvEnv                               = 0x3486B0; // D_003486B0
+vspDispResult                           = 0x345D30; // D_00345D30
+
+vspVsData                               = 0x346E10; // D_00346E10
+
+vspModeData                             = 0x347EA0; // size:0x5C // D_00347EA0 // TODO: verify this size
+
+vspSystemMatrix                         = 0x347F30; // D_FLT_00347F30
