@@ -490,10 +490,13 @@ memcpy                                  = 0x121620; // func_00121620
 
 printf                                  = 0x122908; // type:func // func_00122908
 // more to add from func_00122958 and after
+rand                                    = 0x122968; // func_00122968
+strlen                                  = 0x123030; // func_00123030
 __floatdisf                             = 0x125768; // type:func // func_00125768
 // more to add from func_00125848 and after
 __muldi3                                = 0x125EB0; // func_00125EB0
 __udivdi3                               = 0x125F10; // func_00125F10
+dpadd                                   = 0x126E30; // func_00126E30
 dpcmp                                   = 0x127418; // type:func // func_00127418
 // more to add from func_00127468 and after
 
@@ -505,6 +508,7 @@ fptodp                                  = 0x1282B8; // func_001282B8
 
 akevResetEffect2                        = 0x12F620; // func_0012F620
 
+ktmfMenuFunc_finish                     = 0x17E220; // func_0017E220
 // ktact.c text start
 ktactInitCtrl                           = 0x18BA90; // func_0018BA90
 iktactMakeParam_cmn_max_speed           = 0x18C770; // func_0018C770
@@ -805,15 +809,101 @@ nmactPlaySlip                           = 0x1C9D30; // func_001C9D30
 nmactPlayLand                           = 0x1CA140; // func_001CA140
 nmactPlayVoice                          = 0x1CA3D0; // func_001CA3D0
 nmactPlayBoost                          = 0x1CA510; // func_001CA510
+nmactPlayPush                           = 0x1CA580; // func_001CA580
 nmactDualSwitch                         = 0x1CA650; // func_001CA650
 
 nmbgmChange2                            = 0x1CB7D0; // func_001CB7D0
 nmbgmGetSelect                          = 0x1CB9E0; // func_001CB9E0
 nmbgmCheckQue                           = 0x1CBA20; // func_001CBA20
+nmdispInitFont                          = 0x1CC8C0; // func_001CC8C0
+// func_001CC9A0 unknown, used in nmdispCalcPauseMenuMatch
+nmdispInitList                          = 0x1CCB80; // func_001CCB80
 nmdispInitOperate                       = 0x1CCBF0; // func_001CCBF0
 nmdispInitSound                         = 0x1CD860; // func_001CD860
 nmdispPauseMenuCareer                   = 0x1D1030; // func_001D1030
+nmdispRankVer                           = 0x1E3530; // func_001E3530
+nmdispRankHor                           = 0x1E39F0; // func_001E39F0
+nmdispLevelMes                          = 0x1E3DD0; // func_001E3DD0
+nmdispOutMes                            = 0x1E57B0; // func_001E57B0
+nmdispWinLoseDraw                       = 0x1E5B30; // func_001E5B30
+nmdispDivLine                           = 0x1E6220; // func_001E6220
+nmdispDivExpLine                        = 0x1E6370; // func_001E6370
+nmdispDivLineImage                      = 0x1E64D0; // func_001E64D0
+nmdispFireSil                           = 0x1E6750; // func_001E6750
+nmdispBoostMeter                        = 0x1E68D0; // func_001E68D0
+nmdispBoostLap                          = 0x1E6E00; // func_001E6E00
+nmdispHorsePts                          = 0x1E7190; // func_001E7190
+nmdispHorseEnter                        = 0x1E7590; // func_001E7590
+nmdispHorseMes                          = 0x1E7A00; // func_001E7A00
+nmdispResultCareer                      = 0x1E9160; // func_001E9160
+nmdispResultFreeride                    = 0x1E91B0; // func_001E91B0
+nmdispResultMatch                       = 0x1E91F0; // func_001E91F0
+nmdispLevelGoals                        = 0x1E9230; // func_001E9230
+nmdispStatisCareer                      = 0x1EA3D0; // func_001EA3D0
+nmdispStatisFreeride                    = 0x1EB570; // func_001EB570
+nmdispStatisMatch                       = 0x1EBCF0; // func_001EBCF0
+nmdispHighScore                         = 0x1ED540; // func_001ED540
+nmdispBackLogo                          = 0x1EE0B0; // func_001EE0B0
+nmdispCareerUp                          = 0x1EE270; // func_001EE270
+nmdispTrickComb                         = 0x1EEB50; // func_001EEB50
+nmdispReplay                            = 0x1EFFD0; // func_001EFFD0
+nmdispReplayMatch                       = 0x1F0220; // func_001F0220
+nmdispDemo                              = 0x1F0460; // func_001F0460
+nmdispCalcTotal                         = 0x1F0700; // func_001F0700
+nmdispCalcTotalChar                     = 0x1F07F0; // func_001F07F0
+nmdispCalcCareer                        = 0x1F08F0; // func_001F08F0
+nmdispCalcCareerChar                    = 0x1F09D0; // func_001F09D0
+nmdispCalcFreeride                      = 0x1F0A90; // func_001F0A90
+nmdispCalcFreerideChar                  = 0x1F0B70; // func_001F0B70
+nmdispCalcMatchAttack                   = 0x1F0C20; // func_001F0C20
+nmdispCalcMatchAttackChar               = 0x1F0D10; // func_001F0D10
+nmdispCalcMatchBoostChar                = 0x1F0DC0; // func_001F0DC0
+nmdispCalcMatchPush                     = 0x1F0E80; // func_001F0E80
+nmdispCalcMatchPushChar                 = 0x1F0F80; // func_001F0F80
+nmdispCalcMatchHorse                    = 0x1F1030; // func_001F1030
+nmdispCalcMatchHorseChar                = 0x1F1130; // func_001F1130
+nmdispCalcIntr                          = 0x1F11E0; // func_001F11E0
+nmdispCalcParam                         = 0x1F1290; // func_001F1290
 nmdispCalcSlide                         = 0x1F1500; // func_001F1500
+nmdispCalcOperate                       = 0x1F18D0; // func_001F18D0
+nmdispCalcBackGround                    = 0x1F1990; // func_001F1990
+nmdispCalcPauseCareer                   = 0x1F1A30; // func_001F1A30
+nmdispCalcPauseMenuCareer               = 0x1F1B50; // func_001F1B50
+nmdispCalcPauseFreeride                 = 0x1F2090; // func_001F2090
+nmdispCalcPauseMenuFreeride             = 0x1F21C0; // func_001F21C0
+nmdispCalcPauseMatch                    = 0x1F26A0; // func_001F26A0
+nmdispCalcPauseMenuMatch                = 0x1F27C0; // func_001F27C0
+nmdispCalcPauseHorse                    = 0x1F2CD0; // func_001F2CD0
+nmdispCalcSoundLevels                   = 0x1F2DE0; // func_001F2DE0
+nmdispCalcRetry                         = 0x1F2FB0; // func_001F2FB0
+nmdispCalcTrickList                     = 0x1F30A0; // func_001F30A0
+nmdispCalcTrickListCate                 = 0x1F3130; // func_001F3130
+nmdispCalcLevelGoalList                 = 0x1F38C0; // func_001F38C0
+nmdispCalcTutorial                      = 0x1F3AB0; // func_001F3AB0
+nmdispCalcTutoMes                       = 0x1F3B60; // func_001F3B60
+nmdispCalcDebugMenu                     = 0x1F3DB0; // func_001F3DB0
+nmdispCalcGapList                       = 0x1F3FF0; // func_001F3FF0
+nmdispCalcPauseSelect                   = 0x1F4200; // func_001F4200
+nmdispCalcMenuItem                      = 0x1F4600; // func_001F4600
+nmdispCalcMenuItem2                     = 0x1F46A0; // func_001F46A0
+nmdispCalcAllow                         = 0x1F4740; // func_001F4740
+nmdispCalcTimeLeft                      = 0x1F47E0; // func_001F47E0
+nmdispCalcTrkMeter                      = 0x1F48C0; // func_001F48C0
+nmdispCalcBoostMeter                    = 0x1F4C80; // func_001F4C80
+nmdispCalcSwitch                        = 0x1F4DF0; // func_001F4DF0
+nmdispCalcBalance                       = 0x1F5520; // func_001F5520
+nmdispCalcTrickName                     = 0x1F5B60; // func_001F5B60
+nmdispCalcTrickNameCol                  = 0x1F6120; // func_001F6120
+nmdispCalcTrickNameFaild                = 0x1F6430; // func_001F6430
+nmdispCalcTrickPts                      = 0x1F7510; // func_001F7510
+nmdispCalcTrickPtsFaild                 = 0x1F8080; // func_001F8080
+nmdispCalcLevelMes                      = 0x1F8CA0; // func_001F8CA0
+nmdispCalcOutMes                        = 0x1F8FD0; // func_001F8FD0
+nmdispCalcDiv                           = 0x1F91B0; // func_001F91B0
+nmdispCalcDivExp                        = 0x1F94D0; // func_001F94D0
+nmdispCalcDivImage                      = 0x1F95A0; // func_001F95A0
+nmdispCalcWinLoseDraw                   = 0x1F9680; // func_001F9680
+nmdispCalcHorseEnter                    = 0x1F98E0; // func_001F98E0
 nmdispCalcHorseMes                      = 0x1F9AC0; // func_001F9AC0
 nmdispCalcResultCareer                  = 0x1F9E10; // func_001F9E10
 nmdispCalcResultFreeride                = 0x1F9E50; // func_001F9E50
@@ -867,9 +957,23 @@ nmdispInputHorseResult                  = 0x200B70; // func_00200B70
 nmdispEndTrick                          = 0x200CD0; // func_00200CD0
 
 nmdispSearchRank                        = 0x201270; // func_00201270
+nmdrawKeyOperate                        = 0x201BF0; // func_00201BF0
+nmdrawBar                               = 0x2022D0; // func_002022D0
+nmdrawTime                              = 0x202690; // func_00202690
+nmdrawPoint                             = 0x202830; // func_00202830
+nmdrawGetPointLen                       = 0x203610; // func_00203610
+nmdrawMeter                             = 0x204810; // func_00204810
+nmdrawFPoly                             = 0x2069A0; // func_002069A0
+nmdrawFTex                              = 0x207240; // func_00207240
+nmdrawSwitchTest                        = 0x2077B0; // func_002077B0
+nmfontSetFCol                           = 0x208130; // func_00208130
+nmfontSetCol                            = 0x2081E0; // func_002081E0
+nmfontSetType                           = 0x208270; // func_00208270
 nmfontSetFSize                          = 0x2082E0; // func_002082E0
+nmfontSetPack                           = 0x208310; // func_00208310
 nmfontFPrintF                           = 0x20A2E0; // func_0020A2E0
 nmfontGPrintF                           = 0x20AF40; // func_0020AF40
+nmfontGetStrFLen                        = 0x20BD40; // func_0020BD40
 nmfontGetPackStrFLen                    = 0x20BF40; // func_0020BF40
 nmsndRestart                            = 0x20CAD0; // func_0020CAD0
 nmsndEndGame                            = 0x20CF00; // func_0020CF00
@@ -883,6 +987,9 @@ nmtrickSetTrick                         = 0x20F9E0; // func_0020F9E0
 
 nmtrickSetSpin                          = 0x210C90; // func_00210C90
 
+nmtrickSetInfo                          = 0x211F70; // func_00211F70
+nmtrickGetInfo                          = 0x211FD0; // func_00211FD0
+nmtrickMakeStr                          = 0x213040; // func_00213040
 nmvcPlay                                = 0x214A40; // func_00214A40
 nmvcPlayButton                          = 0x215170; // func_00215170
 
@@ -906,10 +1013,11 @@ David_GetBaseCollision2                 = 0x2942B0; // func_002942B0
 
 tmevGetLevelGoal                        = 0x297AF0; // func_00297AF0
 
+tmevGetLap                              = 0x299B00; // func_00299B00
+uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD10
 ulgifDmaSend                            = 0x29CC10; // func_0029CC10
 ulgifDmaWait                            = 0x29CC50; // func_0029CC50
 
-uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD10
 
 ulgraphSetDefFrameBuff                  = 0x29D230; // func_0029D230
 
