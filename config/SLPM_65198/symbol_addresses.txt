@@ -1094,16 +1094,55 @@ vktmotFlipKey                           = 0x2D6880; // D_002D6880
 
 vktmotMotSpeed                          = 0x2D6940; // D_002D6940
 
-vnmfontScrSize                          = 0x2D6C20; // D_FLT_002D6C20
-vnmfontOption                           = 0x2D6C40; // D_002D6C40
-// vnmfontScrRate ?
 
-vnmfontOption                           = 0x2D6C4E; // D_002D6C8E
+vnmfontScrSize                          = 0x2D6C20; // size:0x10 // TODO: double check size // D_FLT_002D6C20
+vnmfontScrRate                          = 0x2D6C30; // size:0x10 // TOOD: double check size // func_002D6C30
+vnmfontOption                           = 0x2D6C40; // size:0x60 // TODO: double check size // D_002D6C40
+
+model_mode                              = 0x2D6B60; // size:0x50 // TODO: Double check size // D_002D6B68
+
+vnmtblPauseMenu                         = 0x2D7400; // D_002D7400
+
+vnmtblTlistNum                          = 0x2D7510; // D_002D7510
+
+vnmtblCourseLogo                        = 0x2D78D0; // D_FLT_002D78D0
+
+vnmtblMatchRule                         = 0x2D7910; // D_002D7910
+
+vnmtblTrickAcce                         = 0x2D7940; // D_002D7940
+
+vnmtblLevelCompMes                      = 0x2D79A0; // D_002D79A0
+
+vnmtblLevelIncompMes                    = 0x2D7A00; // D_002D7A00
+
+vnmtblResultItem                        = 0x2D7B80; // D_002D7B80
+
+vnmtblCareerMessage                     = 0x2D7D60; // D_002D7D60
+
+vnmtblRank                              = 0x2D7DC0; // D_002D7DC0
+vnmtblRank2                             = 0x2D7E10; // D_002D7E10
+
+vnmtblCommon                            = 0x2D7E60; // D_002D7E60
+
+vnmtblGetSoft                           = 0x2D7BA8; // D_002D7BA8
+
+vnmtblCareerItem                        = 0x2D7BC0; // D_002D7BC0
+
+vsptblCharacterName                     = 0x2DEDA0; // D_002DEDA0
+
+vsptblBoardName                         = 0x2DEDE0; // D_002DEDE0
+
+vsptblGapList                           = 0x2DEFF0; // D_002DEFF0
+
+vsptblCourseName                        = 0x2DEF90; // D_002DEF90
 
 vsptblGapPoint                          = 0x2DF7F0; // D_002DF7F0
 
+vsptblLevelGoalValue                    = 0x2DFFF0; // D_002DFFF0
+vsptblTrickName                         = 0x2E01F0; // size:0x280 // D_002E01F0
 vsptblTrickPoint                        = 0x2E0470; // D_002E0470
 
+vsptblCourseParam                       = 0x2E0F30; // D_002E0F30
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
 vktactParamG_jump_down                  = 0x2F577C; // D_002F577C
 vktactParamG_air                        = 0x2F5780; // D_002F5780
@@ -1144,6 +1183,7 @@ vktmfdbgMenuUseNum2                     = 0x2F5830; // D_002F5830
 
 vktmfdbgMenuNumText_2d                  = 0x2F5838; // D_002F5838
 
+vnmtblPauseCareerItem                   = 0x2F5850; // D_002F5850
 vspDisp2D                               = 0x2F58E0; // D_002F58E0
 
 vsppMediaType                           = 0x2F584C; // size:0x4 // D_002F584C
@@ -1151,6 +1191,8 @@ vgmsysGifPkt                            = 0x2F5B1C; // D_002F5B1C
 vsppScrWidth                            = 0x2F5844; // D_002F5844
 vsppScrHeight                           = 0x2F5848; // D_002F5848
 
+vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
+vgmsysPadPausePid                       = 0x2F59D0; // D_002F59D0
 vgmsysPad                               = 0x2F59D8; // size:0x8 // D_002F59D8
 
 vktactParamMaxLanding                   = 0x2F5A18; // D_FLT_002F5A18
@@ -1211,6 +1253,143 @@ vgmsysDivideLine                        = 0x2F5AE8; // D_002F5AE8
 vgmsysWndBlurPow                        = 0x2F5AF0; // D_002F5AF0
 vgmsysBlurPow                           = 0x2F5AF8; // D_002F5AF8
 
+vnmdispReplay                           = 0x2F5B70; // size:0x8 // TODO: double check resize // D_002F5B70
+vnmdispEntryNum                         = 0x2F5B78; // D_002F5B78
+vnmdispScoreRank                        = 0x2F5B7C; // D_002F5B7C
+vnmdispHighScore                        = 0x2F5B80; // size:0x8 // TODO: recheck size // D_002F5B80
+vnmdispCombLine                         = 0x2F5B88; // D_002F5B88    
+vnmdispTimeRenew                        = 0x2F5B8C; // D_002F5B8C
+vnmdispStatisSearch                     = 0x2F5B90; // D_002F5B90
+vnmdispStatistics                       = 0x2F5B98; // size:0x8 // TODO: recheck size // D_002F5B98
+vnmdispStatisFlow                       = 0x2F5BA0; // D_002F5BA0
+vnmdispCareerSearch                     = 0x2F5BA4; // D_002F5BA4
+vnmdispLevelCareer                      = 0x2F5BA8; // size:0x8 // TODO: recheck size // D_002F5BA8
+vnmdispSoftCount                        = 0x2F5BB0; // size:0x8 // D_002F5BB0
+vnmdispSoftAdd                          = 0x2F5BB8; // D_002F5BB8
+vnmdispSoftNum                          = 0x2F5BBC; // D_002F5BBC
+
+vnmdispSoftPos                          = 0x2F5BC0; // D_FLT_002F5BC0
+
+vnmdispSoft                             = 0x2F5BC8; // size:0x8 // D_002F5BC8
+vnmdispLevelFlow                        = 0x2F5BE0; // D_002F5BE0
+
+vnmdispResultFade                       = 0x2F5BE8; // size:0x8 // TODO: recheck size // D_002F5BE8
+
+vnmdispResultFlow                       = 0x2F5BF0; // D_002F5BF0
+vnmdispHorseMesType                     = 0x2F5BF4; // D_002F5BF4
+vnmdispHorseMes                         = 0x2F5BF8; // size:0x10  // D_002F5BF8
+
+vnmdispHorseEnter                       = 0x2F5C08; // size:0x8 // TODO: recheck size // D_002F5C08
+
+vnmdispHorseGet                         = 0x2F5C10; // size:0x8 // TODO: double check size // D_002F5C10
+vnmdispHorsePts                         = 0x2F5C18; // size:0x8 // TODO: double check size // D_002F5C18
+
+vnmdispHorseNum                         = 0x2F5C20; // D_002F5C20
+vnmdispHorseWordNum                     = 0x2F5C24; // D_002F5C24
+vnmdispHorseSet                         = 0x2F5C28; // D_002F5C28
+vnmdispHorseAccept                      = 0x2F5C2C; // D_002F5C2C
+
+vnmdispHorseFlow                        = 0x2F5C30; // D_002F5C30
+vnmdispInvalid                          = 0x2F5C34; // D_002F5C34
+
+vnmdispDraw                             = 0x2F5C38; // size:0x8 // TODO: double check size // D_002F5C38
+
+vnmdispLose                             = 0x2F5C40; // size:0x8 // TODO: double check size // D_002F5C40
+
+vnmdispWin                              = 0x2F5C48; // size:0x8 // D_002F5C48
+
+vnmdispScrBottom                        = 0x2F5C50; // size:0x8 // D_FLT_002F5C50
+vnmdispScrCenter                        = 0x2F5C58; // size:0x8 // D_FLT_002F5C58
+
+vnmdispScrDivExp                        = 0x2F5C60; // D_FLT_002F5C60
+vnmdispScrDiv                           = 0x2F5C64; // D_FLT_002F5C64
+
+vnmdispBoostMeterLen                    = 0x2F5C70; // D_002F5C70
+vnmdispSpMeterLen                       = 0x2F5C74; // D_002F5C74
+vnmdispTrickNameLine                    = 0x2F5C78; // D_002F5C78
+
+vnmdispTrickEffectType                  = 0x2F5C80; // size:0x8 // D_002F5C80
+vnmdispTrickSuccess                     = 0x2F5C88; // size:0x8 // D_002F5C88
+
+vnmdispTrickEnd                         = 0x2F5C90; // size:0x8 // D_002F5C90
+vnmdispTrickStart                       = 0x2F5C98; // size:0x8 // D_002F5C98
+vnmdispStancePos                        = 0x2F5CA0; // size:0x8 // D_FLT_002F5CA0
+vnmdispFakie                            = 0x2F5CA8; // size:0x8 // D_002F5CA8
+
+vnmdispTimeLeft                         = 0x2F5CB0; // size:0x8 // D_002F5CB0
+vnmdispParamPosDown                     = 0x2F5CB8; // D_FLT_002F5CB8
+vnmdispParamPosUp                       = 0x2F5CBC; // D_FLT_002F5CBC
+vnmdispParamPosRight                    = 0x2F5CC0; // D_FLT_002F5CC0
+vnmdispParamPosLeft                     = 0x2F5CC4; // D_FLT_002F5CC4
+vnmdispParam                            = 0x2F5CC8; // size:0x8 // D_002F5CC8
+
+vnmdispAllow                            = 0x2F5CD0; // size:0x8 // D_002F5CD0
+
+vnmdispPauseDebugTop                    = 0x2F5CE8; // D_002F5CE8
+vnmdispPauseDebugItem                   = 0x2F5CEC; // D_002F5CEC
+
+vnmdispPauseDebugFlow                   = 0x2F5CF0; // D_002F5CF0
+vnmdispPauseDebug                       = 0x2F5CF8; // size:0x8 // D_002F5CF8
+
+vnmdispLevelSearch                      = 0x2F5BD0; // D_002F5BD0
+
+vnmdispTutoMesNum                       = 0x2F5D00; // D_002F5D00
+vnmdispTutoMesFlag                      = 0x2F5D04; // D_002F5D04
+vnmdispTutoMes                          = 0x2F5D08; // size:0x8 // D_002F5D08
+
+vnmdispPauseTutorial                    = 0x2F5D10; // size:0x8 // D_002F5D10
+
+vnmdispPauseTrickCate                   = 0x2F5D18; // D_002F5D18
+
+vnmdispPauseTrick                       = 0x2F5D20; // size:0x8 // D_002F5D20
+
+vnmdispSelectIntTbl                     = 0x2F5D28; // D_002F5D28
+vnmdispSelectInt                        = 0x2F5D2C; // D_002F5D2C
+vnmdispSelectCnt                        = 0x2F5D30; // D_002F5D30
+vnmdispSelectFlow                       = 0x2F5D34; // D_002F5D34
+
+vnmdispVolume                           = 0x2F5D38; // size:0x8 // D_002F5D38
+
+vnmdispPauseSoundItem                   = 0x2F5D40; // D_002F5D40
+
+vnmdispPauseSound                       = 0x2F5D48; // size:0x8 // D_002F5D48
+
+vnmdispPauseRetry                       = 0x2F5D50; // size:0x8 // D_002F5D50
+vnmdispPauseSelect                      = 0x2F5D58; // size:0x8 // TODO: recheck size // D_002F5D58
+vnmdispMenuItem                         = 0x2F5D60; // size:0x8 // D_002F5D60
+vnmdispPauseMenu                        = 0x2F5D68; // size:0x8 // D_002F5D68
+vnmdispPauseCancel                      = 0x2F5D70; // D_002F5D70
+vnmdispPauseItem                        = 0x2F5D74; // D_002F5D74
+
+vnmdispPauseFlow                        = 0x2F5D78; // D_002F5D78
+vnmdispPause                            = 0x2F5D80; // size:0x8 // D_002F5D80
+
+vnmdispIntrCancel                       = 0x2F5D88; // D_002F5D88
+
+vnmdispIntr                             = 0x2F5D90; // size:0x8 // D_002F5D90
+vnmdispBackGround                       = 0x2F5D98; // size:0x8 // TODO: double check size // D_002F5D98
+
+vnmdispOpeAccept                        = 0x2F5DA0; // D_002F5DA0
+vnmdispOpeConnect                       = 0x2F5DA4; // D_002F5DA4
+vnmdispOpe                              = 0x2F5DA8; // size:0x8 // TODO: recheck size // D_002F5DA8
+vnmdispDivSide                          = 0x2F5DB0; // D_002F5DB0
+
+vnmdispDivMode                          = 0x2F5DB4; // D_002F5DB4
+vnmdispMode                             = 0x2F5DC0; // D_002F5DC0
+vnmdispLang                             = 0x2F5DC4; // D_002F5DC4
+vnmdispSecret                           = 0x2F5DC8; // D_002F5DC8
+vnmdispOption                           = 0x2F5DCC; // D_002F5DCC
+
+vnmdispCharEnv                          = 0x2F5DD4; // D_002F5DD4
+vnmdispLevelGoals                       = 0x2F5BD8; // size:0x8 // TODO: recheck size // D_002F5BD8
+
+vnmdispModeEnv                          = 0x2F5DD0; // D_002F5DD0
+//D4
+vnmdispCrsEnv                           = 0x2F5DD8; // D_002F5DD8
+
+vnmdispTexData                          = 0x2F5DE0; // D_002F5DE0
+
+// D_002F6000 unknown, used by nmdispOpePauseMatch
 vspInitHorse                            = 0x2F6044; // D_002F6044
 vspEndRunReplay                         = 0x2F6048; // D_002F6048
 vspEndRun                               = 0x2F604C; // D_002F604C
@@ -1218,13 +1397,6 @@ vspEndRun                               = 0x2F604C; // D_002F604C
 vspenvOption                            = 0x2F6060; // D_002F6060
 vspenvGame                              = 0x2F6064; // D_002F6064
 vspReplay                               = 0x2F6010; // D_002F6010
-
-#_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
-_fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
-_args                                   = 0x2F6180; // D_002F6180
-_gp                                     = 0x2FD6F0; // D_002FD6F0
-
-vspDispEnv                              = 0x346DF0; // D_00346DF0
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
 
@@ -1244,13 +1416,96 @@ vgmsysInitFunc                          = 0x33D6E0; // D_0033D6E0
 vgmsysFrameBuffer                       = 0x33DEE6; // D_0033DEE6 // figure out actual start and give size, because otherwise multiple values will point to this
 // vgmsysFrameBuffer (D_0033D760 also points to this)
 // vgmsysFrameBuffer ()
-vspDispEnvChar                          = 0x346D80; // D_00346D80
-vspenvDemo                              = 0x3485B0; // D_003485B0 // Need to add size
-vspenvEnv                               = 0x3486B0; // D_003486B0
-vspDispResult                           = 0x345D30; // D_00345D30
+
+vnmdispHighScorePos                     = 0x33DF80; // size:0x1C // D_FLT_0033DF80
+
+vnmdispCombList                         = 0x33DFA0; // D_0033DFA0
+
+vnmdispStatisticsPos                    = 0x33E170; // size:0x40 // D_FLT_0033E170
+
+vnmdispCareerItem                       = 0x33E1B0; // size:0x10 // D_0033E1B0
+
+vnmdispLevelCareerPos                   = 0x33E1C0; // size:0x14 // D_FLT_0033E1C0
+
+vnmdispLevelMark                        = 0x33E1E0; // size:0x48 // D_0033E1E0
+
+vnmdispLevelGoalsPos                    = 0x33E230; // size:0x2C // D_FLT_0033E230
+
+vnmdispHorseMesPos                      = 0x33E260; // size:0x10 // TODO: double check size // D_FLT_0033E260
+
+vnmdispHorseWord                        = 0x33E270; // size:0x10 // TODO: recheck size // D_0033E270
+
+vnmdispLosePos                          = 0x33E280; // size:0x10 // TODO: double check size // D_FLT_0033E280
+vnmdispWinPos                           = 0x33E290; // size:0x10 // TODO: double check size // D_FLT_0033E290
+
+vnmdispLineImagePos                     = 0x33E2A0; // size:0x14 // D_FLT_0033E2A0
+
+vnmdispLineImage                        = 0x33E2C0; // D_0033E2C0
+
+vnmdispOutMes                           = 0x33E2F0; // size:0x10  // TODO: double check size // D_0033E2F0
+
+vnmdispLevelMesInfo                     = 0x33E300; // size:0x20 // D_0033E300
+vnmdispLevelMesPos                      = 0x33E320; // size:0x20 // D_FLT_0033E320
+vnmdispLevelMes                         = 0x33E340; // size:0x20 // D_0033E340
+
+vnmdispSpMeter                          = 0x33E380; // size:0x10 // D_0033E380
+
+vnmdispTotalScore                       = 0x33E390; // size:0x10 // D_0033E390
+
+vnmdispTrickPtsInfo                     = 0x33E3A0; // size:0x420 // D_0033E3A0
+
+vnmdispTrickPtsDraw                     = 0x33E7C0; // size:0x20 // TODO: double check size // D_0033E7C0
+
+vnmdispTrickPts                         = 0x33E7E0; // size:0x10 // D_0033E7E0
+
+vnmdispTrickNameInfo                    = 0x33E7F0; // size:0x3060 // D_0033E7F0
+
+vnmdispTrickNameList                    = 0x341850; // size:0x1C8 // D_FLT_00341850
+
+vnmdispPauseSelectPos                   = 0x341DE0; // size:0x10 // D_FLT_00341DE0
+vnmdispPausePos                         = 0x341DF0; // size:0x28  // D_FLT_00341DF0
+
+vnmdispBestTime                         = 0x341E20; // size:0x20 // D_00341E20
+
+vnmdispTrickName                        = 0x341A20; // size:0x10 // D_00341A20
+vnmdispBalance                          = 0x341A30; // size:0x10 // D_00341A30
+vnmdispBalanceInfo                      = 0x341A40; // size:0x20 // D_00341A40
+vnmdispStance                           = 0x341A60; // size:0x10 // D_00341A60
+vnmdispGapList                          = 0x341A70; // size:0x48 // D_00341A70
+
+vnmdispPauseDebugPos                    = 0x341AC0; // size:0x14 // D_FLT_00341AC0
+
+vnmdispLevelGoalList                    = 0x341AE0; // size:0x48 // D_FLT_00341AE0
+
+vnmdispTrickList                        = 0x341B30; // size:0x288 // size probably changed! // D_00341B30
+
+vnmdispRecord                           = 0x341E40; // size:0xC0  // D_00341E40
+
+vspDispResult                           = 0x345D30; // size:0x1048 // D_00345D30
+
+vspDispEnvChar                          = 0x346D80; // size:0x70 // D_00346D80
+
+vnmdispPauseSoundPos                    = 0x341DC0; // size:0x18 // D_FLT_00341DC0
+
+vspDispVsScore                          = 0x345D20; // size:0x10 // D_00345D20
+
+vspDispEnv                              = 0x346DF0; // size:0x20 // D_00346DF0
 
 vspVsData                               = 0x346E10; // D_00346E10
 
 vspModeData                             = 0x347EA0; // size:0x5C // D_00347EA0 // TODO: verify this size
 
 vspSystemMatrix                         = 0x347F30; // D_FLT_00347F30
+
+vspenvDemo                              = 0x3485B0; // D_003485B0 // Need to add size
+vspenvEnv                               = 0x3486B0; // D_003486B0
+
+vsptblMovieName                         = 0x3A58F0; // D_003A58F0
+vsptblCheats                            = 0x3A5940; // D_003A5940
+
+vsptblLevelGoalStr                      = 0x3A5970; // D_003A5970
+
+#_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
+_fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
+_args                                   = 0x2F6180; // D_002F6180
+_gp                                     = 0x2FD6F0; // D_002FD6F0
