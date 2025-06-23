@@ -463,7 +463,10 @@ scePrintf                               = 0x10FD48; // func_0010FD48
 sceSifInitRpc                           = 0x1104F0; // type:func // func_001104F0
 // more to add from func_00110690 and after
 
+sceSifBindRpc                           = 0x110B60; // func_00110B60
+sceSifCallRpc                           = 0x110D30; // func_00110D30
 sceSifCheckStatRpc                      = 0x110F20; // func_00110F20
+sceSifFreeIopHeap                       = 0x114CD8; // func_00114CD8
 sceSifLoadModule                        = 0x1157E8; // type:func // func_001157E8
 // more to add after sceSifLoadModule
 
@@ -511,15 +514,33 @@ dptofp                                  = 0x1276C0; // func_001276C0
 
 fptodp                                  = 0x1282B8; // func_001282B8
 
+spfxGetTexData                          = 0x128370; // func_00128370
 // more to add above from func_001C05E0 and before
 
 akevResetEffect2                        = 0x12F620; // func_0012F620
 
+akevInitSnowfall                        = 0x1304C0; // func_001304C0
+akevChangeSnowFallNum                   = 0x130570; // func_00130570
 akevInitLensFlare                       = 0x1305B0; // func_001305B0
+akevChangeSnowSplashColor               = 0x130770; // func_00130770
+akevInitSmoke                           = 0x130930; // func_00130930
+akevResetSmoke                          = 0x1309A0; // func_001309A0
+akevResetSmokeInfo                      = 0x130A20; // func_00130A20
+akevBlowupSmoke                         = 0x130A40; // func_00130A40
+akevCalcSmoke                           = 0x130D10; // func_00130D10
+akevDrawSmoke                           = 0x130E40; // func_00130E40
+akevFreeSmoke                           = 0x1314E0; // func_001314E0
 akevWaterSplash                         = 0x131520; // func_00131520
 ktmfMenuFunc_finish                     = 0x17E220; // func_0017E220
 knCameraSetFixRotation                  = 0x181840; // func_00181840
 knCameraEventAllReset                   = 0x181990; // func_00181990
+knEventStart                            = 0x183710; // func_00183710
+knEventEnd                              = 0x183790; // func_00183790
+knEventSetCameraPos                     = 0x1837E0; // func_001837E0
+knEventSetCameraObj                     = 0x183810; // func_00183810
+knEventSetShake                         = 0x1838B0; // func_001838B0
+knCoreGetSearchBlock                    = 0x183E40; // func_00183E40
+knReplaySetObstPos                      = 0x187C60; // func_00187C60
 // ktact.c text start
 ktactInitCtrl                           = 0x18BA90; // func_0018BA90
 iktactMakeParam_cmn_max_speed           = 0x18C770; // func_0018C770
@@ -807,11 +828,11 @@ nmfontSetFSize                          = 0x1C1A10; // func_001C1A10
 nmfontSetShadow                           = 0x1C1A40 // func_001C1A40
 // func_001C1A60 // ?
 // func_001C1B00 // ?
+nmfontFPrintF                           = 0x1C1D90; // func_001C1D90
 
 nmfontChangeVertex                      = 0x1C2DE0; // func_001C2DE0
 // end of nmfont?
 
-nmactPlay                               = 0x1C8AF0; // func_001C8AF0
 
 // nmact.c Text
 nmactInit                               = 0x1C8440; // func_001C8440
@@ -822,7 +843,6 @@ nmactStop                               = 0x1C9200; // func_001C9200
 nmactPlaySlide                          = 0x1C9390; // func_001C9390
 nmactStopSlide                          = 0x1C9C60; // func_001C9C60
 nmactPlaySlip                           = 0x1C9D30; // func_001C9D30
-
 nmactPlayLand                           = 0x1CA140; // func_001CA140
 nmactPlayVoice                          = 0x1CA3D0; // func_001CA3D0
 nmactPlayBoost                          = 0x1CA510; // func_001CA510
@@ -1237,45 +1257,166 @@ spev01ResetEvent                        = 0x215E40; // T_00215E40
 spev01MainEvent                         = 0x216200; // T_00216200
 spev01PlayerEvent                       = 0x216800; // T_00216800
 spev01DrawEvent                         = 0x217620; // T_00217620
-
+spev01DrawPlayerEvent                   = 0x2176F0; // T_002176F0
+spev01FinishPlayerEvent                 = 0x217710;
+spev01End                               = 0x217750;
 spev01ResetLevelGoals                   = 0x2177B0; // func_002177B0
-
 spev01CheckLevelGoals                   = 0x2177C0; // func_002177C0
-
 spev01ResetGaps                         = 0x217AF0; // func_00217AF0
-
 spev01CheckGaps                         = 0x217B00; // func_00217B00
-
+spev01CheckGrindGaps                    = 0x218AF0; // func_00218AF0
+spev01CheckPlantGaps                    = 0x21A620; // func_0021A620
+spev01CheckGap_A1                       = 0x21A8D0; // func_0021A8D0
+spev01CheckGap_A2                       = 0x21A980; // func_0021A980
+spev01CheckGap_A4                       = 0x21AA30; // func_0021AA30
+spev01CheckGap_A5                       = 0x21AAA0; // func_0021AAA0
+spev01CheckGap_A6                       = 0x21AC00; // func_0021AC00
+spev01CheckGap_A7                       = 0x21AD00; // func_0021AD00
+spev01CheckGap_A8                       = 0x21AE50; // func_0021AE50
+spev01CheckGap_A10                      = 0x21AF50; // func_0021AF50
+spev01CheckGap_M1                       = 0x21B050; // func_0021B050
+spev01CheckGap_O2_1                     = 0x21B190; // func_0021B190
+spev01CheckGap_O2_2                     = 0x21B3C0; // func_0021B3C0
+spev01CheckGap_O2_3                     = 0x21B5E0; // func_0021B5E0
+spev01CheckGap_O2_4                     = 0x21B7C0; // func_0021B7C0
 spev01ResetObject                       = 0x21B9B0; // func_0021B9B0
-
+spev01ResetLift1                        = 0x21BE70; // func_0021BE70
 spev01MoveLift1                         = 0x21C240; // func_0021C240
-
+spev01ResetLift2                        = 0x21C9C0; // func_0021C9C0
 spev01MoveLift2                         = 0x21CDC0; // func_0021CDC0
-
 spev01RollGear                          = 0x21D520; // func_0021D520
-
+spev01ResetSki                          = 0x21D5F0; // func_0021D5F0
 spev01TumbleSki                         = 0x21D8D0; // func_0021D8D0
-
+spev01ResetLogo                         = 0x21DAE0; // func_0021DAE0
 spev01FallLogo                          = 0x21DCE0; // func_0021DCE0
-
+spev01ResetDram                         = 0x21E220; // func_0021E220
+spev01ResetWindow                       = 0x21E2D0; // func_0021E2D0
 spev01ChangeWindow                      = 0x21E470; // func_0021E470
-
+spev01ResetCamera                       = 0x21E530; // func_0021E530
 spev01MoveCamera                        = 0x21E830; // func_0021E830
-
+spev01CheckCamera                       = 0x21F4E0; // func_0021F4E0
+spev01ResetTower                        = 0x21F520; // func_0021F520
 spev01MoveTower                         = 0x21F6F0; // func_0021F6F0
-
 spev01SetTowerCollision                 = 0x21FB50; // func_0021FB50
-
+spev01ResetLiftMan                      = 0x21FC20; // func_0021FC20
 spev01MoveLiftMan                       = 0x21FF60; // func_0021FF60
+// spev02.c Text
+spev02Init                              = 0x220E70; // T_00220E70
+spev02ResetEvent                        = 0x2210B0; // T_002210B0
+spev02MainEvent                         = 0x2211E0; // T_002211E0
+spev02PlayerEvent                       = 0x221350; // T_00221350
+spev02DrawEvent                         = 0x2213F0; // T_002213F0
+spev02DrawPlayerEvent                   = 0x221470;
+spev02FinishPlayerEvent                 = 0x221490;
+spev02End                               = 0x2214D0;
+spev02ResetObject                       = 0x221520; // func_00221520
+spev02ResetLift                         = 0x2219C0; // func_002219C0
+spev02MoveLift                          = 0x221D70; // func_00221D70
+spev02ResetGond1                        = 0x222600; // func_00222600
+spev02MoveGond1                         = 0x222800; // func_00222800
+spev02TurnGond1                         = 0x223150; // func_00223150
+spev02ResetGond2                        = 0x223260; // func_00223260
+spev02MoveGond2                         = 0x223460; // func_00223460
+spev02TurnGond2                         = 0x223DB0; // func_00223DB0
+spev02ResetGear                         = 0x223EC0; // func_00223EC0
+spev02TurnGear                          = 0x224030; // func_00224030
+spev02ResetWagon                        = 0x2240D0; // func_002240D0
+spev02CheckWagon                        = 0x224290; // func_00224290
+spev02MoveWagon                         = 0x2245B0; // func_002245B0
+spev02ResetYuppie                       = 0x2247F0; // func_002247F0
+spev02MoveYuppie                        = 0x224C50; // func_00224C50
+spev02ResetStaff                        = 0x2259C0; // func_002259C0
+spev02CheckStaff                        = 0x225D80; // func_00225D80
+spev02PlayEffect                        = 0x226C70; // func_00226C70
+spev02SeLift                            = 0x226F80; // func_00226F80
+spev02ResetLevelGoals                   = 0x227440; // func_00227440
+spev02CheckLevelGoals                   = 0x227450; // func_00227450
+spev02ResetGaps                         = 0x227640; // func_00227640
+spev02CheckGaps                         = 0x2276C0; // func_002276C0
+spev02CheckAirGaps                      = 0x227AB0; // func_00227AB0
+spev02CheckGap_A8                       = 0x228220; // func_00228220
+spev02CheckGap_A9                       = 0x2283B0; // func_002283B0
+spev02CheckGap_A10                      = 0x228450; // func_00228450
+spev02CheckGap_A11                      = 0x2284F0; // func_002284F0
+spev02CheckGap_A12                      = 0x228590; // func_00228590
+spev02CheckManualGaps                   = 0x2287E0; // func_002287E0
+spev02CheckGap_M1                       = 0x2289B0; // func_002289B0
+spev02CheckGap_M2                       = 0x228A60; // func_00228A60
+spev02CheckGrindGaps                    = 0x228B20; // func_00228B20
+spev02CheckGap_G1                       = 0x229690; // func_00229690
+spev02CheckGap_G2                       = 0x2297A0; // func_002297A0
+spev02CheckGap_G3                       = 0x229870; // func_00229870
+spev02CheckGap_G4                       = 0x229980; // func_00229980
+spev02CheckGap_G5                       = 0x2299E0; // func_002299E0
+spev02CheckGap_G6                       = 0x229AE0; // func_00229AE0
+// No G7-9
+spev02CheckGap_G10                      = 0x229B70; // func_00229B70
+spev02CheckGap_G11                      = 0x229D90; // func_00229D90
+spev02CheckGap_G12                      = 0x229E20; // func_00229E20
+spev02CheckGap_G13                      = 0x229F80; // func_00229F80
+spev02CheckGap_G14                      = 0x229FE0; // func_00229FE0
+// No G15
+spev02CheckGap_G16                      = 0x22A070; // func_0022A070
+// No G17
+spev02CheckGap_G18                      = 0x22A130; // func_0022A130
+spev02CheckGap_G19                      = 0x22A250; // func_0022A250
+// No G20
+spev02CheckGap_G21                      = 0x22A370; // func_0022A370
+spev02CheckGap_G22                      = 0x22A450; // func_0022A450
+spev02CheckGap_G23                      = 0x22A640; // func_0022A640
+spev02CheckGap_G24                      = 0x22A720; // func_0022A720
+spev02CheckLipGaps                      = 0x22A840; // func_0022A840
+spev02CheckOtherGaps                    = 0x22A920; // func_0022A920
+spev02InitSnowSpout                     = 0x22A950; // func_0022A950
+spev02ResetSnowSpout                    = 0x22AEF0; // func_0022AEF0
+spev02PlayerSnowSpout                   = 0x22AF20; // func_0022AF20
+spev02EndSnowSpout                      = 0x22B420; // func_0022B420
+spev02InitWagonClash                    = 0x22B450; // func_0022B450
+spev02ResetWagonClash                   = 0x22B730; // func_0022B730
+spev02PlayerWagonClash                  = 0x22B760; // func_0022B760
+spev02EndWagonClash                     = 0x22B7F0; // func_0022B7F0
+spev02ResetLight                        = 0x22B820; // func_0022B820
+spev02CheckWarp                         = 0x22BC20; // func_0022BC20
+spev02MatchWarp                         = 0x22BEC0; // D_0022BEC0
+spev02CheckDraw                         = 0x22BED0; // func_0022BED0
+// spev03.c Text
+spev03Init                              = 0x22C130; // T_0022C130
+spev03ResetEvent                        = 0x22C630; // T_0022C630
+spev03MainEvent                         = 0x22D260; // T_0022D260
+spev03PlayerEvent                       = 0x22DA20; // T_0022DA20
+spev03DrawEvent                         = 0x230470; // T_00230470
+spev03DrawPlayerEvent                   = 0x2304F0;
+spev03FinishPlayerEvent                 = 0x230510;
+spev03End                               = 0x230530;
+spev03LiftMoveReset                     = 0x230580; // func_00230580
+spev03LiftMoveEvent                     = 0x2306B0; // func_002306B0
+spev03BunnyMoveReset                    = 0x230A10; // func_00230A10
+spev03BunnyMoveEvent                    = 0x230B50; // func_00230B50
+spev03EagleMoveReset                    = 0x2311B0; // func_002311B0
+spev03EagleMoveEvent                    = 0x231300; // func_00231300
+spev03DeerMoveReset                     = 0x2317F0; // func_002317F0
+spev03DeerMoveEvent                     = 0x2318C0; // func_002318C0
+spev03LiftManMoveReset                  = 0x2319F0; // func_002319F0
+spev03LiftManMoveEvent                  = 0x231B90; // func_00231B90
+spev03SetGap_TypeA                      = 0x2325B0; // func_002325B0
+spev03CheckPlantGaps                    = 0x232660; // func_00232660
+spev03CheckGrindGaps                    = 0x2327B0; // func_002327B0
+spev03CheckFog                          = 0x2334B0; // func_002334B0
+// spev04.c Text
+spev04Init                              = 0x2339F0; // T_002339F0
 
 spSetFade                               = 0x269C10; // func_00269C10
 spSetWndFade                            = 0x269C40; // func_00269C40
 
+spEnterEventCameraMode                  = 0x269F50; // func_00269F50
+spExitEventCameraMode                   = 0x269F60; // func_00269F60
 sploadGetVibrationData                  = 0x277E90; // func_00277E90
 sploadGetCharacter                      = 0x277EC0; // func_00277EC0
 
 tievInitSmoke                           = 0x27E990; // func_0027E990
 
+tievFreeSmoke                           = 0x27EA40; // func_0027EA40
+tievDrawSmoke                           = 0x27EA90; // func_0027EA90
 tievCalcSmoke                           = 0x27ED70; // func_0027ED70
 
 tievSetSmoke                            = 0x27EEB0; // func_0027EEB0
@@ -1290,16 +1431,29 @@ tmcrsGetTexData                         = 0x288270; // func_00288270
 
 tmcrsSetScrollTex                       = 0x2883F0; // func_002883F0
 
+tmcrsResetAllObject                     = 0x28A400; // func_0028A400
+tmcrsSetObjectBound                     = 0x28AB40; // func_0028AB40
+tmcrsSetObjectWeight                    = 0x28AC20; // func_0028AC20
+tmcrsGetObjectPosition                  = 0x28AC70; // func_0028AC70
 tmcrsSetObjectBonk                      = 0x28AD00; // func_0028AD00
 
+tmcrsSetObjectBonkLength                = 0x28ADC0; // func_0028ADC0
 tmcrsGetObjectBonk                      = 0x28AE10; // func_0028AE10
 
+tmcrsSetObjectAttr                      = 0x28AE50; // func_0028AE50
 tmcrsSetObjectDrawFlag                  = 0x28AE90; // func_0028AE90
 
+tmcrsGetObjectDrawFlag                  = 0x28AED0; // func_0028AED0
+tmcrsSetObjectScissorFlag               = 0x28AF10; // func_0028AF10
+tmcrsMoveObject                         = 0x28AF50; // func_0028AF50s
+tmcrsMoveObjectMat                      = 0x28B5F0; // func_0028B5F0
 tmcrsCheckObjectCollision               = 0x28BE10; // func_0028BE10
 
 tmcrsGetObjectBonkCollision             = 0x28D2F0; // func_0028D2F0
 
+tmcrsBreakObject                        = 0x28F9F0; // func_0028F9F0
+tmcrsResetEventModel                    = 0x292160; // func_00292160
+tmcrsGetEventModelFrame                 = 0x2922C0; // func_002922C0
 tmcrsGetArea                            = 0x292E10; // func_00292E10
 
 tmcrsSetRailCollision                   = 0x293170; // func_00293170
@@ -1309,35 +1463,51 @@ tmcrsSetHitCollision                    = 0x293240; // func_00293240
 David_PutRaysInVU0                      = 0x294230; // func_00294230
 David_GetBaseCollision2                 = 0x2942B0; // func_002942B0
 
+tmevSetLevelGoal                        = 0x2976A0; // func_002976A0
+tmevSetGap                              = 0x297770; // func_00297770
 tmevGetLevelGoal                        = 0x297AF0; // func_00297AF0
 
+tmevResetICounter                       = 0x297CC0; // func_00297CC0
 
 tmevGetICounter                         = 0x297D00; // func_00297D00
 
 tmevStartICounter                       = 0x297D70; // func_00297D70
 
+tmevStopICounter                        = 0x297DC0; // func_00297DC0
 tmevSetFlag                             = 0x297E60; // func_00297E60
 
 tmevGetFlag                             = 0x297EA0; // func_00297EA0
 
 tmevSetFog                              = 0x297ED0; // func_00297ED0
 
+tmevSetBGFog                            = 0x297F10; // func_00297F10
 tmevSetViewAngle                        = 0x297F90; // func_00297F90
 
 tmevSetDrawLength                       = 0x297FD0; // func_00297FD0
 
 tmevGetDrawLength                       = 0x298030; // func_00298030
 
+tmevSetCourseLogo                       = 0x298780; // func_00298780
+tmevSetSponsor                          = 0x298900; // func_00298900
+tmevSetWarpArrow                        = 0x298B80; // func_00298B80
+tmevSetVsObject                         = 0x298D20; // func_00298D20
+tmevSet1PlayObject                      = 0x298D70; // func_00298D70
+tmevSetVsWarpObject                     = 0x298DC0; // func_00298DC0
+tmevGetEventMdlHit                      = 0x298E10; // func_00298E10
 tmevSetWarp                             = 0x298FA0; // func_00298FA0
 
+tmevSetWarpNo                           = 0x299800; // func_00299800
 tmevSetStartPosition                    = 0x299880; // func_00299880
 
 tmevSetHorsePosition                    = 0x299A30; // func_00299A30
 
 tmevGetLap                              = 0x299B00; // func_00299B00
 
+tmevGetFinish                           = 0x299FE0; // func_00299FE0
 tmevSetVib                              = 0x29A010; // func_0029A010
 
+tmevSetVibPlayer                        = 0x29A0D0; // func_0029A0D0
+tmevGetIntroCut                         = 0x29A190; // func_0029A190
 tmevSetLightVector                      = 0x29A250; // func_0029A250
 
 tmevSetAmbient                          = 0x29A2F0; // func_0029A2F0
@@ -1361,6 +1531,7 @@ ulpktInitGT4                            = 0x29D110; // func_0029D110
 
 ulgraphSetDefFrameBuff                  = 0x29D230; // func_0029D230
 
+tmcrsCalcObjectUnit                     = 0x28D7E0; // func_0028D7E0
 ulMalloc                                = 0x2A03F0; // func_002A03F0
 
 ulFree                                  = 0x2A0510; // func_002A0510
@@ -1501,8 +1672,30 @@ vbgmtblMusic                            = 0x2D7EA0; // D_002D7EA0
 
 vbgmtblArtist                           = 0x2D7ED0; // D_002D7ED0
 
+vspev01Lift1Pos                         = 0x2D8430; // D_002D8430
+vspev01Lift2Pos                         = 0x2D8750; // D_002D8750
 vspev01SmokeInfo                        = 0x2D8930; // D_002D8930
 
+vspev02LiftPos                          = 0x2D8F60; // D_002D8F60
+vspev02Gond1Pos                         = 0x2D9160; // D_002D9160
+vspev02Gond2Pos                         = 0x2D91D0; // D_002D91D0
+sp_tbl$104                              = 0x2D9240; // D_002D9240
+lift_pos$630                            = 0x2D9390; // size:0x30 // D_002D9390
+cafe_tbl$683                            = 0x2D93C0; // func_002D93C0
+pos$1262                                = 0x2D9400; // D_FLT_002D9400
+mov$1263                                = 0x2D9450; // D_FLT_002D9450
+vspev03Mokuzai                          = 0x2D94A0; // size:0xC0
+vspev03SnowFall                         = 0x2D9560; // size:0xC0 
+vspev03SnowFall2                        = 0x2D9620; // size:0xC0
+light$119                               = 0x2D98A0; // size:0x50 // D_002D98A0
+vspev03LiftStartIdx$545                 = 0x2D9A00; // D_002D9A00
+vspev03LiftStartRot$546                 = 0x2D9A40; // D_FLT_002D9A40
+vspev03LiftList$560                     = 0x2D9A90; // D_002D9A90
+vspev03BunnyList$597                    = 0x2D9F80; // D_002D9F80
+vspev03EagleList$659                    = 0x2DA070; // D_002DA070
+pos_list$932                            = 0x2DA170; // D_FLT_002DA170
+draw_list$933                           = 0x2DA190; // D_FLT_002DA190
+fog_list$934                            = 0x2DA1B0; // D_FLT_002DA1B0
 vsptblCharacterName                     = 0x2DEDA0; // D_002DEDA0
 
 vsptblBoardName                         = 0x2DEDE0; // D_002DEDE0
@@ -1526,6 +1719,9 @@ g_arrange$410                           = 0x2EF630; // size:0x100 // D_002EF630
 f_arrange$411                           = 0x2EF730; // size:0x100 // func_002EF730
 
 vspev01Dram                             = 0x2EFD80; // D_002EFD80
+vspev02HorsePos                         = 0x2EFE00; // D_FLT_002EFE00
+vspev02Lamp                             = 0x2EFEC0; // D_002EFEC0
+vspev03BonkDram                         = 0x2EFF40; // D_002EFF40
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
 vktactParamG_jump_down                  = 0x2F577C; // D_002F577C
 vktactParamG_air                        = 0x2F5780; // D_002F5780
@@ -1577,6 +1773,7 @@ vnmtblPauseFreeItem                     = 0x2F5860; // D_002F5860
 
 vspev01Length                           = 0x2F5888; // D_002F5888
 
+distance$258                            = 0x2F58B8; // D_FLT_002F58B8
 vspDisp2D                               = 0x2F58E0; // D_002F58E0
 
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
@@ -1642,6 +1839,7 @@ vgmsysWndBlurPow                        = 0x2F5AF0; // D_002F5AF0
 vgmsysBlurPow                           = 0x2F5AF8; // D_002F5AF8
 
 
+vgmsysAbuf                              = 0x2F5B10; // D_002F5B10
 vgmsysGifPkt                            = 0x2F5B1C; // D_002F5B1C
 
 
@@ -1653,8 +1851,7 @@ vnmactActSpeed                          = 0x2F5B38; // size:0x8 // D_002F5B38
 vnmactCamLen                            = 0x2F5B40; // D_FLT_002F5B40
 
 
-vnmactEdge                              = 0x2F5B48; // D_002F5B48
-
+vnmactEdge                              = 0x2F5B48; // size:0x8 // D_002F5B48
 vnmactAttr                              = 0x2F5B50; // size:0x8 // D_002F5B50
 vnmactSlide                             = 0x2F5B58; // size:0x8 // D_002F5B58
 
@@ -1820,18 +2017,51 @@ vspev01Shift                            = 0x2F5E30; // D_002F5E30
 // 34
 vspev01LoopVol                          = 0x2F5E38; // size:0x8 // D_002F5E38
 vspev01LoopID                           = 0x2F5E40; // size:0x8 // D_002F5E40
-// 4c
-
+vspev01Slow                             = 0x2F5E48; // D_002F5E48
+vspev01LiftManVoice                     = 0x2F5E50; // size:0x8 // D_002F5E50
+vspev01CameraFlag                       = 0x2F5E58; // D_002F5E58
+vspev01CameraCounter                    = 0x2F5E5C; // D_002F5E5C
 vspev01LogoEvCam                        = 0x2F5E60; // D_002F5E60
 vspev01Ski                              = 0x2F5E64; // D_002F5E64
 vspev01Lift2                            = 0x2F5E68; // D_002F5E68
 vspev01Lift1                            = 0x2F5E6C; // D_002F5E6C
-
-
+vspev01LiftManMdl                       = 0x2F5E70; // D_002F5E70
+vspev01TowerMdl                         = 0x2F5E74; // D_002F5E74
+vspev01CameraMdl                        = 0x2F5E78; // D_002F5E78
 vspev01EventMdl                         = 0x2F5E7C; // D_002F5E7C
 vspev01AnimFrame                        = 0x2F5E80; // D_FLT_002F5E80
+vspev02View                             = 0x2F5E88; // size:0x8 // D_FLT_002F5E88
+vspev02WagonClash                       = 0x2F5E90; // D_002F5E90
+vspev02SnowSpout2                       = 0x2F5E94; // D_002F5E94
+vspev02SnowSpout1                       = 0x2F5E98; // D_002F5E98
+vspev02Smoke                            = 0x2F5E9C; // D_002F5E9C
+vspev02StaffMdl                         = 0x2F5EA0; // D_002F5EA0
+vspev02YuppieMdl                        = 0x2F5EA4; // D_002F5EA4
+vspev02WagonMdl                         = 0x2F5EA8; // D_002F5EA8
+vspev02EventMdl                         = 0x2F5EAC; // D_002F5EAC
+vspev02LiftAdd                          = 0x2F5EB0; // D_FLT_002F5EB0
+vspev02Lift                             = 0x2F5EB4; // D_002F5EB4
+vspev02YuppieCnt                        = 0x2F5EB8; // D_002F5EB8
+
+vspev02LampCnt                          = 0x2F5EC8; // size:0x8 // D_002F5EC8
+vspev02ChairCnt                         = 0x2F5ED0; // size:0x8 // D_002F5ED0
+vspev02GlassCnt                         = 0x2F5ED8; // size:0x8 // D_002F5ED8
+vspev02PipeCnt                          = 0x2F5EC0; // size:0x8 // D_002F5EC0
+vspev02CafeCnt                          = 0x2F5EE4; // D_002F5EE4
+taru_flg                                = 0x2F5EE8; // D_002F5EE8
+taru_count                              = 0x2F5EEC; // D_002F5EEC
+
+vspev03LoopVol                          = 0x2F5EF8; // size:0x8 // D_002F5EF8
+vspev03LoopLR                           = 0x2F5EF0; // size:0x8 // D_002F5EF0
+vspev03LoopID                           = 0x2F5F00; // size:0x8 // D_002F5F00
+vspev03Smoke                            = 0x2F5F08; // D_002F5F08
+vspev03Lift                             = 0x2F5F0C; // D_002F5F0C
+vspev03Mode                             = 0x2F5F10; // D_002F5F10
+vspev03MotMdlCtrl                       = 0x2F5F14; // D_002F5F14
+vspev03MotMdl                           = 0x2F5F18; // D_002F5F18
 
 // D_002F6000 unknown, used by nmdispOpePauseMatch
+vspReplay                               = 0x2F6010; // size:0x8 // D_002F6010
 vspInitHorse                            = 0x2F6044; // D_002F6044
 vspEndRunReplay                         = 0x2F6048; // D_002F6048
 vspEndRun                               = 0x2F604C; // D_002F604C
@@ -1840,7 +2070,7 @@ vspEndRun                               = 0x2F604C; // D_002F604C
 vspenvReplay                            = 0x2F6058; // size:0x8 // D_002F6058
 vspenvOption                            = 0x2F6060; // D_002F6060
 vspenvGame                              = 0x2F6064; // D_002F6064
-vspReplay                               = 0x2F6010; // size:0x8 // D_002F6010
+vtmevWarp                               = 0x2F6090; // D_002F6090
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
 
@@ -1963,8 +2193,19 @@ vspev01Smoke                            = 0x344B10; // size:0x20 // D_00344B10
 
 vspev01Shutter                          = 0x344B30; // size:0x78 // D_00344B30
 
+vspev01LiftMan                          = 0x344BB0; // size:0x60 // D_00344BB0
+vspev01Camera                           = 0x344C10; // size:0xC0 // D_00344C10
 vspev01Logo                             = 0x344CD0; // size:0x120 // D_00344CD0
 
+vspev02Light                            = 0x344DF0; // size:0xA0 // D_FLT_00344DF0
+vspev02SeYuppie                         = 0x344E90; // size:0x50 // D_00344E90
+vspev02SeWagon                          = 0x344EE0; // size:0x10 // D_00344EE0
+vspev02SeLift                           = 0x344EF0; // size:0x10 // D_00344EF0
+vspev02Staff                            = 0x344F00; // size:0x60 // D_00344F00
+vspev02Yuppie                           = 0x344F60; // size:0xF0 // D_00344F60
+vspev02Gond2                            = 0x345050; // size:0x30 // D_00345050
+vspev02Gond1                            = 0x345080; // size:0x30 // D_00345080
+vspev02Gear                             = 0x3450B0; // size:0x90 // D_003450B0
 vspDispResult                           = 0x345D30; // size:0x1048 // D_00345D30
 
 vspDispEnvChar                          = 0x346D80; // size:0x70 // D_00346D80
