@@ -7615,23 +7615,23 @@ vgmsysAbuf                               = 0x002E79C0; //  (Size->4)
 vgmsysAbufmem                            = 0x002E79C4; //  (Size->4)     
 vgmsysVif1Pkt                            = 0x002E79C8; //  (Size->4)     
 vgmsysGifPkt                             = 0x002E79CC; //  (Size->4)   
-// cdvd.c  
+// cdvd.c sbss 
 vuldvdReadMode                           = 0x002E79D0; // (Size->4)     
 vuldvdReadAddr                           = 0x002E79D4; // (Size->4)   
-// coord.c  
+// coord.c sbss 
 vulcodCamera                             = 0x002E79D8; // (Size->4)    
-// pad.c 
+// pad.c sbss
 vulpadSlotNum                            = 0x002E79E0; // (Size->8)     
 vulpadAct0MinLv                          = 0x002E79E8; // (Size->4)     
 vulpadRepFrame                           = 0x002E79EC; // (Size->4)     
 vulpadAnaRef                             = 0x002E79F0; // (Size->4)   
-// sd.c  
+// sd.c sbss 
 vulsdBatchCnt                            = 0x002E79F4; // (Size->4)     
 vulsdBatchRet                            = 0x002E79F8; // (Size->4)     
 vulsdBatchIop                            = 0x002E79FC; // (Size->4)     
-// system.c
+// system.c sbss
 vulsysFlg_dispString                     = 0x002E7A00; //  (Size->1)  
-// mv2ext.c   
+// mv2ext.c sbss  
 isCountVblank                            = 0x002E7A04; // (Size->4)     
 vblankCount                              = 0x002E7A08; // (Size->4)     
 isFrameEnd                               = 0x002E7A0C; // (Size->4)     
@@ -7639,14 +7639,14 @@ isUp                                     = 0x002E7A10; // (Size->4)
 handler_error                            = 0x002E7A14; // (Size->4)     
 vulmovTagAddrPtr                         = 0x002E7A18; // (Size->4)     
 tex_fbp                                  = 0x002E7A1C; // (Size->4)    
-// movie2.c 
+// movie2.c sbss
 vulmov2VintBlock                         = 0x002E7A20; //  (Size->4)     
 vulmov2initStat                          = 0x002E7A24; // (Size->4)     
 vulmov2videoDecTh                        = 0x002E7A28; // (Size->4)     
 defaultTh                                = 0x002E7A2C; // (Size->4)   
-// TEX.c  
+// TEX.c sbss 
 vultexSystem                             = 0x002E7A30; // (Size->4) 
-// ktact.c    
+// ktact.c sbss   
 @5231                                    = 0x002E7A38; // allow_duplicated:True (Size->8)
 @5232                                    = 0x002E7A40; // allow_duplicated:True (Size->8)
 vktactParamMaxLanding                    = 0x002E7A48; // (Size->4)     
@@ -7691,22 +7691,22 @@ vktactIsSliding                          = 0x002E7AE0; // (Size->4)
 vktactNumObj                             = 0x002E7AE4; // (Size->4)     
 vktactNumVec                             = 0x002E7AE8; // (Size->4)     
 vktactNumHit                             = 0x002E7AEC; // (Size->4) 
-// nmfont.c    
+// nmfont.c sbss   
 vnmfontLangType                          = 0x002E7AF0; // (Size->4)    
-// ktmenu.c 
+// ktmenu.c sbss
 vktmenuResumable                         = 0x002E7AF4; // (Size->4)     
 vktmenuDispCount                         = 0x002E7AF8; // (Size->4)     
 vktmenuCurrentItem                       = 0x002E7AFC; // (Size->4)     
 vktmenuNumItem                           = 0x002E7B00; // (Size->4)  
-// spinit.c  
+// spinit.c sbss 
 vspenvSecret                             = 0x002E7B04; //  (Size->4)     
 vspenvReplay                             = 0x002E7B08; //  (Size->8)     
 vspenvOption                             = 0x002E7B10; //  (Size->4)     
 vspenvGame                               = 0x002E7B14; //  (Size->4)   
-// spload.c
+// spload.c sbss
 vsploadDemoNo                            = 0x002E7B18; // (Size->4)     
 vsploadDemoData                          = 0x002E7B1C; // (Size->4)  
-// gmpad.c   
+// gmpad.c sbss  
 vgmsysPadResume                          = 0x002E7B20; // (Size->4)     
 vgmsysPadAllowPause                      = 0x002E7B24; //  (Size->4)     
 vgmsysPadPrePausePid                     = 0x002E7B28; //  (Size->4)     
@@ -7714,7 +7714,7 @@ vgmsysPadPausePid                        = 0x002E7B2C; //  (Size->4)
 vgmsysPad                                = 0x002E7B30; //  (Size->8)     
 vgmsysPadSoftReset                       = 0x002E7B38; //  (Size->4)     
 vgmsysPadAllowSoftReset                  = 0x002E7B3C; //  (Size->4) 
-// spfree.c    
+// spfree.c sbss   
 vspChangeScreen                          = 0x002E7B40; // (Size->4)     
 vspIntroCutNum                           = 0x002E7B44; // (Size->4)     
 vspReplay                                = 0x002E7B48; //  (Size->8)     
@@ -7730,7 +7730,7 @@ vspPlayIntro                             = 0x002E7B78; // (Size->4)
 vspInitHorse                             = 0x002E7B7C; //  (Size->4)     
 vspEndRunReplay                          = 0x002E7B80; //  (Size->4)     
 vspEndRun                                = 0x002E7B84; //  (Size->4)     
-// tmevent.c
+// tmevent.c sbss
 vtmevVibData                             = 0x002E7B88; // (Size->8)     
 vtmevWarp                                = 0x002E7B90; //  (Size->4)     
 vtmevEnd                                 = 0x002E7B94; // (Size->4)     
@@ -7741,36 +7741,36 @@ vtmevPlayer                              = 0x002E7BA4; // (Size->4)
 vtmevMain                                = 0x002E7BA8; // (Size->4)     
 vtmevReset                               = 0x002E7BAC; // (Size->4)     
 vtmevInit                                = 0x002E7BB0; // (Size->4)     
-// ayselect.c
+// ayselect.c sbss
 vaySelData                               = 0x002E7BB4; //  (Size->4)     
 vayStateFlg                              = 0x002E7BB8; //  (Size->4)   
-// aymcard.c  
+// aymcard.c sbss
 vayTmpFile                               = 0x002E7BBC; // (Size->4)     
 vayLoadFile                              = 0x002E7BC0; // (Size->4)     
 vayMcSys                                 = 0x002E7BC4; // (Size->4)   
-// aymodsel.c  
+// aymodsel.c sbss
 vayModeData                              = 0x002E7BC8; // (Size->4)     
 vayMovCount_aymod                        = 0x002E7BCC; // allow_duplicated:True (Size->4)     
 vayNewCareer                             = 0x002E7BD0; //  (Size->4)     
 vayDemoSwitch                            = 0x002E7BD4; //  (Size->4)  
-// aymovie.c   
+// aymovie.c sbss
 vayMovCount_aymov                        = 0x002E7BD8; // allow_duplicated:True (Size->4)     
 vayMovStep                               = 0x002E7BDC; // (Size->4)     
 vayMovKind                               = 0x002E7BE0; //  (Size->4)  
-// aychrsel.c   
+// aychrsel.c sbss  
 vayChrdata                               = 0x002E7BE4; // (Size->4)    
-// kncamera.c 
+// kncamera.c sbss
 vknViewFlg_1P                            = 0x002E7BE8; // (Size->4)     
 @589                                     = 0x002E7BF0; // allow_duplicated:True (Size->8)
-// ayoption.c  
+// ayoption.c sbss 
 vayOptData                               = 0x002E7BF8; // (Size->4)  
-// nmvc.c   
+// nmvc.c sbss  
 vnmvcPause                               = 0x002E7BFC; // (Size->4)    
-// nmbgm.c 
+// nmbgm.c sbss
 vnmbgmRandom                             = 0x002E7C00; // (Size->4)     
 vnmbgmSelect                             = 0x002E7C04; // (Size->4)     
 vnmbgmPause                              = 0x002E7C08; // (Size->4)     
-// nmsq.c
+// nmsq.c sbss
 vnmsqExit                                = 0x002E7C0C; // (Size->4)     
 vnmsqFadeCnt                             = 0x002E7C10; // (Size->4)     
 vnmsqInterMVol                           = 0x002E7C14; // (Size->4)     
@@ -7778,7 +7778,7 @@ vnmsqMidiState                           = 0x002E7C18; // (Size->8)
 vnmsqMidiOperate                         = 0x002E7C20; // (Size->8)     
 vnmsqSqAddr                              = 0x002E7C28; // (Size->8)     
 vnmsqPause                               = 0x002E7C30; // (Size->4)    
-// nmdisp.c 
+// nmdisp.c sbss
 vnmdispReplay                            = 0x002E7C38; // (Size->8)     
 vnmdispEntryNum                          = 0x002E7C40; // (Size->1)     
 vnmdispScoreRank                         = 0x002E7C44; // (Size->1)     
@@ -7885,12 +7885,12 @@ vnmdispCrsEnv                            = 0x002E7EA0; // (Size->4)
 vnmdispSoftData                          = 0x002E7EA4; // (Size->4)     
 vnmdispTexData                           = 0x002E7EA8; // (Size->4)     
 vnmdispGame2d                            = 0x002E7EAC; // (Size->4)     
-// knreplay.c
+// knreplay.c sbss
 vknIntro_Top                             = 0x002E7EB0; // (Size->4)     
 vknBlock                                 = 0x002E7EB4; // (Size->4)     
 vknCube                                  = 0x002E7EB8; // (Size->4)     
 vknHead                                  = 0x002E7EBC; // (Size->4)     
-// spev01.c
+// spev01.c sbss
 vspev01Shift                             = 0x002E7EC0; // (Size->4)     
 vspev01LoopVol                           = 0x002E7EC8; // (Size->8)     
 vspev01LoopID                            = 0x002E7ED0; // (Size->8)     
@@ -7907,13 +7907,13 @@ vspev01TowerMdl                          = 0x002E7F04; // (Size->4)
 vspev01CameraMdl                         = 0x002E7F08; // (Size->4)     
 vspev01EventMdl                          = 0x002E7F0C; // (Size->4)     
 vspev01AnimFrame                         = 0x002E7F10; // (Size->4)  
-// aycreate.c   
+// aycreate.c sbss  
 vayCreate                                = 0x002E7F14; // (Size->4)     
-// akEffect.c
+// akEffect.c sbss
 _effecttex                               = 0x002E7F18; // (Size->4)     
-// ayresult.c
+// ayresult.c sbss
 vayResData                               = 0x002E7F1C; // (Size->4)     
-// spev04.c
+// spev04.c sbss
 vspev04View                              = 0x002E7F20; // (Size->8)     
 vspev04DrawLen                           = 0x002E7F28; // (Size->8)     
 vspev04Neon                              = 0x002E7F30; // (Size->4)     
@@ -7939,11 +7939,11 @@ vspev04LiftAdd                           = 0x002E7F7C; // (Size->4)
 vspev04Lift                              = 0x002E7F80; // (Size->4)     
 vspev04CraneCnt                          = 0x002E7F84; // (Size->4)     
 vspev04RailCnt                           = 0x002E7F88; // (Size->4)   
-// tieffect.c  
+// tieffect.c sbss 
 up$438                                   = 0x002E7F8C; // (Size->4)  
-// spev08.c   
+// spev08.c sbss  
 vspev08EventData                         = 0x002E7F90; // (Size->4)    
-// nmact.c 
+// nmact.c sbss
 vnmactVibData                            = 0x002E7F94; // (Size->4)     
 vnmactVoiceVol                           = 0x002E7F98; // (Size->8)     
 vnmactActSpeed                           = 0x002E7FA0; // (Size->8)     
@@ -7951,7 +7951,7 @@ vnmactCamLen                             = 0x002E7FA8; // (Size->8)
 vnmactEdge                               = 0x002E7FB0; // (Size->8)     
 vnmactAttr                               = 0x002E7FB8; // (Size->8)     
 vnmactSlide                              = 0x002E7FC0; // (Size->8)    
-// spev02.c 
+// spev02.c sbss
 vspev02View                              = 0x002E7FC8; // (Size->8)     
 vspev02WagonClash                        = 0x002E7FD0; // (Size->4)     
 vspev02SnowSpout2                        = 0x002E7FD4; // (Size->4)     
@@ -7970,7 +7970,7 @@ vspev02ChairCnt                          = 0x002E8010; // (Size->8)
 vspev02GlassCnt                          = 0x002E8018; // (Size->8)     
 vspev02SpoutCnt                          = 0x002E8020; // (Size->4)     
 vspev02CafeCnt                           = 0x002E8024; // (Size->4)
-// spev03.c     
+// spev03.c sbss    
 taru_flg                                 = 0x002E8028; // (Size->4)     
 taru_count                               = 0x002E802C; // (Size->4)     
 vspev03LoopLR                            = 0x002E8030; // (Size->8)     
@@ -7981,9 +7981,9 @@ vspev03Lift                              = 0x002E804C; // (Size->4)
 vspev03Mode                              = 0x002E8050; // (Size->4)     
 vspev03MotMdlCtrl                        = 0x002E8054; // (Size->4)     
 vspev03MotMdl                            = 0x002E8058; // (Size->4)  
-// spev06.c   
+// spev06.c sbss  
 vspev06EventData                         = 0x002E805C; // (Size->4)    
-// spev07.c 
+// spev07.c sbss
 t$335                                    = 0x002E8060; // (Size->4)     
 t$283                                    = 0x002E8064; // (Size->4)     
 t$218                                    = 0x002E8068; // (Size->4)     
@@ -7993,7 +7993,7 @@ spev07Lift2                              = 0x002E8074; // (Size->4)
 spev07Lift1                              = 0x002E8078; // (Size->4)     
 spev07MotMdl                             = 0x002E807C; // (Size->4)     
 cnt_cnt$721                              = 0x002E8080; // (Size->4)   
-// spev05.c  
+// spev05.c sbss
 vspev05Smoke                             = 0x002E8084; // (Size->4)     
 vspev05LoopLR                            = 0x002E8088; // (Size->8)     
 vspev05LoopVol                           = 0x002E8090; // (Size->8)     
@@ -8005,9 +8005,9 @@ vspev05CloudUp                           = 0x002E80AC; // (Size->4)
 vspev05Lift                              = 0x002E80B0; // (Size->4)     
 cloud_flg                                = 0x002E80B8; // (Size->8)     
 fog_flg                                  = 0x002E80C0; // (Size->8) 
-// nmevent.c    
+// nmevent.c sbss   
 vnmeventSearchRes                        = 0x002E80C8; // (Size->4)    
-// nmtrick.c 
+// nmtrick.c sbss
 vnmtrickLang                             = 0x002E80CC; // (Size->4)     
 vnmtrickModeEnv                          = 0x002E80D0; // (Size->4)     
 vnmtrickCharEnv                          = 0x002E80D4; // (Size->4)     
@@ -8100,43 +8100,43 @@ sceSd_gCd                                = 0x002EEA40; // (Region->LOCAL)  (Type
 // SDK/Lib BSS END
 
 // Game BSS Start
-// main.c
+// main.c bss
 vgmsysInitFunc                           = 0x002EEA90; // size:0x80   
 vgmsysFrameBuffer                        = 0x002EEB10; // size:0x790 
 _vgmsysVif1Pkt                           = 0x002EF2A0; // size:0x20
 _vgmsysGifPkt                            = 0x002EF2C0; // size:0x20 
 
-// cdvd.c  
+// cdvd.c bss
 vuldvdFD                                 = 0x002EF2E0; // size:0x24
 vuldvdQue                                = 0x002EF310; // size:0x1000
 vuldvdData                               = 0x002F0310; // size:0x2000
 vuldvdHead                               = 0x002F2310; // size:0x10    
 vuldvdSystem                             = 0x002F2320; // size:0x30
-// coord.c 
+// coord.c bss
 vulcodWVmat                              = 0x002F2350; // size:0x40   
 vulcodVSmat                              = 0x002F2390; // size:0x40
-// heap.c   
+// heap.c bss
 heapinfo                                 = 0x002F23D0; // size:0x28
-// mcard.c   
+// mcard.c bss 
 vulmcCardData                            = 0x002F2400; // size:0xA00
 vulmcDir                                 = 0x002F2E00; // size:0x500 
 vulmcSysInfo                             = 0x002F3300; // size:0x44 
-// pad.c 
+// pad.c bss
 vulpadInfo                               = 0x002F3350; // size:0x2E0   
 vulpadActBuf                             = 0x002F3630; // size:0xC  
 vulpadDmaBuf                             = 0x002F3640; // size:0x200  
 vulpadOption                             = 0x002F3840; // size:0x10   
-// sd.c 
+// sd.c bss
 vulsdBatch                               = 0x002F3850; // size:0x200
-// system.c  
+// system.c bss
 vulsysSystem                             = 0x002F3A50; // size:0x360 
-// mv2ext.c 
+// mv2ext.c bss
 vulmovTagAddr                            = 0x002F3DB0; // size:0x18   
 vulmov2Sysinfo                           = 0x002F3DD0; // size:0x110  
 vulmov2videoDecStack                     = 0x002F3F00; // size:0x4    
-// movie2.c
+// movie2.c bss
 defStack                                 = 0x002F3F40; // size:0x800
-// tmcrs.c
+// tmcrs.c bss
 g_davidBodyBoundIndices                  = 0x002F4740; // size:0x8000
 g_davidBodyBounds                        = 0x002FC740; // size:0x8000
 vtmcrsLocalPacket                        = 0x00304740; // size:0x10   
@@ -8157,7 +8157,7 @@ vtmcrsDrawModel                          = 0x003078C0; // size:0x1E0
 vtmcrsBaseModel                          = 0x00307AA0; // size:0xA0   
 vtmcrsSystem                             = 0x00307B40; // size:0x364 
 vtmcrsDivideNum                          = 0x00307EB0; // size:0x10
-// ktact.c    
+// ktact.c bss
 @528                                     = 0x00307EC0; // allow_duplicated:True size:0x10
 @4383                                    = 0x00307ED0; // allow_duplicated:True size:0x10
 @4384                                    = 0x00307EE0; // allow_duplicated:True size:0x10
@@ -8177,21 +8177,21 @@ vktactColHit_head                        = 0x00345D10; // size:0x600
 vktactColObj_body                        = 0x00346310; // size:0x600 
 vktactColHit_body                        = 0x00346910; // size:0x600  
 vktactColSliding                         = 0x00346F10; // size:0x60    
-// nmfont.c
+// nmfont.c bss
 vnmfontTexData                           = 0x00346F70; // size:0x20    
 vnmfontScrRate                           = 0x00346F90; // size:0x10   
 vnmfontScrSize                           = 0x00346FA0; // size:0x10    
 vnmfontOption                            = 0x00346FB0; // size:0x60 
-// ktmenu.c
+// ktmenu.c bss
 vktmenuList                              = 0x00347010; // size:0x3C0 
-// spinit.c  
+// spinit.c bss 
 vspenvDemo                               = 0x003473D0; // size:0x20    
 vspenvBestTime                           = 0x003473F0; // size:0x20    
 vspenvRecord                             = 0x00347410; // size:0xC0  
 vspenvEnv                                = 0x003474D0; // size:0x5D0E0
 vsptblCheats                             = 0x003A45B0; // size:0x28    
 vsptblLevelGoalStr                       = 0x003A45E0; // size:0x60   
-// spload.c
+// spload.c bss
 vsploadEnvMap                            = 0x003A4640; // size:0x20    
 vsploadCreate                            = 0x003A4660; // size:0x1D0   
 vsploadReplayHead                        = 0x003A4830; // size:0x10   
@@ -8209,12 +8209,12 @@ vsploadIcon                              = 0x003BD040; // size:0x1C
 vsploadCommon                            = 0x003BD060; // size:0x260  
 vsploadSystem                            = 0x003BD2C0; // size:0x30    
 vsploadSoundData                         = 0x003BD2F0; // size:0x64   
-// gmpad.c
+// gmpad.c bss
 vgmsysPadNull                            = 0x003BD360; // size:0x60    
 vgmsysPadInfo                            = 0x003BD3C0; // size:0x20  
-// ktrider.c 
+// ktrider.c bss
 vspRider                                 = 0x003BD480; // size:0x20 
-// spfree.c  
+// spfree.c bss
 vspDispVsScore                           = 0x003BD4A0; // size:0x10    
 vspDispResult                            = 0x003BD4B0; // size:0x1048 
 vspDispEnvChar                           = 0x003BE500; // size:0x70  
@@ -8224,7 +8224,7 @@ vspModeData                              = 0x003BF620; // size:0x5C
 vspLocalVif1Pkt                          = 0x003BF680; // size:0x20    
 vspLocalGifPkt                           = 0x003BF6A0; // size:0x10    
 vspSystemMatrix                          = 0x003BF6B0; // size:0x680
-// tmevent.c 
+// tmevent.c bss
 vtmevLight                               = 0x003BFD30; // size:0xA0  
 vtmevCourse                              = 0x003BFDD0; // size:0x60    
 vtmevObject                              = 0x003BFE30; // size:0x320  
@@ -8233,35 +8233,36 @@ vtmevCounter                             = 0x003C0550; // size:0x210
 vtmevVs                                  = 0x003C0760; // size:0x2A0   
 vtmevWarpSystem                          = 0x003C0A00; // size:0x190   
 vtmevSystem                              = 0x003C0B90; // size:0x50   
-// aymodsel.c 
+// aymodsel.c bss
 vakSnowFall                              = 0x003C0BE0; // size:0x60   
-// aychrsel.c 
+// aychrsel.c bss
 vayChardata                              = 0x003C0C40; // size:0x58  
-// kncamera.c  
+// kncamera.c bss  
 vknCamera                                = 0x003C0CA0; // size:0x260   
-// nmvc.c
+// nmvc.c bss
 vnmvcState                               = 0x003C0F00; // size:0x80  
 vnmvcOperate                             = 0x003C0F80; // size:0x80  
 vnmvcOption                              = 0x003C1000; // size:0x20    
 vnmvcResult                              = 0x003C1020; // size:0x30    
+// nmsnd.c bss
 vnmsndResult                             = 0x003C1080; // size:0x78   
 vnmsndFrameSend                          = 0x003C1100; // size:0x710  
 vnmsndFrame                              = 0x003C1840; // size:0x710  
 vnmsndInit                               = 0x003C1F80; // size:0x40    
 vnmsndRpcBuf                             = 0x003C1FC0; // size:0x800  
 vnmsndCd                                 = 0x003C27C0; // size:0x28   
-// nmbgm.c 
+// nmbgm.c bss
 vnmbgmQue                                = 0x003C27F0; // size:0x20    
 vnmbgmOption                             = 0x003C2810; // size:0x10    
 vnmbgmResult                             = 0x003C2820; // size:0x20  
-// nmsq.c  
+// nmsq.c bss
 vnmsqQue                                 = 0x003C2840; // size:0x20    
 vnmsqSesqState                           = 0x003C2860; // size:0x100   
 vnmsqSesqOperate                         = 0x003C2960; // size:0x100   
 vnmsqOption                              = 0x003C2A60; // size:0x20    
 vnmsqHdAddr                              = 0x003C2A80; // size:0x10    
 vnmsqResult                              = 0x003C2A90; // size:0x20    
-// nmdisp.c
+// nmdisp.c bss
 vnmdispHighScorePos                      = 0x003C2AB0; // size:0x1C    
 vnmdispCombList                          = 0x003C2AD0; // size:0x1C8   
 vnmdispStatisticsPos                     = 0x003C2CA0; // size:0x40    
@@ -8299,22 +8300,22 @@ vnmdispPauseSelectPos                    = 0x003C6910; // size:0x10
 vnmdispPausePos                          = 0x003C6920; // size:0x28    
 vnmdispBestTime                          = 0x003C6950; // size:0x20    
 vnmdispRecord                            = 0x003C6970; // size:0xC0   
-// nmdraw.c
+// nmdraw.c bss
 vnmdrawScrRate                           = 0x003C6A30; // size:0x10    
 vnmdrawScrSize                           = 0x003C6A40; // size:0x10  
-// knreplay.c  
+// knreplay.c bss
 old$648                                  = 0x003C6A50; // size:0x10    
 vknEvent                                 = 0x003C6A60; // size:0x40   
 vknIntro                                 = 0x003C6AA0; // size:0x140   
 vknReplay                                = 0x003C6BE0; // size:0x180   
 vknMainData                              = 0x003C6D60; // size:0xA0
-// spev01.c  
+// spev01.c bss
 vspev01Smoke                             = 0x003C6E00; // size:0x20    
 vspev01Shutter                           = 0x003C6E20; // size:0x78   
 vspev01LiftMan                           = 0x003C6EA0; // size:0x60    
 vspev01Camera                            = 0x003C6F00; // size:0xC0   
 vspev01Logo                              = 0x003C6FC0; // size:0x120   
-// spev04.c
+// spev04.c bss
 vspev04Debug                             = 0x003C70E0; // size:0xC    
 vspev04Light                             = 0x003C70F0; // size:0xA0  
 vspev04SeFountain                        = 0x003C7190; // size:0x10    
@@ -8327,9 +8328,9 @@ vspev04Gond2                             = 0x003C72D0; // size:0x30
 vspev04Gond1                             = 0x003C7300; // size:0x30    
 vspev04TexNeon2                          = 0x003C7330; // size:0x78   
 vspev04TexNeon                           = 0x003C73B0; // size:0x78   
-// spev08.c
+// spev08.c bss
 vspev08TexScrool                         = 0x003C7430; // size:0xF0
-// spev02.c   
+// spev02.c bss
 vspev02Light                             = 0x003C7520; // size:0xA0  
 vspev02SeYuppie                          = 0x003C75C0; // size:0x50    
 vspev02SeWagon                           = 0x003C7610; // size:0x10    
@@ -8339,7 +8340,7 @@ vspev02Yuppie                            = 0x003C7690; // size:0xF0
 vspev02Gond2                             = 0x003C7780; // size:0x30    
 vspev02Gond1                             = 0x003C77B0; // size:0x30    
 vspev02Gear                              = 0x003C77E0; // size:0x90  
-// spev03.c 
+// spev03.c bss
 @264                                     = 0x003C7870; // allow_duplicated:True size:0x10
 @547                                     = 0x003C7880; // allow_duplicated:True size:0x10
 @561                                     = 0x003C7890; // allow_duplicated:True size:0x10
@@ -8347,7 +8348,7 @@ vspev02Gear                              = 0x003C77E0; // size:0x90
 @660                                     = 0x003C78B0; // allow_duplicated:True size:0x10
 @688                                     = 0x003C78C0; // allow_duplicated:True size:0x10
 @370                                     = 0x003C78D0; // allow_duplicated:True size:0x10
-// spev07.c
+// spev07.c bss
 ava3now$278                              = 0x003C78E0; // size:0x10    
 ava2now$277                              = 0x003C78F0; // size:0x10    
 ava1now$276                              = 0x003C7900; // size:0x10    
@@ -8357,7 +8358,7 @@ spev07Blind                              = 0x003C79A0; // size:0x50
 spev07Cannon                             = 0x003C79F0; // size:0x90   
 spev07MultiSpark                         = 0x003C7A80; // size:0x30    
 spev07MultiSmoke                         = 0x003C7AB0; // size:0x20   
-// spev05.c
+// spev05.c bss
 @176spev05                               = 0x003C7AD0; // allow_duplicated:True size:0x10
 @354spev05                               = 0x003C7AE0; // allow_duplicated:True size:0x10
 @411spev05                               = 0x003C7AF0; // allow_duplicated:True size:0x10
@@ -8379,16 +8380,16 @@ vspev05SnowMobilePos                     = 0x003C7C80; // size:0x10
 spev05Blind                              = 0x003C7C90; // size:0x50    
 vspev05CloudSea                          = 0x003C7CE0; // size:0xA0  
 vspev05LiftData                          = 0x003C7D80; // size:0x288   
-// knevent.c
+// knevent.c bss
 vknPop_Rot                               = 0x003C8010; // size:0x10    
 vknPop_Pos                               = 0x003C8020; // size:0x10    
 vknCore                                  = 0x003C8030; // size:0x10 
 vknGameEvent                             = 0x003C80D0; // size:0x40   
-// akEvEffct.c
+// akEvEffct.c bss
 _Effect                                  = 0x003C8110; // size:0x730 
-// nmtrick.c 
+// nmtrick.c bss
 vnmtrickInfo                             = 0x003C8840; // size:0x1020  
-// tmetc.c
+// tmetc.c bss
 vtmetcSystem                             = 0x003C9860; // size:0x28
 errno                                    = 0x003C9888; // size:0x4
 // BSS END //
