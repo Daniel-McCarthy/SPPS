@@ -457,7 +457,9 @@ iGsPutIMR                               = 0x10DEF0; // type:func // func_0010DEF
 // more to add from func_0010DF00 and after
 
 DisableIntc                             = 0x10E670; // type:func // func_0010E670
-// more to add from func_0010E6D8 and after
+EnableIntc                              = 0x10E6D8; // func_0010E6D8
+DisableDmac                             = 0x10E740; // func_0010E740
+EnableDmac                              = 0x10E7A8; // func_0010E7A8
 
 scePrintf                               = 0x10FD48; // func_0010FD48
 sceSifInitRpc                           = 0x1104F0; // type:func // func_001104F0
@@ -1894,62 +1896,124 @@ tmalphaSetTestReg                       = 0x2826D0; // func_002826D0
 // tmcrs.c text
 tmcrsInit                               = 0x282A70; // func_00282A70
 tmcrsEnd                                = 0x282E80; // func_00282E80
-
-// vif1.c text
-ulvif1DmaWait                           = 0x282F70; // func_00282F70
-// tmcrs.c text
+tmcrsReset                              = 0x282F40; // func_00282F40
+tmcrsFinish                             = 0x282F70; // func_00282F70
+tmcrsInitBase                           = 0x282F90; // func_00282F90
+tmcrsInitDraw                           = 0x283310; // func_00283310
+tmcrsInitAlpha                          = 0x283840; // func_00283840
+tmcrsInitHit                            = 0x283BC0; // func_00283BC0
+tmcrsInitVector                         = 0x283CC0; // func_00283CC0
+tmcrsInitRail                           = 0x283DC0; // func_00283DC0
+tmcrsInitBonk                           = 0x283EA0; // func_00283EA0
 tmcrsDraw                               = 0x283FA0; // func_00283FA0
+tmcrsSetDrawLength                      = 0x2843F0; // func_002843F0
 tmcrsGetDrawLength                      = 0x284420; // func_00284420
-
+tmcrsDrawBase                           = 0x284430; // func_00284430
+tmcrsDrawDraw                           = 0x2846A0; // func_002846A0
+tmcrsDrawAlpha                          = 0x284BC0; // func_00284BC0
+tmcrsSetRegister                        = 0x284E30; // func_00284E30
+tmcrsGetBaseCollision                   = 0x284FB0; // func_00284FB0
+tmcrsGetHitCollision                    = 0x285320; // func_00285320
+tmcrsGetVectorCollision                 = 0x2853E0; // func_002853E0
+tmcrsGetRailCollision                   = 0x285600; // func_00285600
 tmcrsGetBonkCollision                   = 0x285F20; // func_00285F20
-
+tmcrsMakeCollisionMatrix                = 0x286160; // func_00286160
+tmcrsCheckCollisionBound                = 0x2861F0; // func_002861F0
+tmcrsGetCollisionSub                    = 0x286230; // func_00286230
+tmcrsGetVectorCollisionSub              = 0x286320; // func_00286320
+tmcrsInitTex                            = 0x2867B0; // func_002867B0
 tmcrsTransTex                           = 0x287790; // func_00287790
+tmcrsGetTex1Register                    = 0x287890; // func_00287890
+tmcrsTexIntrFunc                        = 0x287960; // T_00287960
 tmcrsTransAlphaTex                      = 0x287C80; // func_00287C80
+tmcrsEndTex                             = 0x287FF0; // func_00287FF0
+tmcrsStartTex                           = 0x288120; // func_00288120
+tmcrsFinishTex                          = 0x2881A0; // func_002881A0
+tmcrsSetMipMapProcess                   = 0x288210; // func_00288210
 tmcrsSetMipMapLength                    = 0x288230; // func_00288230
-
 tmcrsGetTexData                         = 0x288270; // func_00288270
-
+tmcrsResetScrollAnimTex                 = 0x2883D0; // func_002883D0
 tmcrsSetScrollTex                       = 0x2883F0; // func_002883F0
-
+tmcrsScrollTex                          = 0x2884B0; // func_002884B0
+tmcrsAnimTex                            = 0x288CE0; // func_00288CE0
+tmcrsSetDrawMipMapNo                    = 0x288FD0; // func_00288FD0
+tmcrsInitBG                             = 0x288FF0; // func_00288FF0
+tmcrsSetBGFog                           = 0x2892E0; // func_002892E0
+tmcrsSetBGDrawFlag                      = 0x289300; // func_00289300
+tmcrsSetBGColor                         = 0x289320; // func_00289320
+tmcrsSetBGNo                            = 0x289370; // func_00289370
 tmcrsDrawBG                             = 0x289390; // func_00289390
+tmcrsEndBG                              = 0x289630; // func_00289630
+tmcrsInitObject                         = 0x289670; // func_00289670
+tmcrsCheckObjectAlpha                   = 0x289FB0; // func_00289FB0
+tmcrsMappingObjectTexture               = 0x28A0A0; // func_0028A0A0
 tmcrsResetAllObject                     = 0x28A400; // func_0028A400
 tmcrsResetObject                        = 0x28A470; // func_0028A470
+tmcrsSetObjectDrawLength                = 0x28AAF0; // func_0028AAF0
 tmcrsSetObjectHitLength                 = 0x28AB10; // func_0028AB10
 tmcrsSetObjectBound                     = 0x28AB40; // func_0028AB40
 tmcrsSetObjectWeight                    = 0x28AC20; // func_0028AC20
 tmcrsGetObjectPosition                  = 0x28AC70; // func_0028AC70
 tmcrsSetObjectBonk                      = 0x28AD00; // func_0028AD00
-
 tmcrsSetObjectBonkLength                = 0x28ADC0; // func_0028ADC0
 tmcrsGetObjectBonk                      = 0x28AE10; // func_0028AE10
-
 tmcrsSetObjectAttr                      = 0x28AE50; // func_0028AE50
 tmcrsSetObjectDrawFlag                  = 0x28AE90; // func_0028AE90
-
 tmcrsGetObjectDrawFlag                  = 0x28AED0; // func_0028AED0
 tmcrsSetObjectScissorFlag               = 0x28AF10; // func_0028AF10
 tmcrsMoveObject                         = 0x28AF50; // func_0028AF50s
 tmcrsMoveObject2                        = 0x28B240; // func_0028B240
 tmcrsMoveObject2XYZ                     = 0x28B410; // func_0028B410
 tmcrsMoveObjectMat                      = 0x28B5F0; // func_0028B5F0
+tmcrsGetObjectCollision                 = 0x28B720; // func_0028B720
 tmcrsCheckObjectCollision               = 0x28BE10; // func_0028BE10
-
 tmcrsGetObjectBonkCollision             = 0x28D2F0; // func_0028D2F0
-
+tmcrsCalcObject                         = 0x28D770; // func_0028D770
 tmcrsCalcObjectUnit                     = 0x28D7E0; // func_0028D7E0
+tmcrsCalcObjectAbs                      = 0x28DA20; // func_0028DA20
+tmcrsCalcObjectMatrix                   = 0x28DE30; // func_0028DE30
+tmcrsCalcObjectLocal                    = 0x28E060; // func_0028E060
+tmcrsCalcObjectWorld                    = 0x28E860; // func_0028E860
+tmcrsCalcObjectBound                    = 0x28EA60; // func_0028EA60
+tmcrsCalcObjectDivide                   = 0x28F1F0; // func_0028F1F0
+tmcrsCalcObjectGravity                  = 0x28F870; // func_0028F870
 tmcrsBreakObject                        = 0x28F9F0; // func_0028F9F0
 tmcrsGetObjectLight                     = 0x2904A0; // func_002904A0
+tmcrsDrawObject                         = 0x2907C0; // func_002907C0
+tmcrsDrawObjectVIF1                     = 0x290D80; // func_00290D80
+tmcrsDrawObjectDivideVIF1               = 0x290FC0; // func_00290FC0
+tmcrsDrawObjectSprite                   = 0x291240; // func_00291240
+tmcrsDrawObjectAlpha                    = 0x291460; // func_00291460
+tmcrsDrawObjectDivideAlpha              = 0x291660; // func_00291660
+tmcrsSetObjectBlockData                 = 0x2918B0; // func_002918B0
+tmcrsEndObject                          = 0x2919F0; // func_002919F0
+tmcrsInitEvent                          = 0x291B50; // func_00291B50
+tmcrsEndEvent                           = 0x2920D0; // func_002920D0
 tmcrsResetEventModel                    = 0x292160; // func_00292160
 tmcrsGetEventModelFrame                 = 0x2922C0; // func_002922C0
 tmcrsDrawEventModel                     = 0x292320; // func_00292320
+tmcrsCalcEventModel                     = 0x292820; // func_00292820
+tmcrsGetEventModelHit                   = 0x292D40; // func_00292D40
+tmcrsSetFog                             = 0x292DF0; // func_00292DF0
 tmcrsGetArea                            = 0x292E10; // func_00292E10
-
+tmcrsGetCenterPos                       = 0x292F60; // func_00292F60
+tmcrsChangeNo                           = 0x292FE0; // func_00292FE0
+tmcrsResetRailCollision                 = 0x293100; // func_00293100
 tmcrsSetRailCollision                   = 0x293170; // func_00293170
-
+tmcrsResetHitCollision                  = 0x2931B0; // func_002931B0
 tmcrsSetHitCollision                    = 0x293240; // func_00293240
-
+tmcrsGetDrawArea                        = 0x293300; // func_00293300
+tmcrsCheckDrawArea                      = 0x293E10; // func_00293E10
+tmcrsSetMipModelLevel                   = 0x294030; // func_00294030
+tmcrsSetViewAngle                       = 0x294010; // func_00294010
+David_CheckBaseBlock                    = 0x294050; // func_00294050
 David_PutRaysInVU0                      = 0x294230; // func_00294230
 David_GetBaseCollision2                 = 0x2942B0; // func_002942B0
+David_CheckHitData                      = 0x294500; // func_00294500
+David_GetHitCollision2                  = 0x294710; // func_00294710
+David_tmcrsInitBlockBound               = 0x294880; // func_00294880
+David_tmcrsGetObjectCollision2          = 0x294C00; // func_00294C00
+David_tmcrsGetObjectCollision           = 0x294CE0; // func_00294CE0
 
 // tmetc.c text
 tmetcInit                               = 0x2953D0; // func_002953D0
@@ -2026,6 +2090,9 @@ tmevGetLightVector                      = 0x29A340; // func_0029A340
 // tmgraph.c text
 tmgraphSetMatrix                        = 0x29A520; // func_0029A520
 
+tmgraphRTPSpriteAddAlphaBufT__          = 0x29B2D0; // func_0029B2D0
+tmgraphRTPAddAlphaBufG_T__              = 0x29B860; // func_0029B860
+tmgraphGetFogCoef                       = 0x29A8A0; // func_0029A8A0
 // tmlink.c text
 tmlinkMappingData                       = 0x29BC80; // func_0029BC80
 // cdvd.c text
@@ -2119,6 +2186,8 @@ ultexResetTex                           = 0x2AF160; // func_002AF160
 ultexGetOffset                          = 0x2AF180; // func_002AF180
 ultexGetNTex                            = 0x2AF190; // func_002AF190
 ultexGetUseBlock                        = 0x2AF1B0; // func_002AF1B0
+ultexGetMipMapLevel                     = 0x2AF1D0; // func_002AF1D0
+ultexGetUseBlock                        = 0x2AF210; // func_002AF210
 ultexGetUseMemory                       = 0x2AF230; // func_002AF230
 ultexSetAlign                           = 0x2AF260; // func_002AF260
 ultexTransTex                           = 0x2AF290; // func_002AF290
@@ -2143,6 +2212,17 @@ ulvumdlCalcVerShadeWind                 = 0x2B3410; // func_002B3410
 ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
 
 sceScfGetLocalTimefromRTC               = 0x2B4700; // func_002B4700
+// vutext data
+ltmasmSendPrgVu0                        = 0x2B5B40; // D_002B5B40
+ltmasmSendPrgVu1                        = 0x2B64E0; // D_002B64E0
+ltmasmSendPrgVu1Obj                     = 0x2BA8F0; // D_002BA8F0
+ltmasmSendPrgVu1NonFogObj               = 0x2B9620; // D_002B9620
+ltmasmSendMatrix                        = 0x2BBCD0; // D_002BBCD0
+ltmasmPrimitive                         = 0x2BBCF8; // size:0x48 // D_002BBCF8
+ltmasmLocalScreenMatrix                 = 0x2BBD40; // D_002BBD40
+ltmasmLocalClipMatrix                   = 0x2BBD88; // D_002BBD88
+ltmasmClipScreenMatrix                  = 0x2BBDD0; // D_002BBDD0
+
 // __data_start
 gp.6                                    = 0x2BBE90; // D_002BBE90
 init_vif_regs.3                         = 0x2BBEA0; // D_002BBEA0
@@ -2505,6 +2585,14 @@ rgb1$562                                = 0x2E22B0; // size:0x10 // D_002E22B0
 rgb2$563                                = 0x2E22C0; // size:0x10 // func_002E22C0
 info$598                                = 0x2E22D0; // size:0xA0 // D_002E22D0
 
+// tiutill.c data
+_randtbl                                = 0x2E2370; // func_002E2370
+
+// tmcrs.c data
+// D_002E2500 // anon // "@1766" in US version
+// D_002E2510 // anon // "@1767" in US version
+// D_002E2550 // anon // "@1974" in US version
+
 // ktact.c rodata
 // several ktact anon variables
 normal$406                              = 0x2EF230; // size:0x100 // D_002EF230
@@ -2570,7 +2658,7 @@ GapObj$543                              = 0x2F1510; // size:0x30 // D_002F1510
 liftman$766                             = 0x2F1540; // size:0x30 // func_002F1540
 // func_002F1570 // anon // "@731" in US version
 
-// spinit.c sdata
+// spinit.c rodata
 // D_002F4958 // anon // "@678" in US version 
 // D_002F4988 // anon // "@111" in US version
 // D_002F4A20 // anon // "@188" in US version
@@ -2587,6 +2675,13 @@ liftman$766                             = 0x2F1540; // size:0x30 // func_002F154
 
 // jtbl_002F4F30 // anon // "@442" in US version
 // jtbl_002F4F70 // anon // "@757" in US version
+
+// tmcrs.c rodata
+alpha_tbl$336                           = 0x2F4F90; // D_002F4F90
+// D_002F4FC8 // anon // "@1681" in US version
+alpha_tbl$1857                          = 0x2F4FD0; // D_002F4FD0
+alpha_tbl$1871                          = 0x2F5010; // D_002F5010
+alpha_tbl$1897                          = 0x2F5050; // D_002F5050
 // D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
@@ -2683,6 +2778,10 @@ add$91                                  = 0x2F5944; // D_002F5944
 sub$92                                  = 0x2F5948; // D_002F5948
 time$93                                 = 0x2F594C; // D_002F594C
 skip$94                                 = 0x2F5950; // D_002F5950
+
+// tiutill.c sbss
+_randcnt                                = 0x2F5954; // D_002F5954
+
 // gmpad.c sbss
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
 vgmsysPadPausePid                       = 0x2F59D0; // D_002F59D0
@@ -3306,6 +3405,25 @@ vsploadSystem                           = 0x3C3B70; // size:0x30 // D_003C3B70
 vsploadSoundData                        = 0x3C3BA0; // size:0x64 // D_003C3BA0
 
 // tmcrs.c bss
+g_davidBodyBounds                       = 0x3CBC10; // size:0x8000 // D_FLT_003CBC10
+g_davidBodyBoundIndices                 = 0x3C3C10; // size:0x8000 // D_003C3C10
+vtmcrsLocalPacket                       = 0x3D3C10; // size:0x10 // D_003D3C10
+vtmcrsLocalPacketAddr                   = 0x3D3C20; // size:0x1000 // D_003D3C20
+vtmcrsEventSystem                       = 0x3D4C20; // size:0x14 // D_003D4C20
+vtmcrsEventModel                        = 0x3D4C40; // size:0x600 // D_003D4C40
+vtmcrsObjectData                        = 0x3D5240; // size:0x28 // D_FLT_003D5240
+vtmcrsBG                                = 0x3D5270; // size:0x60 // D_003D5270
+vtmcrsAnimTexData                       = 0x3D52D0; // size:0x500 // D_003D52D0
+vtmcrsScrollTexData                     = 0x3D57D0; // size:0x500 // D_003D57D0
+vtmcrsTexSystem                         = 0x3D5CD0; // size:0x1070 // D_003D5CD0
+vtmcrsBonkData                          = 0x3D6D40; // size:0x10 // D_003D6D40
+vtmcrsRailData                          = 0x3D6D50; // size:0x10 // D_003D6D50
+vtmcrsVectorData                        = 0x3D6D60; // size:0x10 // D_003D6D60
+vtmcrsHitData                           = 0x3D6D70; // size:0x10 // D_003D6D70
+vtmcrsAlphaModel                        = 0x3D6D80; // size:0x10 // D_003D6D80
+vtmcrsDrawModel                         = 0x3D6D90; // size:0x1E0 // D_003D6D90
+vtmcrsBaseModel                         = 0x3D6F70; // size:0xA0 // D_003D6F70
+vtmcrsSystem                            = 0x3D7010; // size:0x364 // D_003D7010
 vtmcrsDivideNum                         = 0x3D7380; // size:0x10 // D_003D7380
 
 // system.c bss
