@@ -493,6 +493,7 @@ sqrtf                                   = 0x11E4F8; // func_0011E4F8
 abs                                     = 0x11E610; // func_0011E610
 memcpy                                  = 0x121620; // func_00121620
 
+memset                                  = 0x1217D8; // func_001217D8
 
 // SDK/Lib Text ASM
 
@@ -515,6 +516,7 @@ dpcmp                                   = 0x127418; // type:func // func_0012741
 dptoli                                  = 0x127520; // func_00127520
 dptofp                                  = 0x1276C0; // func_001276C0
 
+fptoui                                  = 0x1281B8; // func_001281B8
 fptodp                                  = 0x1282B8; // func_001282B8
 
 // akEvEfct.c text
@@ -1798,9 +1800,54 @@ sploadGetCommonOffset                   = 0x277EF0; // func_00277EF0
 
 // tieffect.c text
 tifxInitSpur                            = 0x277F00; // func_00277F00
+tifxcolorspur                           = 0x277F90; // func_00277F90
+tifxinitspur                            = 0x277FE0; // func_00277FE0
+tifxResetSpur                           = 0x278140; // func_00278140
+tifxresetspur                           = 0x278180; // func_00278180
+tifxFinalSpur                           = 0x278220; // func_00278220
+tifxfinalspur                           = 0x278260; // func_00278260
+tifxSetColorSpur                        = 0x2782B0; // func_002782B0
+tifxDrawSpur                            = 0x278310; // func_00278310
+tifxdrawspur                            = 0x278360; // func_00278360
+tifxCalcSpur                            = 0x2789E0; // func_002789E0
+tifxoptionspur                          = 0x279630; // func_00279630
+tifxInitSpark                           = 0x279A40; // func_00279A40
+tifxFinalSpark                          = 0x279AC0; // func_00279AC0
+tifxDrawSpark                           = 0x279B10; // func_00279B10
+tifxCalcSpark                           = 0x279ED0; // func_00279ED0
+tifxInitSawdust                         = 0x27A210; // func_0027A210
+tifxFinalSawdust                        = 0x27A2C0; // func_0027A2C0
+tifxDrawSawdust                         = 0x27A310; // func_0027A310
+tifxCalcSawdust                         = 0x27A680; // func_0027A680
+tifxResetSnowSmoke                      = 0x27AA00; // func_0027AA00
+tifxFinalSnowSmoke                      = 0x27AAC0; // func_0027AAC0
+tifxDrawSnowSmoke                       = 0x27AB10; // func_0027AB10
+tifxCalcSnowSmoke                       = 0x27AD70; // func_0027AD70
+tifxInitTwig                            = 0x27B1B0; // func_0027B1B0
+tifxFinalTwig                           = 0x27B270; // func_0027B270
+tifxDrawTwig                            = 0x27B2C0; // func_0027B2C0
+tifxCalcTwig                            = 0x27B610; // func_0027B610
+tifxInitSnowShovel                      = 0x27B9C0; // func_0027B9C0
+tifxFinalSnowShovel                     = 0x27BAC0; // func_0027BAC0
+tifxSetColorSnowShovel                  = 0x27BB10; // func_0027BB10
+tifxDrawSnowShovel                      = 0x27BB60; // func_0027BB60
+tifxCalcSnowShovel                      = 0x27BE80; // func_0027BE80
+tifxInitSnowTree                        = 0x27C460; // func_0027C460
+tifxFinalSnowTree                       = 0x27C5B0; // func_0027C5B0
+tifxSetColorSnowTree                    = 0x27C600; // func_0027C600
+tifxDrawSnowTree                        = 0x27C650; // func_0027C650
+tifxCalcSnowTree                        = 0x27C980; // func_0027C980
+tifxInitSteam                           = 0x27CDB0; // func_0027CDB0
+tifxResetSteam                          = 0x27CE60; // func_0027CE60
+tifxDrawSteam                           = 0x27CED0; // func_0027CED0
+tifxCalcSteam                           = 0x27D1B0; // func_0027D1B0
+tievSetSteam                            = 0x27D5E0; // func_0027D5E0
+tifxFinalSteam                          = 0x27D870; // func_0027D870
 
 // tievent.c text
+tievInitCloudSea                        = 0x27D8C0; // func_0027D8C0
 tievFreeCloudSea                        = 0x27DB60; // func_0027DB60
+tievShowCloudSea                        = 0x27DBB0; // func_0027DBB0
 tievDrawCloudSea                        = 0x27DBF0; // func_0027DBF0
 tievCalcCloudSea                        = 0x27DE60; // func_0027DE60
 tievInitBlind                           = 0x27E120; // func_0027E120
@@ -1822,6 +1869,8 @@ tievDrawSpark                           = 0x27F310; // func_0027F310
 tievCalcSpark                           = 0x27F620; // func_0027F620
 tievSetSpark                            = 0x27F7D0; // func_0027F7D0
 tievSetSparkN                           = 0x27FA70; // func_0027FA70
+tievInitShards                          = 0x27FCE0; // func_0027FCE0
+tievFreeShards                          = 0x27FF40; // func_0027FF40
 tievSetShardsCallback                   = 0x27FFE0; // func_0027FFE0
 tievDrawShards                          = 0x280010; // func_00280010
 tievCalcShards                          = 0x280800; // func_00280800
@@ -1830,11 +1879,15 @@ tievShards                              = 0x280C20; // func_00280C20
 tievInitCannon                          = 0x281380; // func_00281380
 tievFreeCannon                          = 0x281460; // func_00281460
 tievDrawCannon                          = 0x2814C0; // func_002814C0
+tievCalcCannon                          = 0x281AE0; // func_00281AE0
 tievCannon                              = 0x282150; // func_00282150
 
 // tiutill.c text
+tiutRand                                = 0x2821C0; // func_002821C0
 tiutVu0DistanceP2P                      = 0x282260; // func_00282260
 
+tiutVu0CrossL2L                         = 0x2822A0; // func_002822A0
+tiutVu0AxisRotate                       = 0x2824A0; // func_002824A0
 // tmalpha.c text
 tmalphaSetTestReg                       = 0x2826D0; // func_002826D0
 
@@ -1958,6 +2011,7 @@ tmevSetHorsePosition                    = 0x299A30; // func_00299A30
 tmevGetNowHorsePos                      = 0x299AF0; // func_00299AF0
 tmevGetLap                              = 0x299B00; // func_00299B00
 
+tmevResetHorsePosition                  = 0x299B30; // func_00299B30
 tmevGetFinish                           = 0x299FE0; // func_00299FE0
 tmevSetVib                              = 0x29A010; // func_0029A010
 
@@ -2057,6 +2111,7 @@ ulvif1DmaWait                           = 0x2A95E0; // func_002A95E0
 
 // graph2.c text
 ulgraphAlphaResetBuf                    = 0x2AED80; // func_002AED80
+ulgraphAlphaClosePacket                 = 0x2AEDF0; // func_002AEDF0
 ulgraphAlphaSortPacket                  = 0x2AEF00; // func_002AEF00
 ulgraphAlphaDrawPacket                  = 0x2AF110; // func_002AF110
 // TEX.c text
@@ -2087,6 +2142,7 @@ ulvumdlCalcVerShadeWind                 = 0x2B3410; // func_002B3410
 // spr.c text
 ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
 
+sceScfGetLocalTimefromRTC               = 0x2B4700; // func_002B4700
 // __data_start
 gp.6                                    = 0x2BBE90; // D_002BBE90
 init_vif_regs.3                         = 0x2BBEA0; // D_002BBEA0
@@ -2400,8 +2456,54 @@ vsptblLevelGoalStrE                     = 0x2E1680; // D_002E1680
 // D_002E1B80 // anon // "@591" in US version
 // D_002E1BC0 // anon // "@697" in US version
 // D_002E1DE0 // anon // "@871" in US version
-// jtbl_002F4F30 // anon // "@442" in US version
-// jtbl_002F4F70 // anon // "@757" in US version
+
+// tieffect.c .data
+_stq                                    = 0x2E1E00; // size:0x20 // D_002E1E00
+_stqex                                  = 0x2E1E20; // D_002E1E20
+c0$localstatic3$tifxdrawspur            = 0x2E1EA0; // size:0x10 // D_002E1EA0
+c1$localstatic4$tifxdrawspur            = 0x2E1EB0; // size:0x10 // D_002E1EB0
+after_x$143                             = 0x2E1EC0; // size:0x20 // func_002E1EC0
+after_y$144                             = 0x2E1EE0; // size:0x40 // func_002E1EE0
+after_l$145                             = 0x2E1F20; // size:0x20 // func_002E1F20
+after_r$146                             = 0x2E1F40; // size:0x20 // func_002E1F40
+rgba$334                                = 0x2E1F80; // size:0x10 / D_002E1F80
+c0$415                                  = 0x2E1F90; // size:0x10 // func_002E1F90
+c1$416                                  = 0x2E1FA0; // size:0x10 // func_002E1FA0
+rgba$482                                = 0x2E1FB0; // size:0x10 // func_002E1FB0
+clip1$725                               = 0x2E1FC0; // size:0x10 // func_002E1FC0
+clip2$726                               = 0x2E1FD0; // size:0x10 // D_002E1FD0
+uv$727                                  = 0x2E1FE0; // size:0x20 // D_002E1FE0
+obj$756                                 = 0x2E2000; // size:0x10 // func_002E2000
+info$757                                = 0x2E2010; // size:0xA0 // D_002E2010
+
+// tievent.c data
+c0$65                                   = 0x2E20B0; // size:0x10 // func_002E20B0
+c1$66                                   = 0x2E20C0; // size:0x10 // func_002E20C0
+uv$68                                   = 0x2E20D0; // size:0x20 // D_002E20D0
+info$130                                = 0x2E20F0; // size:0x50 // D_FLT_002E20F0
+clip1$131                               = 0x2E2140; // size:0x10 // func_002E2140
+clip2$132                               = 0x2E2150; // size:0x10 // D_002E2150
+uv$133                                  = 0x2E2160; // size:0x20 // D_002E2160
+clip1$200                               = 0x2E2180; // size:0x10 // func_002E2180
+clip2$201                               = 0x2E2190; // size:0x10 // D_002E2190
+uv$202                                  = 0x2E21A0; // size:0x20 // D_002E21A0
+// D_002E21C0 // anon // "@251" in US version
+clip1$281                               = 0x2E21D0; // size:0x10 // D_002E21D0
+clip2$282                               = 0x2E21E0; // size:0x10 // D_002E21E0
+rgba$283                                = 0x2E21F0; // size:0x10 // D_002E21F0
+clip1$372                               = 0x2E2200; // size:0x10 // func_002E2200
+clip2$373                               = 0x2E2210; // size:0x10 // D_002E2210
+rgb1$374                                = 0x2E2220; // size:0x10 // D_002E2220
+rgb2$375                                = 0x2E2230; // size:0x10 // func_002E2230
+rgba$457                                = 0x2E2240; // size:0x10 // func_002E2240
+size$458                                = 0x2E2250; // size:0x10 // func_002E2250
+gravity$459                             = 0x2E2260; // size:0x10 // D_002E2260
+clip1$559                               = 0x2E2270; // size:0x10 // func_002E2270
+clip2$560                               = 0x2E2280; // size:0x10 // func_002E2280
+uv$561                                  = 0x2E2290; // size:0x20 // D_002E2290
+rgb1$562                                = 0x2E22B0; // size:0x10 // D_002E22B0
+rgb2$563                                = 0x2E22C0; // size:0x10 // func_002E22C0
+info$598                                = 0x2E22D0; // size:0xA0 // D_002E22D0
 
 // ktact.c rodata
 // several ktact anon variables
@@ -2482,6 +2584,9 @@ liftman$766                             = 0x2F1540; // size:0x30 // func_002F154
 // jtbl_002F4A60 // jtbl // "@197" in US version
 // D_002F4CC8 // anon // "@283" in US version
 // D_002F4CD0 // anon // "@284" in US version
+
+// jtbl_002F4F30 // anon // "@442" in US version
+// jtbl_002F4F70 // anon // "@757" in US version
 // D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
@@ -2552,6 +2657,32 @@ spev07Lift2ID_num                       = 0x2F58DC; // D_002F58DC
 // spfree.c sdata
 vspDisp2D                               = 0x2F58E0; // D_002F58E0
 
+// tieffect.c sdata
+rad180                                  = 0x2F58F8; // D_FLT_002F58F8
+def$434                                 = 0x2F58FC; // D_FLT_002F58FC
+acc$437                                 = 0x2F5908; // D_FLT_002F5908
+abe$440                                 = 0x2F5910; // D_002F5910
+add$441                                 = 0x2F5914; // D_002F5914
+sub$442                                 = 0x2F5918; // D_002F5918
+time$443                                = 0x2F591C; // D_002F591C
+skip$444                                = 0x2F5920; // D_002F5920
+xsize$435                               = 0x2F5900; // D_FLT_002F5900
+ysize$436                               = 0x2F5904; // D_FLT_002F5904
+distance$439                            = 0x2F590C; // D_FLT_002F590C
+cnt$569                                 = 0x2F5924; // D_002F5924
+deg$659                                 = 0x2F5928; // D_FLT_002F5928
+num$660                                 = 0x2F592C; // D_002F592C
+
+// tievent.c sbss
+xsize$86                                = 0x2F5930; // D_FLT_002F5930
+ysize$87                                = 0x2F5934; // D_FLT_002F5934
+acc$88                                  = 0x2F5938; // D_FLT_002F5938
+up$89                                   = 0x2F593C; // D_FLT_002F593C
+abe$90                                  = 0x2F5940; // D_002F5940
+add$91                                  = 0x2F5944; // D_002F5944
+sub$92                                  = 0x2F5948; // D_002F5948
+time$93                                 = 0x2F594C; // D_002F594C
+skip$94                                 = 0x2F5950; // D_002F5950
 // gmpad.c sbss
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
 vgmsysPadPausePid                       = 0x2F59D0; // D_002F59D0
@@ -2930,6 +3061,9 @@ vspenvSecret                            = 0x2F6050; // D_002F6050
 // spload.c sbss
 vsploadDemoNo                           = 0x2F6070; // D_002F6070
 vsploadDemoData                         = 0x2F6080; // D_002F6080
+
+// tieffect.c sbss
+up$438                                  = 0x2F6084; // D_FLT_002F6084
 
 // spinit.c sbss
 vspenvReplay                            = 0x2F6058; // size:0x8 // D_002F6058
