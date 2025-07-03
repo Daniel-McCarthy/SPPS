@@ -479,6 +479,7 @@ _InitSys                                = 0x1167C0; // type:func // func_001167C
 Exit                                    = 0x116A30; // type:func // func_00116A30
 // more to add from func_00116A90 and after
 
+sceCdReadClock                          = 0x1199C0; // func_001199C0
 fabs                                    = 0x11D910; // func_0011D910
 cosf                                    = 0x11DCC8; // func_0011DCC8
 
@@ -500,10 +501,12 @@ printf                                  = 0x122908; // type:func // func_0012290
 rand                                    = 0x122968; // func_00122968
 strcat                                  = 0x122CA0; // func_00122CA0
 strlen                                  = 0x123030; // func_00123030
+__fixunssfdi                            = 0x1255D8; // func_001255D8
 __floatdisf                             = 0x125768; // type:func // func_00125768
 // more to add from func_00125848 and after
 __muldi3                                = 0x125EB0; // func_00125EB0
 __udivdi3                               = 0x125F10; // func_00125F10
+__umoddi3                               = 0x1264E0; // func_001264E0
 dpadd                                   = 0x126E30; // func_00126E30
 dpmul                                   = 0x126EF0; // func_00126EF0
 dpcmp                                   = 0x127418; // type:func // func_00127418
@@ -514,15 +517,26 @@ dptofp                                  = 0x1276C0; // func_001276C0
 
 fptodp                                  = 0x1282B8; // func_001282B8
 
+// akEvEfct.c text
+akSrandf                                = 0x128300; // func_00128300
+akRandf                                 = 0x128310; // func_00128310
+spfxSetTexData                          = 0x128350; // func_00128350
 spfxGetTexData                          = 0x128370; // func_00128370
 // more to add above from func_001C05E0 and before
 
+akevInitEffect                          = 0x12EE90; // func_0012EE90
+akevResetEffect                         = 0x12F450; // func_0012F450
 akevResetEffect2                        = 0x12F620; // func_0012F620
 
+akevDrawEffect1                         = 0x12F6B0; // func_0012F6B0
+akevDrawEffect2                         = 0x12F980; // func_0012F980
+akevCalcEffect                          = 0x12FAE0; // func_0012FAE0
+akevFreeEffect                          = 0x130220; // func_00130220
 akevInitSnowfall                        = 0x1304C0; // func_001304C0
 akevChangeSnowFallNum                   = 0x130570; // func_00130570
 akevInitLensFlare                       = 0x1305B0; // func_001305B0
 akevSetLensFlareBright                  = 0x130670; // func_00130670
+akevSetLensFlareScreen                  = 0x1306B0; // func_001306B0
 akevChangeSnowSplashColor               = 0x130770; // func_00130770
 akevInitSmoke                           = 0x130930; // func_00130930
 akevResetSmoke                          = 0x1309A0; // func_001309A0
@@ -532,17 +546,62 @@ akevCalcSmoke                           = 0x130D10; // func_00130D10
 akevDrawSmoke                           = 0x130E40; // func_00130E40
 akevFreeSmoke                           = 0x1314E0; // func_001314E0
 akevWaterSplash                         = 0x131520; // func_00131520
+akevCheckDistance                       = 0x1315A0; // func_001315A0
+akevInitTextureScroll                   = 0x131610; // func_00131610
+akevResetTextureScroll                  = 0x131750; // func_00131750
+akevCalcTextureScroll                   = 0x1317E0; // func_001317E0
+akevSetTextureScroll                    = 0x131900; // func_00131900
+akevInitFirework                        = 0x131970; // func_00131970
+akevBlowupFirework                      = 0x131A80; // func_00131A80
+akevCalcFirework                        = 0x131D00; // func_00131D00
+akevDrawFirework                        = 0x131E80; // func_00131E80
+akevFreeFirework                        = 0x1325B0; // func_001325B0
+akevInitLift                            = 0x1325F0; // func_001325F0
+akevMoveLift                            = 0x132850; // func_00132850
+// akSpSub.c text
+aksubClipScreen                         = 0x134B00; // func_00134B00
+
+// aymovie.c text
+ayMovieModInit                          = 0x15D0B0; // func_0015D0B0
+
+// ayresult.c text
+ayResultInit                            = 0x16E020; // func_0016E020
+ayResultFrame                           = 0x16E080; // func_0016E080
+ayResultEnd                             = 0x16F7C0; // func_0016F7C0
+
+// ayselect.c text
+aySelectModInit                         = 0x17D300; // func_0017D300
+
+// gmpad.c text
+gmsysPadReset                           = 0x17E190; // func_0017E190
+
+// ktmnufnc.c text
 ktmfMenuFunc_finish                     = 0x17E220; // func_0017E220
+
+// kncamera.c text
+knCameraInit                            = 0x17E4F0; // func_0017E4F0
+knCameraSetScrZ                         = 0x17E970; // func_0017E970
+knCameraCalc                            = 0x17E9C0; // func_0017E9C0
 knCameraSetFixRotation                  = 0x181840; // func_00181840
 knCameraSetDis                          = 0x1818C0; // func_001818C0
 knCameraEndDis                          = 0x181930; // func_00181930
 knCameraEventAllReset                   = 0x181990; // func_00181990
+knFinishCamera                          = 0x1819E0; // func_001819E0
+
+// kncore.c text
 knEventStart                            = 0x183710; // func_00183710
 knEventEnd                              = 0x183790; // func_00183790
 knEventSetCameraPos                     = 0x1837E0; // func_001837E0
 knEventSetCameraObj                     = 0x183810; // func_00183810
+knEventCameraMoveSpline1                = 0x183860; // func_00183860
 knEventSetShake                         = 0x1838B0; // func_001838B0
+knCoreGetWVMat                          = 0x183A70; // func_00183A70
+knCoreGetWState                         = 0x183CF0; // func_00183CF0
 knCoreGetSearchBlock                    = 0x183E40; // func_00183E40
+
+// knreplay.c text
+knIntroInit                             = 0x185780; // func_00185780
+knReplayInit                            = 0x1868E0; // func_001868E0
 knReplaySetObstPos                      = 0x187C60; // func_00187C60
 // ktact.c text start
 ktactInitCtrl                           = 0x18BA90; // func_0018BA90
@@ -1539,18 +1598,206 @@ spev05SnowMobileMoveReset               = 0x24C7E0; // func_0024C7E0
 spev05SnowMobileMoveEvent               = 0x24CA10; // func_0024CA10
 spev05LiftManMoveReset                  = 0x24DC70; // func_0024DC70
 spev05LiftManMoveEvent                  = 0x24DF00; // func_0024DF00
+# spev06.c text
+spev06Init                              = 0x24E990; // T_0024E990
+spev06ResetEvent                        = 0x24F120; // T_0024F120
+spev06MainEvent                         = 0x24F5B0; // T_0024F5B0
+spev06PlayerEvent                       = 0x2503F0; // T_002503F0
+spev06DrawEvent                         = 0x2508B0; // T_002508B0
+spev06DrawPlayerEvent                   = 0x250970; // T_00250970
+spev06FinishPlayerEvent                 = 0x250990; // T_00250990
+spev06End                               = 0x2509C0;
+spev06ResetObject                       = 0x250A10; // func_00250A10
+spev06CheckHit                          = 0x251390; // func_00251390
+spev06CheckLine                         = 0x252AD0; // func_00252AD0
+spev06CheckRail                         = 0x252BD0; // func_00252BD0
+spev06CheckObject                       = 0x253400; // func_00253400
+spev06CheckHandPlant                    = 0x253B20; // func_00253B20
+spev06CheckClearFlag1                   = 0x253C60; // func_00253C60
+spev06CheckClearFlag2                   = 0x253D10; // func_00253D10
+spev06ActionTower                       = 0x2540E0; // func_002540E0
+spev06ActionLift                        = 0x2544B0; // func_002544B0
+spev06SetLoopSound                      = 0x2548F0; // func_002548F0
+spev06Play                              = 0x254CA0; // func_00254CA0
+spev06ActionFlags                       = 0x254DD0; // func_00254DD0
+spev06DispSlalomInfo                    = 0x254FB0; // func_00254FB0
+spev06ActionGate                        = 0x2552A0; // func_002552A0
+spev06Liftman                           = 0x255400; // func_00255400
+
+# spev07.c text
+tiev07AddSmokeP2P                       = 0x255CD0; // func_00255CD0
+spev07DisableMdlMotion                  = 0x255DA0; // func_00255DA0
+spev07PlayMdlMotion                     = 0x255DF0; // func_00255DF0
+spev07InitMdlMotion                     = 0x255EF0; // func_00255EF0
+spev07GetPlayFrame                      = 0x255F50; // func_00255F50
+spev07PlaySound                         = 0x255FA0; // func_00255FA0
+spev07StopSound                         = 0x256070; // func_00256070
+spev07NoseupTheChopper                  = 0x2560E0; // func_002560E0
+spev07ComeOnChopper                     = 0x2562E0; // func_002562E0
+spev07HoverTheChopperVB                 = 0x256480; // func_00256480
+spev07HoverTheChopper                   = 0x2566D0; // func_002566D0
+spev07DipTheBus                         = 0x256920; // func_00256920
+spev07ArtilleryDischarge1               = 0x256E40; // func_00256E40
+spev07ArtilleryDischarge2               = 0x257880; // func_00257880
+spev07SlantTheTMap                      = 0x2582D0; // func_002582D0
+spev07OperatingLiftReset                = 0x258700; // func_00258700
+spev07OperatingLift                     = 0x258A10; // func_00258A10
+spev07MainLodgeSmoke                    = 0x259150; // func_00259150
+spev07OperatingHalfpipedragon           = 0x259260; // func_00259260
+spev07MoveAgent                         = 0x259610; // func_00259610
+spev07PlayerEventHit                    = 0x259DA0; // func_00259DA0
+spev07PlayerEventGrind                  = 0x25B390; // func_0025B390
+spev07PlayerEventObj                    = 0x25BCD0; // func_0025BCD0
+spev07ResetObject                       = 0x25C3B0; // func_0025C3B0
+spev07Init                              = 0x25C8B0; // T_0025C8B0
+spev07ResetEvent                        = 0x25CB30; // T_0025CB30
+spev07MainEvent                         = 0x25D040; // T_0025D040
+spev07PlayerEvent                       = 0x25D1F0; // T_0025D1F0
+spev07DrawEvent                         = 0x25D700; // T_0025D700
+spev07DrawPlayerEvent                   = 0x25D840; // T_0025D840
+spev07FinishPlayerEvent                 = 0x25D860;
+spev07End                               = 0x25D880;
+// spev08.c text
+spev08Init                              = 0x25D910;
+spev08ResetEvent                        = 0x25DEF0; // T_0025DEF0
+spev08MainEvent                         = 0x25E220; // T_0025E220
+spev08PlayerEvent                       = 0x25EB70; // T_0025EB70
+spev08DrawEvent                         = 0x25EDA0; // T_0025EDA0
+spev08DrawPlayerEvent                   = 0x25EE20;
+spev08FinishPlayerEvent                 = 0x25EE40;
+spev08End                               = 0x25EE60;
+spev08ResetObject                       = 0x25EEA0; // func_0025EEA0
+spev08CheckHit                          = 0x25F810; // func_0025F810
+spev08CheckRail                         = 0x2607D0; // func_002607D0
+spev08CheckObject                       = 0x261280; // func_00261280
+spev08CheckHandPlant                    = 0x261700; // func_00261700
+spev08CheckClearFlag1                   = 0x2618F0; // func_002618F0
+spev08CheckClearFlag2                   = 0x261980; // func_00261980
+spev08ActionEV03                        = 0x261C40; // func_00261C40
+spev08CheckEV16                         = 0x262020; // func_00262020
+spev08ActionEV16                        = 0x2620E0; // func_002620E0
+spev08ActionEV19                        = 0x262380; // func_00262380
+spev08SetLoopSound                      = 0x262710; // func_00262710
+spev08Liftman                           = 0x262AB0; // func_00262AB0
 
 // spfree.c text
 
+spFreeRideInit                          = 0x263370; // T_00263370
+spFreeRideEnd                           = 0x263530; // D_00263530
+spFreeRideFrame                         = 0x2635C0; // D_002635C0
+spfrReset                               = 0x264540; // func_00264540
+spfrMainLoop                            = 0x2636D0; // func_002636D0
+spfrMalloc                              = 0x264DF0; // func_00264DF0
+spfrFree                                = 0x264EC0; // func_00264EC0
+spInitModeData                          = 0x264F20; // func_00264F20
+spInitVsData                            = 0x2650A0; // func_002650A0
+spInitReplay                            = 0x2651F0; // func_002651F0
+spInitReplay_1                          = 0x265270; // func_00265270
+spInitMatrix                            = 0x265430; // func_00265430
+spInitScreenInfo                        = 0x265740; // func_00265740
+spInitFog                               = 0x265870; // func_00265870
+spInitDisp                              = 0x2658F0; // func_002658F0
+spGetReplay                             = 0x2659B0; // func_002659B0
+spSetReplay                             = 0x265C20; // func_00265C20
+spUpdateMode                            = 0x265D50; // func_00265D50
+spUpdateReplay                          = 0x267110; // func_00267110
+spCheckFinish                           = 0x2672C0; // func_002672C0
+spCheckPassFinishLine2                  = 0x267680; // func_00267680
+spFlowTrick                             = 0x267810; // func_00267810
+spFlowBoost                             = 0x2679E0; // func_002679E0
+spFlowPush                              = 0x267D00; // func_00267D00
+spFlowHorse                             = 0x268560; // func_00268560
+spSetWndClip                            = 0x2688E0; // func_002688E0
+spMakeViewScreenMatrix                  = 0x268B30; // func_00268B30
+spUpdateDispState                       = 0x268DD0; // func_00268DD0
+spUpdateCamera_normal                   = 0x268F00; // func_00268F00
+spUpdateCamera_pause                    = 0x269430; // func_00269430
+spDivScreenSetting                      = 0x269470; // func_00269470
+spSetCrsDrawParam                       = 0x2695C0; // func_002695C0
+spDrawCourse1                           = 0x269750; // func_00269750
+spDrawCourse2                           = 0x269790; // func_00269790
+spDrawRider                             = 0x2697D0; // func_002697D0
+spDrawRider2                            = 0x269970; // func_00269970
+spDrawRider2Tex                         = 0x269B50; // func_00269B50
 spSetFade                               = 0x269C10; // func_00269C10
 spSetWndFade                            = 0x269C40; // func_00269C40
-
+spFade                                  = 0x269CB0; // func_00269CB0
 spEnterEventCameraMode                  = 0x269F50; // func_00269F50
 spExitEventCameraMode                   = 0x269F60; // func_00269F60
 
+// spinit.c text
+spinitInit                              = 0x269F70; // func_00269F70
+spinitInitRecord                        = 0x26A270; // func_0026A270
+spinitInitOption                        = 0x26A360; // func_0026A360
+spinitInitKeyConfig                     = 0x26A4E0; // func_0026A4E0
+spinitInitVolume                        = 0x26A560; // func_0026A560
+spinitInitCheats                        = 0x26A590; // func_0026A590
+spinitInitSecret                        = 0x26A610; // func_0026A610
+spinitInitCharacter                     = 0x26A770; // func_0026A770
+spinitInitCreateCharacter               = 0x26A850; // func_0026A850
+spinitGetClock                          = 0x26A960; // func_0026A960
+spinitGetCreateClock                    = 0x26A9D0; // func_0026A9D0
+spinitGetClockSub                       = 0x26AA20; // func_0026AA20
+spinitModule                            = 0x26AC90; // func_0026AC90
+
 // spload.c text
+sploadInit                              = 0x26ADF0; // D_0026ADF0
+sploadFrame                             = 0x26B0D0; // D_0026B0D0
+sploadEnd                               = 0x26B350; // D_0026B350
+sploadDrawNowLoading                    = 0x26B3E0; // func_0026B3E0
+sploadDrawLevelGoal                     = 0x26BA20; // func_0026BA20
+sploadDrawProfile                       = 0x26C6F0; // func_0026C6F0
+sploadDrawRule                          = 0x26D270; // func_0026D270
+sploadDrawMater                         = 0x26D8E0; // func_0026D8E0
+sploadDrawFace                          = 0x26E070; // func_0026E070
+sploadDrawSponsor                       = 0x26E620; // func_0026E620
+sploadGetAddr                           = 0x26EE90; // T_0026EE90
+sploadSetSoundAddr                      = 0x26EEC0;
+sploadGetCreateAddr                     = 0x26F020; // T_0026F020
+sploadCheckSoundData                    = 0x26F1F0; // func_0026F1F0
+sploadCommon                            = 0x26F350; // func_0026F350
+sploadMovie                             = 0x26F4E0; // func_0026F4E0
+sploadSelect                            = 0x26F560; // func_0026F560
+sploadGameCommon                        = 0x270270; // func_00270270
+sploadSetGame2D                         = 0x270450; // func_00270450
+sploadSetGameEtc                        = 0x270690; // func_00270690
+sploadSetCharacter                      = 0x270770; // func_00270770
+sploadSetCreateCharacter                = 0x270D50; // func_00270D50
+sploadSetCourse                         = 0x2713F0; // func_002713F0
+sploadSetSound                          = 0x271BD0; // func_00271BD0
+sploadInitCommon                        = 0x271EF0; // func_00271EF0
+sploadInitMovie                         = 0x2721A0; // func_002721A0
+sploadInitSelect                        = 0x2721E0; // func_002721E0
+sploadInitGameCommon                    = 0x273AB0; // func_00273AB0
+sploadInitGame2D                        = 0x273AF0; // func_00273AF0
+sploadInitGameEtc                       = 0x273D60; // func_00273D60
+sploadInitCharacter                     = 0x273EB0; // func_00273EB0
+sploadInitCreateCharacter               = 0x274B70; // func_00274B70
+sploadInitCourse                        = 0x275950; // func_00275950
+sploadFreeMovie                         = 0x275FA0; // func_00275FA0
+sploadFreeSelect                        = 0x275FD0; // func_00275FD0
+sploadFreeGameCommon                    = 0x2768E0; // func_002768E0
+sploadFreeGame2D                        = 0x276920; // func_00276920
+sploadFreeGameEtc                       = 0x276A00; // func_00276A00
+sploadFreeCharacter                     = 0x276A50; // func_00276A50
+sploadFreeCourse                        = 0x276D70; // func_00276D70
+sploadLoadSCharacter                    = 0x276E70; // func_00276E70
+sploadCheckSCharacter                   = 0x277210; // func_00277210
+sploadSetSCharacter                     = 0x277270; // func_00277270
+sploadFreeSCharacter                    = 0x277510; // func_00277510
+sploadSetCharacterTexture               = 0x2778D0; // func_002778D0
+sploadGetRapHead                        = 0x277E70; // func_00277E70
+sploadGetIconData                       = 0x277E80; // func_00277E80
 sploadGetVibrationData                  = 0x277E90; // func_00277E90
+sploadGetMovieData                      = 0x277EA0; // func_00277EA0
+sploadGetSelectData                     = 0x277EB0; // func_00277EB0
 sploadGetCharacter                      = 0x277EC0; // func_00277EC0
+sploadGetGame2D                         = 0x277ED0; // func_00277ED0
+sploadGetGameEtc                        = 0x277EE0; // func_00277EE0
+sploadGetCommonOffset                   = 0x277EF0; // func_00277EF0
+
+// tieffect.c text
+tifxInitSpur                            = 0x277F00; // func_00277F00
 
 // tievent.c text
 tievFreeCloudSea                        = 0x27DB60; // func_0027DB60
@@ -1569,22 +1816,49 @@ tievCalcSmoke                           = 0x27ED70; // func_0027ED70
 
 tievSetSmoke                            = 0x27EEB0; // func_0027EEB0
 
+tievInitSpark                           = 0x27F230; // func_0027F230
+tievFreeSpark                           = 0x27F2C0; // func_0027F2C0
+tievDrawSpark                           = 0x27F310; // func_0027F310
+tievCalcSpark                           = 0x27F620; // func_0027F620
+tievSetSpark                            = 0x27F7D0; // func_0027F7D0
+tievSetSparkN                           = 0x27FA70; // func_0027FA70
 tievSetShardsCallback                   = 0x27FFE0; // func_0027FFE0
 tievDrawShards                          = 0x280010; // func_00280010
 tievCalcShards                          = 0x280800; // func_00280800
 tievShards                              = 0x280C20; // func_00280C20
 
+tievInitCannon                          = 0x281380; // func_00281380
+tievFreeCannon                          = 0x281460; // func_00281460
+tievDrawCannon                          = 0x2814C0; // func_002814C0
+tievCannon                              = 0x282150; // func_00282150
+
+// tiutill.c text
+tiutVu0DistanceP2P                      = 0x282260; // func_00282260
+
+// tmalpha.c text
+tmalphaSetTestReg                       = 0x2826D0; // func_002826D0
+
 // tmcrs.c text
+tmcrsInit                               = 0x282A70; // func_00282A70
+tmcrsEnd                                = 0x282E80; // func_00282E80
+
+// vif1.c text
+ulvif1DmaWait                           = 0x282F70; // func_00282F70
+// tmcrs.c text
+tmcrsDraw                               = 0x283FA0; // func_00283FA0
 tmcrsGetDrawLength                      = 0x284420; // func_00284420
 
 tmcrsGetBonkCollision                   = 0x285F20; // func_00285F20
 
+tmcrsTransTex                           = 0x287790; // func_00287790
+tmcrsTransAlphaTex                      = 0x287C80; // func_00287C80
 tmcrsSetMipMapLength                    = 0x288230; // func_00288230
 
 tmcrsGetTexData                         = 0x288270; // func_00288270
 
 tmcrsSetScrollTex                       = 0x2883F0; // func_002883F0
 
+tmcrsDrawBG                             = 0x289390; // func_00289390
 tmcrsResetAllObject                     = 0x28A400; // func_0028A400
 tmcrsResetObject                        = 0x28A470; // func_0028A470
 tmcrsSetObjectHitLength                 = 0x28AB10; // func_0028AB10
@@ -1602,6 +1876,7 @@ tmcrsSetObjectDrawFlag                  = 0x28AE90; // func_0028AE90
 tmcrsGetObjectDrawFlag                  = 0x28AED0; // func_0028AED0
 tmcrsSetObjectScissorFlag               = 0x28AF10; // func_0028AF10
 tmcrsMoveObject                         = 0x28AF50; // func_0028AF50s
+tmcrsMoveObject2                        = 0x28B240; // func_0028B240
 tmcrsMoveObject2XYZ                     = 0x28B410; // func_0028B410
 tmcrsMoveObjectMat                      = 0x28B5F0; // func_0028B5F0
 tmcrsCheckObjectCollision               = 0x28BE10; // func_0028BE10
@@ -1610,8 +1885,10 @@ tmcrsGetObjectBonkCollision             = 0x28D2F0; // func_0028D2F0
 
 tmcrsCalcObjectUnit                     = 0x28D7E0; // func_0028D7E0
 tmcrsBreakObject                        = 0x28F9F0; // func_0028F9F0
+tmcrsGetObjectLight                     = 0x2904A0; // func_002904A0
 tmcrsResetEventModel                    = 0x292160; // func_00292160
 tmcrsGetEventModelFrame                 = 0x2922C0; // func_002922C0
+tmcrsDrawEventModel                     = 0x292320; // func_00292320
 tmcrsGetArea                            = 0x292E10; // func_00292E10
 
 tmcrsSetRailCollision                   = 0x293170; // func_00293170
@@ -1621,7 +1898,20 @@ tmcrsSetHitCollision                    = 0x293240; // func_00293240
 David_PutRaysInVU0                      = 0x294230; // func_00294230
 David_GetBaseCollision2                 = 0x2942B0; // func_002942B0
 
+// tmetc.c text
+tmetcInit                               = 0x2953D0; // func_002953D0
+tmetcEnd                                = 0x295670; // func_00295670
+tmetcGetRank                            = 0x2956F0; // func_002956F0
+
 // tmevent.c text
+tmevInit                                = 0x295CA0; // func_00295CA0
+tmevReset                               = 0x296130; // func_00296130
+tmevMainEvent                           = 0x296920; // func_00296920
+tmevEnd                                 = 0x2973B0; // func_002973B0
+tmevPlayerEvent                         = 0x296C30; // func_00296C30
+tmevDrawEvent                           = 0x2970A0; // func_002970A0
+tmevDrawPlayerEvent                     = 0x2970E0; // func_002970E0
+tmevFinishPlayerEvent                   = 0x297120; // func_00297120
 tmevSetLevelGoal                        = 0x2976A0; // func_002976A0
 tmevSetGap                              = 0x297770; // func_00297770
 tmevGetLevelGoal                        = 0x297AF0; // func_00297AF0
@@ -1677,15 +1967,34 @@ tmevSetLightVector                      = 0x29A250; // func_0029A250
 
 tmevSetAmbient                          = 0x29A2F0; // func_0029A2F0
 
+tmevGetLightVector                      = 0x29A340; // func_0029A340
+
+// tmgraph.c text
+tmgraphSetMatrix                        = 0x29A520; // func_0029A520
+
+// tmlink.c text
+tmlinkMappingData                       = 0x29BC80; // func_0029BC80
 // cdvd.c text
 uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD10
 
+uldvdSetReadFile_DRIVE                  = 0x29BDF0; // func_0029BDF0
+uldvdReadData_DRIVE                     = 0x29BF60; // func_0029BF60
+uldvdStartReadData_DRIVE                = 0x29C0B0; // func_0029C0B0
+uldvdCheckFinish_DRIVE                  = 0x29C400; // func_0029C400
+uldvdCheckReadPer_DRIVE                 = 0x29C900; // func_0029C900
+
+// coord.c text
+ulcodInitCoordinate                     = 0x29C910; // func_0029C910
+ulcodSetVsMatrix                        = 0x29C9B0; // func_0029C9B0
+ulcodSetWvMatrix                        = 0x29CA50; // func_0029CA50
 // gif.c text
+ulgifTermPacket                         = 0x29CBD0; // func_0029CBD0
 ulgifDmaSend                            = 0x29CC10; // func_0029CC10
 ulgifDmaWait                            = 0x29CC50; // func_0029CC50
 
 ulgifAddCNTReserve                      = 0x29CC80; // func_0029CC80
 
+ulgifAddCNTSetGsRegister                = 0x29CD70; // func_0029CD70
 // gifpkt.c text
 ulpktInitALPHA                          = 0x29CDD0; // func_0029CDD0
 
@@ -1708,6 +2017,8 @@ ulFree                                  = 0x2A0510; // func_002A0510
 // model.c text
 ul3dScaleMatrixXYZ                      = 0x2A3AB0; // func_002A3AB0
 
+ulmdlInitModel                          = 0x2A3B10; // func_002A3B10
+ulmdlSetModelTexture                    = 0x2A3ED0; // func_002A3ED0
 // pad.c text
 ulpadInitData                           = 0x2A4D00; // func_002A4D00
 
@@ -1721,6 +2032,7 @@ ulpadStopDual                           = 0x2A5A40; // func_002A5A40
 
 ulpadSetDualLv                          = 0x2A67E0; // func_002A67E0
 
+ulpadSetDualPause                       = 0x2A6860; // func_002A6860
 // sd.c text
 ulsdSetMasterVol                        = 0x2A81A0; // func_002A81A0
 
@@ -1739,12 +2051,33 @@ ulstdSprintf                            = 0x2A8F80; // type:func // func_002A8F8
 
 ulstdPrintf                             = 0x2A9020; // func_002A9020
 
+// vif1.c text
+ulvif1DmaSend                           = 0x2A95A0; // func_002A95A0
+ulvif1DmaWait                           = 0x2A95E0; // func_002A95E0
+
+// graph2.c text
+ulgraphAlphaResetBuf                    = 0x2AED80; // func_002AED80
+ulgraphAlphaSortPacket                  = 0x2AEF00; // func_002AEF00
+ulgraphAlphaDrawPacket                  = 0x2AF110; // func_002AF110
 // TEX.c text
+ultexResetTex                           = 0x2AF160; // func_002AF160
+ultexGetOffset                          = 0x2AF180; // func_002AF180
+ultexGetNTex                            = 0x2AF190; // func_002AF190
+ultexGetUseBlock                        = 0x2AF1B0; // func_002AF1B0
+ultexGetUseMemory                       = 0x2AF230; // func_002AF230
+ultexSetAlign                           = 0x2AF260; // func_002AF260
+ultexTransTex                           = 0x2AF290; // func_002AF290
+ultexTransTexTag                        = 0x2AFBE0; // func_002AFBE0
+ultexGetTex                             = 0x2B0E90; // func_002B0E90
+ultexSetTexPath2                        = 0x2B0F90; // func_002B0F90
 ultexSetTexPath3                        = 0x2B1110; // func_002B1110
 
 ultexGetTEX0                            = 0x2B1280; // func_002B1280
 
 // vumodel.c text
+ulvumdlInitModel                        = 0x2B1A70; // func_002B1A70
+ulvumdlDrawModel                        = 0x2B1E10; // func_002B1E10
+ulvumdlDrawModelAlpha                   = 0x2B24B0; // func_002B24B0
 ulvumdlGetMatrix                        = 0x2B3260; // func_002B3260
 
 ulvumdlInitVerShadeWind                 = 0x2B3310; // func_002B3310
@@ -1783,29 +2116,20 @@ vktactMatMaxSpRate                      = 0x2D43A0; // D_FLT_002D43A0
 vktactMatEdgeAdj                        = 0x2D4400; // D_FLT_002D4400
 
 vktactTrkToMot                          = 0x2D4530; // D_002D4530
-
 vktactCmdToGrab                         = 0x2D4610; // D_002D4610
-
 vktactCmdToFlip                         = 0x2D4650; // D_002D4650
-
-
 vktactCmdToGrind                        = 0x2D4690; // D_002D4690
-
 vktactCmdToBonk                         = 0x2D46B0; // D_002D46B0
 vktactCmdToPlant                        = 0x2D46D0; // D_002D46D0
-
 vktactCmdToManual                       = 0x2D46F0; // D_002D46F0
 // vktactSpTrk
 // several anon variables
 
 // ktmnufnc.c data
 vktmfMenuText                           = 0x2D4A40; // D_002D4A40
-
 vktmfMenuFunc                           = 0x2D4A60; // D_002D4A60
-
 // vktmfMenuUseNum
 vktmfMenuMinMax                         = 0x2D4A90; // D_002D4A90
-
 vktmfdbgMenuMinMax2                     = 0x2D4AB0; // D_002D4AB0
 
 //ktmot.c data
@@ -1829,39 +2153,25 @@ vnmbgmFileTbl                           = 0x2D6D00; // D_002D6D00
 
 // nmdisp.c data
 vnmtblPauseMenu                         = 0x2D7400; // D_002D7400
-
 vnmtblPauseFlag                         = 0x2D7480; // D_002D7480
 // vnmtblTlistCate
 vnmtblTlistNum                          = 0x2D7510; // D_002D7510
-
 vnmtblTlistCom                          = 0x2D7520; // D_002D7520
 // vnmtblTutoItem
 // vnmtblTutoMes
 vnmtblCourseLogo                        = 0x2D78D0; // D_FLT_002D78D0
-
 vnmtblMatchRule                         = 0x2D7910; // D_002D7910
-
 vnmtblTrickAcce                         = 0x2D7940; // D_002D7940
-
 vnmtblLevelCompMes                      = 0x2D79A0; // D_002D79A0
-
 vnmtblLevelIncompMes                    = 0x2D7A00; // D_002D7A00
-
 vnmtblResultItem                        = 0x2D7B80; // D_002D7B80
-
 vnmtblGetSoft                           = 0x2D7BA8; // D_002D7BA8
-
 vnmtblCareerItem                        = 0x2D7BC0; // D_002D7BC0
-
 vnmtblCareerMessage                     = 0x2D7D60; // D_002D7D60
-
 vnmtblRank                              = 0x2D7DC0; // D_002D7DC0
 vnmtblRank2                             = 0x2D7E10; // D_002D7E10
-
 vnmtblCommon                            = 0x2D7E60; // D_002D7E60
-
 vbgmtblMusic                            = 0x2D7EA0; // D_002D7EA0
-
 vbgmtblArtist                           = 0x2D7ED0; // D_002D7ED0
 // several anon variables
 
@@ -1931,6 +2241,128 @@ vspev05SnowMobileList$903               = 0x2DB7F0; // size:0x90 // D_FLT_002DB7
 vspev05SnowMobileListFrame$906          = 0x2DB880; // func_002DB880
 // several spev05 anon variables
 
+// spev06.c data
+vspev06TexScrInfo                       = 0x2DB960; // size:0x60 // D_002DB960
+vspev06SteamInfo                        = 0x2DB9C0; // size:0xC0 // func_002DB9C0
+vspev06FountainPos                      = 0x2DBA80; // func_002DBA80
+vspev06SnowGunPos                       = 0x2DBAC0; // D_002DBAC0
+vspev06SnowcatInfo                      = 0x2DBB40; // size:0x180 // D_002DBB40
+vspev06SmokeInfo                        = 0x2DBCC0; // size:0x180 // D_002DBCC0
+vspev06FireworkAttr                     = 0x2DBE40; // func_002DBE40
+vspev06FireworkInfo                     = 0x2DBE90; // D_002DBE90
+vspev06LiftObj                          = 0x2DBFD0; // size:0x10 // D_002DBFD0
+vspev06LiftPos0                         = 0x2DBFE0; // D_002DBFE0
+vspev06LiftPos1                         = 0x2DC070; // D_002DC070
+vspev06LiftPos2                         = 0x2DC100; // D_002DC100
+vspev06LiftPos3                         = 0x2DC150; // D_002DC150
+vspev06SquawLight                       = 0x2DC1A0; // D_002DC1A0
+light$69                                = 0x2DC290; // size:0x50 // D_002DC290
+crash$310                               = 0x2DC310; // size:0x20 // D_002DC310
+se$886                                  = 0x2DC340; // D_002DC340
+cam$887                                 = 0x2DC3A0; // size:0x40 // D_002DC3A0
+pos$945                                 = 0x2DC3E0; // D_002DC3E0
+
+// spev07.c data
+vspev07TexScrInfo                       = 0x2DC4C0; // D_002DC4C0
+spev07Lift1Rail                         = 0x2DC520; // D_002DC520
+spev07Lift2Rail                         = 0x2DC940; // D_002DC940
+spev07Motion                            = 0x2DCC10; // D_FLT_002DCC10
+spev07RailColl                          = 0x2DCCF0; // D_002DCCF0
+spev07HitObj                            = 0x2DCDC0; // D_002DCDC0
+spev07DrawObj                           = 0x2DCFC0; // D_002DCFC0
+spev07LiftPos                           = 0x2DD2C0; // D_002DD2C0
+spev07Lift1ID                           = 0x2DD2F0; // D_002DD2F0
+spev07Lift2ID                           = 0x2DD320; // size:0x10 // D_002DD320
+spev07Lift1Cell                         = 0x2DD330; // D_002DD330
+spev07Lift2Cell                         = 0x2DD360; // size:0x10 // D_002DD360
+spev07Agent1                            = 0x2DD370; // size:0xA0 // D_002DD370
+spev07Agent2                            = 0x2DD410; // size:0xA0 // D_002DD410
+pos$79                                  = 0x2DD4B0; // D_002DD4B0
+obj$80                                  = 0x2DD4C0; // D_002DD4C0
+info$81                                 = 0x2DD4D0; // size:0xA0 // D_002DD4D0
+pos$114                                 = 0x2DD570; // D_002DD570
+pos$140                                 = 0x2DD580; // D_002DD580
+info$141                                = 0x2DD590; // size:0xA0 // D_002DD590
+pos$162                                 = 0x2DD630; // size:0x20 // func_002DD630
+trg$163                                 = 0x2DD650; // size:0x20 // D_002DD650
+bus1start$164                           = 0x2DD670; // func_002DD670
+bus1end$165                             = 0x2DD680; // D_002DD680
+bus2start$166                           = 0x2DD690; // D_002DD690
+bus2end$167                             = 0x2DD6A0; // D_002DD6A0
+info1$168                               = 0x2DD6B0; // size:0xA0 // D_002DD6B0
+info2$169                               = 0x2DD750; // size:0xA0 // D_002DD750
+info3$170                               = 0x2DD7F0; // size:0xA0 // D_002DD7F0
+pos$204                                 = 0x2DD890; // size:0x20 // func_002DD890
+trg$205                                 = 0x2DD8B0; // size:0x20 // func_002DD8B0
+viewstart$207                           = 0x2DD8D0; // size:0x10 // D_002DD8D0
+viewend$208                             = 0x2DD8E0; // size:0x10 // func_002DD8E0
+tower1start$209                         = 0x2DD8F0; // size:0x10 // func_002DD8F0
+tower1end$210                           = 0x2DD900; // size:0x10 // func_002DD900
+tower2start$211                         = 0x2DD910; // size:0x10 // func_002DD910
+tower2end$212                           = 0x2DD920; // size:0x10 // func_002DD920
+info$213                                = 0x2DD930; // D_002DD930
+info2$214                               = 0x2DD9D0; // D_002DD9D0
+info3$215                               = 0x2DDA70; // D_002DDA70
+sl_pos$216                              = 0x2DDAF0; // size:0x40 // D_002DDAF0
+sl_obj$217                              = 0x2DDB30; // func_002DDB30
+// D_002DDB40 // anon
+// D_002DDB50 // anon
+pos$266                                 = 0x2DDB60; // size:0x30 // D_002DDB60
+trg$267                                 = 0x2DDB90; // size:0x30 // func_002DDB90
+ava1start$268                           = 0x2DDBC0; // size:0x10 // func_002DDBC0
+ava1end$269                             = 0x2DDBD0; // func_002DDBD0
+ava2start$270                           = 0x2DDBE0; // size:0x10 // D_002DDBE0
+ava2end$271                             = 0x2DDBF0; // size:0x10 // func_002DDBF0
+ava3start$272                           = 0x2DDC00; // size:0x10 // D_002DDC00
+ava3end$273                             = 0x2DDC10; // size:0x10 // func_002DDC10
+ava4start$274                           = 0x2DDC20; // size:0x10 // func_002DDC20
+ava4end$275                             = 0x2DDC30; // size:0x10 // func_002DDC30
+info$280                                = 0x2DDC40; // D_002DDC40
+llpos$281                               = 0x2DDCE0; // size:0x20 // D_002DDCE0
+llobj$282                               = 0x2DDD00; // size:0x10 // func_002DDD00
+// anon variables
+pos$329                                 = 0x2DDD30; // size:0x10 // D_002DDD30
+trg$330                                 = 0x2DDD40; // size:0x10 // func_002DDD40
+mapstart$331                            = 0x2DDD50; // size:0x10 // func_002DDD50
+mapend$332                              = 0x2DDD60; // size:0x10 // func_002DDD60
+info$333                                = 0x2DDD70; // size:0xA0 // D_002DDD70
+info2$334                               = 0x2DDE10; // size:0x80 // D_002DDE10
+info1$443                               = 0x2DDE90; // size:0xA0 // func_002DDE90
+info2$444                               = 0x2DDF30; // size:0xA0 // func_002DDF30
+info3$445                               = 0x2DDFD0; // size:0xA0 // func_002DDFD0
+info4$446                               = 0x2DE070; // size:0xA0 // func_002DE070
+pos$457                                 = 0x2DE110; // size:0x10 // func_002DE110
+info1$458                               = 0x2DE120; // size:0xA0 // func_002DE120
+info2$459                               = 0x2DE1C0; // size:0xA0 // size:0xA0 // func_002DE1C0
+info$498                                = 0x2DE260; // size:0xA0 // D_002DE260
+// D_002DE300 // anon variable
+snowcat$571                             = 0x2DE310; // size:0x10 // D_002DE310
+lasther$572                             = 0x2DE320; // size:0x10 // D_002DE320
+liftexp$573                             = 0x2DE330; // size:0x10 // func_002DE330
+snowmob$574                             = 0x2DE340; // size:0x10 // func_002DE340
+spev07BonkDram1$939                     = 0x2DE350; // size:0x20 // func_002DE350
+spev07BonkDram2$940                     = 0x2DE370; // size:0x20 // func_002DE370
+// func_002DE390 // anon variable // "@1024" in US
+// D_002DE450 // anon variable // "@1038" in US
+// D_002DE4B0 // anon variable // "@1039" in US
+
+// spev08.c data
+vspev08TexScrInfo                       = 0x2DE500; // D_002DE500
+vspev08SnowMachinePos                   = 0x2DE5C0; // D_002DE5C0
+vspev08BridgeSmokeInfo                  = 0x2DE720; // size:0x180 // D_002DE720
+dir$39                                  = 0x2DE8A0; // size:0x10 // D_002DE8A0
+light$57                                = 0x2DE8B0; // size:0x50 // func_002DE8B0
+grasscrash$244                          = 0x2DE900; // size:0x10 // D_002DE900
+warppos$346                             = 0x2DE910; // size:0x30 // D_FLT_002DE910
+cam$635                                 = 0x2DE940; // size:0x20 // func_002DE940
+grasscrash$636                          = 0x2DE960; // size:0x10 // D_002DE960
+cam$668                                 = 0x2DE970; // size:0x20 // func_002DE970
+cam$694                                 = 0x2DE990; // size:0x20 // func_002DE990
+pos$720                                 = 0x2DE9B0; // D_002DE9B0
+
+// spfree.c data
+// D_002DED90 // anon // "@1250" in US version
+
 // spinit.c data
 vsptblCharacterName                     = 0x2DEDA0; // D_002DEDA0
 vsptblBoardName                         = 0x2DEDE0; // D_002DEDE0
@@ -1942,10 +2374,35 @@ vsptblGapList                           = 0x2DEFF0; // D_002DEFF0
 vsptblGapPoint                          = 0x2DF7F0; // D_002DF7F0
 
 vsptblLevelGoalValue                    = 0x2DFFF0; // D_002DFFF0
+vsptblLevelGoalStrE                     = 0x2E00D0; // D_002E00D0
+vsptblLevelGoalStrG                     = 0x2E0130; // D_002E0130
+vsptblLevelGoalStrF                     = 0x2E0190; // D_002E0190
 vsptblTrickName                         = 0x2E01F0; // size:0x280 // D_002E01F0
 vsptblTrickPoint                        = 0x2E0470; // D_002E0470
 
+vsptblCharacterParam                    = 0x2E06F0; // D_002E06F0
 vsptblCourseParam                       = 0x2E0F30; // D_002E0F30
+vsptblCheatsE                           = 0x2E0FD0; // D_002E0FD0
+vsptblCheatsF                           = 0x2E1030; // D_002E1030
+vsptblFreeStyleRanking                  = 0x2E1060; // D_002E1060
+vsptblBestTime                          = 0x2E1660; // D_FLT_002E1660
+vsptblLevelGoalStrE                     = 0x2E1680; // D_002E1680
+// D_002E1770 // anon // "@732" in US version
+
+// spload.c data
+// D_002E17B0 // anon // "@100" in US version
+// D_002E17C0 // anon // "@155" in US version
+// D_002E1850 // anon // "@215" in US version
+// D_002E18A0 // anon // "@253" in US version
+// D_002E1A10 // anon // "@301" in US version
+// D_002E1A40 // anon // "@338" in US version
+// D_002E1B40 // anon // "@403" in US version
+// D_002E1B80 // anon // "@591" in US version
+// D_002E1BC0 // anon // "@697" in US version
+// D_002E1DE0 // anon // "@871" in US version
+// jtbl_002F4F30 // anon // "@442" in US version
+// jtbl_002F4F70 // anon // "@757" in US version
+
 // ktact.c rodata
 // several ktact anon variables
 normal$406                              = 0x2EF230; // size:0x100 // D_002EF230
@@ -1971,6 +2428,62 @@ vspev04Chip                             = 0x2F0110; // D_002F0110
 // anon #2
 // anon #3
 // anon #4
+vspev06ObjectSe                         = 0x2F01A0; // D_002F01A0
+
+// spev06.c rodata
+vspev06FountainInfo0                    = 0x2F02F0; // D_002F02F0
+vspev06SnowGunInfo0                     = 0x2F03B0; // D_002F03B0
+vspev06Glass                            = 0x2F0470; // D_002F0470
+vspev06SkateLight                       = 0x2F0500; // D_002F0500
+vspev06Flag                             = 0x2F0590; // D_002F0590
+vspev06Flag2                            = 0x2F05F0; // D_002F05F0
+ScissorObj$253                          = 0x2F0630; // D_002F0630
+DisableObj$254                          = 0x2F0820; // D_002F0820
+DisableRail$255                         = 0x2F08F0; // D_002F08F0
+BoundObject$256                         = 0x2F0940; // D_002F0940
+sp_tbl$257                              = 0x2F09F0; // D_002F09F0
+Gap2Hit                                 = 0x2F0A50; // D_002F0A50
+AirGapHit$309                           = 0x2F0A90; // D_002F0A90
+Dram$756                                = 0x2F0D90; // D_002F0D90
+Win$757                                 = 0x2F0E00; // D_002F0E00
+
+// spev08.c rodata
+vspev08BoundObject                      = 0x2F0F70; // D_002F0F70
+vspev08ObjectSe                         = 0x2F0F90; // D_002F0F90
+vspev08GlassSe                          = 0x2F10C0; // D_002F10C0
+vspev08SnowMachineInfo0                 = 0x2F10D0; // D_002F10D0
+ScissorObj$179                          = 0x2F1250; // D_002F1250
+DisableObj$180                          = 0x2F1318; // D_002F1318
+DisableRail$181                         = 0x2F1330; // D_002F1330
+Warp1P$182                              = 0x2F1370; // D_002F1370
+sp_tbl$183                              = 0x2F1390; // D_002F1390
+Gap2Hit                                 = 0x2F13F0; // D_002F13F0
+Gap2HpHit                               = 0x2F1410; // D_002F1410
+AirGapHit$240                           = 0x2F1440; // D_002F1440
+JumpGapHit$241                          = 0x2F1470; // D_002F1470
+GrindGapHit$242                         = 0x2F14A0; // D_002F14A0
+SnowmachineHit$243                      = 0x2F14D0; // D_002F14D0
+GapRail$397                             = 0x2F14F0; // D_002F14F0
+GapObj$543                              = 0x2F1510; // size:0x30 // D_002F1510
+liftman$766                             = 0x2F1540; // size:0x30 // func_002F1540
+// func_002F1570 // anon // "@731" in US version
+
+// spinit.c sdata
+// D_002F4958 // anon // "@678" in US version 
+// D_002F4988 // anon // "@111" in US version
+// D_002F4A20 // anon // "@188" in US version
+// D_002F4A28 // anon // "@189" in US version
+// D_002F4A30 // anon // "@190" in US version
+// D_002F4A38 // anon // "@191" in US version
+// D_002F4A40 // anon // "@192" in US version
+// D_002F4A48 // anon // "@193" in US version
+// D_002F4A50 // anon // "@194" in US version
+// D_002F4A58 // anon // "@195" in US version
+// jtbl_002F4A60 // jtbl // "@197" in US version
+// D_002F4CC8 // anon // "@283" in US version
+// D_002F4CD0 // anon // "@284" in US version
+// D_002F58F0 // anon // "@293" in US version
+
 // ktact.c sdata
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
 vktactParamG_jump_down                  = 0x2F577C; // D_002F577C
@@ -2028,6 +2541,14 @@ vspev01Length                           = 0x2F5888; // D_002F5888
 
 // spev03.c sdata
 distance$258                            = 0x2F58B8; // D_FLT_002F58B8
+
+// spev07.c sdata
+vspev07TexScrInfo_num                   = 0x2F58C8; // D_002F58C8
+spev07Lift1Rail_num                     = 0x2F58CC; // D_002F58CC
+spev07Lift2Rail_num                     = 0x2F58D0; // D_002F58D0
+spev07LiftPos_num                       = 0x2F58D4; // D_002F58D4
+spev07Lift1ID_num                       = 0x2F58D8; // D_002F58D8    
+spev07Lift2ID_num                       = 0x2F58DC; // D_002F58DC
 // spfree.c sdata
 vspDisp2D                               = 0x2F58E0; // D_002F58E0
 
@@ -2094,9 +2615,11 @@ vgmsysDivideType                        = 0x2F5AE4; // D_002F5AE4
 vgmsysDivideLine                        = 0x2F5AE8; // D_002F5AE8
 vgmsysWndBlurPow                        = 0x2F5AF0; // D_002F5AF0
 vgmsysBlurPow                           = 0x2F5AF8; // D_002F5AF8
-
-
+vgmsysEndFunc                           = 0x2F5AFC; // D_002F5AFC
+vgmsysFrameFunc                         = 0x2F5B00; // D_002F5B00
 vgmsysAbuf                              = 0x2F5B10; // D_002F5B10
+vgmsysAbufmem                           = 0x2F5B14; // D_002F5B14
+vgmsysVif1Pkt                           = 0x2F5B18; // D_002F5B18
 vgmsysGifPkt                            = 0x2F5B1C; // D_002F5B1C
 
 
@@ -2368,16 +2891,45 @@ vspev05MotMdl                           = 0x2F5FB4; // D_002F5FB4
 vspev05CloudDown                        = 0x2F5FB8; // D_002F5FB8
 vspev05CloudUp                          = 0x2F5FBC; // D_002F5FBC
 vspev05Lift                             = 0x2F5FC0; // D_002F5FC0
+// 4 byte padding
 cloud_flg                               = 0x2F5FC8; // size:0x8 // D_002F5FC8
 fog_flg                                 = 0x2F5FD0; // size:0x8 // D_002F5FD0
+// spev06.c sbss
+vspev06EventData                        = 0x2F5FD8; // D_002F5FD8
+// spev07.c sbss
+t$335                                   = 0x2F5FDC; // D_FLT_002F5FDC
+t$283                                   = 0x2F5FE0; // D_FLT_002F5FE0
+t$218                                   = 0x2F5FE4; // D_FLT_002F5FE4
+spev07GlobalFrame                       = 0x2F5FE8; // D_FLT_002F5FE8
+spev07Sound                             = 0x2F5FEC; // D_002F5FEC
+spev07Lift2                             = 0x2F5FF0; // D_002F5FF0
+spev07Lift1                             = 0x2F5FF4; // D_002F5FF4
+spev07MotMdl                            = 0x2F5FF8; // D_002F5FF8
+vspev08EventData                        = 0x2F5FFC; // D_002F5FFC
 
-// D_002F6000 unknown, used by nmdispOpePauseMatch
 // spfree.c sbss
+vspDisp2D                               = 0x2F6000; // D_002F6000
+vspChangeScreen                         = 0x2F6004; // D_002F6004
+vspIntroCutNum                          = 0x2F6008; // D_002F6008
 vspReplay                               = 0x2F6010; // size:0x8 // D_002F6010
+vspVsWid                                = 0x2F6018; // D_002F6018
+vspWndFadePercent                       = 0x2F6020; // size:0x8 // D_002F6020
+vspFadePercent                          = 0x2F6028; // D_002F6028
+vspFadeCol                              = 0x2F602C; // D_002F602C
+vspEvent                                = 0x2F6030; // D_002F6030
+vspLocalVif1PktBuff                     = 0x2F6034; // D_002F6034
+vspLocalGifPktBuff                      = 0x2F6038; // D_002F6038
+vspEventCamera                          = 0x2F603C; // D_002F603C
+vspPlayIntro                            = 0x2F6040; // D_002F6040
 vspInitHorse                            = 0x2F6044; // D_002F6044
 vspEndRunReplay                         = 0x2F6048; // D_002F6048
 vspEndRun                               = 0x2F604C; // D_002F604C
-// D_002F6050
+// spinit.c sbss
+vspenvSecret                            = 0x2F6050; // D_002F6050
+
+// spload.c sbss
+vsploadDemoNo                           = 0x2F6070; // D_002F6070
+vsploadDemoData                         = 0x2F6080; // D_002F6080
 
 // spinit.c sbss
 vspenvReplay                            = 0x2F6058; // size:0x8 // D_002F6058
@@ -2400,9 +2952,10 @@ vktactColSliding                        = 0x33D2A0; // D_0033D2A0 // TODO: add s
 // ktmenu.c bss
 vktmenuList                             = 0x33D300; // D_0033D300
 // ktrider.c bss
-vspRider                                = 0x33D6C0; // D_0033D6C0
+vspRider                                = 0x33D6C0; // size:0x20 // D_0033D6C0
 // main.c bss
-vgmsysInitFunc                          = 0x33D6E0; // D_0033D6E0
+vgmsysInitFunc                          = 0x33D6E0; // size:0x80 // D_0033D6E0
+vgmsysFrameBuffer                       = 0x33D760; // size:0x790 // D_0033D760
 // nmbgm.c bss
 vnmbgmQue                               = 0x33DF30; // size:0x20 // D_0033DF30
 vnmbgmOption                            = 0x33DF50; // size:0x10 // D_0033DF50
@@ -2488,7 +3041,6 @@ vnmfontOption                           = 0x341F60; // size:0x60 // D_00341F60
 // nmsnd.c bss
 vnmsndResult                            = 0x341FC0; // size:0x78 // D_00341FC0
 vnmsndFrameSend                         = 0x342040; // size:0x710 // D_00342040
-// 342750
 vnmsndFrame                             = 0x0342780; // size:0x710 // D_00342780
 
 vnmsndInit                              = 0x342EC0; // size:0x40 // D_00342EC0
@@ -2533,6 +3085,8 @@ vspev02Yuppie                           = 0x344F60; // size:0xF0 // D_00344F60
 vspev02Gond2                            = 0x345050; // size:0x30 // D_00345050
 vspev02Gond1                            = 0x345080; // size:0x30 // D_00345080
 vspev02Gear                             = 0x3450B0; // size:0x90 // D_003450B0
+
+// spev03.c bss is entirely anon variables
 // spev04.c bss
 vspev04Debug                            = 0x3451A0; // size:0xC // D_003451A0
 vspev04Light                            = 0x3451B0; // size:0xA0 // D_FLT_003451B0
@@ -2553,6 +3107,20 @@ vspev05SnowMobilePos                    = 0x3456A0; // size:0x10 // D_003456A0
 spev05Blind                             = 0x3456B0; // size:0x50 // D_003456B0
 vspev05CloudSea                         = 0x345700; // size:0xA0 // D_00345700
 vspev05LiftData                         = 0x3457A0; // size:0x288 // D_003457A0
+
+// spev07.c bss
+ava3now$278                             = 0x345A40; // size:0x10 // D_00345A40
+ava2now$277                             = 0x345A50; // size:0x10 // D_00345A50
+ava1now$276                             = 0x345A60; // size:0x10 // D_00345A60
+viewnow$206                             = 0x345A70; // size:0x10 // D_00345A70
+vspev07TexScrool                        = 0x345A80; // size:0x78 // D_00345A80
+spev07Blind                             = 0x345B00; // size:0x50 // D_00345B00
+spev07Cannon                            = 0x345B50; // size:0x90 // D_00345B50
+spev07MultiSpark                        = 0x345BE0; // size:0x30 // D_00345BE0
+spev07MultiSmoke                        = 0x345C10; // D_00345C10
+
+// spev08.c bss
+vspev08TexScrool                        = 0x345C30; // size:0xF0 // D_00345C30
 // spfree.c bss
 // vspDispVsScore
 vspDispResult                           = 0x345D30; // size:0x1048 // D_00345D30
@@ -2563,17 +3131,20 @@ vspDispVsScore                          = 0x345D20; // size:0x10 // D_00345D20
 
 vspDispEnv                              = 0x346DF0; // size:0x20 // D_00346DF0
 
-vspVsData                               = 0x346E10; // D_00346E10
+vspVsData                               = 0x346E10; // size:0x108C // D_00346E10
 
-vspModeData                             = 0x347EA0; // size:0x5C // D_00347EA0 // TODO: verify this size
+vspModeData                             = 0x347EA0; // size:0x5C // D_00347EA0
 
-vspSystemMatrix                         = 0x347F30; // D_FLT_00347F30
+vspLocalVif1Pkt                         = 0x347F00; // size:0x20 // D_00347F00
+vspLocalGifPkt                          = 0x347F20; // size:0x10 // D_00347F20
+vspSystemMatrix                         = 0x347F30; // size:0x680 // D_FLT_00347F30
 
 // spinit.c bss
-vspenvDemo                              = 0x3485B0; // D_003485B0 // Need to add size
-vspenvBestTime                          = 0x3485D0; // D_003485D0
-vspenvRecord                            = 0x3485F0; // D_003485F0
-vspenvEnv                               = 0x3486B0; // D_003486B0
+vspenvDemo                              = 0x3485B0; // size:0x20 // D_003485B0 // Need to add size
+// D_003485C0 (unknown) (used in nmdispOpeDemo)
+vspenvBestTime                          = 0x3485D0; // size:0x20 // D_003485D0
+vspenvRecord                            = 0x3485F0; // size:0xC0 // D_003485F0
+vspenvEnv                               = 0x3486B0; // size:0x5D0E0 // D_003486B0
 
 // spinit.c bss 
 vsptblMovieName                         = 0x3A58F0; // D_003A58F0
@@ -2581,6 +3152,30 @@ vsptblCheats                            = 0x3A5940; // D_003A5940
 
 vsptblLevelGoalStr                      = 0x3A5970; // D_003A5970
 
+// spload.c bss
+vsploadEnvMap                           = 0x3A59D0; // size:0x20 // D_003A59D0
+vsploadCreate                           = 0x3A59F0; // size:0x1D0 // D_003A59F0
+vsploadReplayHead                       = 0x3A5BC0; // size:0x10 // D_003A5BC0
+vsploadLocalAddr                        = 0x3A5BD0; // size:0x400 // D_003A5BD0
+vsploadLocalPacket                      = 0x3A5FD0; // size:0x10 // D_003A5FD0
+vsploadGameEtc                          = 0x3A5FE0; // size:0x9C // D_003A5FE0
+vsploadGame2D                           = 0x3A6080; // size:0x500 // D_003A6080
+vsploadCourse                           = 0x3A6580; // size:0x3BC // D_003A6580
+vsploadCharacter                        = 0x3A6940; // size:0x12F0 // D_003A6940
+vsploadGameCommon                       = 0x3A7C30; // size:0x10 // D_003A7C30
+vsploadSelect                           = 0x3A7C40; // size:0x1BB7C // D_003A7C40
+vsploadMovie                            = 0x3C37C0; // size:0x10 // D_003C37C0
+vsploadVibration                        = 0x3C37D0; // size:0x60 // D_003C37D0
+vsploadIcon                             = 0x3C3830; // size:0x1C // D_003C3830
+vsploadCommon                           = 0x3C3850; // size:0x260 // D_003C3850
+vsploadSystem                           = 0x3C3B70; // size:0x30 // D_003C3B70
+vsploadSoundData                        = 0x3C3BA0; // size:0x64 // D_003C3BA0
+
+// tmcrs.c bss
+vtmcrsDivideNum                         = 0x3D7380; // size:0x10 // D_003D7380
+
+// system.c bss
+vulsysSystem                            = 0x3DCA10; // size:0x360 // D_003DCA10
 #_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
 _args                                   = 0x2F6180; // D_002F6180
