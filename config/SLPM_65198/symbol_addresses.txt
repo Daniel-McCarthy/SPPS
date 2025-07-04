@@ -496,6 +496,22 @@ sceCdGetDiskType                        = 0x1197D8; // func_001197D8
 sceCdGetError                           = 0x119870; // func_00119870
 sceCdBreak                              = 0x119908; // func_00119908
 sceCdReadClock                          = 0x1199C0; // func_001199C0
+sceMcInit                               = 0x119F98; // func_00119F98
+sceMcOpen                               = 0x11A2F8; // func_0011A2F8
+sceMcMkdir                              = 0x11A430; // func_0011A430
+sceMcClose                              = 0x11A468; // func_0011A468
+sceMcSeek                               = 0x11A520; // func_0011A520
+sceMcRead                               = 0x11A688; // func_0011A688
+sceMcWrite                              = 0x11A7A8; // func_0011A7A8
+sceMcSync                               = 0x11A998; // func_0011A998
+sceMcGetInfo                            = 0x11AAD0; // func_0011AAD0
+sceMcGetDir                             = 0x11AC58; // func_0011AC58
+sceMcChdir                              = 0x11AE38; // func_0011AE38
+sceMcFormat                             = 0x11AF88; // func_0011AF88
+sceMcDelete                             = 0x11B050; // func_0011B050
+sceMcSetFileInfo                        = 0x11B230; // func_0011B230
+sceMcRename                             = 0x11B408; // func_0011B408
+sceMcUnformat                           = 0x11B570; // func_0011B570
 fabs                                    = 0x11D910; // func_0011D910
 cosf                                    = 0x11DCC8; // func_0011DCC8
 
@@ -1872,13 +1888,10 @@ tievDrawBlind                           = 0x27E250; // func_0027E250
 tievSetBlindRate                        = 0x27E8C0; // func_0027E8C0
 tievSetBlindColor                       = 0x27E940; // func_0027E940
 tievInitSmoke                           = 0x27E990; // func_0027E990
-
 tievFreeSmoke                           = 0x27EA40; // func_0027EA40
 tievDrawSmoke                           = 0x27EA90; // func_0027EA90
 tievCalcSmoke                           = 0x27ED70; // func_0027ED70
-
 tievSetSmoke                            = 0x27EEB0; // func_0027EEB0
-
 tievInitSpark                           = 0x27F230; // func_0027F230
 tievFreeSpark                           = 0x27F2C0; // func_0027F2C0
 tievDrawSpark                           = 0x27F310; // func_0027F310
@@ -1891,7 +1904,6 @@ tievSetShardsCallback                   = 0x27FFE0; // func_0027FFE0
 tievDrawShards                          = 0x280010; // func_00280010
 tievCalcShards                          = 0x280800; // func_00280800
 tievShards                              = 0x280C20; // func_00280C20
-
 tievInitCannon                          = 0x281380; // func_00281380
 tievFreeCannon                          = 0x281460; // func_00281460
 tievDrawCannon                          = 0x2814C0; // func_002814C0
@@ -1901,7 +1913,6 @@ tievCannon                              = 0x282150; // func_00282150
 // tiutill.c text
 tiutRand                                = 0x2821C0; // func_002821C0
 tiutVu0DistanceP2P                      = 0x282260; // func_00282260
-
 tiutVu0CrossL2L                         = 0x2822A0; // func_002822A0
 tiutVu0AxisRotate                       = 0x2824A0; // func_002824A0
 // tmalpha.c text
@@ -2131,7 +2142,6 @@ tmlinkMappingData                       = 0x29BC80; // func_0029BC80
 
 // cdvd.c text
 uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD10
-
 uldvdSetReadFile_DRIVE                  = 0x29BDF0; // func_0029BDF0
 uldvdReadData_DRIVE                     = 0x29BF60; // func_0029BF60
 uldvdStartReadData_DRIVE                = 0x29C0B0; // func_0029C0B0
@@ -2183,6 +2193,28 @@ ulInitHeap                              = 0x2A0330; // func_002A0330
 ulMalloc                                = 0x2A03F0; // func_002A03F0
 ulFree                                  = 0x2A0510; // func_002A0510
 ulDumpHeapInfo                          = 0x2A05B0; // func_002A05B0
+
+// mcard.c text
+ulmcSysInit                             = 0x2A07E0; // func_002A07E0
+ulmcSysReset                            = 0x2A0830; // func_002A0830
+ulmcSetUseSlot                          = 0x2A09F0; // func_002A09F0
+ulmcGetFstat                            = 0x2A0A10; // func_002A0A10
+ulmcGetCardInfo                         = 0x2A0A20; // func_002A0A20
+ulmcServer                              = 0x2A0A50; // func_002A0A50
+ulmcSync                                = 0x2A13E0; // func_002A13E0
+ulmcCallBack                            = 0x2A14F0; // func_002A14F0
+ulmcGetInfo                             = 0x2A1740; // func_002A1740
+ulmcChDir                               = 0x2A17C0; // func_002A17C0
+ulmcMkDir                               = 0x2A18E0; // func_002A18E0
+ulmcGetDir                              = 0x2A19A0; // func_002A19A0
+ulmcIsExist                             = 0x2A1AD0; // func_002A1AD0
+ulmcLoad                                = 0x2A1B20; // func_002A1B20
+ulmcSave                                = 0x2A1CE0; // func_002A1CE0
+ulmcFormat                              = 0x2A1EA0; // func_002A1EA0
+ulmcDelete                              = 0x2A1F20; // func_002A1F20
+ulmcDeleteAll                           = 0x2A1FE0; // func_002A1FE0
+ulmcClearIconSys                        = 0x2A20C0; // func_002A20C0
+ulmcCheckSlotNo                         = 0x2A21D0; // func_002A21D0
 
 // model.c text
 ul3dScaleMatrixXYZ                      = 0x2A3AB0; // func_002A3AB0
@@ -2741,6 +2773,7 @@ alpha_tbl$1871                          = 0x2F5010; // D_002F5010
 alpha_tbl$1897                          = 0x2F5050; // D_002F5050
 // jtbl_002F5090 // "@50" in US version
 
+// D_002F50B0 // anon // "@104" in US version
 // heap.c rodata
 // D_002F50C0 // anon // "@33" in US version
 // D_002F50E0 // anon // "@34" in US version
@@ -2753,6 +2786,10 @@ alpha_tbl$1897                          = 0x2F5050; // D_002F5050
 // D_002F5188 // anon // "@84" in US version
 // D_002F51A0 // anon // "@85" in US version
 // D_002F51D0 // anon // "@86" in US version
+// mcard.c rodata
+// D_002F51F0 // anon // "@132" in US version
+// D_002F5200 // anon // "@181" in US version
+// D_002F5228 // anon // "@282" in US version
 
 // D_002F58F0 // anon // "@293" in US version
 
@@ -3275,66 +3312,41 @@ vgmsysFrameBuffer                       = 0x33DEE6; // D_0033DEE6 // figure out 
 
 // nmdisp.c bss
 vnmdispHighScorePos                     = 0x33DF80; // size:0x1C // D_FLT_0033DF80
-
 vnmdispCombList                         = 0x33DFA0; // D_0033DFA0
-
 vnmdispStatisticsPos                    = 0x33E170; // size:0x40 // D_FLT_0033E170
-
 vnmdispCareerItem                       = 0x33E1B0; // size:0x10 // D_0033E1B0
-
 vnmdispLevelCareerPos                   = 0x33E1C0; // size:0x14 // D_FLT_0033E1C0
-
 vnmdispLevelMark                        = 0x33E1E0; // size:0x48 // D_0033E1E0
-
 vnmdispLevelGoalsPos                    = 0x33E230; // size:0x2C // D_FLT_0033E230
-
 vnmdispHorseMesPos                      = 0x33E260; // size:0x10 // TODO: double check size // D_FLT_0033E260
-
 vnmdispHorseWord                        = 0x33E270; // size:0x10 // TODO: recheck size // D_0033E270
-
 vnmdispLosePos                          = 0x33E280; // size:0x10 // TODO: double check size // D_FLT_0033E280
 vnmdispWinPos                           = 0x33E290; // size:0x10 // TODO: double check size // D_FLT_0033E290
-
 vnmdispLineImagePos                     = 0x33E2A0; // size:0x14 // D_FLT_0033E2A0
-
 vnmdispLineImage                        = 0x33E2C0; // D_0033E2C0
-
 vnmdispOutMes                           = 0x33E2F0; // size:0x10  // TODO: double check size // D_0033E2F0
-
 vnmdispLevelMesInfo                     = 0x33E300; // size:0x20 // D_0033E300
 vnmdispLevelMesPos                      = 0x33E320; // size:0x20 // D_FLT_0033E320
 vnmdispLevelMes                         = 0x33E340; // size:0x20 // D_0033E340
-
 vnmdispSpMeter                          = 0x33E380; // size:0x10 // D_0033E380
-
 vnmdispTotalScore                       = 0x33E390; // size:0x10 // D_0033E390
-
 vnmdispTrickPtsInfo                     = 0x33E3A0; // size:0x420 // D_0033E3A0
-
 vnmdispTrickPtsDraw                     = 0x33E7C0; // size:0x20 // TODO: double check size // D_0033E7C0
-
 vnmdispTrickPts                         = 0x33E7E0; // size:0x10 // D_0033E7E0
-
 vnmdispTrickNameInfo                    = 0x33E7F0; // size:0x3060 // D_0033E7F0
-
 vnmdispTrickNameList                    = 0x341850; // size:0x1C8 // D_FLT_00341850
-
 vnmdispTrickName                        = 0x341A20; // size:0x10 // D_00341A20
 vnmdispBalance                          = 0x341A30; // size:0x10 // D_00341A30
 vnmdispBalanceInfo                      = 0x341A40; // size:0x20 // D_00341A40
 vnmdispStance                           = 0x341A60; // size:0x10 // D_00341A60
 vnmdispGapList                          = 0x341A70; // size:0x48 // D_00341A70
-
 vnmdispPauseDebugPos                    = 0x341AC0; // size:0x14 // D_FLT_00341AC0
-
 vnmdispLevelGoalList                    = 0x341AE0; // size:0x48 // D_FLT_00341AE0
-
 vnmdispTrickList                        = 0x341B30; // size:0x288 // size probably changed! // D_00341B30
 
 vnmdispPauseSoundPos                    = 0x341DC0; // size:0x18 // D_FLT_00341DC0
 vnmdispPauseSelectPos                   = 0x341DE0; // size:0x10 // D_FLT_00341DE0
 vnmdispPausePos                         = 0x341DF0; // size:0x28  // D_FLT_00341DF0
-
 vnmdispBestTime                         = 0x341E20; // size:0x20 // D_00341E20
 vnmdispRecord                           = 0x341E40; // size:0xC0 // D_00341E40
 // nmdraw.c bss
@@ -3349,11 +3361,8 @@ vnmfontOption                           = 0x341F60; // size:0x60 // D_00341F60
 vnmsndResult                            = 0x341FC0; // size:0x78 // D_00341FC0
 vnmsndFrameSend                         = 0x342040; // size:0x710 // D_00342040
 vnmsndFrame                             = 0x0342780; // size:0x710 // D_00342780
-
 vnmsndInit                              = 0x342EC0; // size:0x40 // D_00342EC0
-
 vnmsndRpcBuf                            = 0x342F00; // size:0x800 // D_00342F00
-
 vnmsndCd                                = 0x343700; // size:0x28 // D_00343700
 // nmsq.c bss
 vnmsqQue                                = 0x343730; // size:0x20 // D_00343730
@@ -3522,7 +3531,13 @@ vulcodWVmat                             = 0x3DB2E0; // size:0x40 // D_003DB2E0
 vulcodVSmat                             = 0x3DB320; // size:0x40 // D_003DB320
 // heap.c bss
 heapinfo                                = 0x3DB360; // size:0x28 // D_003DB360
-// system.bss
+
+// mcard.c bss
+vulmcCardData                           = 0x3DB3C0; // size:0xA00 // D_003DB3C0
+vulmcDir                                = 0x3DBDC0; // size:0x500 // D_003DBDC0
+vulmcSysInfo                            = 0x3DC2C0; // size:0x44 // D_003DC2C0
+
+// system.c bss
 vulsysSystem                            = 0x3DCA10; // size:0x360 // D_003DCA10
 #_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
