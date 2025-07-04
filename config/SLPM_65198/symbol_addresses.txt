@@ -485,6 +485,18 @@ _InitSys                                = 0x1167C0; // type:func // func_001167C
 Exit                                    = 0x116A30; // type:func // func_00116A30
 // more to add from func_00116A90 and after
 
+scePadInit                              = 0x116BA8; // func_00116BA8
+scePadPortOpen                          = 0x116E08; // func_00116E08
+scePadRead                              = 0x117158; // func_00117158
+scePadGetState                          = 0x1171D8; // func_001171D8
+scePadGetReqState                       = 0x1172F0; // func_001172F0
+scePadInfoAct                           = 0x117378; // func_00117378
+scePadInfoMode                          = 0x1175B8; // func_001175B8
+scePadSetMainMode                       = 0x1176F0; // func_001176F0
+scePadSetActDirect                      = 0x1177A8; // func_001177A8
+scePadSetActAlign                       = 0x117868; // func_00117868
+scePadEnterPressMode                    = 0x117B08; // func_00117B08
+scePadExitPressMode                     = 0x117B60; // func_00117B60
 sceCdSearchFile                         = 0x118748; // func_00118748
 sceCdSync                               = 0x118C50; // func_00118C50
 sceCdInit                               = 0x118ED0; // func_00118ED0
@@ -2216,25 +2228,57 @@ ulmcDeleteAll                           = 0x2A1FE0; // func_002A1FE0
 ulmcClearIconSys                        = 0x2A20C0; // func_002A20C0
 ulmcCheckSlotNo                         = 0x2A21D0; // func_002A21D0
 
+// mdlpr.c text
+ulmdlPrimPhysiqueStripGT                = 0x2A2210;
+ulmdlPrimMeshStripGT                    = 0x2A23F0;
+// mdlpra.c text
+ulmdlPrimPhysiqueStripGTalpha           = 0x2A25E0;
+ulmdlPrimMeshStripGTalpha               = 0x2A28C0;
+// mdlprAmb.c text
+ulmdlPrimMeshStripGT_Ambient            = 0x2A2D70;
+// mdlprEnv.c text
+ulmdlPrimPhysiqueStripGT_Envmap         = 0x2A2F40;
+ulmdlPrimMeshStripGT_Envmap             = 0x2A3130;
+// mdlprHrt.c text
+ulmdlPrimPhysiqueStripGT_Highlight      = 0x2A3330;
+ulmdlPrimMeshStripGT_Highlight          = 0x2A3550;
+// mdlprSdw.c text
+ulmdlPrimPhysiqueStripGT_Shadow         = 0x2A3780;
+ulmdlPrimMeshStripGT_Shadow             = 0x2A3920;
 // model.c text
 ul3dScaleMatrixXYZ                      = 0x2A3AB0; // func_002A3AB0
-
 ulmdlInitModel                          = 0x2A3B10; // func_002A3B10
 ulmdlSetModelTexture                    = 0x2A3ED0; // func_002A3ED0
+ulmdlSetObjCoordinate                   = 0x2A4010; // func_002A4010
+ulmdlDrawModelPkt                       = 0x2A4670; // func_002A4670
+ulmdlCalcPhysiqueStrip                  = 0x2A4B80; // func_002A4B80
 // pad.c text
+ulpadInit                               = 0x2A4C30; // func_002A4C30
 ulpadInitData                           = 0x2A4D00; // func_002A4D00
-
+ulpadOpenPort                           = 0x2A4E90; // func_002A4E90
+ulpadGet                                = 0x2A4EE0; // func_002A4EE0
+ulpadSetAna                             = 0x2A5230; // func_002A5230
+ulpadSetDual                            = 0x2A52E0; // func_002A52E0
 ulpadSetAnaRef                          = 0x2A53A0; // func_002A53A0
-
 ulpadSetRepFrame                        = 0x2A53E0; // func_002A53E0
-
 ulpadInitDual                           = 0x2A5480; // func_002A5480
-
 ulpadStopDual                           = 0x2A5A40; // func_002A5A40
-
+ulpadUpdateDual                         = 0x2A5BF0; // func_002A5BF0
+ulpadGetActData                         = 0x2A6200; // func_002A6200
 ulpadSetDualLv                          = 0x2A67E0; // func_002A67E0
-
 ulpadSetDualPause                       = 0x2A6860; // func_002A6860
+ulpadInitFig                            = 0x2A6A70; // func_002A6A70
+ulpadInitActInfo                        = 0x2A6BA0; // func_002A6BA0
+ulpadInitActCtrl                        = 0x2A6C30; // func_002A6C30
+ulpadInitMode                           = 0x2A6C80; // func_002A6C80
+ulpadInitInfo                           = 0x2A6CC0; // func_002A6CC0
+ulpadInitOption                         = 0x2A6D60; // func_002A6D60
+ulpadRead                               = 0x2A6D80; // func_002A6D80
+ulpadChangeAna                          = 0x2A7C70; // func_002A7C70
+ulpadChangePress                        = 0x2A7DA0; // func_002A7DA0
+ulpadSetActData                         = 0x2A7EE0; // func_002A7EE0
+ulpadSynActData                         = 0x2A8080; // func_002A8080
+
 // sd.c text
 ulsdSetMasterVol                        = 0x2A81A0; // func_002A81A0
 
@@ -2682,6 +2726,20 @@ _randtbl                                = 0x2E2370; // func_002E2370
 // D_002E2570 // anon // "@54" in US version
 // D_002E2590 // anon // "@55" in US version
 // D_002E25B0 // anon // "@544" in US version
+
+// tmevent.c data
+// D_002E27B0 // anon // "@222" in US version
+
+// mdlprSdw.c data
+black$14                                = 0x2E27F0;  // size:0x10 // D_002E27F0
+
+// model.c data
+Constant                                = 0x2E2810; // size:0x30 // D_FLT_002E2810
+PrimPhysiqueStripGT                     = 0x2E2840; // size:0x20 // func_002E2840
+PrimMeshStripGT                         = 0x2E2860; // size:0x20 // D_002E2860
+PrimPhysiqueStripGTalpha                = 0x2E2880; // size:0x20 // func_002E2880
+PrimMeshStripGTalpha                    = 0x2E28A0; // size:0x20 // D_002E28A0
+
 // ktact.c rodata
 // several ktact anon variables
 normal$406                              = 0x2EF230; // size:0x100 // D_002EF230
@@ -2860,15 +2918,15 @@ vspDisp2D                               = 0x2F58E0; // D_002F58E0
 // tieffect.c sdata
 rad180                                  = 0x2F58F8; // D_FLT_002F58F8
 def$434                                 = 0x2F58FC; // D_FLT_002F58FC
+xsize$435                               = 0x2F5900; // D_FLT_002F5900
+ysize$436                               = 0x2F5904; // D_FLT_002F5904
 acc$437                                 = 0x2F5908; // D_FLT_002F5908
+distance$439                            = 0x2F590C; // D_FLT_002F590C
 abe$440                                 = 0x2F5910; // D_002F5910
 add$441                                 = 0x2F5914; // D_002F5914
 sub$442                                 = 0x2F5918; // D_002F5918
 time$443                                = 0x2F591C; // D_002F591C
 skip$444                                = 0x2F5920; // D_002F5920
-xsize$435                               = 0x2F5900; // D_FLT_002F5900
-ysize$436                               = 0x2F5904; // D_FLT_002F5904
-distance$439                            = 0x2F590C; // D_FLT_002F590C
 cnt$569                                 = 0x2F5924; // D_002F5924
 deg$659                                 = 0x2F5928; // D_FLT_002F5928
 num$660                                 = 0x2F592C; // D_002F592C
@@ -2886,6 +2944,9 @@ skip$94                                 = 0x2F5950; // D_002F5950
 
 // tiutill.c sbss
 _randcnt                                = 0x2F5954; // D_002F5954
+
+// pad.c sbss
+D_FLT_002F5958                          = 0x2F5958; // size:0x8 // anon // "@296" in US version
 
 // gmpad.c sbss
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
@@ -3281,6 +3342,13 @@ vuldvdReadMode                          = 0x2F60B4; // size:0x4 // D_002F60B4
 vuldvdReadAddr                          = 0x2F60B8; // D_002F60B8
 // coord.c sbss
 vulcodCamera                            = 0x2F60BC; // D_002F60BC
+
+// pad.c sbss
+vulpadSlotNum                           = 0x2F60C0; // size:0x8 // D_002F60C0
+vulpadAct0MinLv                         = 0x2F60C8; // size:0x4 // D_002F60C8
+vulpadRepFrame                          = 0x2F60CC; // size:0x4 // D_002F60CC
+vulpadAnaRef                            = 0x2F60D0; // size:0x4 // D_002F60D0
+
 // ktact.c bss
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
@@ -3536,6 +3604,12 @@ heapinfo                                = 0x3DB360; // size:0x28 // D_003DB360
 vulmcCardData                           = 0x3DB3C0; // size:0xA00 // D_003DB3C0
 vulmcDir                                = 0x3DBDC0; // size:0x500 // D_003DBDC0
 vulmcSysInfo                            = 0x3DC2C0; // size:0x44 // D_003DC2C0
+
+// pad.c bss
+vulpadInfo                              = 0x3DC310; // size:0x2E0 // D_003DC310
+vulpadActBuf                            = 0x3DC5F0; // size:0xC // D_003DC5F0
+vulpadDmaBuf                            = 0x3DC600; // size:0x200 // D_003DC600
+vulpadOption                            = 0x3DC800; // size:0x10 // D_003DC800
 
 // system.c bss
 vulsysSystem                            = 0x3DCA10; // size:0x360 // D_003DCA10
