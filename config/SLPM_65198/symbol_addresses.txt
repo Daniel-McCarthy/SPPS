@@ -468,6 +468,10 @@ sceSifInitRpc                           = 0x1104F0; // type:func // func_001104F
 sceSifBindRpc                           = 0x110B60; // func_00110B60
 sceSifCallRpc                           = 0x110D30; // func_00110D30
 sceSifCheckStatRpc                      = 0x110F20; // func_00110F20
+sceOpen                                 = 0x111D48; // func_00111D48
+sceClose                                = 0x111FD0; // func_00111FD0
+sceWrite                                = 0x1125F8; // func_001125F8
+sceSifAllocIopHeap                      = 0x114B70; // func_00114B70
 sceSifFreeIopHeap                       = 0x114CD8; // func_00114CD8
 sceSifLoadModule                        = 0x1157E8; // type:func // func_001157E8
 // more to add after sceSifLoadModule
@@ -481,6 +485,16 @@ _InitSys                                = 0x1167C0; // type:func // func_001167C
 Exit                                    = 0x116A30; // type:func // func_00116A30
 // more to add from func_00116A90 and after
 
+sceCdSearchFile                         = 0x118748; // func_00118748
+sceCdSync                               = 0x118C50; // func_00118C50
+sceCdInit                               = 0x118ED0; // func_00118ED0
+sceCdDiskReady                          = 0x1191B0; // func_001191B0
+sceCdMmode                              = 0x1193A8; // func_001193A8
+sceCdRead                               = 0x1194A0; // func_001194A0
+sceCdReadIOPm                           = 0x119680; // func_00119680
+sceCdGetDiskType                        = 0x1197D8; // func_001197D8
+sceCdGetError                           = 0x119870; // func_00119870
+sceCdBreak                              = 0x119908; // func_00119908
 sceCdReadClock                          = 0x1199C0; // func_001199C0
 fabs                                    = 0x11D910; // func_0011D910
 cosf                                    = 0x11DCC8; // func_0011DCC8
@@ -2018,7 +2032,10 @@ David_tmcrsGetObjectCollision           = 0x294CE0; // func_00294CE0
 // tmetc.c text
 tmetcInit                               = 0x2953D0; // func_002953D0
 tmetcEnd                                = 0x295670; // func_00295670
+tmetcReset                              = 0x295680; // func_00295680
 tmetcGetRank                            = 0x2956F0; // func_002956F0
+tmetcGetVerticalPoint                   = 0x295A90; // func_00295A90
+tmetcGetAcc                             = 0x295B40; // func_00295B40
 
 // tmevent.c text
 tmevInit                                = 0x295CA0; // func_00295CA0
@@ -2100,12 +2117,18 @@ tmevDefEnd                              = 0x29A510; // D_0029A510
 
 // tmgraph.c text
 tmgraphSetMatrix                        = 0x29A520; // func_0029A520
-
+tmgraphGetFogCoef                       = 0x29A8A0; // func_0029A8A0
+tmgraphCheckClipFlag                    = 0x29A980; // func_0029A980
+tmgraphScissorAlphaPolyT                = 0x29AA70; // func_0029AA70
+tmgraphDivideMain                       = 0x29ADC0; // func_0029ADC0
+tmgraphDivideSub                        = 0x29B170; // func_0029B170
+tmgraphCheckClip                        = 0x29B280; // func_0029B280
 tmgraphRTPSpriteAddAlphaBufT__          = 0x29B2D0; // func_0029B2D0
 tmgraphRTPAddAlphaBufG_T__              = 0x29B860; // func_0029B860
-tmgraphGetFogCoef                       = 0x29A8A0; // func_0029A8A0
+
 // tmlink.c text
 tmlinkMappingData                       = 0x29BC80; // func_0029BC80
+
 // cdvd.c text
 uldvdInitCdvd_DRIVE                     = 0x29BD10; // type:func // func_0029BD10
 
@@ -2117,34 +2140,49 @@ uldvdCheckReadPer_DRIVE                 = 0x29C900; // func_0029C900
 
 // coord.c text
 ulcodInitCoordinate                     = 0x29C910; // func_0029C910
+ulcodLinkCoordinate                     = 0x29C960; // func_0029C960
 ulcodSetVsMatrix                        = 0x29C9B0; // func_0029C9B0
+ulcodGetWvMatrix                        = 0x29C9E0; // func_0029C9E0
 ulcodSetWvMatrix                        = 0x29CA50; // func_0029CA50
+ulcodGetLwMatrix                        = 0x29CA90; // func_0029CA90
+ulcodGetWsMatrix                        = 0x29CB90; // func_0029CB90
+
 // gif.c text
 ulgifTermPacket                         = 0x29CBD0; // func_0029CBD0
 ulgifDmaSend                            = 0x29CC10; // func_0029CC10
 ulgifDmaWait                            = 0x29CC50; // func_0029CC50
-
 ulgifAddCNTReserve                      = 0x29CC80; // func_0029CC80
-
+ulgifAddSetGsRegister                   = 0x29CCF0; // func_0029CCF0
 ulgifAddCNTSetGsRegister                = 0x29CD70; // func_0029CD70
+
 // gifpkt.c text
 ulpktInitALPHA                          = 0x29CDD0; // func_0029CDD0
-
+ulpktInitF3                             = 0x29CE50; // func_0029CE50
+ulpktInitG3                             = 0x29CEB0; // func_0029CEB0
 ulpktInitF4                             = 0x29CF20; // func_0029CF20
-
 ulpktInitG4                             = 0x29CF80; // func_0029CF80
-
 ulpktInitFT4                            = 0x29CFF0; // func_0029CFF0
-
 ulpktInitGT4                            = 0x29D110; // func_0029D110
 
 // graph.c text
 ulgraphSetDefFrameBuff                  = 0x29D230; // func_0029D230
+ulgraphCopyDrawToDispBuffer             = 0x29DB30; // func_0029DB30
+ulgraphFlipFrameBuff                    = 0x29E150; // func_0029E150
+ulgraphCleanFrameBuff                   = 0x29E5A0; // func_0029E5A0
+ulgraphSetDefDispEnv                    = 0x29E700; // func_0029E700
+ulgraphPutDispEnv                       = 0x29ED40; // func_0029ED40
+ulgraphSetDefFbufEnv                    = 0x29EE00; // func_0029EE00
+ulgraphSetDefDrawCmnEnv                 = 0x29F080; // func_0029F080
+ulgraphSetDefAlphaEnv                   = 0x29F150; // func_0029F150
+ulgraphSetDefDrawEnv                    = 0x29F380; // func_0029F380
+ulgraphPutDrawEnv                       = 0x29F690; // func_0029F690
+ulgraphEffectDepthOfField               = 0x29F710; // func_0029F710
 
 // heap.c text
+ulInitHeap                              = 0x2A0330; // func_002A0330
 ulMalloc                                = 0x2A03F0; // func_002A03F0
-
 ulFree                                  = 0x2A0510; // func_002A0510
+ulDumpHeapInfo                          = 0x2A05B0; // func_002A05B0
 
 // model.c text
 ul3dScaleMatrixXYZ                      = 0x2A3AB0; // func_002A3AB0
@@ -2218,6 +2256,13 @@ ulvumdlGetMatrix                        = 0x2B3260; // func_002B3260
 ulvumdlInitVerShadeWind                 = 0x2B3310; // func_002B3310
 
 ulvumdlCalcVerShadeWind                 = 0x2B3410; // func_002B3410
+
+// xmem.c text
+xmemInitHeap                            = 0x2B35C0; // func_002B35C0
+xmemMalloc                              = 0x2B3630; // func_002B3630
+xmemMalloc2                             = 0x2B3750; // func_002B3750
+xmemFree                                = 0x2B3860; // func_002B3860
+xmemMallocStat                          = 0x2B3A20; // func_002B3A20
 
 // spr.c text
 ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
@@ -2513,8 +2558,6 @@ pos$720                                 = 0x2DE9B0; // D_002DE9B0
 // spinit.c data
 vsptblCharacterName                     = 0x2DEDA0; // D_002DEDA0
 vsptblBoardName                         = 0x2DEDE0; // D_002DEDE0
-
-
 vsptblCourseName                        = 0x2DEF90; // D_002DEF90
 
 vsptblGapList                           = 0x2DEFF0; // D_002DEFF0
@@ -2697,6 +2740,20 @@ alpha_tbl$1857                          = 0x2F4FD0; // D_002F4FD0
 alpha_tbl$1871                          = 0x2F5010; // D_002F5010
 alpha_tbl$1897                          = 0x2F5050; // D_002F5050
 // jtbl_002F5090 // "@50" in US version
+
+// heap.c rodata
+// D_002F50C0 // anon // "@33" in US version
+// D_002F50E0 // anon // "@34" in US version
+// D_002F5100 // anon // "@35" in US version
+// D_002F5120 // anon // "@79" in US version
+// D_002F5138 // anon // "@80" in US version
+// D_002F5148 // anon // "@81" in US version
+// D_002F5158 // anon // "@82" in US version
+// D_002F5170 // anon // "@83" in US version
+// D_002F5188 // anon // "@84" in US version
+// D_002F51A0 // anon // "@85" in US version
+// D_002F51D0 // anon // "@86" in US version
+
 // D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
@@ -2734,11 +2791,8 @@ vktactCmdToJump                         = 0x2F57F0; // D_002F57F0
 // several ktact anon variables
 // ktmnufnc.c sdata
 vktmfdbgMenuText2                       = 0x2F5820; // D_002F5820
-
 vktmfdbgMenuFunc2                       = 0x2F5828; // D_002F5828
-
 vktmfdbgMenuUseNum2                     = 0x2F5830; // D_002F5830
-
 vktmfdbgMenuNumText_2d                  = 0x2F5838; // D_002F5838
 
 // main.c sdata
@@ -2749,7 +2803,6 @@ vsppMediaType                           = 0x2F584C; // size:0x4 // D_002F584C
 // nmdisp.c sdata
 vnmtblPauseCareerItem                   = 0x2F5850; // D_002F5850
 vnmtblPauseMatchItem                    = 0x2F5858; // D_002F5858
-
 vnmtblPauseFreeItem                     = 0x2F5860; // D_002F5860
 // spev01.c sdata
 vspev01Length                           = 0x2F5888; // D_002F5888
@@ -2945,19 +2998,16 @@ vnmdispTrickNameLine                    = 0x2F5C78; // D_002F5C78
 
 vnmdispTrickEffectType                  = 0x2F5C80; // size:0x8 // D_002F5C80
 vnmdispTrickSuccess                     = 0x2F5C88; // size:0x8 // D_002F5C88
-
 vnmdispTrickEnd                         = 0x2F5C90; // size:0x8 // D_002F5C90
 vnmdispTrickStart                       = 0x2F5C98; // size:0x8 // D_002F5C98
 vnmdispStancePos                        = 0x2F5CA0; // size:0x8 // D_FLT_002F5CA0
 vnmdispFakie                            = 0x2F5CA8; // size:0x8 // D_002F5CA8
-
 vnmdispTimeLeft                         = 0x2F5CB0; // size:0x8 // D_002F5CB0
 vnmdispParamPosDown                     = 0x2F5CB8; // D_FLT_002F5CB8
 vnmdispParamPosUp                       = 0x2F5CBC; // D_FLT_002F5CBC
 vnmdispParamPosRight                    = 0x2F5CC0; // D_FLT_002F5CC0
 vnmdispParamPosLeft                     = 0x2F5CC4; // D_FLT_002F5CC4
 vnmdispParam                            = 0x2F5CC8; // size:0x8 // D_002F5CC8
-
 vnmdispAllow                            = 0x2F5CD0; // size:0x8 // D_002F5CD0
 vnmdispCameraUp                         = 0x2F5CD8; // D_002F5CD8
 vnmdispSyncDetailq                      = 0x2F5CDC; // D_002F5CDC
@@ -2965,7 +3015,6 @@ vnmdispSndDebug                         = 0x2F5CE0; // D_002F5CE0
 vnmdispPauseDebug2d                     = 0x2F5CE4; // D_002F5CE4
 vnmdispPauseDebugTop                    = 0x2F5CE8; // D_002F5CE8
 vnmdispPauseDebugItem                   = 0x2F5CEC; // D_002F5CEC
-
 vnmdispPauseDebugFlow                   = 0x2F5CF0; // D_002F5CF0
 vnmdispPauseDebug                       = 0x2F5CF8; // size:0x8 // D_002F5CF8
 
@@ -3011,7 +3060,6 @@ vnmdispOpeAccept                        = 0x2F5DA0; // D_002F5DA0
 vnmdispOpeConnect                       = 0x2F5DA4; // D_002F5DA4
 vnmdispOpe                              = 0x2F5DA8; // size:0x8 // TODO: recheck size // D_002F5DA8
 vnmdispDivSide                          = 0x2F5DB0; // D_002F5DB0
-
 vnmdispDivMode                          = 0x2F5DB4; // D_002F5DB4
 vnmdispDebug                            = 0x2F5DBC; // D_002F5DBC
 vnmdispMode                             = 0x2F5DC0; // D_002F5DC0
@@ -3191,10 +3239,15 @@ vtmevPlayer                             = 0x2F60A4; // D_002F60A4
 vtmevMain                               = 0x2F60A8; // D_002F60A8
 vtmevReset                              = 0x2F60AC; // D_002F60AC
 vtmevInit                               = 0x2F60B0; // D_002F60B0
+// cdvd.c sbss
+vuldvdReadMode                          = 0x2F60B4; // size:0x4 // D_002F60B4
+vuldvdReadAddr                          = 0x2F60B8; // D_002F60B8
+// coord.c sbss
+vulcodCamera                            = 0x2F60BC; // D_002F60BC
+// ktact.c bss
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
 
-// ktact.c bss
 vktactColObj_head                       = 0x33BAA0; // D_0033BAA0
 vktactColHit_head                       = 0x33C0A0; // D_0033C0A0
 vktactColObj_body                       = 0x33C6A0; // D_0033C6A0
@@ -3453,12 +3506,24 @@ vtmevObject                             = 0x3D74C0; // size:0x320 // D_003D74C0
 vtmevFlag                               = 0x3D77E0; // size:0x400 // D_003D77E0
 vtmevCounter                            = 0x3D7BE0; // size:0x210 // D_003D7BE0
 vtmevVs                                 = 0x3D7DF0; // size:0x2A0 // D_003D7DF0
+// system.c bss
+vtmevLight                              = 0x3D73C0; // size:0xA0 // D_FLT_003D73C0
+// cdvd.c bss
 vtmevWarpSystem                         = 0x3D8090; // size:0x190 // D_003D8090
 vtmevSystem                             = 0x3D8220; // size:0x50 // D_003D8220
 
-// system.c bss
+vuldvdFD                                = 0x3D8270; // size:0x24 // D_003D8270
+vuldvdQue                               = 0x3D82A0; // size:0x1000 // D_003D82A0
+vuldvdData                              = 0x3D92A0; // size:0x2000 // D_003D92A0
+vuldvdHead                              = 0x3DB2A0; // size:0x10 // D_003DB2A0
+vuldvdSystem                            = 0x3DB2B0; // size:0x30 // D_003DB2B0
+// coord.c bss
+vulcodWVmat                             = 0x3DB2E0; // size:0x40 // D_003DB2E0
+vulcodVSmat                             = 0x3DB320; // size:0x40 // D_003DB320
+// heap.c bss
+heapinfo                                = 0x3DB360; // size:0x28 // D_003DB360
+// system.bss
 vulsysSystem                            = 0x3DCA10; // size:0x360 // D_003DCA10
-vtmevLight                              = 0x3D73C0; // size:0xA0 // D_FLT_003D73C0
 #_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
 _args                                   = 0x2F6180; // D_002F6180
