@@ -2024,68 +2024,79 @@ tmetcGetRank                            = 0x2956F0; // func_002956F0
 tmevInit                                = 0x295CA0; // func_00295CA0
 tmevReset                               = 0x296130; // func_00296130
 tmevMainEvent                           = 0x296920; // func_00296920
-tmevEnd                                 = 0x2973B0; // func_002973B0
 tmevPlayerEvent                         = 0x296C30; // func_00296C30
 tmevDrawEvent                           = 0x2970A0; // func_002970A0
 tmevDrawPlayerEvent                     = 0x2970E0; // func_002970E0
 tmevFinishPlayerEvent                   = 0x297120; // func_00297120
+tmevEnd                                 = 0x2973B0; // func_002973B0
+tmevInitSystem                          = 0x2973E0; // func_002973E0
+tmevResetSystem                         = 0x297520; // func_00297520
 tmevSetLevelGoal                        = 0x2976A0; // func_002976A0
 tmevSetGap                              = 0x297770; // func_00297770
+tmevCheckLevelGoal                      = 0x297810; // func_00297810
+tmevCheckGap                            = 0x2979E0; // func_002979E0
 tmevGetLevelGoal                        = 0x297AF0; // func_00297AF0
-
 tmevGetLevelGoalFlag                    = 0x297B20; // func_00297B20
+tmevInitCounter                         = 0x297B90; // func_00297B90
+tmevCountCounter                        = 0x297C10; // func_00297C10
 tmevResetICounter                       = 0x297CC0; // func_00297CC0
-
 tmevGetICounter                         = 0x297D00; // func_00297D00
-
+tmevSetICounter                         = 0x297D30; // func_00297D30
 tmevStartICounter                       = 0x297D70; // func_00297D70
-
 tmevStopICounter                        = 0x297DC0; // func_00297DC0
+tmevResetFlag                           = 0x297E10; // func_00297E10
 tmevSetFlag                             = 0x297E60; // func_00297E60
-
 tmevGetFlag                             = 0x297EA0; // func_00297EA0
-
 tmevSetFog                              = 0x297ED0; // func_00297ED0
-
 tmevSetBGFog                            = 0x297F10; // func_00297F10
 tmevSetBGNo                             = 0x297F50; // func_00297F50
 tmevSetViewAngle                        = 0x297F90; // func_00297F90
-
 tmevSetDrawLength                       = 0x297FD0; // func_00297FD0
-
 tmevGetDrawLength                       = 0x298030; // func_00298030
-
 tmevSetObjectDrawLength                 = 0x298070; // func_00298070
 tmevSetMiPModelLevel                    = 0x2980B0; // func_002980B0
+tmevResetObject                         = 0x2980F0; // func_002980F0
+tmevMoveObject                          = 0x298260; // func_00298260
 tmevSetCourseLogo                       = 0x298780; // func_00298780
+tmevRollCourseLogo                      = 0x298820; // func_00298820
 tmevSetSponsor                          = 0x298900; // func_00298900
+tmevResetSponsor                        = 0x298960; // func_00298960
+tmevRollSponsor                         = 0x298A60; // func_00298A60
 tmevSetWarpArrow                        = 0x298B80; // func_00298B80
+tmevMoveWarpArrow                       = 0x298BE0; // func_00298BE0
 tmevSetVsObject                         = 0x298D20; // func_00298D20
 tmevSet1PlayObject                      = 0x298D70; // func_00298D70
 tmevSetVsWarpObject                     = 0x298DC0; // func_00298DC0
 tmevGetEventMdlHit                      = 0x298E10; // func_00298E10
+tmevInitWarp                            = 0x298E60; // func_00298E60
 tmevSetWarp                             = 0x298FA0; // func_00298FA0
-
+tmevCheck1PWarp                         = 0x299040; // func_00299040
+tmevCheckReset                          = 0x299190; // func_00299190
+tmevInitVs                              = 0x299320; // func_00299320
+tmevResetVs                             = 0x2994F0; // func_002994F0
 tmevSetWarpNo                           = 0x299800; // func_00299800
 tmevSetStartPosition                    = 0x299880; // func_00299880
-
 tmevSetWarpPosition                     = 0x299990; // func_00299990
 tmevSetHorsePosition                    = 0x299A30; // func_00299A30
-
 tmevGetNowHorsePos                      = 0x299AF0; // func_00299AF0
 tmevGetLap                              = 0x299B00; // func_00299B00
-
 tmevResetHorsePosition                  = 0x299B30; // func_00299B30
+tmevCheckVsWarp                         = 0x299C60; // func_00299C60
 tmevGetFinish                           = 0x299FE0; // func_00299FE0
 tmevSetVib                              = 0x29A010; // func_0029A010
-
 tmevSetVibPlayer                        = 0x29A0D0; // func_0029A0D0
 tmevGetIntroCut                         = 0x29A190; // func_0029A190
 tmevSetLightVector                      = 0x29A250; // func_0029A250
-
 tmevSetAmbient                          = 0x29A2F0; // func_0029A2F0
-
 tmevGetLightVector                      = 0x29A340; // func_0029A340
+tmevDefInit                             = 0x29A430; // D_0029A430
+tmevDefResetEvent                       = 0x29A450; // D_0029A450
+tmevDefMainEvent                        = 0x29A470; // D_0029A470
+tmevDefPlayerEvent                      = 0x29A490; // D_0029A490
+tmevDefDrawEvent                        = 0x29A4B0; // D_0029A4B0
+tmevDefDrawPlayerEvent                  = 0x29A4D0; // D_0029A4D0
+tmevDefFinishPlayerEvent                = 0x29A4F0; // D_0029A4F0
+tmevDefEnd                              = 0x29A510; // D_0029A510
 
 // tmgraph.c text
 tmgraphSetMatrix                        = 0x29A520; // func_0029A520
@@ -2593,6 +2604,9 @@ _randtbl                                = 0x2E2370; // func_002E2370
 // D_002E2510 // anon // "@1767" in US version
 // D_002E2550 // anon // "@1974" in US version
 
+// D_002E2570 // anon // "@54" in US version
+// D_002E2590 // anon // "@55" in US version
+// D_002E25B0 // anon // "@544" in US version
 // ktact.c rodata
 // several ktact anon variables
 normal$406                              = 0x2EF230; // size:0x100 // D_002EF230
@@ -2682,6 +2696,7 @@ alpha_tbl$336                           = 0x2F4F90; // D_002F4F90
 alpha_tbl$1857                          = 0x2F4FD0; // D_002F4FD0
 alpha_tbl$1871                          = 0x2F5010; // D_002F5010
 alpha_tbl$1897                          = 0x2F5050; // D_002F5050
+// jtbl_002F5090 // "@50" in US version
 // D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
@@ -3156,20 +3171,26 @@ vspEndRunReplay                         = 0x2F6048; // D_002F6048
 vspEndRun                               = 0x2F604C; // D_002F604C
 // spinit.c sbss
 vspenvSecret                            = 0x2F6050; // D_002F6050
+vspenvReplay                            = 0x2F6058; // size:0x8 // D_002F6058
+vspenvOption                            = 0x2F6060; // D_002F6060
+vspenvGame                              = 0x2F6064; // D_002F6064
 
 // spload.c sbss
 vsploadDemoNo                           = 0x2F6070; // D_002F6070
 vsploadDemoData                         = 0x2F6080; // D_002F6080
-
 // tieffect.c sbss
 up$438                                  = 0x2F6084; // D_FLT_002F6084
-
-// spinit.c sbss
-vspenvReplay                            = 0x2F6058; // size:0x8 // D_002F6058
-vspenvOption                            = 0x2F6060; // D_002F6060
-vspenvGame                              = 0x2F6064; // D_002F6064
 // tmevent.c sbss
+vtmevVibData                            = 0x2F6088; // size:0x8 // D_002F6088
 vtmevWarp                               = 0x2F6090; // D_002F6090
+vtmevEnd                                = 0x2F6094; // D_002F6094
+vtmevFinishPlayer                       = 0x2F6098; // D_002F6098
+vtmevDrawPlayer                         = 0x2F609C; // D_002F609C
+vtmevDraw                               = 0x2F60A0; // D_002F60A0
+vtmevPlayer                             = 0x2F60A4; // D_002F60A4
+vtmevMain                               = 0x2F60A8; // D_002F60A8
+vtmevReset                              = 0x2F60AC; // D_002F60AC
+vtmevInit                               = 0x2F60B0; // D_002F60B0
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
 
@@ -3426,8 +3447,18 @@ vtmcrsBaseModel                         = 0x3D6F70; // size:0xA0 // D_003D6F70
 vtmcrsSystem                            = 0x3D7010; // size:0x364 // D_003D7010
 vtmcrsDivideNum                         = 0x3D7380; // size:0x10 // D_003D7380
 
+// tmetc.c bss
+vtmevCourse                             = 0x3D7460; // size:0x60 // D_003D7460
+vtmevObject                             = 0x3D74C0; // size:0x320 // D_003D74C0
+vtmevFlag                               = 0x3D77E0; // size:0x400 // D_003D77E0
+vtmevCounter                            = 0x3D7BE0; // size:0x210 // D_003D7BE0
+vtmevVs                                 = 0x3D7DF0; // size:0x2A0 // D_003D7DF0
+vtmevWarpSystem                         = 0x3D8090; // size:0x190 // D_003D8090
+vtmevSystem                             = 0x3D8220; // size:0x50 // D_003D8220
+
 // system.c bss
 vulsysSystem                            = 0x3DCA10; // size:0x360 // D_003DCA10
+vtmevLight                              = 0x3D73C0; // size:0xA0 // D_FLT_003D73C0
 #_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
 _args                                   = 0x2F6180; // D_002F6180
