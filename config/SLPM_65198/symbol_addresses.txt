@@ -272,8 +272,7 @@ _system_header                          = 0x10B4F0; // type:func // func_0010B4F
 _PES_packet                             = 0x10B560; // type:func // func_0010B560
 sceMpegInit                             = 0x10BB10; // type:func // func_0010BB10
 sceMpegCreate                           = 0x10BBB0; // type:func // func_0010BBB0
-// no sceMpegDelete?
-// func_0010BDB8 == sceMpegAddBs ? 
+sceMpegDelete                           = 0x10BDB8; // func_0010BDB8
 sceMpegGetPicture                       = 0x10BDE8; // type:func // func_0010BDE8
 sceMpegGetPictureRAW8xy                 = 0x10BE30; // type:func
 func_10BE78                             = 0x10BE78; // type:func // unknown, had to be split from misdetected function
@@ -456,6 +455,8 @@ GsPutIMR                                = 0x10DEE0; // type:func // func_0010DEE
 iGsPutIMR                               = 0x10DEF0; // type:func // func_0010DEF0
 // more to add from func_0010DF00 and after
 
+sceSifDmaStat                           = 0x10DF40; // func_0010DF40
+sceSifSetDma                            = 0x10DF60; // func_0010DF60
 DisableIntc                             = 0x10E670; // type:func // func_0010E670
 EnableIntc                              = 0x10E6D8; // func_0010E6D8
 DisableDmac                             = 0x10E740; // func_0010E740
@@ -470,6 +471,7 @@ sceSifCallRpc                           = 0x110D30; // func_00110D30
 sceSifCheckStatRpc                      = 0x110F20; // func_00110F20
 sceOpen                                 = 0x111D48; // func_00111D48
 sceClose                                = 0x111FD0; // func_00111FD0
+sceRead                                 = 0x112388; // func_00112388
 sceWrite                                = 0x1125F8; // func_001125F8
 sceSifAllocIopHeap                      = 0x114B70; // func_00114B70
 sceSifFreeIopHeap                       = 0x114CD8; // func_00114CD8
@@ -479,6 +481,8 @@ sceSifLoadModule                        = 0x1157E8; // type:func // func_001157E
 sceSifRebootIop                         = 0x115CE8; // type:func // func_00115CE8
 // more to add from func_00115EE0 and after
 
+DIntr                                   = 0x116660; // func_00116660
+EIntr                                   = 0x1166A8; // func_001166A8
 _InitSys                                = 0x1167C0; // type:func // func_001167C0
 // more to add from func_00116800 and after
 
@@ -497,6 +501,8 @@ scePadSetActDirect                      = 0x1177A8; // func_001177A8
 scePadSetActAlign                       = 0x117868; // func_00117868
 scePadEnterPressMode                    = 0x117B08; // func_00117B08
 scePadExitPressMode                     = 0x117B60; // func_00117B60
+sceSdRemoteInit                         = 0x117E28; // func_00117E28
+sceSdRemote                             = 0x117F68; // func_00117F68
 sceCdSearchFile                         = 0x118748; // func_00118748
 sceCdSync                               = 0x118C50; // func_00118C50
 sceCdInit                               = 0x118ED0; // func_00118ED0
@@ -508,6 +514,10 @@ sceCdGetDiskType                        = 0x1197D8; // func_001197D8
 sceCdGetError                           = 0x119870; // func_00119870
 sceCdBreak                              = 0x119908; // func_00119908
 sceCdReadClock                          = 0x1199C0; // func_001199C0
+sceCdStInit                             = 0x119AB8; // func_00119AB8
+sceCdStStart                            = 0x119AE8; // func_00119AE8
+sceCdStStop                             = 0x119B80; // func_00119B80
+sceCdStRead                             = 0x119BB8; // func_00119BB8
 sceMcInit                               = 0x119F98; // func_00119F98
 sceMcOpen                               = 0x11A2F8; // func_0011A2F8
 sceMcMkdir                              = 0x11A430; // func_0011A430
@@ -546,6 +556,7 @@ printf                                  = 0x122908; // type:func // func_0012290
 rand                                    = 0x122968; // func_00122968
 strcat                                  = 0x122CA0; // func_00122CA0
 strlen                                  = 0x123030; // func_00123030
+__fixsfdi                               = 0x1254A8; // func_001254A8
 __fixunssfdi                            = 0x1255D8; // func_001255D8
 __floatdisf                             = 0x125768; // type:func // func_00125768
 // more to add from func_00125848 and after
@@ -2280,26 +2291,129 @@ ulpadSetActData                         = 0x2A7EE0; // func_002A7EE0
 ulpadSynActData                         = 0x2A8080; // func_002A8080
 
 // sd.c text
+ulsdInit                                = 0x2A8140; // func_002A8140
 ulsdSetMasterVol                        = 0x2A81A0; // func_002A81A0
-
 ulsdSetEffectReturnVol                  = 0x2A8260; // func_002A8260
-
+ulsdSetOutSideVol                       = 0x2A8320; // func_002A8320
+ulsdSetSoundDataVol                     = 0x2A83E0; // func_002A83E0
 ulsdSetEffectAttr                       = 0x2A84A0; // func_002A84A0
-
 ulsdSetMixAft                           = 0x2A8510; // func_002A8510
-
 ulsdSetEffectEndAddr                    = 0x2A8590; // func_002A8590
-
 ulsdSetEffectEnable                     = 0x2A8610; // func_002A8610
+ulsdEntryBatch                          = 0x2A8690; // func_002A8690
 
 // sprintf.c text
+number                                  = 0x2A8720; // func_002A8720
+skip_atoi                               = 0x2A89C0; // func_002A89C0
+sprintf_sub                             = 0x2A8A60; // func_002A8A60
 ulstdSprintf                            = 0x2A8F80; // type:func // func_002A8F80
-
 ulstdPrintf                             = 0x2A9020; // func_002A9020
+
+// system.c
+ulsysInitSystem                         = 0x2A90D0; // func_002A90D0
+ulsysSetScreenMode                      = 0x2A94F0; // func_002A94F0
 
 // vif1.c text
 ulvif1DmaSend                           = 0x2A95A0; // func_002A95A0
 ulvif1DmaWait                           = 0x2A95E0; // func_002A95E0
+
+// mv2ext.c text
+audioDecCreate                          = 0x2A9610; // func_002A9610
+audioDecDelete                          = 0x2A9790; // func_002A9790
+audioDecResume                          = 0x2A9810; // func_002A9810
+audioDecStart                           = 0x2A98B0; // func_002A98B0
+audioDecBeginPut                        = 0x2A98E0; // func_002A98E0
+audioDecEndPut                          = 0x2A9A50; // func_002A9A50
+audioDecIsPreset                        = 0x2A9B70; // func_002A9B70
+audioDecSendToIOP                       = 0x2A9BA0; // func_002A9BA0
+audioIopGetArea                         = 0x2A9E70; // func_002A9E70
+audioSendToIOP2area                     = 0x2A9FC0; // func_002A9FC0
+audioSendToIOP                          = 0x2AA1C0; // func_002AA1C0
+audioChangeInputVolume                  = 0x2AA270; // func_002AA270
+ulmov2dispCreate                        = 0x2AA2C0; // func_002AA2C0
+ulmov2dispSetTags                       = 0x2AA3C0; // func_002AA3C0
+DmaAddr                                 = 0x2AA970; // func_002AA970 // mov2ext.h
+UncAddr                                 = 0x2AA990; // func_002AA990 // mov2ext.h
+ulmov2LoadImage                         = 0x2AA9C0; // func_002AA9C0
+ulmov2vblankHandler                     = 0x2AAA10;
+ulmov2handler_endimage                  = 0x2AAD20; // T_002AAD20
+ulmov2startDisplay                      = 0x2AAD70; // func_002AAD70
+ulmov2endDisplay                        = 0x2AADC0; // func_002AADC0
+ulmov2videoCallback                     = 0x2AADD0;
+ulmov2pcmCallback                       = 0x2AAFA0; // T_002AAFA0
+ulmov2copy2area                         = 0x2AB130; // func_002AB130
+readBufCreate                           = 0x2AB2E0; // func_002AB2E0
+readBufDelete                           = 0x2AB330; // func_002AB330
+readBufBeginPut                         = 0x2AB340; // func_002AB340
+readBufEndPut                           = 0x2AB3B0; // func_002AB3B0
+readBufBeginGet                         = 0x2AB4B0; // func_002AB4B0
+readBufEndGet                           = 0x2AB560; // func_002AB560
+ulmov2strFileOpen                       = 0x2AB5F0; // func_002AB5F0
+ulmov2strFileClose                      = 0x2AB730; // func_002AB730
+ulmov2strFileRead                       = 0x2AB790; // func_002AB790
+viGetFIFOindex                          = 0x2AB870; // func_002AB870
+viSetD3_CHCR                            = 0x2AB8F0; // func_002AB8F0
+viSetD4_CHCR                            = 0x2AB970; // func_002AB970
+ulmov2scTag2                            = 0x2AB9F0; // func_002AB9F0
+viBufCreate                             = 0x2ABA50; // func_002ABA50
+viBufReset                              = 0x2ABB10; // func_002ABB10
+viBufBeginPut                           = 0x2ABCF0; // func_002ABCF0
+viBufEndPut                             = 0x2ABE60; // func_002ABE60
+viBufAddDMA                             = 0x2ABED0; // func_002ABED0
+viBufStopDMA                            = 0x2AC200; // func_002AC200
+viBufRestartDMA                         = 0x2AC330; // func_002AC330
+viBufDelete                             = 0x2AC880; // func_002AC880
+viBufCount                              = 0x2AC8E0; // func_002AC8E0
+viBufFlush                              = 0x2AC940; // func_002AC940
+viBufModifyPts                          = 0x2AC9B0; // func_002AC9B0
+ulmov2IsPtsInRegion                     = 0x2ACC10; // func_002ACC10
+viBufPutTs                              = 0x2ACC70; // func_002ACC70
+viBufGetTs                              = 0x2ACE00; // func_002ACE00
+videoDecCreate                          = 0x2AD0D0; // func_002AD0D0
+videoDecSetStream                       = 0x2AD1E0; // func_002AD1E0
+videoDecBeginPut                        = 0x2AD230; // func_002AD230
+videoDecEndPut                          = 0x2AD280; // func_002AD280
+videoDecReset                           = 0x2AD2C0; // func_002AD2C0
+videoDecDelete                          = 0x2AD2E0; // func_002AD2E0
+videoDecAbort                           = 0x2AD320; // func_002AD320
+videoDecGetState                        = 0x2AD350; // func_002AD350
+videoDecSetState                        = 0x2AD370; // func_002AD370
+videoDecPutTs                           = 0x2AD3B0; // func_002AD3B0
+videoDecInputCount                      = 0x2AD420; // func_002AD420
+videoDecFlush                           = 0x2AD450; // func_002AD450
+videoDecIsFlushed                       = 0x2AD570; // func_002AD570
+videoDecMain                            = 0x2AD5D0; // T_002AD5D0
+videoDecBs0                             = 0x2AD650; // func_002AD650
+videoMpegError                          = 0x2AD940; // D_002AD940
+videoMpegNodata                         = 0x2AD980; // D_002AD980
+videoMpegStopDMA                        = 0x2AD9C0; // D_002AD9C0
+videoMpegRestartDMA                     = 0x2AD9F0; // D_002AD9F0
+videoMpegTS                             = 0x2ADA20; // D_002ADA20
+ulmov2cpy2area                          = 0x2ADA70; // func_002ADA70
+voBufCreate                             = 0x2ADC20; // func_002ADC20
+voBufDelete                             = 0x2ADCE0; // func_002ADCE0
+voBufReset                              = 0x2ADCF0; // func_002ADCF0
+voBufIsFull                             = 0x2ADD20; // func_002ADD20
+voBufIncCount                           = 0x2ADD50; // func_002ADD50
+voBufGetData                            = 0x2ADE00; // func_002ADE00
+voBufIsEmpty                            = 0x2ADE80; // func_002ADE80
+voBufGetTag                             = 0x2ADEB0; // func_002ADEB0
+voBufDecCount                           = 0x2ADF70; // func_002ADF70
+// movie2.c text
+ulmov2InitMovie                         = 0x2ADFB0; // func_002ADFB0
+ulmov2SetMovie_DRIVE                    = 0x2ADFD0; // func_002ADFD0
+ulmov2GetState                          = 0x2AE620; // func_002AE620
+ulmov2CancelMovie                       = 0x2AE690; // func_002AE690
+ulmov2FlushMovie                        = 0x2AE6C0; // func_002AE6C0
+ulmov2DeleteMovie                       = 0x2AE770; // func_002AE770
+ulmov2PlayMovie                         = 0x2AE930; // func_002AE930
+ulmov2ChangeVolume                      = 0x2AEB10; // func_002AEB10
+ulmov2SwitchThread                      = 0x2AEB50; // func_002AEB50
+ulmov2SyncPlay                          = 0x2AEB80; // func_002AEB80
+ulmov2EndFrame                          = 0x2AEC00; // func_002AEC00
+ulmov2GetMpegFrame                      = 0x2AECB0; // func_002AECB0
+ulmov2IsPlaying                         = 0x2AECD0; // func_002AECD0
+defMain                                 = 0x2AECE0; // D_002AECE0
 
 // graph2.c text
 ulgraphAlphaResetBuf                    = 0x2AED80; // func_002AED80
@@ -2740,6 +2854,10 @@ PrimMeshStripGT                         = 0x2E2860; // size:0x20 // D_002E2860
 PrimPhysiqueStripGTalpha                = 0x2E2880; // size:0x20 // func_002E2880
 PrimMeshStripGTalpha                    = 0x2E28A0; // size:0x20 // D_002E28A0
 
+// mov2ext.c data
+// D_002E28C0 // anon // "@151" in US version
+// D_002E28D0 // anon // "@152" in US version
+
 // ktact.c rodata
 // several ktact anon variables
 normal$406                              = 0x2EF230; // size:0x100 // D_002EF230
@@ -2848,7 +2966,35 @@ alpha_tbl$1897                          = 0x2F5050; // D_002F5050
 // D_002F51F0 // anon // "@132" in US version
 // D_002F5200 // anon // "@181" in US version
 // D_002F5228 // anon // "@282" in US version
+// sprintf.c rodata
+fmultable                               = 0x2F5230; // size:0x40 // D_FLT_002F5230
+// D_002F5270 // anon // "@56" in US version
+// D_002F5290 // anon // "@57" in US version
+// D_002F52A8 // anon // "@124" in US version
+// system.c rodata
+vulsysScrArea                           = 0x2F52B0; // D_002F52B0
+// D_002F52E0 // anon // "@18" in US version
+// D_002F5300 // anon // "@19" in US version
+// D_002F5320 // anon // "@20" in US version
+// D_002F5340 // anon // "@21" in US version
+// D_002F5360 // anon // "@22" in US version
 
+// mv2ext.c rodata
+// D_002F5380 // anon // "@24" in US version
+// D_002F53B0 // anon // "@25" in US version
+// D_002F53E0 // anon // "@323" in US version
+// D_002F53F8 // anon // "@390" in US version
+// D_002F5400 // anon // "@391" in US version
+// D_002F5430 // anon // "@392" in US version
+// D_002F5460 // anon // "@411" in US version
+// D_002F5480 // anon // "@483" in US version
+// D_002F54A0 // anon // "@575" in US version
+// D_002F54C0 // anon // "@700" in US version
+// D_002F54E0 // anon // "@701" in US version
+// D_002F5508 // anon // "@706" in US version
+
+// movie2.c rodata
+// D_002F5510 // anon // "@52" in US version
 // D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
@@ -2947,6 +3093,9 @@ _randcnt                                = 0x2F5954; // D_002F5954
 
 // pad.c sbss
 D_FLT_002F5958                          = 0x2F5958; // size:0x8 // anon // "@296" in US version
+
+// mv2ext.c sbss
+// D_FLT_002F5960 // anon // "@656" in US version
 
 // gmpad.c sbss
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
@@ -3348,6 +3497,26 @@ vulpadSlotNum                           = 0x2F60C0; // size:0x8 // D_002F60C0
 vulpadAct0MinLv                         = 0x2F60C8; // size:0x4 // D_002F60C8
 vulpadRepFrame                          = 0x2F60CC; // size:0x4 // D_002F60CC
 vulpadAnaRef                            = 0x2F60D0; // size:0x4 // D_002F60D0
+//sd.c sbss
+vulsdBatchCnt                           = 0x2F60D4; // size:0x4 // D_002F60D4
+vulsdBatchRet                           = 0x2F60D8; // size:0x4 // D_002F60D8
+vulsdBatchIop                           = 0x2F60DC; // size:0x4 // D_002F60DC
+
+// system.c sbss
+vulsysFlg_dispString                    = 0x2F60E0; // D_002F60E0
+// mov2ext.c sbss
+isCountVblank                           = 0x2F60E4; // size:0x4 // D_002F60E4
+vblankCount                             = 0x2F60E8; // size:0x4 // D_002F60E8
+isFrameEnd                              = 0x2F60EC; // size:0x4 // D_002F60EC
+isUp                                    = 0x2F60F0; // size:0x4 // D_002F60F0
+handler_error                           = 0x2F60F4; // size:0x4 // D_002F60F4
+vulmovTagAddrPtr                        = 0x2F60F8; // size:0x4 // D_002F60F8
+tex_fbp                                 = 0x2F60FC; // size:0x4 // D_002F60FC
+// movie2.c sbss
+vulmov2VintBlock                        = 0x2F6100; // size:0x4 // D_002F6100
+vulmov2initStat                         = 0x2F6104; // size:0x4 // D_002F6104
+vulmov2videoDecTh                       = 0x2F6108; // size:0x4 // D_002F6108
+defaultTh                               = 0x2F610C; // size:0x4 // D_002F610C
 
 // ktact.c bss
 
@@ -3610,9 +3779,18 @@ vulpadInfo                              = 0x3DC310; // size:0x2E0 // D_003DC310
 vulpadActBuf                            = 0x3DC5F0; // size:0xC // D_003DC5F0
 vulpadDmaBuf                            = 0x3DC600; // size:0x200 // D_003DC600
 vulpadOption                            = 0x3DC800; // size:0x10 // D_003DC800
-
+// sd.c bss
+vulsdBatch                              = 0x3DC810; // size:0x200 // D_003DC810
 // system.c bss
 vulsysSystem                            = 0x3DCA10; // size:0x360 // D_003DCA10
+
+// mv2ext.c bss
+vulmovTagAddr                           = 0x3DCD70; // size:0x18 // D_003DCD70
+vulmov2Sysinfo                          = 0x3DCD90; // size:0x110 // D_003DCD90
+vulmov2videoDecStack                    = 0x3DCEC0; // size:0x4 // D_003DCEC0
+// movie2.c bss
+defStack                                = 0x3DCF00; // size:0x800 // D_003DCF00
+
 #_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
 _args                                   = 0x2F6180; // D_002F6180
