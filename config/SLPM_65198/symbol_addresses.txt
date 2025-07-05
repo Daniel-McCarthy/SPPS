@@ -571,6 +571,7 @@ dpcmp                                   = 0x127418; // type:func // func_0012741
 dptoli                                  = 0x127520; // func_00127520
 dptofp                                  = 0x1276C0; // func_001276C0
 
+fptosi                                  = 0x128128; // func_00128128
 fptoui                                  = 0x1281B8; // func_001281B8
 fptodp                                  = 0x1282B8; // func_001282B8
 
@@ -2416,10 +2417,14 @@ ulmov2IsPlaying                         = 0x2AECD0; // func_002AECD0
 defMain                                 = 0x2AECE0; // D_002AECE0
 
 // graph2.c text
+ulgraphAlphaInitBuf                     = 0x2AED00; // func_002AED00
 ulgraphAlphaResetBuf                    = 0x2AED80; // func_002AED80
+ulgraphAlphaOpenPacket                  = 0x2AEDD0; // func_002AEDD0
 ulgraphAlphaClosePacket                 = 0x2AEDF0; // func_002AEDF0
 ulgraphAlphaSortPacket                  = 0x2AEF00; // func_002AEF00
+_ulgraphAlphaSort                       = 0x2AEF70; // func_002AEF70
 ulgraphAlphaDrawPacket                  = 0x2AF110; // func_002AF110
+
 // TEX.c text
 ultexResetTex                           = 0x2AF160; // func_002AF160
 ultexGetOffset                          = 0x2AF180; // func_002AF180
@@ -2430,21 +2435,28 @@ ultexGetUseBlock                        = 0x2AF210; // func_002AF210
 ultexGetUseMemory                       = 0x2AF230; // func_002AF230
 ultexSetAlign                           = 0x2AF260; // func_002AF260
 ultexTransTex                           = 0x2AF290; // func_002AF290
+ultexTransTexNonMipMap                  = 0x2AF2F0; // func_002AF2F0
+ultexTransTexMipMap                     = 0x2AF740; // func_002AF740
 ultexTransTexTag                        = 0x2AFBE0; // func_002AFBE0
 ultexGetTex                             = 0x2B0E90; // func_002B0E90
 ultexSetTexPath2                        = 0x2B0F90; // func_002B0F90
 ultexSetTexPath3                        = 0x2B1110; // func_002B1110
-
 ultexGetTEX0                            = 0x2B1280; // func_002B1280
+ultexGetAlign                           = 0x2B1450; // func_002B1450
+
+// mdlprTon.c text
+ulmdlPrimPhysiqueStripGT_Toon           = 0x2B1490;
+ulmdlPrimMeshStripGT_Toon               = 0x2B1780;
 
 // vumodel.c text
 ulvumdlInitModel                        = 0x2B1A70; // func_002B1A70
 ulvumdlDrawModel                        = 0x2B1E10; // func_002B1E10
 ulvumdlDrawModelAlpha                   = 0x2B24B0; // func_002B24B0
+_calcMatrix                             = 0x2B2690; // func_002B2690
+_drawPrimRigidAlpha                     = 0x2B2940; // func_002B2940
+_drawPrimBrendAlpha                     = 0x2B2DA0; // func_002B2DA0
 ulvumdlGetMatrix                        = 0x2B3260; // func_002B3260
-
 ulvumdlInitVerShadeWind                 = 0x2B3310; // func_002B3310
-
 ulvumdlCalcVerShadeWind                 = 0x2B3410; // func_002B3410
 
 // xmem.c text
@@ -2458,6 +2470,12 @@ xmemMallocStat                          = 0x2B3A20; // func_002B3A20
 ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
 
 sceScfGetLocalTimefromRTC               = 0x2B4700; // func_002B4700
+
+// vumodel.c data
+
+vuprgDrawModelConstant                  = 0x2B4780; // D_002B4780
+vuprgDrawModel                          = 0x2B4800; // D_002B4800
+
 // vutext data
 ltmasmSendPrgVu0                        = 0x2B5B40; // D_002B5B40
 ltmasmSendPrgVu1                        = 0x2B64E0; // D_002B64E0
@@ -2995,6 +3013,16 @@ vulsysScrArea                           = 0x2F52B0; // D_002F52B0
 
 // movie2.c rodata
 // D_002F5510 // anon // "@52" in US version
+
+// graph2.c rodata
+// D_002F5530 // anon // "@33" in US version
+// D_002F5550 // anon // "@34" in US version
+// D_002F5570 // anon // "@35" in US version
+// mdlprTon.c rodata
+rgba                                    = 0x2F5590; // size:0x10 // D_002F5590
+_Constant                               = 0x2F55A0; // size:0x20 // func_002F55A0
+
+
 // D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
@@ -3517,6 +3545,8 @@ vulmov2VintBlock                        = 0x2F6100; // size:0x4 // D_002F6100
 vulmov2initStat                         = 0x2F6104; // size:0x4 // D_002F6104
 vulmov2videoDecTh                       = 0x2F6108; // size:0x4 // D_002F6108
 defaultTh                               = 0x2F610C; // size:0x4 // D_002F610C
+// tex.c sbss
+vultexSystem                            = 0x2F6110; // size:0x4 // D_002F6110
 
 // ktact.c bss
 
