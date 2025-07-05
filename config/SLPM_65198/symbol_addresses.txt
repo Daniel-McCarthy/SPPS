@@ -2468,7 +2468,24 @@ xmemMallocStat                          = 0x2B3A20; // func_002B3A20
 
 // spr.c text
 ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
-
+// strconv.c text
+ulstrAsciitoSjis                        = 0x2B3D20; // func_002B3D20
+// SDK/Lib text
+GetRomName                              = 0x2B4028; // D_002B4028
+IsT10K                                  = 0x2B40C8; // func_002B40C8
+sceScfGetLanguage                       = 0x2B4108;
+sceScfSetT10kConfig                     = 0x2B4168;
+sceScfGetAspect                         = 0x2B4184;
+sceScfGetSpdif                          = 0x2B41C8;
+//func_002B4208                   = 0x2B4208; // func_002B4208
+sceScfGetDateNotation                   = 0x2B4258; // func_002B4258
+sceScfGetSummerTime                     = 0x2B42C0; // func_002B42C0
+sceScfGetTimeNotation                   = 0x2B4328; // func_002B4328
+// func_002B4390
+// func_002B43C0
+// func_002B43E0
+// func_002B4610
+// func_002B4640
 sceScfGetLocalTimefromRTC               = 0x2B4700; // func_002B4700
 
 // vumodel.c data
@@ -2508,10 +2525,13 @@ vktactCmnParam                          = 0x2D4300; // size:0x30 // TODO: double
 vktactMaxParam                          = 0x2D4330; // size:0x30 // TODO: double check size // D_002D4354
 
 vktactPlantTumbleFrame                  = 0x2D4360; // D_002D4360
+vktactMatMaxSpRate                      = 0x2D43A0; // D_FLT_002D43A0
 vktactMatAccelRate                      = 0x2D43D0; // D_FLT_002D43D0
 vktactMatSideSlip                       = 0x2D4430; // D_002D4430
+vktactMatCrashSpDown                    = 0x2D4460; // D_FLT_002D4460
+vktactTTCrashSpDown_normal              = 0x2D4490; // size:0x10 // D_FLT_002D4490
 vktactTTCrashSpDown_touch               = 0x2D44B0; // D_FLT_002D44B0
-vktactMatMaxSpRate                      = 0x2D43A0; // D_FLT_002D43A0
+vktactMatTumbleSpeed_normal             = 0x2D44C8; // D_FLT_002D44C8
 
 vktactMatEdgeAdj                        = 0x2D4400; // D_FLT_002D4400
 
@@ -2875,6 +2895,13 @@ PrimMeshStripGTalpha                    = 0x2E28A0; // size:0x20 // D_002E28A0
 // mov2ext.c data
 // D_002E28C0 // anon // "@151" in US version
 // D_002E28D0 // anon // "@152" in US version
+
+// strconv.c data
+// D_002E28E0 // anon // "@14" in US version
+
+// SDK/Lib data
+gConfig                                 = 0x2E2918; // size:0x8 // D_002E2918
+gRomName                                = 0x2E2920; // D_002E2920
 
 // ktact.c rodata
 // several ktact anon variables
