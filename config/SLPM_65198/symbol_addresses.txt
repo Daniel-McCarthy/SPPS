@@ -555,6 +555,7 @@ printf                                  = 0x122908; // type:func // func_0012290
 // more to add from func_00122958 and after
 rand                                    = 0x122968; // func_00122968
 strcat                                  = 0x122CA0; // func_00122CA0
+strcmp                                  = 0x122DD0; // func_00122DD0
 strlen                                  = 0x123030; // func_00123030
 __fixsfdi                               = 0x1254A8; // func_001254A8
 __fixunssfdi                            = 0x1255D8; // func_001255D8
@@ -575,17 +576,43 @@ fptosi                                  = 0x128128; // func_00128128
 fptoui                                  = 0x1281B8; // func_001281B8
 fptodp                                  = 0x1282B8; // func_001282B8
 
-// akEvEfct.c text
+
+// akEfct.c text
 akSrandf                                = 0x128300; // func_00128300
 akRandf                                 = 0x128310; // func_00128310
 spfxSetTexData                          = 0x128350; // func_00128350
 spfxGetTexData                          = 0x128370; // func_00128370
-// more to add above from func_001C05E0 and before
+akfxInitLensFlare                       = 0x128380; // func_00128380
+akfxFreeLensFlare                       = 0x128410; // func_00128410
+akfxDrawLensFlare                       = 0x128430; // func_00128430
+_CheckHiddenZ16x8                       = 0x128800; // func_00128800
+_DrawLightFlare                         = 0x1290A0; // func_001290A0
+_DrawLensFlare                          = 0x1292B0; // func_001292B0
+akfxInitSnowSplash                      = 0x129610; // func_00129610
+akfxResetSnowSplash                     = 0x129730; // func_00129730
+akfxRestartSnowSplash                   = 0x129E00; // func_00129E00
+akfxSetSnowSplashColor                  = 0x129F00; // func_00129F00
+akfxFreeSnowSplash                      = 0x129F60; // func_00129F60
+akfxCalcSnowSplash                      = 0x12A080; // func_0012A080
+_CalcSnowSplash                         = 0x12A600; // func_0012A600
+_CalcSnowSplashPowder                   = 0x12A9F0; // func_0012A9F0
+_MoveSnowSplash                         = 0x12B390; // func_0012B390
+akfxDrawSnowSplash                      = 0x12B4F0; // func_0012B4F0
+_DrawSnowSplash                         = 0x12B5F0; // func_0012B5F0
+_CalcSnowSmoke                          = 0x12BFA0; // func_0012BFA0
+_DrawSnowSmoke                          = 0x12CC80; // func_0012CC80
+_akfxCalcLandingSnow                    = 0x12D320; // func_0012D320
+_MoveLandingSnow                        = 0x12D530; // func_0012D530
+_DrawLandingSnow                        = 0x12D6F0; // func_0012D6F0
+akfxMotionBlur                          = 0x12DED0; // func_0012DED0
+akfxInitSnowFall                        = 0x12E460; // func_0012E460
+akfxSnowFall                            = 0x12E5A0; // func_0012E5A0
+akfxFreeSnowFall                        = 0x12EE30; // func_0012EE30
 
+// akEvEfct.c
 akevInitEffect                          = 0x12EE90; // func_0012EE90
 akevResetEffect                         = 0x12F450; // func_0012F450
 akevResetEffect2                        = 0x12F620; // func_0012F620
-
 akevDrawEffect1                         = 0x12F6B0; // func_0012F6B0
 akevDrawEffect2                         = 0x12F980; // func_0012F980
 akevCalcEffect                          = 0x12FAE0; // func_0012FAE0
@@ -610,14 +637,117 @@ akevResetTextureScroll                  = 0x131750; // func_00131750
 akevCalcTextureScroll                   = 0x1317E0; // func_001317E0
 akevSetTextureScroll                    = 0x131900; // func_00131900
 akevInitFirework                        = 0x131970; // func_00131970
+akevResetFirework                       = 0x1319E0; // func_001319E0
+akevResetFireworkInfo                   = 0x131A60; // func_00131A60
 akevBlowupFirework                      = 0x131A80; // func_00131A80
 akevCalcFirework                        = 0x131D00; // func_00131D00
 akevDrawFirework                        = 0x131E80; // func_00131E80
 akevFreeFirework                        = 0x1325B0; // func_001325B0
 akevInitLift                            = 0x1325F0; // func_001325F0
 akevMoveLift                            = 0x132850; // func_00132850
+// akSelEff.c text
+akselInitSnowFall                       = 0x132DF0; // func_00132DF0
+akselSnowFall                           = 0x132FE0; // func_00132FE0
+akselFreeSnowFall                       = 0x133BF0; // func_00133BF0
+// akShadow.c text
+aksdwDrawShadowVuMdl                    = 0x133C50; // func_00133C50
+_DrawShadow                             = 0x133F20; // func_00133F20
+aksdwMakeShadowMatrix                   = 0x134740; // func_00134740
 // akSpSub.c text
+aksubFlipFrameBuff                      = 0x134A30; // func_00134A30
 aksubClipScreen                         = 0x134B00; // func_00134B00
+// aychrsel.c text
+ayCharSelInit                           = 0x134FF0; // func_00134FF0
+ayCharSelFrame                          = 0x135140; // func_00135140
+ayCharSelEnd                            = 0x136960; // func_00136960
+ayCharSelClear                          = 0x136990; // func_00136990
+ayCalcSoftNum                           = 0x136D50; // func_00136D50
+ayDrawChar                              = 0x136DD0; // func_00136DD0
+aySelBoardDraw                          = 0x137FD0; // func_00137FD0
+aySelHeadDraw                           = 0x138A40; // func_00138A40
+aySelItemDraw                           = 0x139370; // func_00139370
+ayParamDraw                             = 0x13A4C0; // func_0013A4C0
+ayCsInfoDraw                            = 0x13B2E0; // func_0013B2E0
+ayCsImageDraw                           = 0x13B8E0; // func_0013B8E0
+aySetUpDraw                             = 0x13C410; // func_0013C410
+ayNameDraw                              = 0x13D1E0; // func_0013D1E0
+ayHandicapDraw                          = 0x13E720; // func_0013E720
+aySetKeyOparate                         = 0x1403D0; // func_001403D0
+ayClassifyChara                         = 0x1405F0; // func_001405F0
+aySetCharEnv                            = 0x140660; // func_00140660
+aySetCsFlg                              = 0x140920; // func_00140920
+ayDrawCreateChara                       = 0x1409B0; // func_001409B0
+ayDrawMotModel                          = 0x1411F0; // func_001411F0
+aySetMotFlg                             = 0x1419D0; // func_001419D0
+ayCalcCharNext                          = 0x1419F0; // func_001419F0
+aychrsel_func_00141A90                  = 0x141A90; // func_00141A90 // unknown
+aychrsel_func_00141E80                  = 0x141E80; // func_00141E80 // unknown
+ayLevelGoalDraw                         = 0x1421D0; // func_001421D0
+
+// aycomfnk.c text
+ayFrameReset                            = 0x1434F0; // func_001434F0
+aySetPolyComFT4                         = 0x143580; // func_00143580
+aySetPolyComGT4                         = 0x143980; // func_00143980
+aySetPolyComF4                          = 0x143FB0; // func_00143FB0
+aySetPolyComG4                          = 0x144160; // func_00144160
+aySetVert                               = 0x144400; // func_00144400
+aySetVertF                              = 0x144440; // func_00144440
+aySetCamMatrix                          = 0x1445D0; // func_001445D0
+aySetLightMatrix                        = 0x144760; // func_00144760
+ayCalcTotalMove                         = 0x144930; // func_00144930
+ayDrawKeyOparate                        = 0x144AC0; // func_00144AC0
+ayFontInitmin                           = 0x145020; // func_00145020
+ayFontInit                              = 0x145060; // func_00145060
+ayCalcHandiParam                        = 0x1450C0; // func_001450C0
+ayDrawBG                                = 0x1451A0; // func_001451A0
+ayCalcNextID                            = 0x1453A0; // func_001453A0
+ayBlackOutDraw                          = 0x145400; // func_00145400
+aySetPolyComF3                          = 0x1454F0; // func_001454F0
+aySetPolyComG3                          = 0x145640; // func_00145640
+aySetVert3                              = 0x1457D0; // func_001457D0
+ayDrawNum                               = 0x1459E0; // func_001459E0
+ayDrawCredits                           = 0x145E30; // func_00145E30
+
+// aycreate.c text
+ayCreateInit                            = 0x146040; // func_00146040
+ayCreateFrame                           = 0x146080; // func_00146080
+ayCreateClear                           = 0x147190; // func_00147190
+aySetCharPtr                            = 0x147270; // func_00147270
+aySetCharParts                          = 0x147300; // func_00147300
+ayCreateEnd                             = 0x1473C0; // func_001473C0
+ayDrawHead                              = 0x1473F0; // func_001473F0
+ayDrawFileList                          = 0x148160; // func_00148160
+ayDrawChara                             = 0x148AD0; // func_00148AD0
+ayDrawNameEntry                         = 0x1490B0; // func_001490B0
+ayDrawWheelItem                         = 0x149FE0; // func_00149FE0
+ayDrawMain                              = 0x14AF50; // func_0014AF50
+ayDrawPerson                            = 0x14B700; // func_0014B700
+ayDrawBuild                             = 0x14C580; // func_0014C580
+ayDrawParam                             = 0x14DC30; // func_0014DC30
+ayCalcBarMove                           = 0x14E780; // func_0014E780
+ayDrawRem                               = 0x14E8B0; // func_0014E8B0
+ayDrawConfirm                           = 0x14EB50; // func_0014EB50
+aySetKeyOparate                         = 0x14FA20; // func_0014FA20
+ayGetTricktype                          = 0x14FC10; // func_0014FC10
+
+// aymcard.c text
+ayMcSysInit                             = 0x14FE30; // func_0014FE30
+ayMcSysClear                            = 0x14FE90; // func_0014FE90
+ayMcStartLoad                           = 0x14FF40; // func_0014FF40
+ayMcUpdateFile                          = 0x150F80; // func_00150F80
+ayMcCareerLoad                          = 0x151010; // func_00151010
+ayMcCareerSave                          = 0x152450; // func_00152450
+ayMcSetSaveFileID                       = 0x154840; // func_00154840
+ayMcReplayLoad                          = 0x154850; // func_00154850
+ayMcReplaySave                          = 0x155C50; // func_00155C50
+ayMcFileDraw                            = 0x158020; // func_00158020
+ayMcDrawEnterName                       = 0x158A40; // func_00158A40
+aySetRepData                            = 0x159570; // func_00159570
+aySetGameData                           = 0x159750; // func_00159750
+ayMcMesDraw                             = 0x1599E0; // func_001599E0
+ayMcSysEnd                              = 0x159DA0; // func_00159DA0
+ayMcGetStep                             = 0x159DD0; // func_00159DD0
+aySetTimeStr                            = 0x159DE0; // func_00159DE0
 
 // aymovie.c text
 ayMovieModInit                          = 0x15D0B0; // func_0015D0B0
@@ -2465,6 +2595,7 @@ xmemMalloc                              = 0x2B3630; // func_002B3630
 xmemMalloc2                             = 0x2B3750; // func_002B3750
 xmemFree                                = 0x2B3860; // func_002B3860
 xmemMallocStat                          = 0x2B3A20; // func_002B3A20
+xmemCheckExistMemory                    = 0x2B3B70; // func_002B3B70
 
 // spr.c text
 ulsprMemcpy                             = 0x2B3C50; // func_002B3C50
@@ -2518,6 +2649,79 @@ S5432                                   = 0x2BBF80; // D_002BBF80
 init_vif_regs.126                       = 0x2BBF90; // D_002BBF90
 _showCount                              = 0x2BC018; // D_002BC018
 _strmap                                 = 0x2BC058; // D_002BC058
+
+// akEfct.c data
+// D_002BFB30 // anon // "@662" in US version
+// akEvEfct.c data
+// D_002BFB50 // anon // "@335" in US version
+mov$381                                 = 0x2BFB70; // size:0x10 // D_002BFB70
+// akSelEff.c data
+// D_002BFB90 // anon // "@27" in US version
+// akShadow.c data
+shadow                                  = 0x2BFBB0; // D_002BFBB0
+// D_002BFCD0 // anon // "@67" in US version
+// D_002BFCE0 // anon // "@68" in US version
+// aychrsel.c data
+// D_002BFDA8 // anon // "@36" in US version
+// D_002BFDC0 // anon // "@341" in US version
+// D_002BFDD0 // anon // "@462" in US version
+// D_002BFDF0 // anon // "@463" in US version
+// D_002BFE20 // anon // "@629" in US version
+// D_002BFE60 // anon // "@810" in US version
+// D_002BFEA0 // anon // "@817" in US version
+// D_002BFED0 // anon // "@818" in US version
+// D_002BFEE0 // anon // "@951" in US version
+// D_002BFF10 // anon // "@952" in US version
+// D_002BFF20 // anon // "@998" in US version
+// D_002BFF50 // anon // "@999" in US version
+// D_002BFF70 // anon // "@1215" in US version
+// D_002BFFB0 // anon // "@1216" in US version
+// D_002BFFC0 // anon // "@1220" in US version
+// D_002BFFE0 // anon // "@1221" in US version
+// D_002C0010 // anon // "@1230" in US version
+// D_002C0030 // anon // "@1431" in US version
+// D_002C0060 // anon // "@1432" in US version
+// D_002C00A0 // anon // "@1433" in US version
+// D_002C00B0 // anon // "@1891" in US version
+
+// aycomfnk.c data
+vayParamMax                             = 0x2D04B0; // size:0x120 // D_002D04B0
+// this may be longer in this version.. can see this at goto 67150
+// and goto 87501
+// D_002D0620 // anon // "@135" in US version
+// D_002D0678 // anon // "@136" in US version
+// aycreate.c data
+// D_002D06D0 // anon // "@348" in US version
+// D_002D06E0 // anon // "@349" in US version
+// D_002D06F0 // anon // "@364" in US version
+// D_002D0730 // anon // "@446" in US version
+// D_002D0740 // anon // "@447" in US version
+// D_002D0750 // anon // "@448" in US version
+// D_002D0800 // anon // "@449" in US version
+// D_002D0830 // anon // "@487" in US version
+// D_002D0840 // anon // "@491" in US version
+// D_002D0868 // anon // "@492" in US version
+// D_002D0880 // anon // "@782" in US version
+// D_002D08E0 // anon // "@849" in US version
+// D_002D0910 // anon // "@858" in US version
+// D_002D0940 // anon // "@859" in US version
+// D_002D0960 // anon // "@932" in US version
+// D_002D0970 // anon // "@962" in US version
+// D_002D0A00 // anon // "@995" in US version
+// D_002D0F70 // anon // "@1132" in US version
+// D_002D0FB0 // anon // "@1234" in US version
+// D_002D0FD0 // anon // "@1259" in US version
+// D_002D1098 // anon // "@1407" in US version
+
+// aymcard.c text
+// D_002D10B0 // anon // "@34" in US version
+// D_002D1150 // anon // "@745" in US version
+// D_002D1178 // anon // "@746" in US version
+// D_002D1190 // anon // "@956" in US version
+// D_002D11B8 // anon // "@959" in US version
+// D_002D11D0 // anon // "@1261" in US version
+// D_002D1240 // anon // "@1331" in US version
+// D_002D1270 // anon // "@1499" in US version
 
 // ktact.c data
 vktactMinParam                          = 0x2D42D0; // size:0x30 // TODO: double check size // D_002D42F4
@@ -2787,18 +2991,16 @@ pos$720                                 = 0x2DE9B0; // D_002DE9B0
 vsptblCharacterName                     = 0x2DEDA0; // D_002DEDA0
 vsptblBoardName                         = 0x2DEDE0; // D_002DEDE0
 vsptblCourseName                        = 0x2DEF90; // D_002DEF90
-
 vsptblGapList                           = 0x2DEFF0; // D_002DEFF0
 vsptblGapPoint                          = 0x2DF7F0; // D_002DF7F0
-
 vsptblLevelGoalValue                    = 0x2DFFF0; // D_002DFFF0
 vsptblLevelGoalStrE                     = 0x2E00D0; // D_002E00D0
 vsptblLevelGoalStrG                     = 0x2E0130; // D_002E0130
 vsptblLevelGoalStrF                     = 0x2E0190; // D_002E0190
 vsptblTrickName                         = 0x2E01F0; // size:0x280 // D_002E01F0
 vsptblTrickPoint                        = 0x2E0470; // D_002E0470
-
 vsptblCharacterParam                    = 0x2E06F0; // D_002E06F0
+vsptblBoardParam                        = 0x2E08A0; // D_002E08A0
 vsptblCourseParam                       = 0x2E0F30; // D_002E0F30
 vsptblCheatsE                           = 0x2E0FD0; // D_002E0FD0
 vsptblCheatsF                           = 0x2E1030; // D_002E1030
@@ -2902,6 +3104,77 @@ PrimMeshStripGTalpha                    = 0x2E28A0; // size:0x20 // D_002E28A0
 // SDK/Lib data
 gConfig                                 = 0x2E2918; // size:0x8 // D_002E2918
 gRomName                                = 0x2E2920; // D_002E2920
+
+// akEfct.c rodata
+_ssinfo                                 = 0x2E4AE0; // size:0xC0 // D_002E4AE0
+_ssinfo2                                = 0x2E4BA0; // size:0xC0 // func_002E4BA0
+_1024sintable45                         = 0x2E4C60; // D_FLT_002E4C60
+lens$142                                = 0x2E4C90; // D_002E4C90
+// jtbl_002E4D10 // anon // "@301" in US version
+stq$531                                 = 0x2E4D40; // size:0x20 // D_002E4D40
+rgba$663                                = 0x2E4D60; // size:0x10 // func_002E4D60
+v0$664                                  = 0x2E4D70; // size:0x30 // func_002E4D70
+// akEvEfct.c rodata
+stq$495                                 = 0x2E4DA0; // size:0x20 // D_002E4DA0
+// aychrsel.c rodata
+// jtbl_002E5370 // "@290" in US version
+// jtbl_002E5410 // "@625" in US version
+// jtbl_002E5450 // "@790" in US version
+// D_002E5510 // anon // "@982" in US version
+// D_002E5518 // anon // "@983" in US version
+// D_002E5638 // anon // "@1062" in US version
+// D_002E56D8 // anon // "@1413" in US version
+// D_002E56E0 // anon // "@1414" in US version
+// D_002E5748 // anon // "@1645" in US version
+// D_002E5750 // anon // "@1646" in US version
+// jtbl_002E5760 // anon // "@1688" in US version
+// jtbl_002E57A0 // "@1846" in US version
+// D_002E5850 // anon // "@1950" in US version
+// D_002E5858 // anon // "@1951" in US version
+// aycomfnk.c rodata
+// jtbl_002E5960 // "@174" in US version
+// D_002E5980 // anon // "@291" in US version
+// D_002E5988 // anon // "@292" in US version
+// D_002E5990 // anon // "@293" in US version
+
+// aycreate.c rodata
+// jtbl_002E5A90 // "@197" in US version
+// jtbl_002E5B80 // "@341" in US version
+// D_002E5CB8 // anon // "@663" in US version
+// D_002E60E8 // anon // "@1230" in US version
+
+// aymcard.c rodata
+// D_002E63E0 // anon // "@225" in US version
+// D_002E6378 // anon // "@217" in US version
+// D_002E6380 // anon // "@218" in US version
+// D_002E6390 // anon // "@220" in US version
+// D_002E63A0 // anon // "@221" in US version
+// D_002E63B0 // anon // "@222" in US version
+// D_002E63C0 // anon // "@223" in US version
+// D_002E6410 // anon // "@439" in US version
+// D_002E6418 // anon // "@440" in US version
+// D_002E6420 // anon // "@441" in US version
+// D_002E6430 // anon // "@442" in US version
+
+// D_002E6468 // anon // "@727" in US version
+// D_002E6490 // anon // "@729" in US version
+// D_002E64A0 // anon // "@730" in US version
+// D_002E64C0 // anon // "@732" in US version
+// D_002E6550 // anon // "@950" in US version
+// D_002E6558 // anon // "@951" in US version
+// D_002E6568 // anon // "@952" in US version
+// D_002E6578 // anon // "@953" in US version
+// D_002E6590 // anon // "@954" in US version
+// D_002E65C0 // anon // "@1238" in US version
+// jtbl_002E6600 // "@1239" in US version
+// jtbl_002E65E0 // "@1240" in US version
+// D_002E67C0 // anon // "@1458" in US version
+// D_002E67F0 // anon // "@1540" in US version
+// D_002E6800 // anon // "@1541" in US version
+// D_002E6810 // anon // "@1542" in US version
+// D_002E6820 // anon // "@1543" in US version
+// D_002E6830 // anon // "@1544" in US version
+// D_002E6840 // anon // "@1545" in US version
 
 // ktact.c rodata
 // several ktact anon variables
@@ -3049,8 +3322,13 @@ vulsysScrArea                           = 0x2F52B0; // D_002F52B0
 rgba                                    = 0x2F5590; // size:0x10 // D_002F5590
 _Constant                               = 0x2F55A0; // size:0x20 // func_002F55A0
 
+// aychrsel.c rodata
+// D_002F5700 // anon // "@1219" in US version
+D_FLT_002F5708                          = 0x2F5708; // size:0x8 // D_FLT_002F5708 // "@1785" in US version
+//@anon_2F5710                           = 0x2F5710; // size:0x8 //  func_002F5710 // "@1786" in US version
+// aymcard.c sdata
+vayCode                                 = 0x2F5714; // size:0x4
 
-// D_002F58F0 // anon // "@293" in US version
 
 // ktact.c sdata
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
@@ -3152,6 +3430,22 @@ D_FLT_002F5958                          = 0x2F5958; // size:0x8 // anon // "@296
 // mv2ext.c sbss
 // D_FLT_002F5960 // anon // "@656" in US version
 
+// aychrsel.c sbss
+vayChrData                              = 0x2F5984; // size:0x4 // D_002F5980
+
+// aycreate.c sbss
+vayCreate                               = 0x2F598C; // size:0x4 // D_002F598C
+
+// aymcard.c sbss
+vayLoadFile                             = 0x2F5994; // size:0x4 // D_002F5994
+vayMcSys                                = 0x2F5998; // size:0x4 // D_002F5998
+
+// aymodsel.c sbss
+vayModeData                             = 0x2F599C; // size:0x4 // D_002F599C
+vayNewCareer                            = 0x2F59A4; // size:0x4 // D_002F59A4
+
+// ayselect.c sbss
+vaySelData                              = 0x2F59C0; // size:0x4 // D_002F59C0
 // gmpad.c sbss
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
 vgmsysPadPausePid                       = 0x2F59D0; // D_002F59D0
@@ -3575,6 +3869,11 @@ defaultTh                               = 0x2F610C; // size:0x4 // D_002F610C
 // tex.c sbss
 vultexSystem                            = 0x2F6110; // size:0x4 // D_002F6110
 
+// akEvEfct.c bss
+_Effect                                 = 0x2FD230; // size:0x730 // D_002FD230 
+
+// aychrsel.c bss
+vayCharData                             = 0x2FD960; // size:0x58 // D_002FD960
 // ktact.c bss
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
@@ -3848,7 +4147,8 @@ vulmov2videoDecStack                    = 0x3DCEC0; // size:0x4 // D_003DCEC0
 // movie2.c bss
 defStack                                = 0x3DCF00; // size:0x800 // D_003DCF00
 
-#_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
-_fbss                                   = 0x2F5AD0; // D_002F5AD0 (from gmsysSetScreenMode_normal)
-_args                                   = 0x2F6180; // D_002F6180
 _gp                                     = 0x2FD6F0; // D_002FD6F0
+
+//_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
+_fbss                                   = 0x2F5AD0; // ignore:true // D_002F5AD0 (from gmsysSetScreenMode_normal)
+_args                                   = 0x2F6180; // ignore:true // D_002F6180
