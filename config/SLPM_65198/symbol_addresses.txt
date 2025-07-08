@@ -748,9 +748,52 @@ ayMcMesDraw                             = 0x1599E0; // func_001599E0
 ayMcSysEnd                              = 0x159DA0; // func_00159DA0
 ayMcGetStep                             = 0x159DD0; // func_00159DD0
 aySetTimeStr                            = 0x159DE0; // func_00159DE0
+// aymodsel.c text
+ayModeSelInit                           = 0x159FE0; // func_00159FE0
+ayModeSelFrame                          = 0x15A080; // func_0015A080
+ayModeSelEnd                            = 0x15AB10; // func_0015AB10
+ayDrawMovie                             = 0x15AB50; // func_0015AB50
+aySetKeyOparate                         = 0x15B300; // func_0015B300
+aySetMode                               = 0x15B530; // func_0015B530
+ayDrawMode                              = 0x15B810; // func_0015B810
+ayDrawMark                              = 0x15C3E0; // func_0015C3E0
+aymodsel_func_0015CA20                  = 0x15CA20; // func_0015CA20
+ayReleaseCommand                        = 0x15CB10; // func_0015CB10
+ayReleaseCheat                          = 0x15CDA0; // func_0015CDA0
+ayReleaseGap                            = 0x15CE40; // func_0015CE40
+ayReleaseMovie                          = 0x15CF00; // func_0015CF00
+ayReleaseChara                          = 0x15CF50; // func_0015CF50
 
 // aymovie.c text
 ayMovieModInit                          = 0x15D0B0; // func_0015D0B0
+ayMovieModFrame                         = 0x15D220; // func_0015D220
+ayMovieModEnd                           = 0x15DB90; // func_0015DB90
+
+// ayoption.c text
+ayOptionInit                            = 0x15DBD0; // func_0015DBD0
+ayGetExponent                           = 0x15DDE0; // func_0015DDE0
+ayOptionFrame                           = 0x15DE60; // func_0015DE60
+ayOptSetEnv                             = 0x15FCF0; // func_0015FCF0
+ayOptGetEnv                             = 0x15FD50; // func_0015FD50
+ayOptionEnd                             = 0x15FDB0; // func_0015FDB0
+ayOptionClear                           = 0x15FDE0; // func_0015FDE0
+aySetMovFlg                             = 0x15FED0; // func_0015FED0
+ayDrawSound                             = 0x15FF90; // func_0015FF90
+aySelHeadDraw                           = 0x161D80; // func_00161D80
+ayDrawOptItem                           = 0x1625A0; // func_001625A0
+ayDrawSubOptItem                        = 0x164320; // func_00164320
+ayDrawSOptItem                          = 0x164500; // func_00164500
+ayDrawOptChar                           = 0x165310; // func_00165310
+ayDrawCheat                             = 0x166A90; // func_00166A90
+ayDrawEdit                              = 0x168060; // func_00168060
+ayCalcScore                             = 0x1693F0; // func_001693F0
+ayDrawScore                             = 0x1698D0; // func_001698D0
+ayCalcGap                               = 0x16A020; // func_0016A020
+ayDrawGap                               = 0x16AB10; // func_0016AB10
+ayDrawKeyConfig                         = 0x16B330; // func_0016B330
+aySetKeyDiff                            = 0x16D790; // func_0016D790
+ayOptBlackOut                           = 0x16D8C0; // func_0016D8C0
+aySetKeyOparate                         = 0x16D9E0; // func_0016D9E0
 
 // ayresult.c text
 ayResultInit                            = 0x16E020; // func_0016E020
@@ -1075,9 +1118,9 @@ nmfontSetShadow                           = 0x1C1A40 // func_001C1A40
 nmfontFPrintF                           = 0x1C1D90; // func_001C1D90
 
 nmfontChangeVertex                      = 0x1C2DE0; // func_001C2DE0
-// end of nmfont?
 
 
+nmfontGetPackStrLen                     = 0x1C2E80; // func_001C2E80
 // nmact.c text
 nmactInit                               = 0x1C8440; // func_001C8440
 nmactEndGame                            = 0x1C8470; // func_001C8470
@@ -2685,6 +2728,7 @@ shadow                                  = 0x2BFBB0; // D_002BFBB0
 // D_002C00B0 // anon // "@1891" in US version
 
 // aycomfnk.c data
+vaytblCredit                            = 0x2C0130; // size:0xF480 // D_002C0130
 vayParamMax                             = 0x2D04B0; // size:0x120 // D_002D04B0
 // this may be longer in this version.. can see this at goto 67150
 // and goto 87501
@@ -2713,7 +2757,7 @@ vayParamMax                             = 0x2D04B0; // size:0x120 // D_002D04B0
 // D_002D0FD0 // anon // "@1259" in US version
 // D_002D1098 // anon // "@1407" in US version
 
-// aymcard.c text
+// aymcard.c data
 // D_002D10B0 // anon // "@34" in US version
 // D_002D1150 // anon // "@745" in US version
 // D_002D1178 // anon // "@746" in US version
@@ -2722,6 +2766,39 @@ vayParamMax                             = 0x2D04B0; // size:0x120 // D_002D04B0
 // D_002D11D0 // anon // "@1261" in US version
 // D_002D1240 // anon // "@1331" in US version
 // D_002D1270 // anon // "@1499" in US version
+
+// aymodsel.c data
+// D_002D2AD0 // anon // "@168" in US version
+// D_002D2B50 // anon // "@169" in US version
+// D_002D2C10 // anon // "@445" in US version
+
+// aymovie.c data
+// D_002D2C60 // anon // "@32" in US version
+// D_002D2CC0 // anon // "@79" in US version
+// D_002D2D80 // anon // "@80" in US version
+// D_002D2D90 // anon // "@81" in US version
+
+// ayoption.c data
+vbgmtblMusic                            = 0x2D2DA0; // size:0x30 // D_002D2DA0
+vbgmtblArtist                           = 0x2D2DD0; // size:0x30 // func_002D2DD0
+// D_002D34E0 // anon // "@415" in US version
+// D_002D3530 // anon // "@428" in US version
+// D_002D3590 // anon // "@775" in US version
+// D_002D3650 // anon // "@787" in US version
+// D_002D3680 // anon // "@1095" in US version
+// D_002D36A0 // anon // "@1220" in US version
+// D_002D36D0 // anon // "@1423" in US version
+// D_002D36F0 // anon // "@1428" in US version
+// D_002D3710 // anon // "@1586" in US version
+// D_002D3730 // anon // "@1589" in US version
+// D_002D3760 // anon // "@1825" in US version
+// D_002D37A8 // anon // "@1958" in US version
+// D_002D37C0 // anon // "@2301" in US version
+// D_002D37D0 // anon // "@2302" in US version
+// D_002D37E0 // anon // "@2048" in US version
+// D_002D3840 // anon // "@2050" in US version
+// D_002D3860 // anon // "@2058" in US version
+// D_002D3880 // anon // "@2065" in US version
 
 // ktact.c data
 vktactMinParam                          = 0x2D42D0; // size:0x30 // TODO: double check size // D_002D42F4
@@ -3175,6 +3252,26 @@ stq$495                                 = 0x2E4DA0; // size:0x20 // D_002E4DA0
 // D_002E6820 // anon // "@1543" in US version
 // D_002E6830 // anon // "@1544" in US version
 // D_002E6840 // anon // "@1545" in US version
+// aymodsel.c rodata
+// jtbl_002E6850 // "@160" in US version
+// jtbl_002E6880 // "@255" in US version
+// aymovie.c rodata
+// D_002E6AA0 // anon // "@14" in US version
+// D_002E6AB0 // anon // "@15" in US version
+
+// ayoption.rodata
+// jtbl_002EB880 // "@371" in US version
+// jtbl_002EB8C0 // "@370" in US version
+// D_002EB980 // anon // "@377" in US version
+// D_002EB9C0 // anon // "@625" in US version
+// D_002EB9C8 // anon // "@626" in US version
+// jtbl_002EBAC0 // "@729" in US version
+// jtbl_002EBD10 // "@1206" in US version
+// jtbl_002EBD50 // "@1400" in US version
+// D_002EBD98 // anon // "@1560" in US version
+// D_002EBDA8 // anon // "@1755" in US version
+// D_002EBDB0 // anon // "@1756" in US version
+// jtbl_002EBF10 // "@2468" in US version
 
 // ktact.c rodata
 // several ktact anon variables
@@ -3328,6 +3425,9 @@ D_FLT_002F5708                          = 0x2F5708; // size:0x8 // D_FLT_002F570
 //@anon_2F5710                           = 0x2F5710; // size:0x8 //  func_002F5710 // "@1786" in US version
 // aymcard.c sdata
 vayCode                                 = 0x2F5714; // size:0x4
+// aymovie.c sdata
+// D_FLT_002F5718 // anon // "@58" in US version
+// D_FLT_002F571C // anon // "@59" in US version
 
 
 // ktact.c sdata
@@ -3433,6 +3533,8 @@ D_FLT_002F5958                          = 0x2F5958; // size:0x8 // anon // "@296
 // aychrsel.c sbss
 vayChrData                              = 0x2F5984; // size:0x4 // D_002F5980
 
+// ayselect.c
+vayStateFlg                             = 0x2F5988; // size:0x4 // D_002F5988
 // aycreate.c sbss
 vayCreate                               = 0x2F598C; // size:0x4 // D_002F598C
 
@@ -3442,7 +3544,17 @@ vayMcSys                                = 0x2F5998; // size:0x4 // D_002F5998
 
 // aymodsel.c sbss
 vayModeData                             = 0x2F599C; // size:0x4 // D_002F599C
+vayMovCount                             = 0x2F59A0; // size:0x4 // D_002F59A0
 vayNewCareer                            = 0x2F59A4; // size:0x4 // D_002F59A4
+vayDemoSwitch                           = 0x2F59A8; // size:0x4 // D_002F59A8
+
+// aymovie.c sbss
+vayMovCount                             = 0x2F59AC; // size:0x4 // D_002F59AC
+vayMovStep                              = 0x2F59B0; // size:0x4 // D_002F59B0
+vayMovKind                              = 0x2F59B4; // size:0x4 // D_002F59B4
+
+// ayoption.c sbss
+vayOptData                              = 0x2F59B8; // size:0x4 // D_002F59B8
 
 // ayselect.c sbss
 vaySelData                              = 0x2F59C0; // size:0x4 // D_002F59C0
@@ -3734,7 +3846,6 @@ vspev02CafeCnt                          = 0x2F5EE4; // D_002F5EE4
 // spev03.c sbss
 taru_flg                                = 0x2F5EE8; // D_002F5EE8
 taru_count                              = 0x2F5EEC; // D_002F5EEC
-
 vspev03LoopVol                          = 0x2F5EF8; // size:0x8 // D_002F5EF8
 vspev03LoopLR                           = 0x2F5EF0; // size:0x8 // D_002F5EF0
 vspev03LoopID                           = 0x2F5F00; // size:0x8 // D_002F5F00
@@ -3874,6 +3985,10 @@ _Effect                                 = 0x2FD230; // size:0x730 // D_002FD230
 
 // aychrsel.c bss
 vayCharData                             = 0x2FD960; // size:0x58 // D_002FD960
+
+// aymodsel.c bss
+vakSnowFall                             = 0x2FD9D0; // size:0x60 // D_002FD9D0
+
 // ktact.c bss
 
 col_hit$4547                            = 0x335AA0; // D_00335AA0
@@ -4147,8 +4262,8 @@ vulmov2videoDecStack                    = 0x3DCEC0; // size:0x4 // D_003DCEC0
 // movie2.c bss
 defStack                                = 0x3DCF00; // size:0x800 // D_003DCF00
 
-_gp                                     = 0x2FD6F0; // D_002FD6F0
 
 //_fbss                                   = 0x2F5980; // D_002F5980 (from crt0.s?)
 _fbss                                   = 0x2F5AD0; // ignore:true // D_002F5AD0 (from gmsysSetScreenMode_normal)
 _args                                   = 0x2F6180; // ignore:true // D_002F6180
+_gp                                     = 0x2FD6F0; // ignore:true // D_002FD6F0
