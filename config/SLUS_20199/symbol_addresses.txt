@@ -3834,7 +3834,7 @@ __data_start                             = 0x002AF630; // (Region->GLOBAL) (Type
 ////.data                                    = 0x002AF680; // (Region->LOCAL)  (Type->SECTION)
 gp.6                                     = 0x002AF690; // size:0x10    
 //.data                                    = 0x002AF6A0; // (Region->LOCAL)  (Type->SECTION)
-init_vif_regs.3                          = 0x002AF6A0; // (Size->32)    
+init_vif_regs.3                          = 0x002AF6A0; //  size:0x20    
 //.data                                    = 0x002AF6C0; // (Region->LOCAL)  (Type->SECTION)
 init_mp3.3                               = 0x002AF6C0; // size:0x10    
 //.data                                    = 0x002AF6D0; // (Region->LOCAL)  (Type->SECTION)
@@ -3848,10 +3848,10 @@ mfdtbl                                   = 0x002AF758; // (Size->10)
 sceDmaCurrentEnv                         = 0x002AF768; //  (Size->20)    
 //.data                                    = 0x002AF780; // (Region->LOCAL)  (Type->SECTION)
 S5432                                    = 0x002AF780; // (Region->LOCAL)  (Type->NOTYPE) 
-init_vif_regs.126                        = 0x002AF790; // (Size->32)    
+init_vif_regs.126                        = 0x002AF790; //  size:0x20    
 //.data                                    = 0x002AF7B0; // (Region->LOCAL)  (Type->SECTION)
-_rix                                     = 0x002AF7B0; // (Size->32)    
-_ri0                                     = 0x002AF7D0; // (Size->32)    
+_rix                                     = 0x002AF7B0; //  size:0x20    
+_ri0                                     = 0x002AF7D0; //  size:0x20    
 _isDirty                                 = 0x002AF7F0; // (Size->40)    
 _tmpRefBase                              = 0x002AF818; //  (Size->4)     
 _trFrameNumberA                          = 0x002AF81C; //  (Size->4)     
@@ -3998,7 +3998,7 @@ _intra_slice                             = 0x002B0240; //  (Size->4)
 //__ps2_libinfo__                          = 0x002B0250; // (Size->16)    
 //.data                                    = 0x002B0250; // (Region->LOCAL)  (Type->SECTION)
 iqval                                    = 0x002B0260; // (Size->80)    
-vqval                                    = 0x002B02B0; // (Size->32)    
+vqval                                    = 0x002B02B0; //  size:0x20    
 //.data                                    = 0x002B02D0; // (Region->LOCAL)  (Type->SECTION)
 __ps2_klibinfo__                         = 0x002B02D0; // size:0x10
 ttyinit                                  = 0x002B02E0; // (Size->4)     
@@ -4036,7 +4036,7 @@ __sce_eh_sema_id                         = 0x002B0B5C; //  (Size->4)
 //.data                                    = 0x002B0B60; // (Region->LOCAL)  (Type->SECTION)
 isInit                                   = 0x002B0B70; // (Size->4)     
 isWarning                                = 0x002B0B74; // (Size->4)     
-PadStateStr                              = 0x002B0B78; // (Size->32)    
+PadStateStr                              = 0x002B0B78; //  size:0x20    
 ReqStateStr                              = 0x002B0B98; // (Size->12)    
 //__ps2_libinfo__                          = 0x002B0BC0; // (Size->16)    
 //.data                                    = 0x002B0BC0; // (Region->LOCAL)  (Type->SECTION)
@@ -4108,10 +4108,10 @@ black$14                                 = 0x002B2E00; // size:0x10
 black$24                                 = 0x002B2E10; // size:0x10    
 // model.c .data
 Constant                                 = 0x002B2E20; // size:0x30
-PrimPhysiqueStripGT                      = 0x002B2E50; // (Size->32)    
-PrimMeshStripGT                          = 0x002B2E70; // (Size->32)    
-PrimPhysiqueStripGTalpha                 = 0x002B2E90; // (Size->32)    
-PrimMeshStripGTalpha                     = 0x002B2EB0; // (Size->32)    
+PrimPhysiqueStripGT                      = 0x002B2E50; // size:0x20    
+PrimMeshStripGT                          = 0x002B2E70; // size:0x20    
+PrimPhysiqueStripGTalpha                 = 0x002B2E90; // size:0x20    
+PrimMeshStripGTalpha                     = 0x002B2EB0; // size:0x20    
 // movie2.c .data
 @151movie2                               = 0x002B2ED0; // allow_duplicated:True (Size->16)
 @152movie2                               = 0x002B2EE0; // allow_duplicated:True (Size->16)
@@ -4246,7 +4246,7 @@ vsptblCheatsE                            = 0x002B7890; // (Size->40)
 vsptblCheatsG                            = 0x002B78C0; // (Size->40)    
 vsptblCheatsF                            = 0x002B78F0; // (Size->40)    
 vsptblFreeStyleRanking                   = 0x002B7920; // (Size->1536)  
-vsptblBestTime                           = 0x002B7F20; // (Size->32)    
+vsptblBestTime                           = 0x002B7F20; //  size:0x20    
 vsptblMovieName                          = 0x002B7F40; //  (Size->60)    
 @732                                     = 0x002B7F80; // allow_duplicated:True (Size->48)
 // spload.c .data
@@ -4500,8 +4500,8 @@ c0$localstatic3$tifxdrawspur             = 0x002D1520; // (Region->MULTID) (Type
 c1$localstatic4$tifxdrawspur             = 0x002D1530; // (Region->MULTID) (Type->OBJECT)  (Size->16)    
 after_x$143                              = 0x002D1540; // size:0x20
 after_y$144                              = 0x002D1560; // size:0x40   
-after_l$145                              = 0x002D15A0; // (Size->32)    
-after_r$146                              = 0x002D15C0; // (Size->32)    
+after_l$145                              = 0x002D15A0; //  size:0x20    
+after_r$146                              = 0x002D15C0; //  size:0x20    
 rgba0$275                                = 0x002D15E0; // size:0x10    
 rgba1$276                                = 0x002D15F0; // size:0x10    
 rgba$334                                 = 0x002D1600; // size:0x10    
@@ -4864,8 +4864,8 @@ pio4                                     = 0x002D893C; // (Size->4)
 pio4lo                                   = 0x002D8940; // (Size->4)     
 T                                        = 0x002D8948; // (Size->52)    
 //.rodata                                  = 0x002D8980; // (Region->LOCAL)  (Type->SECTION)
-atanhi                                   = 0x002D8980; // (Size->32)    
-atanlo                                   = 0x002D89A0; // (Size->32)    
+atanhi                                   = 0x002D8980; //  size:0x20    
+atanlo                                   = 0x002D89A0; //  size:0x20    
 aT                                       = 0x002D89C0; // (Size->88)    
 //one                                      = 0x002D8A18; // (Size->8)     
 huge                                     = 0x002D8A20; // (Size->8)     
@@ -4972,7 +4972,7 @@ vulsysScrArea                            = 0x002D9870; // (Size->40)
 // mdlprTon.c .rodata
 rgba                                     = 0x002D9B50; // size:0x10    
 // vumodel.c .rodata
-_Constant                                = 0x002D9B60; // (Size->32)    
+_Constant                                = 0x002D9B60; // size:0x20    
 // tmcrs.c .rodata
 alpha_tbl$336                            = 0x002D9B80; // (Size->56)    
 @1681                                    = 0x002D9BB8; // allow_duplicated:True (Size->7)
@@ -7180,13 +7180,13 @@ vspev01Dram                              = 0x002E42B0; // (Size->96)
 @1263aycreate                            = 0x002E4DE8; // allow_duplicated:True (Size->5)
 @1264aycreate                            = 0x002E4DF0; // allow_duplicated:True (Size->4)
 @1265aycreate                            = 0x002E4DF8; // allow_duplicated:True (Size->4)
-// akEffect.c .rodata
+// akEfct.c .rodata
 _ssinfo                                  = 0x002E4E00; // (Size->192)   
 _ssinfo2                                 = 0x002E4EC0; // (Size->192)   
 _1024sintable45                          = 0x002E4F80; // (Size->36)    
 lens$142                                 = 0x002E4FB0; // (Size->128)   
 @301                                     = 0x002E5030; // allow_duplicated:True (Size->36)
-stq$531                                  = 0x002E5060; // (Size->32)    
+stq$531                                  = 0x002E5060; // size:0x20    
 rgba$663                                 = 0x002E5080; // size:0x10    
 v0$664                                   = 0x002E5090; // size:0x30    
 // ayresult.c .rodata
@@ -7346,28 +7346,28 @@ v0$664                                   = 0x002E5090; // size:0x30
 @2107ayresult                            = 0x002E5C58; // allow_duplicated:True (Size->6)
 // spev04.c .rodata
 vspev04HorsePos                          = 0x002E5C60; // (Size->192)   
-vspev04Lamp                              = 0x002E5D20; // (Size->32)    
+vspev04Lamp                              = 0x002E5D20; //  size:0x20    
 vspev04Window                            = 0x002E5D40; // (Size->144)   
 vspev04Chip                              = 0x002E5DD0; // (Size->24)    
 @1464spev04                              = 0x002E5DF0; // allow_duplicated:True (Size->36)
 @1495spev04                              = 0x002E5E20; // allow_duplicated:True (Size->32)
 @1734spev04                              = 0x002E5E40; // allow_duplicated:True (Size->32)
 // spev08.c .rodata
-vspev08BoundObject                       = 0x002E5E60; // (Size->32)    
+vspev08BoundObject                       = 0x002E5E60; //  size:0x20    
 vspev08ObjectSe                          = 0x002E5E80; // (Size->300)   
 vspev08GlassSe                           = 0x002E5FB0; // (Size->12)    
 vspev08SnowMachineInfo0                  = 0x002E5FC0; // (Size->384)   
 ScissorObj$179                           = 0x002E6140; // (Size->200)   
 DisableObj$180                           = 0x002E6208; // (Size->12)    
 DisableRail$181                          = 0x002E6220; // (Size->60)    
-Warp1P$182                               = 0x002E6260; // (Size->32)    
+Warp1P$182                               = 0x002E6260; //  size:0x20    
 sp_tbl$183                               = 0x002E6280; // (Size->88)    
-Gap2Hit                                  = 0x002E62E0; // (Size->32)    
+Gap2Hit                                  = 0x002E62E0; //  size:0x20    
 Gap2HpHit                                = 0x002E6300; // size:0x30    
 AirGapHit$240                            = 0x002E6330; // size:0x30    
 JumpGapHit$241                           = 0x002E6360; // (Size->40)    
 GrindGapHit$242                          = 0x002E6390; // size:0x30    
-SnowmachineHit$243                       = 0x002E63C0; // (Size->32)    
+SnowmachineHit$243                       = 0x002E63C0; //  size:0x20    
 GapRail$397                              = 0x002E63E0; // (Size->24)    
 GapObj$543                               = 0x002E6400; // size:0x30    
 liftman$766                              = 0x002E6430; // size:0x30    
@@ -7408,7 +7408,7 @@ DisableObj$254                           = 0x002E6F60; // (Size->204)
 DisableRail$255                          = 0x002E7030; // (Size->80)    
 BoundObject$256                          = 0x002E7080; // (Size->164)   
 sp_tbl$257                               = 0x002E7130; // (Size->88)    
-//Gap2Hit                                  = 0x002E7190; // (Size->64)    
+Gap2Hit                                  = 0x002E7190; // (Size->64)    
 AirGapHit$309                            = 0x002E71D0; // (Size->24)    
 Dram$756                                 = 0x002E71F0; // (Size->112)   
 Win$757                                  = 0x002E7260; // (Size->208)   
@@ -7421,15 +7421,15 @@ Win$757                                  = 0x002E7260; // (Size->208)
 @1020                                    = 0x002E7378; // allow_duplicated:True (Size->14)
 @1021                                    = 0x002E7388; // allow_duplicated:True (Size->6)
 // spev07.c .rodata
-@262spev07                               = 0x002E7390; // allow_duplicated:True // (Size->32)    
-@325spev07                               = 0x002E73B0; // allow_duplicated:True (Size->32)
+@262spev07                               = 0x002E7390; // allow_duplicated:True size:0x20    
+@325spev07                               = 0x002E73B0; // allow_duplicated:True size:0x20
 // kncore.c .rodata
 mat$444kncore                            = 0x002E73D0; // (Size->64)    
 // nmevent.c .rodata
 @42nmevent                               = 0x002E7410; // allow_duplicated:True (Size->16)
 @67nmevent                               = 0x002E7420; // allow_duplicated:True (Size->16)
 // akEvEfct.c .rodata
-stq$495akEvEfct                          = 0x002E7430; // (Size->32)    
+stq$495akEvEfct                          = 0x002E7430; // size:0x20    
 // nmtrick.c .rodata
 @261nmtrick                              = 0x002E7450; // allow_duplicated:True (Size->28)
 @260nmtrick                              = 0x002E7470; // allow_duplicated:True (Size->28)
@@ -8385,7 +8385,7 @@ vknPop_Rot                               = 0x003C8010; // size:0x10
 vknPop_Pos                               = 0x003C8020; // size:0x10    
 vknCore                                  = 0x003C8030; // size:0x10 
 vknGameEvent                             = 0x003C80D0; // size:0x40   
-// akEvEffct.c bss
+// akEvEfct.c bss
 _Effect                                  = 0x003C8110; // size:0x730 
 // nmtrick.c bss
 vnmtrickInfo                             = 0x003C8840; // size:0x1020  
