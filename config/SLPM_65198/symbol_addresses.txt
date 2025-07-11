@@ -537,6 +537,7 @@ sceMcUnformat                           = 0x11B570; // func_0011B570
 fabs                                    = 0x11D910; // func_0011D910
 cosf                                    = 0x11DCC8; // func_0011DCC8
 
+fabsf                                   = 0x11DDB0; // func_0011DDB0
 sinf                                    = 0x11E040; // func_0011E040
 
 atan2                                   = 0x11E1B8; // func_0011E1B8
@@ -569,6 +570,7 @@ dpmul                                   = 0x126EF0; // func_00126EF0
 dpcmp                                   = 0x127418; // type:func // func_00127418
 // more to add from func_00127468 and after
 
+litodp                                  = 0x127468; // func_00127468
 dptoli                                  = 0x127520; // func_00127520
 dptofp                                  = 0x1276C0; // func_001276C0
 
@@ -799,36 +801,100 @@ aySetKeyOparate                         = 0x16D9E0; // func_0016D9E0
 ayResultInit                            = 0x16E020; // func_0016E020
 ayResultFrame                           = 0x16E080; // func_0016E080
 ayResultEnd                             = 0x16F7C0; // func_0016F7C0
+ayResultClear                           = 0x16F7F0; // func_0016F7F0
+ayCheckLoad                             = 0x16FDA0; // func_0016FDA0
+aySelHeadDraw                           = 0x1702C0; // func_001702C0
+ayDrawMenu                              = 0x170980; // func_00170980
+ayDrawGoals                             = 0x171630; // func_00171630
+aySetKeyOparate                         = 0x172650; // func_00172650
+ayDrawCsLogo                            = 0x172C70; // func_00172C70
+ayDrawScore                             = 0x172F90; // func_00172F90
+ayDrawStats                             = 0x1734F0; // func_001734F0
+ayAddStats                              = 0x174A10; // func_00174A10
+ayDrawConfirm                           = 0x174AF0; // func_00174AF0
+ayDrawSave                              = 0x175100; // func_00175100
+ayDrawChange                            = 0x1755D0; // func_001755D0
+ayDrawChWear                            = 0x178A00; // func_00178A00
+ayDrawChBoard                           = 0x1790E0; // func_001790E0
+ayDrawChCs                              = 0x17A880; // func_0017A880
+ayDrawChPlayer                          = 0x17B4E0; // func_0017B4E0
+ayDrawChHandi                           = 0x17BF20; // func_0017BF20
+ayDrawChRule                            = 0x17C5E0; // func_0017C5E0
+ayDrawBackBoard                         = 0x17CD30; // func_0017CD30
+ayChangeCharID                          = 0x17D140; // func_0017D140
+ayDrawEnding                            = 0x17D200; // func_0017D200
 
 // ayselect.c text
 aySelectModInit                         = 0x17D300; // func_0017D300
+aySelectModFrame                        = 0x17D4A0; // func_0017D4A0
+aySelectModEnd                          = 0x17DC90; // func_0017DC90
+aySetCharScale                          = 0x17DCF0; // func_0017DCF0
 
 // gmpad.c text
+gmsysPadInit                            = 0x17DF70; // func_0017DF70
+gmsysPadMain                            = 0x17DFC0; // func_0017DFC0
 gmsysPadReset                           = 0x17E190; // func_0017E190
-
-// ktmnufnc.c text
-ktmfMenuFunc_finish                     = 0x17E220; // func_0017E220
+gmsysPadResume                          = 0x17E220; // func_0017E220
+gmsysPadInitPadBuff                     = 0x17E230; // func_0017E230
+gmsysPadInitPadOpe                      = 0x17E2A0; // func_0017E2A0
+gmsysPadInitPadData                     = 0x17E310; // func_0017E310
+gmsysPadSetPadInfoLink                  = 0x17E3C0; // func_0017E3C0
 
 // kncamera.c text
 knCameraInit                            = 0x17E4F0; // func_0017E4F0
 knCameraSetScrZ                         = 0x17E970; // func_0017E970
 knCameraCalc                            = 0x17E9C0; // func_0017E9C0
+knCoreAddVectorXYZ                      = 0x17EEB0; // func_0017EEB0
+knCameraSetBoostAction                  = 0x17EED0; // func_0017EED0
+knCameraDefaultView                     = 0x17EF30; // func_0017EF30
+knCameraHalfPipeView                    = 0x17FBD0; // func_0017FBD0
+knCameraRailSlideView                   = 0x17FFF0; // func_0017FFF0
+knCameraSetLandShake                    = 0x180280; // func_00180280
+knCameraLandShake                       = 0x1802E0; // func_001802E0
+knCameraSpringCheck                     = 0x180590; // func_00180590
+knCameraChange                          = 0x180620; // func_00180620
+knCameraTumbleAction                    = 0x180C00; // func_00180C00
+knCameraTiltAction                      = 0x181030; // func_00181030
+knCameraBoostAction                     = 0x181100; // func_00181100
+knCameraInterPol                        = 0x181330; // func_00181330
+knCalcMain                              = 0x181770; // func_00181770
 knCameraSetFixRotation                  = 0x181840; // func_00181840
 knCameraSetDis                          = 0x1818C0; // func_001818C0
 knCameraEndDis                          = 0x181930; // func_00181930
 knCameraEventAllReset                   = 0x181990; // func_00181990
 knFinishCamera                          = 0x1819E0; // func_001819E0
+knCameraKeepCourse                      = 0x181FB0; // func_00181FB0
+knCameraKeepCourse2b                    = 0x1830B0; // func_001830B0
+knAngAxisToQuat                         = 0x183190; // func_00183190
+knQuatToAngAxis                         = 0x183200; // func_00183200
+knQuatSlerp                             = 0x183490; // func_00183490
 
 // kncore.c text
+knCoreInitRand                          = 0x183640; // func_00183640
+knCoreRandBase                          = 0x183660; // func_00183660
+knCoreRand                              = 0x1836C0; // func_001836C0
+knEventGet                              = 0x1836F0; // func_001836F0
 knEventStart                            = 0x183710; // func_00183710
 knEventEnd                              = 0x183790; // func_00183790
 knEventSetCameraPos                     = 0x1837E0; // func_001837E0
 knEventSetCameraObj                     = 0x183810; // func_00183810
 knEventCameraMoveSpline1                = 0x183860; // func_00183860
 knEventSetShake                         = 0x1838B0; // func_001838B0
+knEventShake                            = 0x1838F0; // func_001838F0
 knCoreGetWVMat                          = 0x183A70; // func_00183A70
 knCoreGetWState                         = 0x183CF0; // func_00183CF0
+knCoreSetWState                         = 0x183D60; // func_00183D60
+knCoreRotMatrix                         = 0x183DC0; // func_00183DC0
 knCoreGetSearchBlock                    = 0x183E40; // func_00183E40
+knCoreGetCourseHit                      = 0x184230; // func_00184230
+knCoreGetSearchBlock2                   = 0x184800; // func_00184800
+knCoreGetCourseHit2                     = 0x184A00; // func_00184A00
+knCoreGetBaseHit                        = 0x184FF0; // func_00184FF0
+knCoreGetHitHit                         = 0x185110; // func_00185110
+knCoreGetDifAngY                        = 0x185380; // func_00185380
+knCoreGetAngle                          = 0x1854D0; // func_001854D0
+knCoreBezier                            = 0x185580; // func_00185580
+knCoreSpline1                           = 0x185630; // func_00185630
 
 // knreplay.c text
 knIntroInit                             = 0x185780; // func_00185780
@@ -2799,6 +2865,39 @@ vbgmtblArtist                           = 0x2D2DD0; // size:0x30 // func_002D2DD
 // D_002D3840 // anon // "@2050" in US version
 // D_002D3860 // anon // "@2058" in US version
 // D_002D3880 // anon // "@2065" in US version
+// D_002D3C30 // anon // "@492" in US version
+// D_002D3C90 // anon // "@493" in US version
+// D_002D3CB0 // anon // "@494" in US version
+// D_002D3CE0 // anon // "@637" in US version
+// D_002D3D60 // anon // "@834" in US version
+// D_002D3D80 // anon // "@880" in US version
+// D_002D3DD0 // anon // "@935" in US version
+// D_002D3E10 // anon // "@945" in US version
+// D_002D3E40 // anon // "@1110" in US version
+// D_002D3E70 // anon // "@1111" in US version
+// D_002D3E90 // anon // "@1188" in US version
+// D_002D3EC0 // anon // "@1189" in US version
+// D_002D3EE0 // anon // "@1262" in US version
+// D_002D3EF8 // anon // "@1675" in US version
+// D_002D3F08 // anon // "@1676" in US version
+// D_002D3F20 // anon // "@1728" in US version
+// D_002D3F30 // anon // "@1729" in US version
+// D_002D3F40 // anon // "@1742" in US version
+// D_002D3F70 // anon // "@1743" in US version
+// D_002D3F90 // anon // "@1900" in US version
+// D_002D3FC0 // anon // "@1901" in US version
+// D_002D3FE0 // anon // "@1973" in US version
+// D_002D3FF0 // anon // "@2046" in US version
+// D_002D4020 // anon // "@2108" in US version
+
+// kncamera.c data
+cdd$76                                  = 0x2D4090; // size:0x10 // D_002D4090
+odd$77                                  = 0x2D40A0; // size:0x10 // D_002D40A0
+// D_002D4070 // anon // "@74" in US version
+// D_002D4080 // anon // "@75" in US version
+// D_002D40B0 // anon // "@736" in US version
+// D_002D40C0 // anon // "@431" in US version
+// D_002D40D0 // anon // "@443" in US version
 
 // ktact.c data
 vktactMinParam                          = 0x2D42D0; // size:0x30 // TODO: double check size // D_002D42F4
@@ -3259,7 +3358,7 @@ stq$495                                 = 0x2E4DA0; // size:0x20 // D_002E4DA0
 // D_002E6AA0 // anon // "@14" in US version
 // D_002E6AB0 // anon // "@15" in US version
 
-// ayoption.rodata
+// ayoption.c rodata
 // jtbl_002EB880 // "@371" in US version
 // jtbl_002EB8C0 // "@370" in US version
 // D_002EB980 // anon // "@377" in US version
@@ -3272,6 +3371,23 @@ stq$495                                 = 0x2E4DA0; // size:0x20 // D_002E4DA0
 // D_002EBDA8 // anon // "@1755" in US version
 // D_002EBDB0 // anon // "@1756" in US version
 // jtbl_002EBF10 // "@2468" in US version
+// jtbl_002EBFC0 // "@274" in US version
+// jtbl_002EBFE0 // "@273" in US version
+// jtbl_002EC110 // "@461" in US version
+
+// ayresult.c rodata
+// D_002EC3E8 // anon // "@700" in US version
+// D_002EC3F0 // anon // "@701" in US version
+// D_002EC3F8 // anon // "@702" in US version
+// jtbl_002EC400 // "@828" in US version
+// D_002EC590 // anon // "@1071" in US version
+// jtbl_002EC610 // "@1248" in US version
+// jtbl_002EC6C0 // "@1662" in US version
+// jtbl_002EC6A0 // "@1663" in US version
+// D_002EC818 // anon // "@1889" in US version
+
+// kncore.c rodata
+mat$444                                 = 0x2EC9A0; // D_002EC9A0
 
 // ktact.c rodata
 // several ktact anon variables
@@ -3429,6 +3545,28 @@ vayCode                                 = 0x2F5714; // size:0x4
 // D_FLT_002F5718 // anon // "@58" in US version
 // D_FLT_002F571C // anon // "@59" in US version
 
+// ayresult.c sdata
+// D_002F5720 // anon // "@1255" in US version
+// D_FLT_002F5728 // anon // "1969" in US version
+
+// kncamera.c sdata
+vknViewFlg_2P                           = 0x2F5730; // size:0x8 // D_002F5730
+max$232                                 = 0x2F5738; // size:0x4 // D_FLT_002F5738
+rate1$295                               = 0x2F573C; // size:0x4 // D_FLT_002F573C
+rate2$296                               = 0x2F5740; // size:0x4 // D_FLT_002F5740
+rate3$297                               = 0x2F5744; // size:0x4 // D_FLT_002F5744
+a$432                                   = 0x2F5748; // size:0x4 // D_FLT_002F5748
+b$433                                   = 0x2F574C; // size:0x4 // D_FLT_002F574C
+dt$477                                  = 0x2F5750; // size:0x4 // D_FLT_002F5750
+angy$553                                = 0x2F5754; // size:0x4 // D_FLT_002F5754
+f$554                                   = 0x2F5758; // size:0x4 // D_FLT_002F5758
+
+// kncore.c sdata
+vknRandSeed                             = 0x2F575C; // size:0x4 // D_002F575C
+max$180                                 = 0x2F5760; // size:0x4 // D_FLT_002F5760
+hit_on$221                              = 0x2F5764; // size:0x4 // D_002F5764
+hit_on$301                              = 0x2F5768; // size:0x4 // D_002F5768
+hit_on$386                              = 0x2F576C; // size:0x4 // D_002F576C
 
 // ktact.c sdata
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
@@ -3556,13 +3694,25 @@ vayMovKind                              = 0x2F59B4; // size:0x4 // D_002F59B4
 // ayoption.c sbss
 vayOptData                              = 0x2F59B8; // size:0x4 // D_002F59B8
 
+// ayresult.c sbss
+vayResData                              = 0x2F59BC; // size:0x4 // D_002F59BC
+
 // ayselect.c sbss
 vaySelData                              = 0x2F59C0; // size:0x4 // D_002F59C0
+vgmsysPadResume                         = 0x2F59C4; // size:0x4 // D_002F59C4
+
 // gmpad.c sbss
 vgmsysPadAllowPause                     = 0x2F59C8; // D_002F59C8
+vgmsysPadPrePausePid                    = 0x2F59CC; // D_002F59CC
 vgmsysPadPausePid                       = 0x2F59D0; // D_002F59D0
 vgmsysPad                               = 0x2F59D8; // size:0x8 // D_002F59D8
 
+vgmsysPadSoftReset                      = 0x2F59E0; // D_002F59E0
+vgmsysPadAllowSoftReset                 = 0x2F59E4; // D_002F59E4
+
+// kncamera.c sbss
+vknViewFlg_1P                           = 0x2F59E8; // size:0x4 // D_002F59E8
+// D_002F59F0 // anon // "@589" in US version
 // ktact.c sbss
 vktactParamMaxLanding                   = 0x2F5A18; // D_FLT_002F5A18
 vktactParamMinLanding                   = 0x2F5A1C; // D_FLT_002F5A1C
@@ -3988,6 +4138,19 @@ vayCharData                             = 0x2FD960; // size:0x58 // D_002FD960
 
 // aymodsel.c bss
 vakSnowFall                             = 0x2FD9D0; // size:0x60 // D_002FD9D0
+
+// gmpad.c bss
+vgmsysPadNull                           = 0x2FDA30; // size:0x60 // D_002FDA30
+vgmsysPadInfo                           = 0x2FDA90; // size:0x20 // D_002FDA90
+
+// kncamera.c bss
+vknCamera                               = 0x2FDB50; // size:0x260 // D_FLT_002FDB50
+
+// kncore.c bss
+vknPop_Rot                              = 0x2FDDB0; // size:0x10 // D_002FDDB0
+vknPop_Pos                              = 0x2FDDC0; // size:0x10 // D_002FDDC0
+vknCore                                 = 0x2FDDD0; // size:0x10 // D_FLT_002FDDD0
+vknGameEvent                            = 0x2FDE70; // size:0x40 // D_FLT_002FDE70
 
 // ktact.c bss
 
