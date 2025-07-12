@@ -898,8 +898,45 @@ knCoreSpline1                           = 0x185630; // func_00185630
 
 // knreplay.c text
 knIntroInit                             = 0x185780; // func_00185780
+knIntroMain                             = 0x1859C0; // func_001859C0
+knCoreSubVectorXYZ                      = 0x1864C0; // func_001864C0
+knIntroSetData                          = 0x1864E0; // func_001864E0
+knIntroSetData2                         = 0x186560; // func_00186560
+knIntroRotCamera                        = 0x186740; // func_00186740
 knReplayInit                            = 0x1868E0; // func_001868E0
+knReplayMain                            = 0x186C30; // func_00186C30
+knReplayResetCheck                      = 0x187570; // func_00187570
+knReplayStatusCheck                     = 0x1876D0; // func_001876D0
+knReplayGetCube                         = 0x1877C0; // func_001877C0
+knReplayGetBlock                        = 0x1879E0; // func_001879E0
+knReplayInterPol                        = 0x187A90; // func_00187A90
 knReplaySetObstPos                      = 0x187C60; // func_00187C60
+knReplayCtrlCameraMain                  = 0x187CF0; // func_00187CF0
+knReplayResetCamera                     = 0x187D40; // func_00187D40
+knReplayCtrlView                        = 0x187E90; // func_00187E90
+knReplayGetLenScale                     = 0x188C60; // func_00188C60
+knReplayGetLen                          = 0x188CC0; // func_00188CC0
+knReplayCtrlObj                         = 0x188D20; // func_00188D20
+knReplayCtrlEffect                      = 0x1890B0; // func_001890B0
+knReplayCtrlEvent                       = 0x189330; // func_00189330
+knReplayTumbleSpecial                   = 0x189880; // func_00189880
+knReplayInitDefaultCamera               = 0x189B50; // func_00189B50
+knReplayCtrlDefaultCamera               = 0x189D60; // func_00189D60
+knReplayBlur                            = 0x18A150; // func_0018A150
+knReplayRelative                        = 0x18A2C0; // func_0018A2C0
+knReplayRotRelative                     = 0x18A3C0; // func_0018A3C0
+knReplayPointToPoint                    = 0x18A440; // func_0018A440
+knReplayBetweenPoint                    = 0x18AA00; // func_0018AA00
+knReplayPointApproach                   = 0x18AB50; // func_0018AB50
+knReplayCharForward                     = 0x18AD60; // func_0018AD60
+knReplayCharRotCamera                   = 0x18AF70; // func_0018AF70
+knReplayAxisMove                        = 0x18AFE0; // func_0018AFE0
+knReplayFixRot                          = 0x18B0C0; // func_0018B0C0
+knReplayCharFrameIn                     = 0x18B160; // func_0018B160
+knReplayCameraShakeTYPE1                = 0x18B2C0; // func_0018B2C0
+knReplayCameraShakeTYPE2                = 0x18B5D0; // func_0018B5D0
+knReplayAxisRotMatrix                   = 0x18B7E0; // func_0018B7E0
+
 // ktact.c text start
 ktactInitCtrl                           = 0x18BA90; // func_0018BA90
 iktactMakeParam_cmn_max_speed           = 0x18C770; // func_0018C770
@@ -2899,6 +2936,12 @@ odd$77                                  = 0x2D40A0; // size:0x10 // D_002D40A0
 // D_002D40C0 // anon // "@431" in US version
 // D_002D40D0 // anon // "@443" in US version
 
+// knreplay.c data
+vknIntro_ChrCamData                     = 0x2D40E0; // D_002D40E0
+axis$139                                = 0x2D42A0; // size:0x10 // D_002D42A0
+length$272                              = 0x2D42B0; // size:0x10 // func_002D42B0
+// D_002D42C0 // anon // "@771" in US version
+
 // ktact.c data
 vktactMinParam                          = 0x2D42D0; // size:0x30 // TODO: double check size // D_002D42F4
 vktactCmnParam                          = 0x2D4300; // size:0x30 // TODO: double check size // D_002D4300
@@ -3388,6 +3431,15 @@ stq$495                                 = 0x2E4DA0; // size:0x20 // D_002E4DA0
 
 // kncore.c rodata
 mat$444                                 = 0x2EC9A0; // D_002EC9A0
+// jtbl_002EC9E0 // "@108" in US version
+// jtbl_002ECA10 // "@101" in US version
+// jtbl_002ECA50 // "@230" in US version
+// jtbl_002ECA30 // "@231" in US version
+// jtbl_002ECA70 // "@429" in US version
+// jtbl_002ECAE0 // "@466" in US version
+// jtbl_002ECB20 // "@545" in US version
+// jtbl_002ECB90 // "@588" in US version
+// jtbl_002ECBC0 // "@622" in US version
 
 // ktact.c rodata
 // several ktact anon variables
@@ -3568,6 +3620,10 @@ hit_on$221                              = 0x2F5764; // size:0x4 // D_002F5764
 hit_on$301                              = 0x2F5768; // size:0x4 // D_002F5768
 hit_on$386                              = 0x2F576C; // size:0x4 // D_002F576C
 
+// knreplay.c sdata
+cut_max$53                              = 0x2F5770; // size:0x4 // D_002F5770
+rate$310                                = 0x2F5774; // size:0x4 // D_FLT_002F5774
+
 // ktact.c sdata
 vktactParamG_jump_up                    = 0x2F5778; // D_002F5778
 vktactParamG_jump_down                  = 0x2F577C; // D_002F577C
@@ -3713,6 +3769,13 @@ vgmsysPadAllowSoftReset                 = 0x2F59E4; // D_002F59E4
 // kncamera.c sbss
 vknViewFlg_1P                           = 0x2F59E8; // size:0x4 // D_002F59E8
 // D_002F59F0 // anon // "@589" in US version
+
+// knreplay.c sbss
+vknIntro_Top                            = 0x2F59F8; // size:0x4 // D_002F59F8
+vknBlock                                = 0x2F59FC; // size:0x4 // D_002F59FC
+vknCube                                 = 0x2F5A00; // size:0x4 // D_002F5A00
+vknHead                                 = 0x2F5A04; // size:0x4 // D_002F5A04
+
 // ktact.c sbss
 vktactParamMaxLanding                   = 0x2F5A18; // D_FLT_002F5A18
 vktactParamMinLanding                   = 0x2F5A1C; // D_FLT_002F5A1C
@@ -4151,6 +4214,12 @@ vknPop_Rot                              = 0x2FDDB0; // size:0x10 // D_002FDDB0
 vknPop_Pos                              = 0x2FDDC0; // size:0x10 // D_002FDDC0
 vknCore                                 = 0x2FDDD0; // size:0x10 // D_FLT_002FDDD0
 vknGameEvent                            = 0x2FDE70; // size:0x40 // D_FLT_002FDE70
+
+// knreplay.c bss
+vknEvent                                = 0x2FDEB0; // size:0x40 // D_002FDEB0
+vknIntro                                = 0x2FDEF0; // size:0x140 // D_002FDEF0
+vknReplay                               = 0x2FE030; // size:0x180 // D_002FE030
+vknMainData                             = 0x2FE1B0; // size:0xA0 // D_002FE1B0
 
 // ktact.c bss
 
