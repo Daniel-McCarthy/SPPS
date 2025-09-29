@@ -7,6 +7,7 @@ options:
   platform: ps2
   compiler: MWCCPS2
   endianness: little
+  gp_value: 0x2FD6F0
 
   base_path: ../../
   ld_script_path: ./config/SLPM_65198/out/SLPM_651.98.ld
@@ -49,7 +50,6 @@ segments:
     type: code
     start: 0x0080
     vram: 0x100000
-    gp_value: 0x2fd6f0
     bss_size: 0xE1F80 # (Comes from __bss_end -_fbss)
     subsegments:
       - [0x000080, asm, crt0]
