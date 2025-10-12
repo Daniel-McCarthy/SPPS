@@ -5803,8 +5803,8 @@ f_arrange$411ktact                       = 0x002DA980; // (Size->256)
 // ktrider.c .rodata
 @86                                      = 0x002DE860; // allow_duplicated:True (Size->32)
 // spfree.c .rodata
-@731                                     = 0x002DE880; // allow_duplicated:True (Size->28)
-@730                                     = 0x002DE8A0; // allow_duplicated:True (Size->36)
+@731                                     = 0x002DE880; // type:jtbl allow_duplicated:True (Size->28)
+@730                                     = 0x002DE8A0; // type:jtbl allow_duplicated:True (Size->36)
 // tmevent.c .rodata
 @50tmevent                               = 0x002DE8D0; // allow_duplicated:True (Size->32)
 // aycomfnk.c .rodata
