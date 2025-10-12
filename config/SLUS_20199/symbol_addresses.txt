@@ -7711,7 +7711,7 @@ vgmsysPadResume                          = 0x002E7B20; // (Size->4)
 vgmsysPadAllowPause                      = 0x002E7B24; //  (Size->4)     
 vgmsysPadPrePausePid                     = 0x002E7B28; //  (Size->4)     
 vgmsysPadPausePid                        = 0x002E7B2C; //  (Size->4)     
-vgmsysPad                                = 0x002E7B30; //  (Size->8)     
+vgmsysPad                                = 0x002E7B30; // size:0x8   
 vgmsysPadSoftReset                       = 0x002E7B38; //  (Size->4)     
 vgmsysPadAllowSoftReset                  = 0x002E7B3C; //  (Size->4) 
 // spfree.c sbss   
