@@ -7533,9 +7533,9 @@ f$554                                    = 0x002E7838; // (Size->4)
 vnmtblPauseCareerItem                    = 0x002E7848; // (Size->7)     
 vnmtblPauseMatchItem                     = 0x002E7850; // (Size->6)     
 vnmtblPauseFreeItem                      = 0x002E7858; // (Size->7)     
-vnmtblTutoEnd                            = 0x002E7860; // (Size->8)     
-@250                                     = 0x002E7868; // allow_duplicated:True (Size->6)
-@258                                     = 0x002E7870; // allow_duplicated:True (Size->8)
+vnmtblTutoEnd                            = 0x002E7860; // size:0x8     
+@250                                     = 0x002E7868; // allow_duplicated:True size:0x6 type:u8
+@258                                     = 0x002E7870; // allow_duplicated:True size:0x8
 // Knreplay.c sdata
 cut_max$53                               = 0x002E7878; // (Size->4)     
 rate$310                                 = 0x002E787C; // (Size->4)  
