@@ -5,6 +5,19 @@
 - 7Zip
 - Optional: venv
 
+### Dev Container
+This repository includes a VS Code Dev Container config at `.devcontainer/`.
+
+To open the project in a dev container:
+1. Install Docker and the VS Code Remote Development extension pack (including Dev Containers).
+2. Open the repo in VS Code.
+3. Run `Remote-Containers: Reopen in Container` from the Command Palette.
+
+The container is built from `.devcontainer/Dockerfile` and mounts the repo at `/workspace`.
+It also creates a Python virtual environment at `/opt/venv` and installs `requirements.txt` automatically.
+
+## Commands
+
 To install the required python modules and other dependencies, run at the root directory:
 `make install`
 
