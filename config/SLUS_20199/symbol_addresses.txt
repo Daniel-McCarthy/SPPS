@@ -7750,7 +7750,7 @@ vayLoadFile                              = 0x002E7BC0; // (Size->4)
 vayMcSys                                 = 0x002E7BC4; // (Size->4)   
 // aymodsel.c sbss
 vayModeData                              = 0x002E7BC8; // (Size->4)     
-vayMovCount_aymod                        = 0x002E7BCC; // allow_duplicated:True (Size->4)     
+vayMovCount                              = 0x002E7BCC; // allow_duplicated:True (Size->4)     
 vayNewCareer                             = 0x002E7BD0; //  (Size->4)     
 vayDemoSwitch                            = 0x002E7BD4; //  (Size->4)  
 // aymovie.c sbss
