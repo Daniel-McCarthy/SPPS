@@ -45,3 +45,4 @@ coddog
 binutils/
 venv/
 sdk/
+.workspace/
