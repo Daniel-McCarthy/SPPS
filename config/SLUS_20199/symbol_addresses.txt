@@ -7700,7 +7700,7 @@ vktmenuCurrentItem                       = 0x002E7AFC; // (Size->4)
 vktmenuNumItem                           = 0x002E7B00; // (Size->4)  
 // spinit.c sbss 
 vspenvSecret                             = 0x002E7B04; //  (Size->4)     
-vspenvReplay                             = 0x002E7B08; //  (Size->8)     
+vspenvReplay                             = 0x002E7B08; //  size:0x8     
 vspenvOption                             = 0x002E7B10; //  (Size->4)     
 vspenvGame                               = 0x002E7B14; //  (Size->4)   
 // spload.c sbss
@@ -7717,7 +7717,7 @@ vgmsysPadAllowSoftReset                  = 0x002E7B3C; //  (Size->4)
 // spfree.c sbss   
 vspChangeScreen                          = 0x002E7B40; // (Size->4)     
 vspIntroCutNum                           = 0x002E7B44; // (Size->4)     
-vspReplay                                = 0x002E7B48; //  (Size->8)     
+vspReplay                                = 0x002E7B48; //  size:0x8     
 vspVsWid                                 = 0x002E7B50; // (Size->4)     
 vspWndFadePercent                        = 0x002E7B58; // (Size->8)     
 vspFadePercent                           = 0x002E7B60; // (Size->4)     
