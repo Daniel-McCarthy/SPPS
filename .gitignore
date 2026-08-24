@@ -26,6 +26,7 @@ build.ninja
 *.o
 *.elf
 *.s
+*.rom
 asm/
 assets/
 build/
