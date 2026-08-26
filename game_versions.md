@@ -1,12 +1,12 @@
 # Final Versions
-| Version | Serial | ISO CRC32 | ELF CRC32 | PCSX2 CRC32 | Notes |
-|---------|--------|-----------|-----------|-------------|-------|
-| US Final | SLUS_201.99 | 1DF38032 | 1C2F796C | 3A8E10D7 | |
-| PAL Final | SLES_504.00 | CCEEFA50 | 241BFAA5 | 293D99B2 | |
-| Australia Final |  SLES_504.00 | CCEEFA50 | 241BFAA5 | 293D99B2 | Completely identical to the EU PAL copy distributed in Australia |
-| French Final | SLES_504.01 | 77D803CD | 88B7292D | 3657D915 | |
-| German Final | SLES_504.02 | E9AA2A4C | 6F138290 | EA18EC1B | |
-| Japan Final | SLPM_652.98 | 0B1A761E | 87DA03CD | AD477EA5 | The only release to not have debug symbols. The `.debug` section was completely stripped |
+| Version | Serial | ISO CRC32 | ELF CRC32 | *.DAT CRC32 | PCSX2 CRC32 | Notes |
+|---------|--------|-----------|-----------|-------------|-------------|-------|
+| US Final | SLUS_201.99 | 1DF38032 | 1C2F796C | B297AE18 | 3A8E10D7 | |
+| PAL Final | SLES_504.00 | CCEEFA50 | 241BFAA5 | FCDEC82B | 293D99B2 | |
+| Australia Final |  SLES_504.00 | CCEEFA50 | 241BFAA5 | FCDEC82B | 293D99B2 | Completely identical to the EU PAL copy distributed in Australia |
+| French Final | SLES_504.01 | 77D803CD | 88B7292D | C81366B7 | 3657D915 | |
+| German Final | SLES_504.02 | E9AA2A4C | 6F138290 | ED921FF6 | EA18EC1B | |
+| Japan Final | SLPM_652.98 | 0B1A761E | 87DA03CD | CB51CE7E | AD477EA5 | The only release to not have debug symbols. The `.debug` section was completely stripped |
 
 # Demo Builds
 | Version | Serial | ISO CRC32 | ELF CRC32 | *.DAT CRC32 | Notes |
