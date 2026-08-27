@@ -16,6 +16,7 @@
 | OPS2M 16 FR | SCED_506.75 | 50E5D08B | 30E71520 | DEA76555 | Identical `*.DAT` as the EU version of the demo. |
 | OUSPSM 55 | SCUS_971.81 | F4230FBB | 06BBC277 | A41D6DD5 | Dated 9/10/2001. Has `DS20199.DAT` on root. Has the same `*.DAT` as the THPS3 SPPS demo. |
 | OUSPSM 108 | SCUS_975.36 | DBFEFC94 | 06BBC277 | A41D6DD5| `DATA.DAT` is `D20199.DAT`. Identical to the OUSPM 55 version. |
+| Kiosk Demo Disc 2.4 | SCUS-97174 | F3127CA7 | 06BBC277 | A41D6DD5| `DATA.DAT` is `D20199.DAT`. Identical to the OUSPM 55 version. |
 | Europe Promo Demo | SLED_506.26 | 5A8FFDA2 | A776EAC9 | D5DA6CB6 | `DATA.DAT` is named `D50400.DAT` in `50400/` folder.|
 
 # Early Builds
