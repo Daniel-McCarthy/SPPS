@@ -7,6 +7,7 @@ options:
   platform: ps2
   compiler: MWCCPS2
   endianness: little
+  gp_value: 0x2EF6F0
 
   base_path: ../../
   ld_script_path: ./config/SLUS_20199/out/SLUS_201.99.ld
@@ -29,7 +30,10 @@ options:
   asm_function_macro: glabel
   asm_jtbl_label_macro: jlabel
   asm_data_macro: dlabel
-  asm_inc_header: .set noat    /* allow use of $at register from MWCC */
+  asm_inc_header: |
+    .set noat    /* allow use of $at register from MWCC */
+    .set ACC, $ACC
+    .set Q, $Q
 
   rodata_string_guesser_level: 2
   data_string_guesser_level: 2
@@ -46,12 +50,12 @@ segments:
     type: code
     start: 0x0080
     vram: 0x100000
-    gp_value: 0x2ef6f0
     bss_size: 0xE1F80 # (Comes from __bss_end -_fbss)
+    # Diff between addresses is 0xFFF80
     subsegments:
       - [0x000080, asm, crt0]
       - [0x000150, asm, sdk]
-      - [0x028A70, asm, E/tam/ps2/sppbx/main]
+      - [0x028A70, c, E/tam/ps2/sppbx/main]
       - [0x029BE0, asm, Z/ul/ul/source/cdvd]
       - [0x02A7E0, asm, Z/ul/ul/source/coord]
       - [0x02AAA0, asm, Z/ul/ul/source/gif]
@@ -91,7 +95,7 @@ segments:
       - [0x089530, asm, E/tam/ps2/sppbx/ktmnufnc]
       - [0x089860, asm, E/tam/ps2/sppbx/spinit]
       - [0x08A680, asm, E/tam/ps2/sppbx/spload]
-      - [0x0974C0, c, E/tam/ps2/sppbx/tmlink]
+      - [0x0974C0, asm, E/tam/ps2/sppbx/tmlink]
       - [0x097550, asm, E/tam/ps2/sppbx/gmpad]
       - [0x097AD0, asm, E/tam/ps2/sppbx/ktrider]
       - [0x099020, asm, E/tam/ps2/sppbx/spfree]
@@ -137,6 +141,8 @@ segments:
       - [0x1A2D00, asm, E/tam/ps2/sppbx/tievent]
       # Library/SDK
       - [0x1A7600, asm, sdk2]
+
+      # Vutext
       - [0x1A8000, data, vutext] # .vutext 0x1A8000-0x1AF6AF
 
       # SDK/Lib data start
@@ -144,7 +150,7 @@ segments:
       # SDK/Lib data end
 
       # Game data
-      - [0x1B2E70, data, E/tam/ps2/sppbx/main]
+      - [0x1B2E70, .data, E/tam/ps2/sppbx/main]
       - [0x1B2E80, data, Z/ul/ul/source/mdlpr]
       - [0x1B2EA0, data, Z/ul/ul/source/model]
       - [0x1B2F50, data, Z/ul/ul/source/movie2]
@@ -190,12 +196,12 @@ segments:
       - [0x1D6C50, data, E/tam/ps2/sppbx/akShadow]
       - [0x1D6DC0, data, E/tam/ps2/sppbx/tiutill]
       - [0x1D6F50, data, E/tam/ps2/sppbx/tievent]
-      - [0x1D7174, data, sdk_data]
+      - [0x1D7210, data, sdk_data]
       # data end
 
       # rodata start
-      - [0x1D7210, rodata, sdk]
-      - [0x1D9540, rodata, E/tam/ps2/sppbx/main]
+      - [0x1D7220, rodata, sdk]
+      - [0x1D9540, .rodata, E/tam/ps2/sppbx/main]
       - [0x1D96F0, rodata, Z/ul/ul/source/cdvd]
       - [0x1D9700, rodata, Z/ul/ul/source/heap]
       - [0x1D9830, rodata, Z/ul/ul/source/mcard]
@@ -211,9 +217,12 @@ segments:
       - [0x1D9D20, rodata, E/tam/ps2/sppbx/ktmot]
       - [0x1DA260, rodata, E/tam/ps2/sppbx/ktact]
       # border from normal$406 to f_arrange$411 is unclear between ktact and ktmnufnc
-      # border from @12 to @650 unclear
+      # ktmnufnc start
       - [0x1DAB00, rodata, E/tam/ps2/sppbx/ktmnufnc]
       - [0x1DAB48, rodata, E/tam/ps2/sppbx/spinit]
+      # border from @11 to @650 unclear
+      # spinit end
+      # spload start
       - [0x1DDDC0, rodata, E/tam/ps2/sppbx/spload]
       - [0x1DE8E0, rodata, E/tam/ps2/sppbx/ktrider]
       - [0x1DE900, rodata, E/tam/ps2/sppbx/spfree]
@@ -254,7 +263,7 @@ segments:
       # sdata section
       # sdata is after __data_end
 
-      - [0x1E7780, sdata, E/tam/ps2/sppbx/main]
+      - [0x1E7780, .sdata, E/tam/ps2/sppbx/main]
       - [0x1E7790, sdata, Z/ul/ul/source/pad]
       - [0x1E7798, sdata, Z/ul/ul/source/mv2ext]
       - [0x1E779C, sdata, E/tam/ps2/sppbx/ktact]
@@ -278,6 +287,7 @@ segments:
       - [0x1E79A0, sdata, E/tam/ps2/sppbx/kncore]
       - [0x1E79B4, sdata, E/tam/ps2/sppbx/tiutill]
       - [0x1E79B8, sdata, E/tam/ps2/sppbx/tievent]
+      # - [0x1E7A00, sdata, sdk_lib_sdata]
       # sdata right before sbss
 
       # Sbss section (Same location as _fbss)
@@ -370,14 +380,14 @@ segments:
       - { type: bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }
       # - { type: bss, vram: 0x3C9900, name: vubss, size: 0x75C } # 2C9980 # 0x75C bytes remaining in bss
       # - [1E7A00, databin] # after @771
-  - [0x1E7A00, databin, shstrtab]
-  - [0x1E7A60, databin, strtab]
-  - [0x1FF7C0, databin, symtab]
-  - [0x2209F0, databin, debug]
-  - [0x456D60, databin, line]
-  - [0x50C370, databin, mwcats]
-  - [0x5102B0, databin, relmain]
-  - [0x586318, databin, comment]
-  - [0x586344, databin, reginfo]
+  - [0x1E7A00, bin, shstrtab]
+  - [0x1E7A60, bin, strtab]
+  - [0x1FF7C0, bin, symtab]
+  - [0x2209F0, bin, debug]
+  - [0x456D60, bin, line]
+  - [0x50C370, bin, mwcats]
+  - [0x5102B0, bin, relmain]
+  - [0x586318, bin, comment]
+  - [0x586344, bin, reginfo]
   - [0x58635C, bin, end]
   - [0x58653C]

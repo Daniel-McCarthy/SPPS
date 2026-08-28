@@ -5,10 +5,11 @@ import glob
 import argparse
 import os
 
-def get_section_sizes(obj_file):
+def get_section_sizes(obj_file, objdump_path):
 	"""Return a dict of section sizes from objdump output."""
+	objdump = 'objdump' if not objdump_path else objdump_path
 	result = subprocess.run(
-		['objdump', '-h', obj_file],
+		[objdump, '-h', obj_file],
 		capture_output=True,
 		text=True,
 		check=True
@@ -23,11 +24,12 @@ def get_section_sizes(obj_file):
 			sizes[section_name] = int(size_hex, 16)
 	return sizes
 
-def remove_section(obj_file, section):
+def remove_section(obj_file, section, objcopy_path):
 	"""Use objcopy to remove the section from the object file."""
+	objcopy = 'mipsel-linux-gnu-objcopy' if not objcopy_path else objcopy_path
 	print(f"[*] Removing section '{section}' from {obj_file}")
 	subprocess.run(
-		['mipsel-linux-gnu-objcopy', f'--remove-section=.{section}', obj_file],
+		[objcopy, f'--remove-section=.{section}', obj_file],
 		check=True
 	)
 
@@ -35,10 +37,14 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('extension', help='File extension for object files (e.g. .bss.s.o)')
 	parser.add_argument('section', help='Section name to remove if empty (e.g. bss)')
+	parser.add_argument('--objdump_path', help='Optional path to objdump to override use of mipsel-gnu-linux-objdump')
+	parser.add_argument('--objcopy_path', help='Optional path to objcopy to override use of mipsel-gnu-linux-objcopy')
 	args = parser.parse_args()
 
 	extension = args.extension
 	section = args.section
+	objdump_path = args.objdump_path
+	objcopy_path = args.objcopy_path
 	base_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
 	build_dir = os.path.join(base_dir, 'build')
 
@@ -61,13 +67,13 @@ def main():
 
 	for file in files:
 		try:
-			sizes = get_section_sizes(file)
+			sizes = get_section_sizes(file, objdump_path)
 			if f".{section}" not in sizes:
 				continue
 
 			size = sizes[f".{section}"]
 			if size == 0:
-				remove_section(file, section)
+				remove_section(file, section, objcopy_path)
 			else:
 				print(f"WARNING: {file} contains non-empty '.{section}' ({size} bytes), not removing.")
 		except subprocess.CalledProcessError as e:

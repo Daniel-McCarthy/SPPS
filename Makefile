@@ -18,6 +18,16 @@ US_UNDEF_FUNCS_AUTO := $(US_DIR)/undefined_funcs_auto.yaml
 US_SRC_SPPBX_DIR := $(US_SRC_DIR)/E/tam/ps2/sppbx
 US_SRC_SOURCE_DIR := $(US_SRC_DIR)/Z/ul/ul/source
 
+JP_DIR 			:= config/SLPM_65198
+JP_OUTPUT_DIR 	:= config/SLPM_65198/out
+JP_ASSETS_DIR	:= config/SLPM_65198/out/assets
+JP_ASM_DIR 		:= config/SLPM_65198/out/asm
+JP_SRC_DIR		:= src/SLPM_65198
+JP_YAML_FILE	:= config/SLPM_65198/SPPS_JP.yaml
+JP_ROM_FILE		:= config/SLPM_65198/SLPM_651.98
+JP_UNDEF_SYMS_AUTO 	:= $(JP_DIR)/undefined_syms_auto.yaml
+JP_UNDEF_FUNCS_AUTO := $(JP_DIR)/undefined_funcs_auto.yaml
+
 BUILD_DIR		:= build
 OUTPUT_ELF		:= $(BUILD_DIR)/SLUS_201.99.elf
 
@@ -30,6 +40,8 @@ OBJDUMP         := $(BINUTILS_DIR)objdump
 GCC             := $(BINUTILS_DIR)gcc
 STRIP           := $(BINUTILS_DIR)strip
 
+REMOVE_SECTION_ARGS := --objcopy_path $(OBJCOPY) --objdump_path $(OBJDUMP)
+
 AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections -mno-pdr
 
 PYTHON 	:= python3
@@ -39,15 +51,10 @@ PIP 	:= $(PYTHON) -m pip
 WIBO := tools/wibo/wibo
 
 COMPILER_LOCATION := tools/compiler/MWCCPS2-2.4
-COMPILER_PS2SUPPORT_DIR := $(COMPILER_LOCATION)/PS2_Support
-MWLibraries		  := $(COMPILER_LOCATION)/Stationery/PlayStation2_-_2.0.0/c
-MWCIncludes		  := $(COMPILER_PS2SUPPORT_DIR)
-export MWLibraries
-export MWCIncludes
 
-MWCC_PATH := $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwccps2.exe
+MWCC_PATH := $(COMPILER_LOCATION)/mwccps2.exe
 MWCC := $(WIBO) $(MWCC_PATH)
-MWLD := $(WIBO) $(COMPILER_LOCATION)/PS2_Tools/Command_Line_Tools/mwldps2.exe
+MWLD := $(WIBO) $(COMPILER_LOCATION)/mwldps2.exe
 MWCC_ARGS := -Iinclude -O0,p -sym on -char unsigned -str readonly
 MWCCGAP := $(PYTHON) tools/mwccgap/mwccgap.py
 MWCCGAP_ARGS := --mwcc-path $(MWCC_PATH) --as-path $(AS) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
@@ -70,6 +77,11 @@ install:
 	$(PIP) install -r requirements.txt
 	$(MAKE) download-wibo
 	$(MAKE) download-decompals-binutils
+	$(MAKE) download-mwcc
+
+# Make install-dev - Installs Python dev dependencies and other tools purely for development needs (not essential for building).
+	$(PIP) install -r requirements-dev.txt
+	$(MAKE) download-coddog
 
 # Make splat-us - Runs Splat for the US version of SPPS.
 splat-us:
@@ -77,16 +89,12 @@ splat-us:
 	@echo "Running Splat for US 201.99"
 	$(PYTHON) -m splat split ./$(US_YAML_FILE)
 
-# Make build-us - Builds the US version of SPPS.
-build-us:
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/main.c -o ./$(BUILD_OBJS_DIR)/main.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/gmpad.c -o ./$(BUILD_OBJS_DIR)/gmpad.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmenu.c -o ./$(BUILD_OBJS_DIR)/ktmenu.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/ktmnufnc.c -o ./$(BUILD_OBJS_DIR)/ktmnufnc.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/spinit.c -o ./$(BUILD_OBJS_DIR)/spinit.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SPPBX_DIR)/tmlink.c -o ./$(BUILD_OBJS_DIR)/tmlink.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/cdvd.c -o ./$(BUILD_OBJS_DIR)/cdvd.o
-	@$(MWCC) -c $(MWCC_ARGS) $(US_SRC_SOURCE_DIR)/mcard.c -o ./$(BUILD_OBJS_DIR)/mcard.o
+# Make splat-jp - Runs Splat for the Japanese version of SPPS.
+splat-jp:
+	$(MAKE) clean-jp
+	@echo "Running Splat for SLPM 651.98"
+	$(PYTHON) -m splat split ./$(JP_YAML_FILE)
+
 # Converts paths in the linker script from full paths to relative from the build dir (This is done at linking time)
 fix-linker-paths:
 	@echo "Fixing linker paths"
@@ -117,9 +125,6 @@ $(BUILD_DIR)/%.c.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(MWCCGAP) $< $@ $(MWCCGAP_ARGS)
 
-# Pattern: to build a .elf we need all the .o files
-$(OUTPUT_ELF): $(C_O_FILES) $(ASM_O_FILES)
-	$(GNULD) -EL -T $(US_LD_SCRIPT) -T $(US_UNDEF_SYMS_AUTO) -T $(US_UNDEF_FUNCS_AUTO) -o $@ $^
 
 
 # Cleans splat related temporary files
@@ -130,6 +135,14 @@ clean-us:
 	$(RM) $(US_DIR)/undefined_syms_auto.yaml
 	$(RM) -r .splat/
 	$(RM) -r .splache $(US_DIR)/.splache
+
+clean-jp:
+	@echo "Cleaning output and build directories"
+	$(RM) -r $(JP_OUTPUT_DIR)/ $(JP_DIR)/.splat/
+	$(RM) $(JP_DIR)/undefined_funcs_auto.yaml
+	$(RM) $(JP_DIR)/undefined_syms_auto.yaml
+	$(RM) -r .splat/
+	$(RM) -r .splache $(JP_DIR)/.splache
 
 # Cleans the full build directory
 clean-build-dir:
@@ -149,7 +162,7 @@ clean-asm-objects:
 # Runs the MWLD linker to create an ELF using the generic MWLD linker script.
 mwld:
 	@echo "Running mwld"
-	$(MWLD) -map -nodead -o $(OUTPUT_ELF).2 $(INCLUDE_DIR)/mwcc.lcf \
+	$(MWLD) -g -map -m __start -nodead -o $(OUTPUT_ELF).2 $(INCLUDE_DIR)/mwcc.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF).2 > $(OUTPUT_ELF).2.sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
@@ -174,7 +187,7 @@ mwld:
 # Runs the MWLD linker to create an ELF using the our generated .lcf file.
 mwld-convert:
 	@echo "Running mwld"
-	$(MWLD) -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
+	$(MWLD) -g -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(BUILD_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
@@ -198,13 +211,13 @@ mwld-convert:
 
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 remove-unneeded-sections:
-	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" bss
-	$(PYTHON) tools/Scripts/remove_object_section.py ".s.o" data
-	$(PYTHON) tools/Scripts/remove_object_section.py ".sbss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".bss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".sdata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".rodata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py ".data.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" bss
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" data
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sbss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".bss.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sdata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".rodata.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".data.s.o" text
 
 remove-unneeded-objects:
 	$(RM) $(BUILD_DIR)/data/elf_header.s.o
@@ -258,6 +271,11 @@ rebuild-full:
 	$(MAKE) rebuild
 	$(MAKE) mwld-convert
 	$(MAKE) build-iso-with-mkiso-script
+
+# Generates a new build and generates the MWLD .lcf linker script
+rebuild-link:
+	$(MAKE) rebuild
+	$(MAKE) mwld-convert
 
 mwccgap:
 	@echo "Running mwccgap"
@@ -370,6 +388,23 @@ download-wibo:
 	wget -P ./tools/wibo/ https://github.com/decompals/wibo/releases/download/0.6.16/wibo
 	chmod +x $(WIBO)
 
+# Optional: Downloads coddog for function matching functionality for development
+download-coddog:
+	@echo Downloading coddog
+	-@mkdir tools/coddog
+	wget https://github.com/ethteck/coddog/releases/download/0.4.0/coddog_0.4.0_x86_64-unknown-linux-musl.tar.gz
+	@echo "📦 Extracting coddog..."
+	7z x coddog_0.4.0_x86_64-unknown-linux-musl.tar.gz >/dev/null;
+	7z x coddog_0.4.0_x86_64-unknown-linux-musl.tar -o./tools/coddog >/dev/null;
+	-$(RM) "coddog_0.4.0_x86_64-unknown-linux-musl.tar.gz"
+	-$(RM) "coddog_0.4.0_x86_64-unknown-linux-musl.tar"
+
+
 setup-venv:
 	$(PYTHON) -m venv venv
 	$(MAKE) venv
+
+# Runs spimdisasm against the Japanese version of SPPS generating asm enriched with our symbol_addresses.txt
+spim-jp:
+	$(PYTHON) -m spimdisasm elfObjDisasm $(JP_ROM_FILE) $(JP_DIR) --symbol-addrs $(JP_DIR)/symbol_addresses.txt
+	mv $(JP_DIR)/SLPM_651_.text.s $(JP_DIR)/SLPM_65198-spim-w-symbols.txt

@@ -1,0 +1,157 @@
+# The NTSC-UJ release of SPPS (651.98) - Configuration for splat
+name: SPPS 651-98 (US)
+sha1: 4bef9b618837a84ffc1f6db7b1018ee459c56771
+options:
+  basename: SLPM_651.98
+  target_path: ./config/SLPM_65198/SLPM_651.98
+  platform: ps2
+  compiler: MWCCPS2
+  endianness: little
+  gp_value: 0x2FD6F0
+
+  base_path: ../../
+  ld_script_path: ./config/SLPM_65198/out/SLPM_651.98.ld
+  asm_path: ./config/SLPM_65198/out/asm
+  asset_path: ./config/SLPM_65198/out/assets
+  build_path: ./build
+  src_path: ./src/SLPM_65198/
+
+  create_undefined_funcs_auto: True
+  undefined_funcs_auto_path: ./config/SLPM_65198/undefined_funcs_auto.yaml
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: ./config/SLPM_65198/undefined_syms_auto.yaml
+  symbol_addrs_path: ./config/SLPM_65198/symbol_addresses.txt
+  extensions_path: ./tools/splat_ext
+  section_order: [".text", ".data", ".rodata", ".sdata", ".sbss", ".bss"]
+  subalign: 8
+  disasm_unknown: True
+  named_regs_for_c_funcs: False
+  use_legacy_include_asm: False
+  asm_function_macro: glabel
+  asm_jtbl_label_macro: jlabel
+  asm_data_macro: dlabel
+  asm_inc_header: |
+    .set noat    /* allow use of $at register from MWCC */
+    .set ACC, $ACC
+    .set Q, $Q
+
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  find_file_boundaries: True
+  pair_rodata_to_text: True
+  auto_decompile_empty_functions: True
+  do_c_func_detection: True
+  suggestion_rodata_section_start: True
+  migrate_rodata_to_functions: True
+
+segments:
+  - [0, bin, elf_header]
+  - name: main
+    type: code
+    start: 0x0080
+    vram: 0x100000
+    bss_size: 0xE1F80 # (Comes from __bss_end -_fbss)
+    subsegments:
+      - [0x000080, asm, crt0]
+      - [0x000150, asm, sdk]
+      - [0x028380, asm, E/tam/ps2/sppbx/akEfct]
+      - [0x02EF10, asm, E/tam/ps2/sppbx/akEvEfct]
+      - [0x032E70, asm, E/tam/ps2/sppbx/akSelEff]
+      - [0x033CD0, asm, E/tam/ps2/sppbx/akShadow]
+      - [0x034AB0, asm, E/tam/ps2/sppbx/akSpSub]
+      - [0x035070, asm, E/tam/ps2/sppbx/aychrsel]
+      - [0x043570, asm, E/tam/ps2/sppbx/aycomfnk]
+      - [0x0460C0, asm, E/tam/ps2/sppbx/aycreate]
+      - [0x04FEB0, asm, E/tam/ps2/sppbx/aymcard]
+      - [0x05A060, asm, E/tam/ps2/sppbx/aymodsel]
+      - [0x05D130, asm, E/tam/ps2/sppbx/aymovie]
+      - [0x05DC50, asm, E/tam/ps2/sppbx/ayoption]
+      - [0x06E0A0, asm, E/tam/ps2/sppbx/ayresult]
+      - [0x07D380, asm, E/tam/ps2/sppbx/ayselect]
+      - [0x07DFF0, asm, E/tam/ps2/sppbx/gmpad]
+      - [0x07E570, asm, E/tam/ps2/sppbx/kncamera]
+      - [0x0836C0, asm, E/tam/ps2/sppbx/kncore]
+      - [0x085800, asm, E/tam/ps2/sppbx/knreplay]
+      - [0x08BB10, asm, E/tam/ps2/sppbx/ktact]
+      - [0x0AD0D0, asm, E/tam/ps2/sppbx/ktmnufnc]
+      - [0x0AD5C0, asm, E/tam/ps2/sppbx/ktmot]
+      - [0x0B1A20, asm, E/tam/ps2/sppbx/ktrider]
+      - [0x0B4AC0, asm, E/tam/ps2/sppbx/sbcore]
+      - [0x0B8B70, asm, E/tam/ps2/sppbx/maanim]
+      - [0x0C0690, asm, E/tam/ps2/sppbx/main]
+      - [0x0C18D0, asm, E/tam/ps2/sppbx/unknown_font]
+      - [0x0C84C0, asm, E/tam/ps2/sppbx/nmact]
+      - [0x0CAFD0, asm, E/tam/ps2/sppbx/nmbgm]
+      - [0x0CC050, asm, E/tam/ps2/sppbx/nmdisp]
+      - [0x101B30, asm, E/tam/ps2/sppbx/nmdraw]
+      - [0x107B50, asm, E/tam/ps2/sppbx/nmevent]
+      - [0x107F70, asm, E/tam/ps2/sppbx/nmfont]
+      - [0x10C740, asm, E/tam/ps2/sppbx/nmsnd]
+      - [0x10DAD0, asm, E/tam/ps2/sppbx/nmsq]
+      - [0x10EBC0, asm, E/tam/ps2/sppbx/nmtrick]
+      - [0x114460, asm, E/tam/ps2/sppbx/nmvc]
+      - [0x115780, asm, E/tam/ps2/sppbx/spev01]
+      - [0x120EF0, asm, E/tam/ps2/sppbx/spev02]
+      - [0x12C1B0, asm, E/tam/ps2/sppbx/spev03]
+      - [0x133A70, asm, E/tam/ps2/sppbx/spev04]
+      - [0x145500, asm, E/tam/ps2/sppbx/spev05]
+      - [0x14EA10, asm, E/tam/ps2/sppbx/spev06]
+      - [0x155D50, asm, E/tam/ps2/sppbx/spev07]
+      - [0x15D990, asm, E/tam/ps2/sppbx/spev08]
+      - [0x1633F0, asm, E/tam/ps2/sppbx/spfree]
+      - [0x169FF0, asm, E/tam/ps2/sppbx/spinit]
+      - [0x16AE70, asm, E/tam/ps2/sppbx/spload]
+      - [0x177F80, asm, E/tam/ps2/sppbx/tieffect]
+      - [0x17D940, asm, E/tam/ps2/sppbx/tievent]
+      - [0x182240, asm, E/tam/ps2/sppbx/tiutill]
+      - [0x182750, asm, E/tam/ps2/sppbx/tmalpha]
+      - [0x182AF0, asm, E/tam/ps2/sppbx/tmcrs]
+      - [0x195450, asm, E/tam/ps2/sppbx/tmetc]
+      - [0x195D20, asm, E/tam/ps2/sppbx/tmevent]
+      - [0x19A5A0, asm, E/tam/ps2/sppbx/tmgraph]
+      - [0x19BD00, asm, E/tam/ps2/sppbx/tmlink]
+      - [0x19BD90, asm, Z/ul/ul/source/cdvd]
+      - [0x19C990, asm, Z/ul/ul/source/coord]
+      - [0x19CC50, asm, Z/ul/ul/source/gif]
+      - [0x19CE50, asm, Z/ul/ul/source/gifpkt]
+      - [0x19D2B0, asm, Z/ul/ul/source/graph]
+      - [0x1A03B0, asm, Z/ul/ul/source/heap]
+      - [0x1A0860, asm, Z/ul/ul/source/mcard]
+      - [0x1A2290, asm, Z/ul/ul/source/mdlpr]
+      - [0x1A2660, asm, Z/ul/ul/source/mdlpra]
+      - [0x1A2DF0, asm, Z/ul/ul/source/mdlprAmb]
+      - [0x1A2FC0, asm, Z/ul/ul/source/mdlprEnv]
+      - [0x1A33B0, asm, Z/ul/ul/source/mdlprHlt]
+      - [0x1A3800, asm, Z/ul/ul/source/mdlprSdw]
+      - [0x1A3B30, asm, Z/ul/ul/source/model]
+      - [0x1A4CB0, asm, Z/ul/ul/source/pad]
+      - [0x1A81C0, asm, Z/ul/ul/source/sd]
+      - [0x1A87A0, asm, Z/ul/ul/source/sprintf]
+      - [0x1A9150, asm, Z/ul/ul/source/system]
+      - [0x1A9620, asm, Z/ul/ul/source/vif1]
+      - [0x1A9690, asm, Z/ul/ul/source/mv2ext]
+      - [0x1AE030, asm, Z/ul/ul/source/movie2]
+      - [0x1AED80, asm, Z/ul/ul/source/graph2]
+      - [0x1AF1E0, asm, Z/ul/ul/source/TEX]
+      - [0x1B1510, asm, Z/ul/ul/source/mdlprTon]
+      - [0x1B1AF0, asm, Z/ul/ul/source/vumodel] 
+      - [0x1B3640, asm, Z/ul/ul/source/xmem]
+      - [0x1B3CD0, asm, Z/ul/ul/source/spr]
+      - [0x1B3DA0, asm, Z/ul/ul/source/strconv]
+      # Library/SDK
+      - [0x1B40A8, asm, sdk2]
+
+      # Vutext
+      - [0x1B4800, data, vutext] # .vutext 0x1B4800-0x1AF6AF
+
+      # SDK/Lib data start
+      - [0x1BBF10, data, data_start]
+      # SDK/Lib data end
+      # Game data
+  - [0x1F5A00, bin, shstrtab]
+  # - [0x000000, bin, strtab]
+  # - [0x000000, bin, symtab]
+  - [0x1F5A2D, bin, comment]
+  - [0x1F5A58, bin, reginfo]
+  - [0x1F5A70, bin, end]
+  - [0x1F5BB0]
