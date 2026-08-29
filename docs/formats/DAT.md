@@ -4,6 +4,8 @@ The `DATA.DAT` file is a custom archive format used by all versions of Shaun Pal
 
 The file consists of a header, an array of entry descriptors, and the data of all files. The header is 16 bytes and contains a version number, the number of entries, the offset to the sectored data area, and a reserved field. Each entry descriptor is 8 bytes, containing the offset and size of a file's data in sectors.
 
+The `*.DAT*` file does not include file names nor identifiers for the entries. The game at times hardcodes memory locations in the `.DAT` file and attributes helpful names to that section of data, but there is no such information in the archive.
+
 The game accesses `DATA.DAT` via functions in `cdvd.c`, which correspond to the `VuldvdHead` and `VuldvdData` structures.
 
 This file is stored in the root of the game disc as `DATA.DAT` (though can be in folders for the demo releases).
@@ -50,5 +52,13 @@ To locate a specific file's data:
 
 ## Sector Alignment
 
-The format uses 2048-byte sectors, matching the PS2's CD/DVD sector size. This alignment optimizes data retrieval from the optical drive. Note that the header and entry table themselves may not be sector-aligned, but all file data within the archive starts on sector boundaries.
+The format uses 2048 byte sectors, matching the PS2's CD/DVD sector size. This alignment optimizes data retrieval for disk reads. Note that the header and entry table themselves are not aligned, but all file data within the archive starts on sector boundaries.
 
+## Usage in SPPS
+
+The game accesses `DATA.DAT` through CD/DVD read functions in `cdvd.c`. The header structure corresponds to the `VuldvdHead` and `VuldvdData` structures used by the game's file system layer. When the game needs a specific resource, it:
+1. Looks up the entry by index (known from internal tables)
+2. Calculates the data location using the sector-based offsets and sizes
+3. Reads the raw data directly from the archive
+
+An entry's data will be one of a few container formats: [LINK.md](LINK.md) for the `FL!!` multiblock wrapper, [VMD.md](DAT_Entry_Formats/VMD.md) for model data, [UTD.md](DAT_Entry_Formats/UTD.md) for texture data, [RAW.md](DAT_Entry_Formats/RAW.md) for everything else, and [course/course_data.md](course/course_data.md) for how a level's course components are structured together.
