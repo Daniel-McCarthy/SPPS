@@ -10,6 +10,8 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+import yaml
+
 # Suffixes Splat gives the per-section files that belong to a text subsegment.
 SECTION_SUFFIXES = (
     ".data",
@@ -30,10 +32,26 @@ def strip_section_suffix(stem: str) -> str:
     return stem
 
 
-def collect_units(asm_dir: Path, src_dir: Path):
+def load_c_units(splat_yaml_path):
+    """Names of the subsegments the splat config says are built from C."""
+    if not splat_yaml_path:
+        return None
+    with open(splat_yaml_path) as handle:
+        config = yaml.safe_load(handle) or {}
+    names = set()
+    for segment in config.get("segments", []):
+        if not isinstance(segment, dict):
+            continue
+        for entry in segment.get("subsegments", []):
+            if isinstance(entry, list) and len(entry) >= 3 and entry[1] == "c":
+                names.add(str(entry[2]))
+    return names
+
+
+def collect_units(asm_dir: Path, src_dir: Path, c_units):
     """Map each translation unit to its assembly parts, text first."""
     data_dir = asm_dir / "data"
-    units = defaultdict(lambda: {"text": None, "sections": []})
+    units = defaultdict(lambda: {"text": None, "disasm_text": None, "sections": []})
 
     for source in sorted(asm_dir.rglob("*.s")):
         if "nonmatchings" in source.parts:
@@ -46,15 +64,14 @@ def collect_units(asm_dir: Path, src_dir: Path):
         else:
             relative = source.relative_to(asm_dir)
             unit = str(relative.with_suffix(""))
-            # A `c` subsegment also gets a whole-translation-unit disassembly
-            # here for objdiff to compare against; it is not part of the link.
-            if (src_dir / f"{unit}.c").is_file():
-                continue
-            units[unit]["text"] = source
+            units[unit]["disasm_text"] = source
+            if unit not in c_units:
+                units[unit]["text"] = source
 
     for source in sorted(src_dir.rglob("*.c")):
         unit = str(source.relative_to(src_dir).with_suffix(""))
-        units[unit]  # ensure the unit exists even with no assembly siblings
+        if unit in c_units:
+            units[unit]
 
     return units
 
@@ -76,6 +93,8 @@ def main():
     parser.add_argument("--as-flags", default="", help="Flags to pass to the assembler.")
     parser.add_argument("--ld", required=True, help="Path to a MIPS-aware ld.")
     parser.add_argument("--work-dir", required=True, help="Scratch directory for concatenated sources.")
+    parser.add_argument("--splat-yaml-path", required=True, help="Splat config, which decides who links from C.")
+    parser.add_argument("--target-out-dir", help="Also build an objdiff target object per unit, always from the original's disassembly.")
     args = parser.parse_args()
 
     asm_dir = Path(args.asm_dir).resolve()
@@ -92,7 +111,8 @@ def main():
         if directory.exists():
             shutil.rmtree(directory)
 
-    units = collect_units(asm_dir, src_dir)
+    c_units = load_c_units(args.splat_yaml_path)
+    units = collect_units(asm_dir, src_dir, c_units)
 
     assembled = 0
     combined = 0
@@ -100,10 +120,10 @@ def main():
         destination = out_dir / f"{unit}.o"
         destination.parent.mkdir(parents=True, exist_ok=True)
 
-        c_object = c_obj_dir / f"{unit}.o"
+        c_object = c_obj_dir / f"{unit}.o" if unit in c_units else None
         sources = ([parts["text"]] if parts["text"] else []) + parts["sections"]
 
-        if c_object.is_file():
+        if c_object is not None and c_object.is_file():
             # Compiled translation unit: combine it with any assembly siblings.
             if not parts["sections"]:
                 shutil.copy2(c_object, destination)
@@ -132,6 +152,29 @@ def main():
 
     print(f"Assembled {assembled} unit(s) from concatenated sources, combined {combined} compiled unit(s)")
     print(f"Link objects written to {out_dir}")
+
+    if not args.target_out_dir:
+        return
+
+    target_dir = Path(args.target_out_dir).resolve()
+    if target_dir.exists():
+        shutil.rmtree(target_dir)
+
+    targets = 0
+    for unit, parts in sorted(units.items()):
+        sources = ([parts["disasm_text"]] if parts["disasm_text"] else []) + parts["sections"]
+        if not sources:
+            continue
+
+        destination = target_dir / f"{unit}.o"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        concatenated = work_dir / f"{unit}.target.s"
+        concatenated.parent.mkdir(parents=True, exist_ok=True)
+        concatenated.write_text("".join(p.read_text() for p in sources))
+        run([args.as_path, *as_flags, "-o", str(destination), str(concatenated)])
+        targets += 1
+
+    print(f"Built {targets} objdiff target object(s) in {target_dir}")
 
 
 if __name__ == "__main__":

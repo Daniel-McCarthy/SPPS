@@ -25,13 +25,10 @@ SECTIONS
 
 	.main	:
 	{
-		# We can define gp here directly
-		_gp = 0x2EF6F0;
-
 		#	text sections
-		crt0.s.o	(.text)
+		crt0.o	(.text)
 		.	= ALIGN(0x10);
-		ALIGNALL(0x8);
+		ALIGNALL(0x10);
 
 		######### (.text) .o files ###################
 
@@ -50,7 +47,7 @@ SECTIONS
 
 		######### (.rodata) .o files ###################
 
-		crt0.s.o (.rodata)
+		crt0.o (.rodata)
 
 		#<REPLACE_W_RODATA_FILES>
 
@@ -58,8 +55,16 @@ SECTIONS
 		#RODATA FILE (.rodata)
 		# TODO: Figure out pattern for alignall amount, lets just stick to 0x8 for now
 
+		#<REPLACE_W_GCC_EXCEPT_TABLE_FILES>
+
+		#<REPLACE_W_LIT8_FILES>
+
+		#<REPLACE_W_LIT4_FILES>
+
 		__data_end	= .;
 		__data_size	= __data_end - __data_start;
+
+		_gp	= ALIGN(128) + 0x7FF0;
 
 		######### (.sdata) .o files ###################
 
@@ -75,7 +80,7 @@ SECTIONS
 
 		######### (.bss) .o files ###################
 		__bss_start	= .;
-		#crt0.s.o (.bss)
+		#crt0.o (.bss)
 		#<REPLACE_W_BSS_FILES>
 		# TODO: Include (COMMON) for .C files
 		__bss_end	= .;
