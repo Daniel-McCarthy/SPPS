@@ -95,11 +95,6 @@ splat-jp:
 	@echo "Running Splat for SLPM 651.98"
 	$(PYTHON) -m splat split ./$(JP_YAML_FILE)
 
-# Converts paths in the linker script from full paths to relative from the build dir (This is done at linking time)
-fix-linker-paths:
-	@echo "Fixing linker paths"
-	@$(PYTHON) tools/Scripts/update_linker_paths.py $(US_LD_SCRIPT) $(US_ASM_DIR) $(US_SRC_DIR)
-
 # Clean the build dir then compile and assemble the .c and .s files into .o files
 build: clean-build-dir compile assemble
 
@@ -109,8 +104,6 @@ compile:  $(C_O_FILES)
 # Assemble a .s file for each needed s.o file expected the build dir
 assemble: $(ASM_O_FILES)
 
-# Rule: when linking, we need a .elf file
-link: fix-linker-paths $(OUTPUT_ELF)
 
 # Make .o from .s in build dir
 # Assemble pattern
