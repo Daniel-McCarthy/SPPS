@@ -9,7 +9,7 @@ US_OUTPUT_DIR 	:= config/SLUS_20199/out
 US_ASSETS_DIR	:= config/SLUS_20199/out/assets
 US_ASM_DIR 		:= config/SLUS_20199/out/asm
 US_SRC_DIR		:= src/SLUS_20199
-US_YAML_FILE	:= config/SLUS_20199/SPPS_US.yaml
+US_YAML_FILE	:= config/SLUS_20199/SLUS_201.99.yaml
 US_ROM_FILE		:= config/SLUS_20199/SLUS_201.99
 US_ISO_FILE		:= $(ISO_DIR)/SLUS_20199.iso
 US_UNDEF_SYMS_AUTO 	:= $(US_DIR)/undefined_syms_auto.yaml
@@ -95,11 +95,6 @@ splat-jp:
 	@echo "Running Splat for SLPM 651.98"
 	$(PYTHON) -m splat split ./$(JP_YAML_FILE)
 
-# Converts paths in the linker script from full paths to relative from the build dir (This is done at linking time)
-fix-linker-paths:
-	@echo "Fixing linker paths"
-	@$(PYTHON) tools/Scripts/update_linker_paths.py $(US_LD_SCRIPT) $(US_ASM_DIR) $(US_SRC_DIR)
-
 # Clean the build dir then compile and assemble the .c and .s files into .o files
 build: clean-build-dir compile assemble
 
@@ -109,8 +104,6 @@ compile:  $(C_O_FILES)
 # Assemble a .s file for each needed s.o file expected the build dir
 assemble: $(ASM_O_FILES)
 
-# Rule: when linking, we need a .elf file
-link: fix-linker-paths $(OUTPUT_ELF)
 
 # Make .o from .s in build dir
 # Assemble pattern

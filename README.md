@@ -29,7 +29,7 @@ To clone the Mwccgap submodule (if not cloned in with the git repo):
 `git submodule update --init --recursive`
 
 To run splat for the US version of the game, run at the root directory:
-`python3 -m splat split ./config/SLUS_20199/SPPS_US.yaml`
+`python3 -m splat split ./config/SLUS_20199/SLUS_201.99.yaml`
 Or with Make:
 `make splat-us`
 
