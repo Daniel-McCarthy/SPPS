@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/encounter/objdiff/main/config.schema.json",
+  "custom_make": "make",
+  "custom_args": [
+    "rebuild-link"
+  ],
+  "build_target": false,
+  "build_base": true,
+  "watch_patterns": [
+    "*.c",
+    "*.h",
+    "*.s",
+    "*.S",
+    "*.asm",
+    "*.inc",
+    "*.py",
+    "*.yml",
+    "*.txt",
+    "*.json"
+  ],
+  "units": [
+    {
+      "name": "main/MetroTRK/mslsupp",
+      "target_path": "build/asm/MetroTRK/mslsupp.o",
+      "base_path": "build/src/MetroTRK/mslsupp.o",
+      "metadata": {}
+    }
+  ]
+}
