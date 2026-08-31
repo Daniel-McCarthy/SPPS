@@ -1,0 +1,71 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: SLUS_201.99
+            elf: config/SLUS_20199/SLUS_201.99
+            splat_yaml: config/SLUS_20199/SLUS_201.99.yaml
+            url_secret: FILE_URL_USF
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full
+
+      - name: Install toolchain
+        run: make install
+
+      - name: Fetch the original ELF
+        env:
+          FILE_URL: ${{ secrets[matrix.url_secret] }}
+        run: |
+          if [ -z "$FILE_URL" ]; then
+            echo "Secret ${{ matrix.url_secret }} is not set."
+            exit 1
+          fi
+          curl -sSfL -o "${{ matrix.elf }}" "$FILE_URL"
+          expected=$(grep -m1 '^sha1:' "${{ matrix.splat_yaml }}" | awk '{print $2}')
+          actual=$(sha1sum "${{ matrix.elf }}" | cut -d' ' -f1)
+          if [ "$actual" != "$expected" ]; then
+            echo "Downloaded file sha1 $actual, expected $expected."
+            exit 1
+          fi
+
+      - name: Build
+        run: make rebuild-link
+
+      - name: Verify the build matches
+        run: make verify
+
+      - name: Generate progress report
+        run: make report
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.version }}_report
+          path: build/report.json
+          if-no-files-found: error

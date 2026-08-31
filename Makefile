@@ -69,6 +69,9 @@ ALL_S_FILES := $(shell find $(US_ASM_DIR) -name '*.s' -not -path *nonmatchings* 
 FULL_DISASM_S_FILES := $(patsubst $(US_SRC_DIR)/%.c,$(US_ASM_DIR)/%.s,$(C_FILES))
 S_FILES := $(filter-out $(FULL_DISASM_S_FILES),$(ALL_S_FILES))
 
+OBJDIFF_BASE_DIR := $(BUILD_DIR)/objdiff
+OBJDIFF_BASE_O_FILES := $(patsubst $(US_SRC_DIR)/%.c,$(OBJDIFF_BASE_DIR)/%.o,$(ALL_C_FILES))
+
 ASM_O_FILES := $(patsubst %.s,$(BUILD_DIR)/%.o,$(S_FILES))
 C_O_FILES := $(patsubst %.c,$(BUILD_DIR)/%.o,$(C_FILES))
 
@@ -83,8 +86,10 @@ install:
 	$(MAKE) download-wibo
 	$(MAKE) download-decompals-binutils
 	$(MAKE) download-mwcc
+	$(MAKE) download-objdiff
 
 # Make install-dev - Installs Python dev dependencies and other tools purely for development needs (not essential for building).
+install-dev:
 	$(PIP) install -r requirements-dev.txt
 	$(MAKE) download-coddog
 
@@ -127,6 +132,11 @@ $(BUILD_DIR)/$(US_ASM_DIR)/%.o: $(US_ASM_DIR)/%.s
 $(BUILD_DIR)/$(US_SRC_DIR)/%.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(MWCCGAP) $< $@ $(MWCCGAP_ARGS)
+
+# objdiff base pattern: plain MWCC, no asm splicing.
+$(OBJDIFF_BASE_DIR)/%.o: $(US_SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(MWCC) $(MWCC_ARGS) -c -o $@ $<
 
 
 
@@ -213,6 +223,14 @@ mwld-convert:
 		exit 1; \
 	fi'
 
+# Fails if the loaded section does not match the original. The whole-ELF CRC
+# never matches, since MWLD writes its own symbol table and debug info.
+verify:
+	@$(OBJCOPY) -I elf32-little -O binary --only-section=main $(US_ROM_FILE) $(BUILD_DIR)/expected_main.bin
+	@$(OBJCOPY) -O binary --only-section=main $(OUTPUT_ELF) $(BUILD_DIR)/actual_main.bin
+	@cmp $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin \
+		&& echo "✅ main section matches the original ($$(stat -c%s $(BUILD_DIR)/actual_main.bin) bytes)"
+
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 STRIP_SECTIONS := .comment .reginfo .MIPS.abiflags .gnu.attributes
 
@@ -243,6 +261,22 @@ merge-objects:
 		--splat-yaml-path $(US_YAML_FILE) \
 		--target-out-dir $(TARGET_DIR)
 
+# Compile every .c with plain MWCC for objdiff to measure against.
+objdiff-base: $(OBJDIFF_BASE_O_FILES)
+
+# Regenerate objdiff.json from the splat config. Needs the target objects to
+# exist, so run it after a build.
+objdiff-config:
+	$(PYTHON) tools/Scripts/generate_objdiff_config.py \
+		--splat-yaml-path $(US_YAML_FILE) \
+		--target-dir $(TARGET_DIR) \
+		--base-dir $(OBJDIFF_BASE_DIR)
+
+# Generate the objdiff progress report, for upload to decomp.dev.
+report: objdiff-base objdiff-config
+	@echo "Generating progress report"
+	$(OBJDIFF_CLI) report generate -o $(REPORT_FILE)
+	@$(PYTHON) tools/Scripts/summarize_report.py $(REPORT_FILE)
 
 # Configure an MWLD .lcf file from the Splat generated GNU .ld file.
 convert-ld:
@@ -395,6 +429,14 @@ download-decompals-binutils:
 	-$(RM) "binutils-mips-ps2-decompals-linux-x86-64.tar"
 	@find tools/binutils -type f -exec chmod +x {} \;
 	@echo "✅ Decompals Binutils Download Done."
+
+OBJDIFF_VERSION := v3.8.1
+
+download-objdiff:
+	@echo Downloading objdiff-cli
+	-@mkdir -p $(dir $(OBJDIFF_CLI))
+	wget -O $(OBJDIFF_CLI) https://github.com/encounter/objdiff/releases/download/$(OBJDIFF_VERSION)/objdiff-cli-linux-x86_64
+	chmod +x $(OBJDIFF_CLI)
 
 download-wibo:
 	@echo Downloading wibo
