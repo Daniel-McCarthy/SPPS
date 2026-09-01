@@ -580,7 +580,7 @@
       "name": "E/tam/ps2/sppbx/nmsnd",
       "target_path": "build/target/E/tam/ps2/sppbx/nmsnd.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
