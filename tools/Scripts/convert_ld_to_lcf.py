@@ -20,7 +20,8 @@ PLACEHOLDERS = {
 	".bss": "#<REPLACE_W_BSS_FILES>",
 }
 
-RODATA_ALIGNALL = 0x8
+ALIGNED_SECTIONS = (".data", ".rodata", ".sdata")
+DEFAULT_ALIGNALL = 0x8
 
 
 def load_splat_options(yaml_path):
@@ -46,6 +47,29 @@ def load_splat_options(yaml_path):
 
 
 SECTION_SUFFIXES = (".data", ".rodata", ".sdata", ".sbss", ".bss", ".lit4", ".lit8", ".gcc_except_table")
+
+
+def section_alignments(config):
+	"""Map each object base name to the alignment its section needs.
+	"""
+	alignments = {}
+	for segment in config.get("segments", []):
+		if not isinstance(segment, dict):
+			continue
+		for entry in segment.get("subsegments", []):
+			if not isinstance(entry, list) or len(entry) < 3:
+				continue
+			address, kind, name = entry[0], str(entry[1]), str(entry[2])
+			if not kind.startswith("."):
+				kind = "." + kind
+			if kind not in ALIGNED_SECTIONS:
+				continue
+			align = 4
+			for candidate in (8, 16):
+				if address % candidate == 0:
+					align = candidate
+			alignments[(kind, os.path.basename(name) + ".o")] = align
+	return alignments
 
 
 def object_name(obj_path):
@@ -94,14 +118,15 @@ def collect_section_entries(ld_lines, asset_marker=None):
 	return entries
 
 
-def format_section_entries(section, object_names):
+def format_section_entries(section, object_names, alignments):
 	"""Render one section's object list as indented MWLD lcf lines."""
 	lines = []
 	for i, name in enumerate(object_names):
 		# The first line lands on an already-indented placeholder.
 		indent = "" if i == 0 else "\t\t"
-		if section == ".rodata":
-			lines.append(f"{indent}ALIGNALL({hex(RODATA_ALIGNALL)});\n")
+		if section in ALIGNED_SECTIONS:
+			align = alignments.get((section, name), DEFAULT_ALIGNALL)
+			lines.append(f"{indent}ALIGNALL({hex(align)});\n")
 			indent = "\t\t"
 		lines.append(f"{indent}{name}\t({section})\n")
 	return "".join(lines)
@@ -118,7 +143,10 @@ def main():
 	args = parser.parse_args()
 
 	base_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../"))
-	splat_options = load_splat_options(os.path.join(base_dir, args.splat_yaml_path))
+	yaml_path = os.path.join(base_dir, args.splat_yaml_path)
+	splat_options = load_splat_options(yaml_path)
+	with open(yaml_path, "r") as handle:
+		alignments = section_alignments(yaml.safe_load(handle))
 
 	if args.splat_ld_linker_path:
 		splat_linker_path = os.path.join(base_dir, args.splat_ld_linker_path)
@@ -144,7 +172,7 @@ def main():
 
 	updated_lines = template_lines
 	for section in SECTIONS:
-		rendered = format_section_entries(section, entries[section])
+		rendered = format_section_entries(section, entries[section], alignments)
 		updated_lines = [line.replace(PLACEHOLDERS[section], rendered) for line in updated_lines]
 
 	os.makedirs(build_dir, exist_ok=True)

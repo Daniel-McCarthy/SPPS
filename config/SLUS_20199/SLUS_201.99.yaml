@@ -97,6 +97,9 @@ options:
 
 
 segments:
+
+- [0x000000, bin, elf_header]
+
 - name: main
   type: code
   start: 0x000080

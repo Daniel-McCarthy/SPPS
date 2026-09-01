@@ -131,7 +131,7 @@ $(BUILD_DIR)/$(US_ASM_DIR)/%.o: $(US_ASM_DIR)/%.s
 # Compile pattern
 $(BUILD_DIR)/$(US_SRC_DIR)/%.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(MWCCGAP) $< $@ $(MWCCGAP_ARGS)
+	$(MWCC) $(MWCC_ARGS) -c -o $@ $<
 
 # objdiff base pattern: plain MWCC, no asm splicing.
 $(OBJDIFF_BASE_DIR)/%.o: $(US_SRC_DIR)/%.c

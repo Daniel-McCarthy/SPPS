@@ -40,7 +40,7 @@
       "name": "Z/ul/ul/source/cdvd",
       "target_path": "build/target/Z/ul/ul/source/cdvd.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
