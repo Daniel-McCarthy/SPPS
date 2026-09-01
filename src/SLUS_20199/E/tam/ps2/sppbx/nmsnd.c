@@ -417,16 +417,16 @@ signed int nmbgmCheckQue();
 
 // bss is emitted in reverse declaration order, so these descend.
 
-_sif_client_data vnmsndCd; // Address: 0x3C27C0
-unsigned int vnmsndRpcBuf[512]; // Address: 0x3C1FC0
+_sif_client_data vnmsndCd __attribute__((aligned(64))); // Address: 0x3C27C0
+unsigned int vnmsndRpcBuf[512] __attribute__((aligned(64))); // Address: 0x3C1FC0
 // Size: 0x40, DWARF: 0x129E2C
-VnmsndInit vnmsndInit; // Address: 0x3C1F80
+VnmsndInit vnmsndInit __attribute__((aligned(64))); // Address: 0x3C1F80
 // Size: 0x710, DWARF: 0x12A083
-VnmsndFrame vnmsndFrame; // Address: 0x3C1840
+VnmsndFrame vnmsndFrame __attribute__((aligned(64))); // Address: 0x3C1840
 // Size: 0x710, DWARF: 0x12A083
-VnmsndFrame vnmsndFrameSend; // Address: 0x3C1100
+VnmsndFrame vnmsndFrameSend __attribute__((aligned(64))); // Address: 0x3C1100
 // Size: 0x78, DWARF: 0x129591
-VnmsndResult vnmsndResult; // Address: 0x3C1080
+VnmsndResult vnmsndResult __attribute__((aligned(64))); // Address: 0x3C1080
 
 // Size: 0xA0, DWARF: 0x129B00
 extern VspenvGame* vspenvGame; // Address: 0x2E7B14

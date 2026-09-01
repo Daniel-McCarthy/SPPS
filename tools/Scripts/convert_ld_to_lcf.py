@@ -23,6 +23,7 @@ PLACEHOLDERS = {
 ALIGNED_SECTIONS = (".data", ".rodata", ".sdata")
 BOUNDARY_SECTIONS = ALIGNED_SECTIONS + (".sbss", ".bss")
 ALIGN_CANDIDATES = (4, 8, 16)
+TAIL_ALIGN_CANDIDATES = (4, 8, 16, 32, 64, 128)
 DEFAULT_ALIGNALL = 0x8
 DEFAULT_TAIL_ALIGN = 0x10
 COMPILED_ALIGNALL = {".data": 0x8, ".rodata": 0x8, ".sdata": 0x4}
