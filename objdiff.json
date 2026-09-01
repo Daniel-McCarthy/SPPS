@@ -30,11 +30,12 @@
       "name": "E/tam/ps2/sppbx/main",
       "target_path": "build/target/E/tam/ps2/sppbx/main.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/main.o"
     },
     {
       "name": "Z/ul/ul/source/cdvd",
@@ -101,11 +102,12 @@
       "name": "Z/ul/ul/source/mcard",
       "target_path": "build/target/Z/ul/ul/source/mcard.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mcard.o"
     },
     {
       "name": "Z/ul/ul/source/mdlpr",
@@ -402,21 +404,23 @@
       "name": "E/tam/ps2/sppbx/ktmnufnc",
       "target_path": "build/target/E/tam/ps2/sppbx/ktmnufnc.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ktmnufnc.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spinit",
       "target_path": "build/target/E/tam/ps2/sppbx/spinit.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/spinit.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spload",

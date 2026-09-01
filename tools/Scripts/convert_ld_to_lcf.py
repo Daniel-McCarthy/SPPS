@@ -21,7 +21,12 @@ PLACEHOLDERS = {
 }
 
 ALIGNED_SECTIONS = (".data", ".rodata", ".sdata")
+BOUNDARY_SECTIONS = ALIGNED_SECTIONS + (".sbss", ".bss")
+ALIGN_CANDIDATES = (4, 8, 16)
 DEFAULT_ALIGNALL = 0x8
+DEFAULT_TAIL_ALIGN = 0x10
+COMPILED_ALIGNALL = {".data": 0x8, ".rodata": 0x8, ".sdata": 0x4}
+DEFAULT_COMPILED_ALIGNALL = 0x4
 
 
 def load_splat_options(yaml_path):
@@ -49,26 +54,60 @@ def load_splat_options(yaml_path):
 SECTION_SUFFIXES = (".data", ".rodata", ".sdata", ".sbss", ".bss", ".lit4", ".lit8", ".gcc_except_table")
 
 
-def section_alignments(config):
-	"""Map each object base name to the alignment its section needs.
+def subsegment_sections(config):
+	"""Group the config's section subsegments by section, sorted by address.
+
+	Splat writes these two ways: `[0x1D9830, rodata, name]` and
+	`{ type: bss, vram: 0x2F2400, name: ... }`.
 	"""
-	alignments = {}
+	sections = {}
 	for segment in config.get("segments", []):
 		if not isinstance(segment, dict):
 			continue
 		for entry in segment.get("subsegments", []):
-			if not isinstance(entry, list) or len(entry) < 3:
+			if isinstance(entry, dict):
+				address, kind, name = entry.get("vram"), entry.get("type"), entry.get("name")
+			elif isinstance(entry, list) and len(entry) >= 3:
+				address, kind, name = entry[0], entry[1], entry[2]
+			else:
 				continue
-			address, kind, name = entry[0], str(entry[1]), str(entry[2])
+			if address is None or kind is None or name is None:
+				continue
+			kind = str(kind)
+			section = kind if kind.startswith(".") else "." + kind
+			if section not in BOUNDARY_SECTIONS:
+				continue
+			sections.setdefault(section, []).append((address, kind, str(name)))
+
+	for entries in sections.values():
+		entries.sort()
+	return sections
+
+
+def alignment_of(address):
+	"""The largest alignment the original actually gives this address."""
+	divisors = [candidate for candidate in ALIGN_CANDIDATES if address % candidate == 0]
+	return max(divisors) if divisors else ALIGN_CANDIDATES[0]
+
+
+def section_alignments(config):
+	alignments = {}
+	for section, entries in subsegment_sections(config).items():
+		for address, _, name in entries:
+			alignments[(section, os.path.basename(name) + ".o")] = alignment_of(address)
+	return alignments
+
+
+def tail_alignments(config):
+	alignments = {}
+	for section, entries in subsegment_sections(config).items():
+		for index, (_, kind, name) in enumerate(entries):
 			if not kind.startswith("."):
-				kind = "." + kind
-			if kind not in ALIGNED_SECTIONS:
 				continue
-			align = 4
-			for candidate in (8, 16):
-				if address % candidate == 0:
-					align = candidate
-			alignments[(kind, os.path.basename(name) + ".o")] = align
+			align = DEFAULT_TAIL_ALIGN
+			if index + 1 < len(entries):
+				align = alignment_of(entries[index + 1][0])
+			alignments[(section, os.path.basename(name) + ".o")] = align
 	return alignments
 
 
@@ -118,17 +157,26 @@ def collect_section_entries(ld_lines, asset_marker=None):
 	return entries
 
 
-def format_section_entries(section, object_names, alignments):
 	"""Render one section's object list as indented MWLD lcf lines."""
+def format_section_entries(section, object_names, starts, tails):
 	lines = []
 	for i, name in enumerate(object_names):
 		# The first line lands on an already-indented placeholder.
 		indent = "" if i == 0 else "\t\t"
+		tail = tails.get((section, name))
+
 		if section in ALIGNED_SECTIONS:
-			align = alignments.get((section, name), DEFAULT_ALIGNALL)
-			lines.append(f"{indent}ALIGNALL({hex(align)});\n")
+			start = starts.get((section, name), DEFAULT_ALIGNALL)
+			lines.append(f"{indent}. = ALIGN({hex(start)});\n" if tail is not None
+				else f"{indent}ALIGNALL({hex(start)});\n")
 			indent = "\t\t"
+			if tail is not None:
+				floor = COMPILED_ALIGNALL.get(section, DEFAULT_COMPILED_ALIGNALL)
+				lines.append(f"{indent}ALIGNALL({hex(floor)});\n")
+
 		lines.append(f"{indent}{name}\t({section})\n")
+		if tail is not None:
+			lines.append(f"\t\t. = ALIGN({hex(tail)});\n")
 	return "".join(lines)
 
 
@@ -146,7 +194,9 @@ def main():
 	yaml_path = os.path.join(base_dir, args.splat_yaml_path)
 	splat_options = load_splat_options(yaml_path)
 	with open(yaml_path, "r") as handle:
-		alignments = section_alignments(yaml.safe_load(handle))
+		config = yaml.safe_load(handle)
+	starts = section_alignments(config)
+	tails = tail_alignments(config)
 
 	if args.splat_ld_linker_path:
 		splat_linker_path = os.path.join(base_dir, args.splat_ld_linker_path)
@@ -172,7 +222,7 @@ def main():
 
 	updated_lines = template_lines
 	for section in SECTIONS:
-		rendered = format_section_entries(section, entries[section], alignments)
+		rendered = format_section_entries(section, entries[section], starts, tails)
 		updated_lines = [line.replace(PLACEHOLDERS[section], rendered) for line in updated_lines]
 
 	os.makedirs(build_dir, exist_ok=True)

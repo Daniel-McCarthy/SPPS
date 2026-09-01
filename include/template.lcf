@@ -18,8 +18,9 @@ SECTIONS
 {
 	#	define for crt0
 	_heap_size	= -1;
-	_stack	= -1;
-	_stack_size	= 0x00100000;
+	# main references _stack, so it takes the original's value, not MWLD's -1.
+	_stack	= 0x01FF0000;
+	_stack_size	= 0x00010000;
 	#	define for lcf
 	_align_segment	= 0x80;
 

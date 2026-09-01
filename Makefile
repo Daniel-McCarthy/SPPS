@@ -206,30 +206,22 @@ mwld-convert:
 	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
 	
-	@bash -c ' \
-	if [ -f "$(OUTPUT_ELF)" ]; then \
-		echo "Built ELF: $(OUTPUT_ELF)"; \
-		expected_crc32=$$(7z h "$(US_ROM_FILE)" | sed -n "/CRC32/s/.*\([A-F0-9]\{8\}\).*/\1/p"); \
-		new_elf_crc32=$$(7z h "$(OUTPUT_ELF)" | sed -n "/CRC32/s/.*\([A-F0-9]\{8\}\).*/\1/p"); \
-		echo "Expected ELF CRC32: $$expected_crc32"; \
-		echo "Rebuilt ELF CRC32: $$new_elf_crc32"; \
-		if [ "$$expected_crc32" = "$$new_elf_crc32" ]; then \
-			echo "✅ Match: ELFs are identical."; \
-		else \
-			echo "❌ ELF CRC mismatch. Linked ELF CRC32 $$new_elf_crc32 != $$expected_crc32"; \
-		fi; \
-	else \
-		echo "❌ Failed to build ELF"; \
-		exit 1; \
-	fi'
+	@if [ ! -f "$(OUTPUT_ELF)" ]; then echo "❌ Failed to build ELF"; exit 1; fi
+	@echo "Built ELF: $(OUTPUT_ELF)"
+	@$(MAKE) --no-print-directory verify
 
 # Fails if the loaded section does not match the original. The whole-ELF CRC
 # never matches, since MWLD writes its own symbol table and debug info.
 verify:
 	@$(OBJCOPY) -I elf32-little -O binary --only-section=main $(US_ROM_FILE) $(BUILD_DIR)/expected_main.bin
 	@$(OBJCOPY) -O binary --only-section=main $(OUTPUT_ELF) $(BUILD_DIR)/actual_main.bin
-	@cmp $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin \
-		&& echo "✅ main section matches the original ($$(stat -c%s $(BUILD_DIR)/actual_main.bin) bytes)"
+	@if cmp -s $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin; then \
+		echo "✅ main section matches the original ($$(stat -c%s $(BUILD_DIR)/expected_main.bin) bytes)"; \
+	else \
+		echo "❌ main section differs from the original"; \
+		echo "   expected $$(stat -c%s $(BUILD_DIR)/expected_main.bin) bytes, got $$(stat -c%s $(BUILD_DIR)/actual_main.bin) bytes"; \
+		cmp $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin; \
+	fi
 
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 STRIP_SECTIONS := .comment .reginfo .MIPS.abiflags .gnu.attributes
