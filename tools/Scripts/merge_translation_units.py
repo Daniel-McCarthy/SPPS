@@ -5,6 +5,7 @@
 import argparse
 import os
 import shutil
+import struct
 import subprocess
 import sys
 from collections import defaultdict
@@ -76,6 +77,24 @@ def collect_units(asm_dir: Path, src_dir: Path, c_units):
     return units
 
 
+def has_text(path: Path) -> bool:
+    """True if the ELF has a non-empty .text section."""
+    data = path.read_bytes()
+    shoff, = struct.unpack_from("<I", data, 0x20)
+    shentsize, = struct.unpack_from("<H", data, 0x2E)
+    shnum, = struct.unpack_from("<H", data, 0x30)
+    shstrndx, = struct.unpack_from("<H", data, 0x32)
+    stroff, = struct.unpack_from("<I", data, shoff + shstrndx * shentsize + 0x10)
+    for index in range(shnum):
+        header = shoff + index * shentsize
+        name_off, = struct.unpack_from("<I", data, header)
+        end = data.index(b"\x00", stroff + name_off)
+        size, = struct.unpack_from("<I", data, header + 0x14)
+        if data[stroff + name_off:end] == b".text" and size:
+            return True
+    return False
+
+
 def run(command):
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode != 0:
@@ -124,6 +143,12 @@ def main():
         sources = ([parts["text"]] if parts["text"] else []) + parts["sections"]
 
         if c_object is not None and c_object.is_file():
+            if not has_text(c_object):
+                sys.exit(
+                    f"{unit} is a `c` subsegment but {c_object} defines no code.\n"
+                    f"Its source is missing or is still an INCLUDE_ASM stub: "
+                    f"{src_dir / (unit + '.c')}"
+                )
             # Compiled translation unit: combine it with any assembly siblings.
             if not parts["sections"]:
                 shutil.copy2(c_object, destination)
