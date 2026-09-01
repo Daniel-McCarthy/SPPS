@@ -1,174 +1,186 @@
 import os
+import re
 import yaml
 
-def get_linker_file_lines(splat_linker_file_lines):
-	# Parse Splat generated .ld linker file and grab lines to convert
-	text_o_lines = []
-	data_o_lines = []
-	sdata_o_lines = []
-	bss_o_lines = []
-	sbss_o_lines = []
-	rodata_o_lines = []
+# An entry line: an object path, then the sections it contributes, in parens.
+SECTION_ENTRY_RE = re.compile(r'^\s*(?P<obj>[^\s()]+\.o)\((?P<sections>[^)]*)\);?\s*$')
 
-	for line in splat_linker_file_lines:
-		# Skip .bin and other non-assembly/non-code files
-		if "s.o" not in line and ".c.o" not in line:
+# The lcf placeholders, in the order Splat lays the sections out.
+SECTIONS = [".text", ".data", ".rodata", ".gcc_except_table", ".lit8", ".lit4", ".sdata", ".sbss", ".bss"]
+
+PLACEHOLDERS = {
+	".text": "#<REPLACE_W_TEXT_FILES>",
+	".data": "#<REPLACE_W_DATA_FILES>",
+	".rodata": "#<REPLACE_W_RODATA_FILES>",
+	".gcc_except_table": "#<REPLACE_W_GCC_EXCEPT_TABLE_FILES>",
+	".lit8": "#<REPLACE_W_LIT8_FILES>",
+	".lit4": "#<REPLACE_W_LIT4_FILES>",
+	".sdata": "#<REPLACE_W_SDATA_FILES>",
+	".sbss": "#<REPLACE_W_SBSS_FILES>",
+	".bss": "#<REPLACE_W_BSS_FILES>",
+}
+
+ALIGNED_SECTIONS = (".data", ".rodata", ".sdata")
+DEFAULT_ALIGNALL = 0x8
+
+
+def load_splat_options(yaml_path):
+	"""Return the options block of the Splat config, with paths resolved."""
+	with open(yaml_path, "r") as splat_yaml_file:
+		config = yaml.safe_load(splat_yaml_file)
+
+	options = config.get("options", {})
+	yaml_dir = os.path.dirname(os.path.abspath(yaml_path))
+	base_path = os.path.normpath(os.path.join(yaml_dir, options.get("base_path", ".")))
+
+	def resolve(key, default):
+		return os.path.normpath(os.path.join(base_path, options.get(key, default)))
+
+	return {
+		"base_path": base_path,
+		"ld_script_path": resolve("ld_script_path", f"build/{options.get('basename', 'out')}.ld"),
+		"build_path": resolve("build_path", "build"),
+		"asm_path": resolve("asm_path", "asm"),
+		"src_path": resolve("src_path", "src"),
+		"asset_path": os.path.normpath(options.get("asset_path", "assets")),
+	}
+
+
+SECTION_SUFFIXES = (".data", ".rodata", ".sdata", ".sbss", ".bss", ".lit4", ".lit8", ".gcc_except_table")
+
+
+def section_alignments(config):
+	"""Map each object base name to the alignment its section needs.
+	"""
+	alignments = {}
+	for segment in config.get("segments", []):
+		if not isinstance(segment, dict):
+			continue
+		for entry in segment.get("subsegments", []):
+			if not isinstance(entry, list) or len(entry) < 3:
+				continue
+			address, kind, name = entry[0], str(entry[1]), str(entry[2])
+			if not kind.startswith("."):
+				kind = "." + kind
+			if kind not in ALIGNED_SECTIONS:
+				continue
+			align = 4
+			for candidate in (8, 16):
+				if address % candidate == 0:
+					align = candidate
+			alignments[(kind, os.path.basename(name) + ".o")] = align
+	return alignments
+
+
+def object_name(obj_path):
+	"""MWLD refers to objects by base name, so drop the directories.
+
+	Also strip any per-section suffix, so `spev06.rodata.o` resolves to the
+	merged `spev06.o` that merge_translation_units.py produced.
+	"""
+	name = os.path.basename(obj_path)
+	stem = name[: -len(".o")]
+	for suffix in SECTION_SUFFIXES:
+		if stem.endswith(suffix):
+			stem = stem[: -len(suffix)]
+			break
+	return stem + ".o"
+
+
+def collect_section_entries(ld_lines, asset_marker=None):
+	entries = {section: [] for section in SECTIONS}
+
+	for line in ld_lines:
+		match = SECTION_ENTRY_RE.match(line)
+		if not match:
 			continue
 
-		# Include only the .o lines and organize them by section type
-		if ("(.text);" in line):
-			text_o_lines.append(line)
+		# ELF metadata, not linked.
+		if asset_marker and asset_marker in match.group("obj"):
 			continue
-		if ("(.rodata);" in line):
-			rodata_o_lines.append(line)
+
+		sections = match.group("sections").split()
+		if not sections:
 			continue
-		if ("(.data);" in line):
-			data_o_lines.append(line)
+
+		# Strip the trailing wildcard ld_wildcard_sections adds.
+		section = sections[0].rstrip("*")
+		if section not in entries:
 			continue
-		if ("(.sdata);" in line):
-			sdata_o_lines.append(line)
+
+		name = object_name(match.group("obj"))
+		# crt0 is placed explicitly by the template.
+		if name.startswith("crt0."):
 			continue
-		if ("(.bss);" in line):
-			bss_o_lines.append(line)
-			continue
-		if ("(.sbss);" in line):
-			sbss_o_lines.append(line)
-			continue
-	return text_o_lines, data_o_lines, sdata_o_lines, bss_o_lines, sbss_o_lines, rodata_o_lines
 
-def convert_ld_text_to_lcf(text_o_lines):
-	lcf_text_lines = []
-	ld_text_pattern = '(.text);'
-	for line in text_o_lines:
-		if ld_text_pattern not in line:
-			raise Exception(f'ERROR: Unexpected line in ld linker text: {line}')
-		lcf_text_lines.append(line.replace(ld_text_pattern, ' (.text)'))
-	return lcf_text_lines
+		entries[section].append(name)
 
-def convert_ld_data_to_lcf(data_o_lines):
-	lcf_data_lines = []
-	ld_data_pattern = '(.data);'
-	for line in data_o_lines:
-		if ld_data_pattern not in line:
-			raise Exception(f'ERROR: Unexpected line in ld linker data: {line}')
-		lcf_data_lines.append(line.replace(ld_data_pattern, ' (.data)'))
-	return lcf_data_lines
+	return entries
 
-def convert_ld_sdata_to_lcf(sdata_o_lines):
-	lcf_sdata_lines = []
-	ld_sdata_pattern = '(.sdata);'
-	for line in sdata_o_lines:
-		if ld_sdata_pattern not in line:
-			raise Exception(f'ERROR: Unexpected line in ld linker sdata: {line}')
-		lcf_sdata_lines.append(line.replace(ld_sdata_pattern, ' (.sdata)'))
-	return lcf_sdata_lines
 
-def convert_ld_rodata_to_lcf(rodata_o_lines):
-	lcf_rodata_lines = []
-	ld_rodata_pattern = '(.rodata);'
-	for i, line in enumerate(rodata_o_lines):
-		if ld_rodata_pattern not in line:
-			raise Exception(f'ERROR: Unexpected line in ld linker rodata: {line}')
-		alignall_indendation = '' if i == 0 else '\t\t'
-		lcf_rodata_lines.append(f'{alignall_indendation}ALIGNALL(0x8);\n') # TODO: Figure out how to calculate each time, setting to 8 as a default for now
-		lcf_rodata_lines.append(line.replace(ld_rodata_pattern, ' (.rodata)'))
-	return lcf_rodata_lines
+def format_section_entries(section, object_names, alignments):
+	"""Render one section's object list as indented MWLD lcf lines."""
+	lines = []
+	for i, name in enumerate(object_names):
+		# The first line lands on an already-indented placeholder.
+		indent = "" if i == 0 else "\t\t"
+		if section in ALIGNED_SECTIONS:
+			align = alignments.get((section, name), DEFAULT_ALIGNALL)
+			lines.append(f"{indent}ALIGNALL({hex(align)});\n")
+			indent = "\t\t"
+		lines.append(f"{indent}{name}\t({section})\n")
+	return "".join(lines)
 
-def lcf_files_to_string(lcf_files) -> str:
-	lcf_string = ''
-	for i, lcf_file_line in enumerate(lcf_files):
-		# fixes the first line having double the indentation of the rest of the lines
-		spacing_corrected_line = lcf_file_line.replace('        ', '') if i == 0 else lcf_file_line
-		lcf_string += f'{spacing_corrected_line}'
-	return lcf_string
-
-def convert_ld_bss_to_lcf(bss_o_lines):
-	lcf_bss_lines = []
-	ld_bss_pattern = '(.bss);'
-	for line in bss_o_lines:
-		if ld_bss_pattern not in line:
-			raise Exception(f'ERROR: Unexpected line in ld linker bss: {line}')
-		lcf_bss_lines.append(line.replace(ld_bss_pattern, ' (.bss)'))
-	return lcf_bss_lines
-
-def convert_ld_sbss_to_lcf(sbss_o_lines):
-	lcf_sbss_lines = []
-	ld_sbss_pattern = '(.sbss);'
-	for line in sbss_o_lines:
-		if ld_sbss_pattern not in line:
-			raise Exception(f'ERROR: Unexpected line in ld linker sbss: {line}')
-		lcf_sbss_lines.append(line.replace(ld_sbss_pattern, ' (.sbss)'))
-	return lcf_sbss_lines
 
 def main():
 	import argparse
-	# Parse command-line arguments for build directory and Splat YAML file path
-	parser = argparse.ArgumentParser(description="Generate MWLD linker script.")
-	parser.add_argument("--build-dir", default="build/", help="Relative path to the build directory (default: build/).")
-	parser.add_argument("--splat-ld-linker-path", default="config/SLUS_20199/out/SLUS_201.99.ld", help="Relative path to the Splat linker file (default: config/SLUS_20199/out/SLUS_201.99.ld).")
+
+	parser = argparse.ArgumentParser(description="Generate an MWLD linker script from Splat's .ld output.")
+	parser.add_argument("--splat-yaml-path", default="config/SLUS_20199/SLUS_201.99.yaml", help="Relative path to the Splat config (default: config/SLUS_20199/SLUS_201.99.yaml).")
+	parser.add_argument("--splat-ld-linker-path", default=None, help="Relative path to the Splat linker file. Defaults to the ld_script_path in the Splat config.")
 	parser.add_argument("--template-linker-path", default="include/template.lcf", help="Relative path to the template linker file (default: include/template.lcf).")
+	parser.add_argument("--output-name", default="spps_linker.lcf", help="File name to write into the build directory (default: spps_linker.lcf).")
 	args = parser.parse_args()
 
-	# Configure paths/dirs needed for generating the linker file
-	base_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
-	splat_linker_path = os.path.join(base_dir, args.splat_ld_linker_path)
-	build_dir = os.path.join(base_dir, args.build_dir)
-	output_linker_path = os.path.join(build_dir, "spps_linker.lcf")
+	base_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../"))
+	yaml_path = os.path.join(base_dir, args.splat_yaml_path)
+	splat_options = load_splat_options(yaml_path)
+	with open(yaml_path, "r") as handle:
+		alignments = section_alignments(yaml.safe_load(handle))
+
+	if args.splat_ld_linker_path:
+		splat_linker_path = os.path.join(base_dir, args.splat_ld_linker_path)
+	else:
+		splat_linker_path = splat_options["ld_script_path"]
+
+	build_dir = splat_options["build_path"]
+	output_linker_path = os.path.join(build_dir, args.output_name)
 	template_linker_path = os.path.join(base_dir, args.template_linker_path)
-	print(f"Build Directory: {build_dir}")
+
+	print(f"Splat Config: {os.path.join(base_dir, args.splat_yaml_path)}")
 	print(f"Splat Linker Path: {splat_linker_path}")
-	print(f"Base Directory: {base_dir}")
+	print(f"Build Directory: {build_dir}")
 
-	# Load the YAML file at the specified path and print its contents
-	with open(splat_linker_path, 'r') as splat_linker_file:
-		splat_linker_file_lines = splat_linker_file.readlines()
+	with open(splat_linker_path, "r") as splat_linker_file:
+		entries = collect_section_entries(splat_linker_file.readlines(), splat_options["asset_path"])
 
-		# Convert the file paths to relative paths (trim extended asm and src paths)
-		splat_linker_file_lines = [line.replace('config/SLUS_20199/out/asm/', '') for line in splat_linker_file_lines]
-		splat_linker_file_lines = [line.replace('src/SLUS_20199/', '') for line in splat_linker_file_lines]
-		splat_linker_file_lines = [line.replace('build/', '') for line in splat_linker_file_lines]
+	for section in SECTIONS:
+		print(f"  {section}: {len(entries[section])} objects")
 
-		# Remove folder structure from linker files entirely
-		splat_linker_file_lines = [ f'\t\t{os.path.basename(line)}' for line in splat_linker_file_lines]
+	with open(template_linker_path, "r") as template_linker_file:
+		template_lines = template_linker_file.readlines()
 
-		# Filter out crt0 segments as they are already accounted for in the template linker file
-		splat_linker_file_lines = [line for line in splat_linker_file_lines if "crt0" not in line]
+	updated_lines = template_lines
+	for section in SECTIONS:
+		rendered = format_section_entries(section, entries[section], alignments)
+		updated_lines = [line.replace(PLACEHOLDERS[section], rendered) for line in updated_lines]
 
-		# Convert the file string lists into singular strings that can be replaced in the template linker file
-		text_o_lines, data_o_lines, sdata_o_lines, bss_o_lines, sbss_o_lines, rodata_o_lines = get_linker_file_lines(splat_linker_file_lines)
-		lcf_text_lines = convert_ld_text_to_lcf(text_o_lines)
-		lcf_data_lines = convert_ld_data_to_lcf(data_o_lines)
-		lcf_sdata_lines = convert_ld_sdata_to_lcf(sdata_o_lines)
-		lcf_bss_lines = convert_ld_bss_to_lcf(bss_o_lines)
-		lcf_sbss_lines = convert_ld_sbss_to_lcf(sbss_o_lines)
-		lcf_rodata_lines = convert_ld_rodata_to_lcf(rodata_o_lines)
+	os.makedirs(build_dir, exist_ok=True)
+	with open(output_linker_path, "w+") as output_linker_file:
+		output_linker_file.writelines(updated_lines)
 
-		# Make sure this is the right thing to do.....
-		lcf_bss_lines = [line for line in lcf_bss_lines if ".bss." in line]
+	print(f"Wrote {output_linker_path}")
 
-
-		# Open the file at output_linker_path for writing and write the linker script
-		with open(template_linker_path, 'r') as template_linker_file:
-			template_lines = template_linker_file.readlines()
-
-			# text_files_list_string = generate_text_section_linker_files(text_segments)
-			lcf_text_files_string = lcf_files_to_string(lcf_text_lines)
-			lcf_data_files_string = lcf_files_to_string(lcf_data_lines)
-			lcf_rodata_files_string = lcf_files_to_string(lcf_rodata_lines)
-			lcf_sdata_files_string = lcf_files_to_string(lcf_sdata_lines)
-			lcf_bss_files_string = lcf_files_to_string(lcf_bss_lines)
-			lcf_sbss_files_string = lcf_files_to_string(lcf_sbss_lines)
-
-			updated_lines = [line.replace("#<REPLACE_W_TEXT_FILES>", lcf_text_files_string) for line in template_lines]
-			updated_lines = [line.replace("#<REPLACE_W_DATA_FILES>", lcf_data_files_string) for line in updated_lines]
-			updated_lines = [line.replace("#<REPLACE_W_RODATA_FILES>", lcf_rodata_files_string) for line in updated_lines]
-			updated_lines = [line.replace("#<REPLACE_W_SDATA_FILES>", lcf_sdata_files_string) for line in updated_lines]
-			updated_lines = [line.replace("#<REPLACE_W_BSS_FILES>", lcf_bss_files_string) for line in updated_lines]
-			updated_lines = [line.replace("#<REPLACE_W_SBSS_FILES>", lcf_sbss_files_string) for line in updated_lines]
-
-			# Write the updated content back to the linker file
-			with open(output_linker_path, 'w+') as output_linker_file:
-				output_linker_file.writelines(updated_lines)
 
 if __name__ == "__main__":
 	main()

@@ -29,6 +29,10 @@ JP_UNDEF_SYMS_AUTO 	:= $(JP_DIR)/undefined_syms_auto.yaml
 JP_UNDEF_FUNCS_AUTO := $(JP_DIR)/undefined_funcs_auto.yaml
 
 BUILD_DIR		:= build
+LINK_DIR		:= $(BUILD_DIR)/link
+TARGET_DIR		:= $(BUILD_DIR)/target
+OBJDIFF_CLI		:= ./tools/objdiff/objdiff-cli
+REPORT_FILE		:= $(BUILD_DIR)/report.json
 OUTPUT_ELF		:= $(BUILD_DIR)/SLUS_201.99.elf
 
 BINUTILS_DIR    := ./tools/binutils/mips-ps2-decompals-
@@ -40,7 +44,7 @@ OBJDUMP         := $(BINUTILS_DIR)objdump
 GCC             := $(BINUTILS_DIR)gcc
 STRIP           := $(BINUTILS_DIR)strip
 
-REMOVE_SECTION_ARGS := --objcopy_path $(OBJCOPY) --objdump_path $(OBJDUMP)
+REMOVE_SECTION_ARGS := --objcopy_path $(OBJCOPY) --objdump_path $(OBJDUMP) --root $(LINK_DIR)
 
 AS_FLAGS := -EL -I$(INCLUDE_DIR) -G 128 -march=r5900 -mabi=eabi -no-pad-sections -mno-pdr
 
@@ -58,16 +62,20 @@ MWLD := $(WIBO) $(COMPILER_LOCATION)/mwldps2.exe
 MWCC_ARGS := -Iinclude -O0,p -sym on -char unsigned -str readonly
 MWCCGAP := $(PYTHON) tools/mwccgap/mwccgap.py
 MWCCGAP_ARGS := --mwcc-path $(MWCC_PATH) --as-path $(AS) --macro-inc-path $(INCLUDE_DIR)/macro.inc --use-wibo --wibo-path $(WIBO) --as-march r5900 --as-mabi eabi $(MWCC_ARGS)
-S_FILES := $(shell find $(US_ASM_DIR) -name '*.s' -not -path *nonmatchings* 2>/dev/null) # recursively grabs .s files not in nonmatchings and suppresses errors
-C_FILES := $(shell find $(US_SRC_DIR) -name '*.c' -not -path *nonmatchings* 2>/dev/null) # recursively grabs .c files not in nonmatchings and suppresses errors
+ALL_C_FILES := $(shell find $(US_SRC_DIR) -name '*.c' -not -path *nonmatchings* 2>/dev/null)
+C_FILES := $(shell $(PYTHON) tools/Scripts/list_subsegments.py --splat-yaml-path $(US_YAML_FILE) --kind c --prefix $(US_SRC_DIR)/ --suffix .c 2>/dev/null)
 
-# Assembles build dir .o file paths
-ASM_O_FILES := $(patsubst %.s,%.s.o,$(S_FILES)) # renames .s files to .s.o
-ASM_O_FILES := $(patsubst $(US_ASM_DIR)/%, $(BUILD_DIR)/%,$(ASM_O_FILES)) # renames .s files to build dir
-C_O_FILES := $(patsubst %.c,%.c.o,$(C_FILES)) # renames .c files to .c.o
-C_O_FILES := $(patsubst $(US_SRC_DIR)/%, $(BUILD_DIR)/%,$(C_O_FILES)) # adds build dir to the front of the file names
+ALL_S_FILES := $(shell find $(US_ASM_DIR) -name '*.s' -not -path *nonmatchings* 2>/dev/null) # recursively grabs .s files not in nonmatchings and suppresses errors
+FULL_DISASM_S_FILES := $(patsubst $(US_SRC_DIR)/%.c,$(US_ASM_DIR)/%.s,$(C_FILES))
+S_FILES := $(filter-out $(FULL_DISASM_S_FILES),$(ALL_S_FILES))
 
-US_LD_SCRIPT	:= $(US_OUTPUT_DIR)/SLUS_201.99.ld
+OBJDIFF_BASE_DIR := $(BUILD_DIR)/objdiff
+OBJDIFF_BASE_O_FILES := $(patsubst $(US_SRC_DIR)/%.c,$(OBJDIFF_BASE_DIR)/%.o,$(ALL_C_FILES))
+
+ASM_O_FILES := $(patsubst %.s,$(BUILD_DIR)/%.o,$(S_FILES))
+C_O_FILES := $(patsubst %.c,$(BUILD_DIR)/%.o,$(C_FILES))
+
+US_LD_SCRIPT	:= $(US_DIR)/SLUS_201.99.ld
 
 US_SRC_FILES	:= $(foreach dir,$(US_SRC_DIR),$(wildcard $(dir)/*.c))
 US_ASM_FILES	:= $(foreach dir,$(US_ASM_DIR),$(wildcard $(dir)/*.s))
@@ -78,8 +86,10 @@ install:
 	$(MAKE) download-wibo
 	$(MAKE) download-decompals-binutils
 	$(MAKE) download-mwcc
+	$(MAKE) download-objdiff
 
 # Make install-dev - Installs Python dev dependencies and other tools purely for development needs (not essential for building).
+install-dev:
 	$(PIP) install -r requirements-dev.txt
 	$(MAKE) download-coddog
 
@@ -104,19 +114,29 @@ compile:  $(C_O_FILES)
 # Assemble a .s file for each needed s.o file expected the build dir
 assemble: $(ASM_O_FILES)
 
+link:
+	$(MAKE) convert-ld
+	$(MAKE) merge-objects
+	$(MAKE) strip-toolchain-sections
+	$(MAKE) remove-unneeded-sections
+	$(MAKE) mwld-convert
 
 # Make .o from .s in build dir
 # Assemble pattern
-$(BUILD_DIR)/%.s.o:
+$(BUILD_DIR)/$(US_ASM_DIR)/%.o: $(US_ASM_DIR)/%.s
 	@mkdir -p $(dir $@)
-	@echo $(ASM_O_FILES)
-	$(AS) $(AS_FLAGS) -o $@ $(US_ASM_DIR)/$*.s
+	$(AS) $(AS_FLAGS) -o $@ $<
 
 # Make .o from .c in build dir
 # Compile pattern
-$(BUILD_DIR)/%.c.o: $(US_SRC_DIR)/%.c
+$(BUILD_DIR)/$(US_SRC_DIR)/%.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(MWCCGAP) $< $@ $(MWCCGAP_ARGS)
+	$(MWCC) $(MWCC_ARGS) -c -o $@ $<
+
+# objdiff base pattern: plain MWCC, no asm splicing.
+$(OBJDIFF_BASE_DIR)/%.o: $(US_SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(MWCC) $(MWCC_ARGS) -c -o $@ $<
 
 
 
@@ -124,6 +144,7 @@ $(BUILD_DIR)/%.c.o: $(US_SRC_DIR)/%.c
 clean-us:
 	@echo "Cleaning output and build directories"
 	$(RM) -r $(US_OUTPUT_DIR)/ $(US_DIR)/.splat/
+	$(RM) $(US_LD_SCRIPT)
 	$(RM) $(US_DIR)/undefined_funcs_auto.yaml
 	$(RM) $(US_DIR)/undefined_syms_auto.yaml
 	$(RM) -r .splat/
@@ -181,7 +202,7 @@ mwld:
 mwld-convert:
 	@echo "Running mwld"
 	$(MWLD) -g -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
-		$(shell find $(BUILD_DIR) -name '*.o')
+		$(shell find $(LINK_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
 	
@@ -202,28 +223,60 @@ mwld-convert:
 		exit 1; \
 	fi'
 
+# Fails if the loaded section does not match the original. The whole-ELF CRC
+# never matches, since MWLD writes its own symbol table and debug info.
+verify:
+	@$(OBJCOPY) -I elf32-little -O binary --only-section=main $(US_ROM_FILE) $(BUILD_DIR)/expected_main.bin
+	@$(OBJCOPY) -O binary --only-section=main $(OUTPUT_ELF) $(BUILD_DIR)/actual_main.bin
+	@cmp $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin \
+		&& echo "✅ main section matches the original ($$(stat -c%s $(BUILD_DIR)/actual_main.bin) bytes)"
+
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
+STRIP_SECTIONS := .comment .reginfo .MIPS.abiflags .gnu.attributes
+
+strip-toolchain-sections:
+	@echo "Stripping toolchain sections from link objects"
+	@find $(LINK_DIR) -name '*.o' -exec $(OBJCOPY) \
+		$(foreach section,$(STRIP_SECTIONS),--remove-section=$(section)) {} \;
+
 remove-unneeded-sections:
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" bss
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".s.o" data
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sbss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".bss.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".sdata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".rodata.s.o" text
-	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".data.s.o" text
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".o" bss
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".o" data
+	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".o" text
 
 remove-unneeded-objects:
-	$(RM) $(BUILD_DIR)/data/elf_header.s.o
-	$(RM) $(BUILD_DIR)/data/shstrtab.s.o
-	$(RM) $(BUILD_DIR)/data/strtab.s.o
-	$(RM) $(BUILD_DIR)/data/symtab.s.o
-	$(RM) $(BUILD_DIR)/data/debug.s.o
-	$(RM) $(BUILD_DIR)/data/line.s.o
-	$(RM) $(BUILD_DIR)/data/mwcats.s.o
-	$(RM) $(BUILD_DIR)/data/relmain.s.o
-	$(RM) $(BUILD_DIR)/data/comment.s.o
-	$(RM) $(BUILD_DIR)/data/reginfo.s.o
-	$(RM) $(BUILD_DIR)/data/end.s.o
+	@echo "No unneeded objects to remove"
+
+merge-objects:
+	@echo "Building one object per translation unit"
+	$(PYTHON) tools/Scripts/merge_translation_units.py \
+		--asm-dir $(US_ASM_DIR) \
+		--src-dir $(US_SRC_DIR) \
+		--c-obj-dir $(BUILD_DIR)/$(US_SRC_DIR) \
+		--out-dir $(LINK_DIR) \
+		--as-path $(AS) \
+		--as-flags "$(AS_FLAGS)" \
+		--ld $(GNULD) \
+		--work-dir $(BUILD_DIR)/merged_sources \
+		--splat-yaml-path $(US_YAML_FILE) \
+		--target-out-dir $(TARGET_DIR)
+
+# Compile every .c with plain MWCC for objdiff to measure against.
+objdiff-base: $(OBJDIFF_BASE_O_FILES)
+
+# Regenerate objdiff.json from the splat config. Needs the target objects to
+# exist, so run it after a build.
+objdiff-config:
+	$(PYTHON) tools/Scripts/generate_objdiff_config.py \
+		--splat-yaml-path $(US_YAML_FILE) \
+		--target-dir $(TARGET_DIR) \
+		--base-dir $(OBJDIFF_BASE_DIR)
+
+# Generate the objdiff progress report, for upload to decomp.dev.
+report: objdiff-base objdiff-config
+	@echo "Generating progress report"
+	$(OBJDIFF_CLI) report generate -o $(REPORT_FILE)
+	@$(PYTHON) tools/Scripts/summarize_report.py $(REPORT_FILE)
 
 # Configure an MWLD .lcf file from the Splat generated GNU .ld file.
 convert-ld:
@@ -238,6 +291,8 @@ rebuild:
 	$(MAKE) assemble
 	$(MAKE) remove-unneeded-objects
 	$(MAKE) convert-ld
+	$(MAKE) merge-objects
+	$(MAKE) strip-toolchain-sections
 	$(MAKE) remove-unneeded-sections
 	@echo "✅ Rebuild Done."
 
@@ -374,6 +429,14 @@ download-decompals-binutils:
 	-$(RM) "binutils-mips-ps2-decompals-linux-x86-64.tar"
 	@find tools/binutils -type f -exec chmod +x {} \;
 	@echo "✅ Decompals Binutils Download Done."
+
+OBJDIFF_VERSION := v3.8.1
+
+download-objdiff:
+	@echo Downloading objdiff-cli
+	-@mkdir -p $(dir $(OBJDIFF_CLI))
+	wget -O $(OBJDIFF_CLI) https://github.com/encounter/objdiff/releases/download/$(OBJDIFF_VERSION)/objdiff-cli-linux-x86_64
+	chmod +x $(OBJDIFF_CLI)
 
 download-wibo:
 	@echo Downloading wibo

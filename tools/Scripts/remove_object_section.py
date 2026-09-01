@@ -39,6 +39,7 @@ def main():
 	parser.add_argument('section', help='Section name to remove if empty (e.g. bss)')
 	parser.add_argument('--objdump_path', help='Optional path to objdump to override use of mipsel-gnu-linux-objdump')
 	parser.add_argument('--objcopy_path', help='Optional path to objcopy to override use of mipsel-gnu-linux-objcopy')
+	parser.add_argument('--root', help='Directory to search for object files (default: build/). Scope this to the assembled objects so compiled C objects are left alone.')
 	args = parser.parse_args()
 
 	extension = args.extension
@@ -46,23 +47,23 @@ def main():
 	objdump_path = args.objdump_path
 	objcopy_path = args.objcopy_path
 	base_dir = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
-	build_dir = os.path.join(base_dir, 'build')
+	search_dir = os.path.join(base_dir, args.root) if args.root else os.path.join(base_dir, 'build')
 
 	files = []
-	for root, _, filenames in os.walk(build_dir):
+	for root, _, filenames in os.walk(search_dir):
 		for filename in filenames:
 			if filename.endswith(extension):
 				files.append(os.path.join(root, filename))
 
-	# Don't remove .bss from .bss.s.o files
+	# Don't remove .bss from the objects that exist to carry .bss
 	if section == 'bss':
-		files = [file for file in files if '.bss.s.o' not in file]
-	# Don't remove .data from .data.o files
+		files = [file for file in files if not file.endswith('.bss.o')]
+	# Don't remove .data from the objects that exist to carry .data
 	if section == 'data':
-		files = [file for file in files if '.data.s.o' not in file]
+		files = [file for file in files if not file.endswith('.data.o')]
 
 	if not files:
-		print(f"WARNING: No files matched pattern: {args.pattern}")
+		print(f"WARNING: No files ending in '{extension}' found under {search_dir}")
 		return
 
 	for file in files:
@@ -72,10 +73,10 @@ def main():
 				continue
 
 			size = sizes[f".{section}"]
+			# A non-empty section is the normal case and is left alone; only
+			# the removals are worth reporting.
 			if size == 0:
 				remove_section(file, section, objcopy_path)
-			else:
-				print(f"WARNING: {file} contains non-empty '.{section}' ({size} bytes), not removing.")
 		except subprocess.CalledProcessError as e:
 			print(f"Error processing {file}: {e}")
 
