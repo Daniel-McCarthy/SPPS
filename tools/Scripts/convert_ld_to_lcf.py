@@ -84,10 +84,10 @@ def subsegment_sections(config):
 	return sections
 
 
-def alignment_of(address):
+def alignment_of(address, candidates=ALIGN_CANDIDATES):
 	"""The largest alignment the original actually gives this address."""
-	divisors = [candidate for candidate in ALIGN_CANDIDATES if address % candidate == 0]
-	return max(divisors) if divisors else ALIGN_CANDIDATES[0]
+	divisors = [candidate for candidate in candidates if address % candidate == 0]
+	return max(divisors) if divisors else candidates[0]
 
 
 def section_alignments(config):
@@ -106,7 +106,7 @@ def tail_alignments(config):
 				continue
 			align = DEFAULT_TAIL_ALIGN
 			if index + 1 < len(entries):
-				align = alignment_of(entries[index + 1][0])
+				align = alignment_of(entries[index + 1][0], TAIL_ALIGN_CANDIDATES)
 			alignments[(section, os.path.basename(name) + ".o")] = align
 	return alignments
 
