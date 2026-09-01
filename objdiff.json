@@ -488,11 +488,12 @@
       "name": "E/tam/ps2/sppbx/ayselect",
       "target_path": "build/target/E/tam/ps2/sppbx/ayselect.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ayselect.o"
     },
     {
       "name": "E/tam/ps2/sppbx/aycomfnk",
@@ -568,11 +569,12 @@
       "name": "E/tam/ps2/sppbx/nmvc",
       "target_path": "build/target/E/tam/ps2/sppbx/nmvc.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmvc.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmsnd",
@@ -582,27 +584,30 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmsnd.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmbgm",
       "target_path": "build/target/E/tam/ps2/sppbx/nmbgm.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmbgm.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmsq",
       "target_path": "build/target/E/tam/ps2/sppbx/nmsq.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmsq.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmdisp",
@@ -648,11 +653,12 @@
       "name": "E/tam/ps2/sppbx/ktsbcore",
       "target_path": "build/target/E/tam/ps2/sppbx/ktsbcore.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ktsbcore.o"
     },
     {
       "name": "E/tam/ps2/sppbx/aycreate",
