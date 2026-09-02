@@ -55,11 +55,16 @@ jobs:
             exit 1
           fi
 
+      # Compiling and assembling has to succeed, or there is nothing to report.
       - name: Build
-        run: make rebuild-link
+        run: make rebuild
 
-      - name: Verify the build matches
-        run: make verify
+      # Linking and the byte comparison are allowed to fail so the report below
+      # still runs. The result is turned back into a job failure at the end.
+      - name: Link and verify
+        id: link
+        continue-on-error: true
+        run: make mwld-convert
 
       - name: Generate progress report
         run: make report
@@ -69,3 +74,9 @@ jobs:
           name: ${{ matrix.version }}_report
           path: build/report.json
           if-no-files-found: error
+
+      - name: Fail if the rebuilt binary does not match
+        if: steps.link.outcome != 'success'
+        run: |
+          echo "::error::The rebuilt binary does not match the original. The progress report was still generated and uploaded."
+          exit 1
