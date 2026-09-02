@@ -458,11 +458,12 @@
       "name": "E/tam/ps2/sppbx/ktrider",
       "target_path": "build/target/E/tam/ps2/sppbx/ktrider.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ktrider.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spfree",
@@ -478,11 +479,12 @@
       "name": "E/tam/ps2/sppbx/tmevent",
       "target_path": "build/target/E/tam/ps2/sppbx/tmevent.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tmevent.o"
     },
     {
       "name": "E/tam/ps2/sppbx/ayselect",
@@ -864,11 +866,12 @@
       "name": "E/tam/ps2/sppbx/tmetc",
       "target_path": "build/target/E/tam/ps2/sppbx/tmetc.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tmetc.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tievent",
