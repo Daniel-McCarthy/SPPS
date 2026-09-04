@@ -1882,6 +1882,8 @@ static void spRiderUpdateDetail(Rider* rider) {
     Disp* rdd; // r16
     // Size: 0x960, DWARF: 0xBED22
     Model* md; // r17
+    signed int unused1;
+    signed int unused2;
 
     rdd = &rider->disp;
     md =  &sploadGetCharacter()->model[rider->pid];
@@ -1936,6 +1938,7 @@ static void spInitRider(Rider* rider, s32 pid) {
     void* utd; // r19
     void* seq; // r20
     signed int rid; // r21
+    signed int unused1;
 
     num_player = vspenvGame->mode.num_player;
     chr = sploadGetCharacter();
