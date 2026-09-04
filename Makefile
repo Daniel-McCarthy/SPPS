@@ -220,7 +220,8 @@ verify:
 	else \
 		echo "❌ main section differs from the original"; \
 		echo "   expected $$(stat -c%s $(BUILD_DIR)/expected_main.bin) bytes, got $$(stat -c%s $(BUILD_DIR)/actual_main.bin) bytes"; \
-		cmp $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin; \
+		cmp $(BUILD_DIR)/expected_main.bin $(BUILD_DIR)/actual_main.bin || true; \
+		exit 1; \
 	fi
 
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
