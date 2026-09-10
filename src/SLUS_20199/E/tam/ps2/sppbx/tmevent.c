@@ -14,13 +14,13 @@ typedef unsigned __int128 u_int128;
 #define ABORT() asm(".word 0x0000000d")
 
 // Pragma
-//////////////////////////////////////////////////////////////////////////////
-#pragma mpwc_relax on
-// Allows conversion from matrix to float** and vector to float* types.
+// //////////////////////////////////////////////////////////////////////////////
+#pragma mpwc_relax on // Allows conversion from matrix to float** and vector to
+                      // float* types.
 #pragma divbyzerocheck on
 
 // SCE types
-/////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////
 typedef int qword[4] __attribute__((aligned(16)));
 typedef int sceVu0IVECTOR[4] __attribute__((aligned(16)));
 typedef int sceVu0IMATRIX[4][4] __attribute__((aligned(16)));
@@ -28,7 +28,7 @@ typedef float sceVu0FVECTOR[4] __attribute__((aligned(16)));
 typedef float sceVu0FMATRIX[4][4] __attribute__((aligned(16)));
 
 // Static data
-///////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////
 
 //////// vspRider Struct ///////////////////////////////////////////////
 // Last updated: 08/14/2024
@@ -64,12 +64,9 @@ typedef struct Param {
 } Param;
 
 // Size: 0x24, DWARF: 0x7C294
-typedef struct Param2
-	// (Includes additional stats not able to be set by player,
-	like power/quickness)
+typedef struct Param2 // (Includes additional stats not able to be set by
+                      // player, like power/quickness)
 {
-  signed int padding[3];
-
   signed int ollie;          // Offset: 0x0, DWARF: 0x7C2B0
   signed int spin;           // Offset: 0x4, DWARF: 0x7C2D2
   signed int speed;          // Offset: 0x8, DWARF: 0x7C2F3
@@ -79,8 +76,8 @@ typedef struct Param2
   signed int quickness;      // Offset: 0x18, DWARF: 0x7C388
   signed int power;          // Offset: 0x1C, DWARF: 0x7C3AE
   signed int turning;        // Offset: 0x20, DWARF: 0x7C3D0
-}
-Param2;
+} Param2;
+
 // Size: 0x10, DWARF: 0x7A1DB, 0x16DA24
 typedef struct Board_Param {
   signed int speed;     // Offset: 0x0, DWARF: 0x7A1F7
@@ -88,6 +85,7 @@ typedef struct Board_Param {
   signed int balance;   // Offset: 0x8, DWARF: 0x7A23F
   signed int turning;   // Offset: 0xC, DWARF: 0x7A263
 } Board_Param;
+
 // Size: 0x1C, DWARF: 0x7C601, 0x16D2B9
 typedef struct Character_Param {
   signed int ollie;     // Offset: 0x0, DWARF: 0x7C61D
@@ -98,6 +96,7 @@ typedef struct Character_Param {
   signed int stability; // Offset: 0x14, DWARF: 0x7C6CA
   signed int stance;    // Offset: 0x18, DWARF: 0x7C6F0
 } Character_Param;
+
 // Size: 0x14, DWARF: 0x7C447
 typedef struct Balance {
   float balance;       // Offset: 0x0, DWARF: 0x7C463
@@ -106,6 +105,7 @@ typedef struct Balance {
   signed int released; // Offset: 0xC, DWARF: 0x7C4CD
   signed int cnt_free; // Offset: 0x10, DWARF: 0x7C4F2
 } Balance;
+
 // Size: 0x30, DWARF: 0x79C3C, 0x1737CD
 typedef struct Plane {
   float cross[4];           // Offset: 0x0, DWARF: 0x79C58
@@ -118,6 +118,7 @@ typedef struct Plane {
   signed short slidable;    // Offset: 0x2A, DWARF: 0x79D5E
   signed int available;     // Offset: 0x2C, DWARF: 0x79D83
 } Plane;
+
 // Size: 0x60, DWARF: 0x75E44
 typedef struct Col {
   float normal[4];       // Offset: 0x0, DWARF: 0x75E5F
@@ -132,9 +133,10 @@ typedef struct Col {
   signed int obj_attr;   // Offset: 0x3C, DWARF: 0x75F9B
   signed int obj_type;   // Offset: 0x40, DWARF: 0x75FC0
   signed int res[4];     // Offset: 0x44, DWARF: 0x75FE5
-  char padding[12];      // Not normally in the struct,
-  but pads to make it the expected size.
+  char padding[12];      // Not normally in the struct, but pads to make it the
+                         // expected size.
 } Col;
+
 // Size: 0x60, DWARF: 0x79DD3, 0x16E55B
 typedef struct Pos {
   float pos[4];        // Offset: 0x0, DWARF: 0x79DEF
@@ -149,9 +151,10 @@ typedef struct Pos {
   signed int no;       // Offset: 0x48, DWARF: 0x79F2B
   float len2;          // Offset: 0x4C, DWARF: 0x79F4A
   signed int type;     // Offset: 0x50, DWARF: 0x79F6B
-  char padding[12];    // Not normally part of the struct,
-  but pads a missing 8 bytes.
+  char padding[12];    // Not normally part of the struct, but pads a missing 8
+                       // bytes.
 } Pos;
+
 typedef enum Sliding_State {
   essSliding,
   essSitting,
@@ -163,6 +166,7 @@ typedef enum Sliding_State {
   essRevert,
   essTumble
 } Sliding_State;
+
 typedef enum Tumble_Type {
   ettNormal,
   ettTotter,
@@ -171,12 +175,14 @@ typedef enum Tumble_Type {
   ettTumbleF,
   ettTumbleN
 } Tumble_Type; // Offset: 0x2A0, DWARF: 0x168A79
+
 typedef enum Tumble_Way {
   etwLeft,
   etwRight,
   etwFoward,
   etwBack
 } Tumble_Way; // Offset: 0x2A4, DWARF: 0x168AA3
+
 typedef enum ESP_Spin_Way {
   espNoSpin,
   espTurnLeft,
@@ -184,6 +190,7 @@ typedef enum ESP_Spin_Way {
   espTurnLeftFast,
   espTurnRightFast
 } ESP_Spin_Way; // Offset: 0x18, DWARF: 0x16B1F5
+
 typedef enum Acceleration_State {
   easNormal,
   easAccel,
@@ -200,6 +207,7 @@ typedef enum Acceleration_State {
   easStartAccel,
   easBoostAccel
 } Acceleration_State; // Offset: 0xC, DWARF: 0x16B176
+
 typedef enum Jump_State {
   ejsSliding,
   ejsSitting,
@@ -211,12 +219,14 @@ typedef enum Jump_State {
   ejsJumpUpNollie,
   ejsJumpUpStart
 } Jump_State; // Offset: 0x10, DWARF: 0x16B1A0
+
 // DWARF: 0x16B665
 typedef enum Stance_Change {
   escNoAction,
   escTurnLeft,
   escTurnRight
 } Stance_Change; // Offset: 0x14, DWARF: 0x16B1C9
+
 // DWARF: 0x16C19D
 typedef enum Trick_Command {
   ecmdNone,
@@ -231,12 +241,14 @@ typedef enum Trick_Command {
   ecmdTumble,
   ecmdEndFall
 } Trick_Command; // Offset: 0x1C, DWARF: 0x16B21C
+
 // DWARF: 0x16DD0D
 typedef enum Key_Way {
   ekwNone,
   ekwLeft,
   ekwRight
 } Key_Way; // Offset: 0x2C, DWARF: 0x16B2BC
+
 // DWARF: 0x16C5FB
 typedef enum Acceleration_Brake {
   eraNone,
@@ -245,6 +257,7 @@ typedef enum Acceleration_Brake {
   eraAccelLeft,
   eraAccelRight
 } Acceleration_Brake; // Offset: 0x0, DWARF: 0x16EEC0
+
 // DWARF: 0x16E4C8
 typedef enum Jump_Strength {
   erjNone,
@@ -254,12 +267,14 @@ typedef enum Jump_Strength {
   erjNollie,
   erjStart
 } Jump_Strength; // Offset: 0x8, DWARF: 0x16EF0E
+
 // DWARF: 0x16D3F3
 typedef enum ERSC_Stance_Change {
   erscNone,
   erscTurnLeft,
   erscTurnRight
 } ERSC_Stance_Change; // Offset: 0xC, DWARF: 0x16EF31
+
 // DWARF: 0x16DAF8
 typedef enum ERC_Command {
   ercNone,
@@ -272,12 +287,14 @@ typedef enum ERC_Command {
   ercRevert,
   ercJump
 } ERC_Command; // Offset: 0x10, DWARF: 0x16EF5D
+
 // DWARF: 0x16C51A
 typedef enum Landing_Bonus {
   elbNormal,
   elbPerfect,
   elbSloppy
 } Landing_Bonus; // Offset: 0x24, DWARF: 0x16CB5A
+
 // DWARF: 0x16C76D
 typedef enum ETS_Trick_State {
   etsNormal,
@@ -287,6 +304,7 @@ typedef enum ETS_Trick_State {
   etsPlant,
   etsRevert
 } ETS_Trick_State; // Offset: 0x5D4, DWARF: 0x169BF9
+
 // DWARF: 0x16D779
 typedef enum Trick_Link_State {
   elsNone,
@@ -294,6 +312,7 @@ typedef enum Trick_Link_State {
   elsSuccess,
   elsFailure
 } Trick_Link_State; // Offset: 0x5E0, DWARF: 0x169C72
+
 // DWARF: 0x1C3C55
 typedef enum FlowMode {
   efmIntro,
@@ -306,9 +325,12 @@ typedef enum FlowMode {
   efmRepEnd,
   efmResult
 } FlowMode;
+
 // DWARF: 0x7EA91, 0x1C52E1
 typedef enum Ripside { ersNoRip, ersLeft, ersRight } Ripside;
+
 typedef enum Restart { ersNone, ersNormal, ersReplay } Restart;
+
 // Size: 0x10, DWARF: 0x7A4D2
 typedef struct Cmd {
   signed short type;         // Offset: 0x0, DWARF: 0x7A4EE
@@ -326,6 +348,7 @@ typedef struct Cmd {
   char passtime;             // Offset: 0xE, DWARF: 0x7A69E
   char tmp;                  // Offset: 0xF, DWARF: 0x7A6C3
 } Cmd;
+
 // Size: 0x48, DWARF: 0x7C763, 0x16EEA4
 typedef struct Req {
   // DWARF: 0x80E2D
@@ -351,6 +374,7 @@ typedef struct Req {
   signed int jump_no;       // Offset: 0x40, DWARF: 0x7C9E4
   signed int sptrk_id;      // Offset: 0x44, DWARF: 0x7CA08
 } Req;
+
 // Size: 0x3C, DWARF: 0x7600B, 0x16B0EF
 typedef struct Inp {
   signed int turn;       // Offset: 0x0, DWARF: 0x76026
@@ -375,6 +399,7 @@ typedef struct Inp {
   signed int accel_speed;     // Offset: 0x34, DWARF: 0x76228
   signed int stop_speed;      // Offset: 0x38, DWARF: 0x76250
 } Inp;
+
 // Size: 0x98, DWARF: 0x791A9
 typedef struct TrickLink {
   signed int trick_link;         // Offset: 0x0, DWARF: 0x791C4
@@ -417,6 +442,7 @@ typedef struct TrickLink {
   signed int get_the_best;            // Offset: 0x90, DWARF: 0x797B3
   signed int pre_spin_ang;            // Offset: 0x94, DWARF: 0x797DC
 } TrickLink;
+
 // Size: 0x8, DWARF: 0x168106
 typedef struct Pad {
   unsigned short cnt; // Offset: 0x0, DWARF: 0x168121
@@ -424,62 +450,38 @@ typedef struct Pad {
   signed char lv;     // Offset: 0x3, DWARF: 0x168160
   signed int analog;  // Offset: 0x4, DWARF: 0x16817F
 } Pad;
+
 // Size: 0x1F0, DWARF: 0x7B067
 typedef struct Sbcore {
-  float nextpos[4];
-  // Offset: 0x0,
-  DWARF : 0x7B083 float speed[4];
-  // Offset: 0x10,
-  DWARF : 0x7B0A9 float rot_pole;
-  // Offset: 0x20,
-  DWARF : 0x7B0CD float max_relief_gap;
-  // Offset: 0x24,
-  DWARF : 0x7B0F2 signed int freefoot;
-  // Offset: 0x28,
-  DWARF : 0x7B11D float limit_ang_down;
-  // Offset: 0x2C,
-  DWARF : 0x7B142 float limit_ang_up;
-  // Offset: 0x30,
-  DWARF : 0x7B16D signed int set_sp_normal;
-  // Offset: 0x34,
-  DWARF : 0x7B196 float pos_head[4] __attribute__((aligned(16)));
-  // Offset: 0x40,
-  DWARF : 0x7B1C0 float pos_hip[4];
-  // Offset: 0x50,
-  DWARF : 0x7B1E7 signed int move_head;
-  // Offset: 0x60,
-  DWARF : 0x7B20D float ang_slidable_limit;
-  // Offset: 0x64,
-  DWARF : 0x7B233 float pos[4] __attribute__((aligned(16)));
-  // Offset: 0x70,
-  DWARF : 0x7B262 float pole[4];
-  // Offset: 0x80,
-  DWARF : 0x7B284 float sp_normal[4];
-  // Offset: 0x90,
-  DWARF : 0x7B2A7 signed int sliding;
-  // Offset: 0xA0,
-  DWARF : 0x7B2CF float relief_gap;
-  // Offset: 0xA4,
-  DWARF : 0x7B2F3 float touch_posy;
-  // Offset: 0xA8,
-  DWARF : 0x7B31A float const_max_relief_gap;
-  // Offset: 0xAC,
-  DWARF : 0x7B341 float const_under_foot;
-  // Offset: 0xB0,
-  DWARF : 0x7B372 signed int const_keep_normal;
-  // Offset: 0xB4,
-  DWARF : 0x7B39F float height;
-  // Offset: 0xB8,
-  DWARF : 0x7B3CD signed int cnt_keep_normal;
-  // Offset: 0xBC,
-  DWARF : 0x7B3F0 signed int move;
-  // Offset: 0xC0,
-  DWARF : 0x7B41C
-      // Size: 0x30, DWARF: 0x79C3C
-      Plane plane_hit __attribute__((aligned(16))); // Offset: 0xD0,
-  DWARF : 0x7B43D
-      // Size: 0x30, DWARF: 0x79C3C
-      Plane plane_sliding; // Offset: 0x100, DWARF: 0x7B465
+  float nextpos[4];         // Offset: 0x0, DWARF: 0x7B083
+  float speed[4];           // Offset: 0x10, DWARF: 0x7B0A9
+  float rot_pole;           // Offset: 0x20, DWARF: 0x7B0CD
+  float max_relief_gap;     // Offset: 0x24, DWARF: 0x7B0F2
+  signed int freefoot;      // Offset: 0x28, DWARF: 0x7B11D
+  float limit_ang_down;     // Offset: 0x2C, DWARF: 0x7B142
+  float limit_ang_up;       // Offset: 0x30, DWARF: 0x7B16D
+  signed int set_sp_normal; // Offset: 0x34, DWARF: 0x7B196
+  float pos_head[4]
+      __attribute__((aligned(16)));          // Offset: 0x40, DWARF: 0x7B1C0
+  float pos_hip[4];                          // Offset: 0x50, DWARF: 0x7B1E7
+  signed int move_head;                      // Offset: 0x60, DWARF: 0x7B20D
+  float ang_slidable_limit;                  // Offset: 0x64, DWARF: 0x7B233
+  float pos[4] __attribute__((aligned(16))); // Offset: 0x70, DWARF: 0x7B262
+  float pole[4];                             // Offset: 0x80, DWARF: 0x7B284
+  float sp_normal[4];                        // Offset: 0x90, DWARF: 0x7B2A7
+  signed int sliding;                        // Offset: 0xA0, DWARF: 0x7B2CF
+  float relief_gap;                          // Offset: 0xA4, DWARF: 0x7B2F3
+  float touch_posy;                          // Offset: 0xA8, DWARF: 0x7B31A
+  float const_max_relief_gap;                // Offset: 0xAC, DWARF: 0x7B341
+  float const_under_foot;                    // Offset: 0xB0, DWARF: 0x7B372
+  signed int const_keep_normal;              // Offset: 0xB4, DWARF: 0x7B39F
+  float height;                              // Offset: 0xB8, DWARF: 0x7B3CD
+  signed int cnt_keep_normal;                // Offset: 0xBC, DWARF: 0x7B3F0
+  signed int move;                           // Offset: 0xC0, DWARF: 0x7B41C
+  // Size: 0x30, DWARF: 0x79C3C
+  Plane plane_hit __attribute__((aligned(16))); // Offset: 0xD0, DWARF: 0x7B43D
+  // Size: 0x30, DWARF: 0x79C3C
+  Plane plane_sliding; // Offset: 0x100, DWARF: 0x7B465
   // Size: 0x30, DWARF: 0x79C3C
   Plane plane_beneath; // Offset: 0x130, DWARF: 0x7B491
   // Size: 0x30, DWARF: 0x79C3C
@@ -489,6 +491,7 @@ typedef struct Sbcore {
   // Size: 0x30, DWARF: 0x79C3C
   Plane plane_pre_hit; // Offset: 0x1C0, DWARF: 0x7B513
 } Sbcore;
+
 // Size: 0x2580, DWARF: 0x76810
 typedef struct Act {
   // Size: 0x1F0, DWARF: 0x7B067
@@ -550,49 +553,28 @@ typedef struct Act {
   // DWARF: 0x7E931
   Tumble_Type trg_tumble_type; // Offset: 0x2E0, DWARF: 0x76FF4
   // DWARF: 0x7FF3C
-  Tumble_Way trg_tumble_way;
-  // Offset: 0x2E4,
-  DWARF : 0x77022 signed int trg_tumble_body;
-  // Offset: 0x2E8,
-  DWARF : 0x7704F signed int end_grind;
-  // Offset: 0x2EC,
-  DWARF : 0x7707B signed int end_manual;
-  // Offset: 0x2F0,
-  DWARF : 0x770A1 signed int end_sliding;
-  // Offset: 0x2F4,
-  DWARF : 0x770C8 float max_relief_gap;
-  // Offset: 0x2F8,
-  DWARF : 0x770F0 float relief_gap;
-  // Offset: 0x2FC,
-  DWARF : 0x7711B float slant;
-  // Offset: 0x300,
-  DWARF : 0x77142 float side_slant;
-  // Offset: 0x304,
-  DWARF : 0x77164 float sp_slant;
-  // Offset: 0x308,
-  DWARF : 0x7718B float sp_side_slant;
-  // Offset: 0x30C,
-  DWARF : 0x771B0 float ofs_updown;
-  // Offset: 0x310,
-  DWARF : 0x771DA float target_way;
-  // Offset: 0x314,
-  DWARF : 0x77201 sceVu0FVECTOR *pre_rail_list;
-  // Offset: 0x318,
-  DWARF : 0x77228 // float*[4]
-      sceVu0FVECTOR *rail_list;
-  // Offset: 0x31C,
-  DWARF : 0x77257 // float*[4]
-      signed int num_rail_vertex;
-  // Offset: 0x320,
-  DWARF : 0x77282 signed int rail_id;
-  // Offset: 0x324,
-  DWARF : 0x772AE signed int rail_no;
-  // Offset: 0x328,
-  DWARF : 0x772D2 float rail_pos[4] __attribute__((aligned(16)));
-  // Offset: 0x330,
-  DWARF : 0x772F6
-      // Size: 0x14, DWARF: 0x7C447
-      Balance gr_balance;        // Offset: 0x340, DWARF: 0x7731D
+  Tumble_Way trg_tumble_way;    // Offset: 0x2E4, DWARF: 0x77022
+  signed int trg_tumble_body;   // Offset: 0x2E8, DWARF: 0x7704F
+  signed int end_grind;         // Offset: 0x2EC, DWARF: 0x7707B
+  signed int end_manual;        // Offset: 0x2F0, DWARF: 0x770A1
+  signed int end_sliding;       // Offset: 0x2F4, DWARF: 0x770C8
+  float max_relief_gap;         // Offset: 0x2F8, DWARF: 0x770F0
+  float relief_gap;             // Offset: 0x2FC, DWARF: 0x7711B
+  float slant;                  // Offset: 0x300, DWARF: 0x77142
+  float side_slant;             // Offset: 0x304, DWARF: 0x77164
+  float sp_slant;               // Offset: 0x308, DWARF: 0x7718B
+  float sp_side_slant;          // Offset: 0x30C, DWARF: 0x771B0
+  float ofs_updown;             // Offset: 0x310, DWARF: 0x771DA
+  float target_way;             // Offset: 0x314, DWARF: 0x77201
+  sceVu0FVECTOR *pre_rail_list; // Offset: 0x318, DWARF: 0x77228 // float*[4]
+  sceVu0FVECTOR *rail_list;     // Offset: 0x31C, DWARF: 0x77257 // float*[4]
+  signed int num_rail_vertex;   // Offset: 0x320, DWARF: 0x77282
+  signed int rail_id;           // Offset: 0x324, DWARF: 0x772AE
+  signed int rail_no;           // Offset: 0x328, DWARF: 0x772D2
+  float rail_pos[4]
+      __attribute__((aligned(16))); // Offset: 0x330, DWARF: 0x772F6
+  // Size: 0x14, DWARF: 0x7C447
+  Balance gr_balance;            // Offset: 0x340, DWARF: 0x7731D
   float gr_enter_ang;            // Offset: 0x354, DWARF: 0x77346
   signed int gr_reset_lean;      // Offset: 0x358, DWARF: 0x7736F
   signed int trg_grind_name;     // Offset: 0x35C, DWARF: 0x77399
@@ -618,162 +600,94 @@ typedef struct Act {
   signed int manual_ready_no;    // Offset: 0x3C4, DWARF: 0x776B9
   signed int manual_cnt_to_play; // Offset: 0x3C8, DWARF: 0x776E5
   // Size: 0x14, DWARF: 0x7C447
-  Balance manu_balance;
-  // Offset: 0x3CC,
-  DWARF : 0x77714 signed int manu_reset_lean;
-  // Offset: 0x3E0,
-  DWARF : 0x7773F signed int bonk_ready;
-  // Offset: 0x3E4,
-  DWARF : 0x7776B signed int bonk_ready_no;
-  // Offset: 0x3E8,
-  DWARF : 0x77792 signed int bonk_goto;
-  // Offset: 0x3EC,
-  DWARF : 0x777BC float bonk_point[4];
-  // Offset: 0x3F0,
-  DWARF : 0x777E2 float bonk_presp[4];
-  // Offset: 0x400,
-  DWARF : 0x7780B signed int revert_cnt_ready;
-  // Offset: 0x410,
-  DWARF : 0x77834 signed int revert_ready_no;
-  // Offset: 0x414,
-  DWARF : 0x77861 signed int plant_air;
-  // Offset: 0x418,
-  DWARF : 0x7788D float plant_normal[4] __attribute__((aligned(16)));
-  // Offset: 0x420,
-  DWARF : 0x778B3 float max_height;
-  // Offset: 0x430,
-  DWARF : 0x778DE signed int big_air;
-  // Offset: 0x434,
-  DWARF : 0x77905 signed int cnt_onair;
-  // Offset: 0x438,
-  DWARF : 0x77929 signed int cnt_onair2;
-  // Offset: 0x43C,
-  DWARF : 0x7794F signed int cnt_nothit;
-  // Offset: 0x440,
-  DWARF : 0x77976 signed int tumble_se_id;
-  // Offset: 0x444,
-  DWARF : 0x7799D float jump_rot_pole;
-  // Offset: 0x448,
-  DWARF : 0x779C6 float last_rot_pole;
-  // Offset: 0x44C,
-  DWARF : 0x779F0
-      // DWARF: 0x8178B
-      ESP_Spin_Way last_spin_way;
-  // Offset: 0x450,
-  DWARF : 0x77A1A float pos_waist[4] __attribute__((aligned(16)));
-  // Offset: 0x460,
-  DWARF : 0x77A46 float pos_disp[4];
-  // Offset: 0x470,
-  DWARF : 0x77A6E float shadow_posy;
-  // Offset: 0x480,
-  DWARF : 0x77A95 float max_speed;
-  // Offset: 0x484,
-  DWARF : 0x77ABD float cmn_max_speed;
-  // Offset: 0x488,
-  DWARF : 0x77AE3 float now_max_speed;
-  // Offset: 0x48C,
-  DWARF : 0x77B0D
-      // Size: 0x24, DWARF: 0x7C294
-      Param2 param; // Offset: 0x490, DWARF: 0x77B37
+  Balance manu_balance;        // Offset: 0x3CC, DWARF: 0x77714
+  signed int manu_reset_lean;  // Offset: 0x3E0, DWARF: 0x7773F
+  signed int bonk_ready;       // Offset: 0x3E4, DWARF: 0x7776B
+  signed int bonk_ready_no;    // Offset: 0x3E8, DWARF: 0x77792
+  signed int bonk_goto;        // Offset: 0x3EC, DWARF: 0x777BC
+  float bonk_point[4];         // Offset: 0x3F0, DWARF: 0x777E2
+  float bonk_presp[4];         // Offset: 0x400, DWARF: 0x7780B
+  signed int revert_cnt_ready; // Offset: 0x410, DWARF: 0x77834
+  signed int revert_ready_no;  // Offset: 0x414, DWARF: 0x77861
+  signed int plant_air;        // Offset: 0x418, DWARF: 0x7788D
+  float plant_normal[4]
+      __attribute__((aligned(16))); // Offset: 0x420, DWARF: 0x778B3
+  float max_height;                 // Offset: 0x430, DWARF: 0x778DE
+  signed int big_air;               // Offset: 0x434, DWARF: 0x77905
+  signed int cnt_onair;             // Offset: 0x438, DWARF: 0x77929
+  signed int cnt_onair2;            // Offset: 0x43C, DWARF: 0x7794F
+  signed int cnt_nothit;            // Offset: 0x440, DWARF: 0x77976
+  signed int tumble_se_id;          // Offset: 0x444, DWARF: 0x7799D
+  float jump_rot_pole;              // Offset: 0x448, DWARF: 0x779C6
+  float last_rot_pole;              // Offset: 0x44C, DWARF: 0x779F0
+  // DWARF: 0x8178B
+  ESP_Spin_Way last_spin_way; // Offset: 0x450, DWARF: 0x77A1A
+  float pos_waist[4]
+      __attribute__((aligned(16))); // Offset: 0x460, DWARF: 0x77A46
+  float pos_disp[4];                // Offset: 0x470, DWARF: 0x77A6E
+  float shadow_posy;                // Offset: 0x480, DWARF: 0x77A95
+  float max_speed;                  // Offset: 0x484, DWARF: 0x77ABD
+  float cmn_max_speed;              // Offset: 0x488, DWARF: 0x77AE3
+  float now_max_speed;              // Offset: 0x48C, DWARF: 0x77B0D
+  // Size: 0x24, DWARF: 0x7C294
+  Param2 param; // Offset: 0x490, DWARF: 0x77B37
   // Size: 0x1C, DWARF: 0x7C601
   Character_Param chr_param_x10; // Offset: 0x4B4, DWARF: 0x77B5B
   // Size: 0x10, DWARF: 0x7A1DB
-  Board_Param brd_param_x10;
-  // Offset: 0x4D0,
-  DWARF : 0x77B87 signed int mot_finish;
-  // Offset: 0x4E0,
-  DWARF : 0x77BB3 signed int mot_grabing;
-  // Offset: 0x4E4,
-  DWARF : 0x77BDA signed int mot_flipping;
-  // Offset: 0x4E8,
-  DWARF : 0x77C02 signed int mot_spflipping;
-  // Offset: 0x4EC,
-  DWARF : 0x77C2B signed int mot_grinding;
-  // Offset: 0x4F0,
-  DWARF : 0x77C56 signed int mot_planting;
-  // Offset: 0x4F4,
-  DWARF : 0x77C7F signed int mot_manualing;
-  // Offset: 0x4F8,
-  DWARF : 0x77CA8 signed int mot_reverting;
-  // Offset: 0x4FC,
-  DWARF : 0x77CD2 signed int mot_bonking;
-  // Offset: 0x500,
-  DWARF : 0x77CFC signed int mot_tumbling;
-  // Offset: 0x504,
-  DWARF : 0x77D24 signed int mot_reserve_tumble_standup;
-  // Offset: 0x508,
-  DWARF : 0x77D4D signed int mot_tumble_standup;
-  // Offset: 0x50C,
-  DWARF : 0x77D84 signed int mot_tumble_standup_already;
-  // Offset: 0x510,
-  DWARF : 0x77DB3 signed int mot_end_tumble;
-  // Offset: 0x514,
-  DWARF : 0x77DEA float mot_flip_rot[4] __attribute__((aligned(16)));
-  // Offset: 0x520,
-  DWARF : 0x77E15 float mot_flip_roty_base;
-  // Offset: 0x530,
-  DWARF : 0x77E40 signed int mot_flip_mode;
-  // Offset: 0x534,
-  DWARF : 0x77E6F
-      // Size: 0x98, DWARF: 0x791A9
-      TrickLink trick_link; // Offset: 0x538, DWARF: 0x77E99
-  signed int trk_doing;     // Offset: 0x5D0, DWARF: 0x77EC2
+  Board_Param brd_param_x10;             // Offset: 0x4D0, DWARF: 0x77B87
+  signed int mot_finish;                 // Offset: 0x4E0, DWARF: 0x77BB3
+  signed int mot_grabing;                // Offset: 0x4E4, DWARF: 0x77BDA
+  signed int mot_flipping;               // Offset: 0x4E8, DWARF: 0x77C02
+  signed int mot_spflipping;             // Offset: 0x4EC, DWARF: 0x77C2B
+  signed int mot_grinding;               // Offset: 0x4F0, DWARF: 0x77C56
+  signed int mot_planting;               // Offset: 0x4F4, DWARF: 0x77C7F
+  signed int mot_manualing;              // Offset: 0x4F8, DWARF: 0x77CA8
+  signed int mot_reverting;              // Offset: 0x4FC, DWARF: 0x77CD2
+  signed int mot_bonking;                // Offset: 0x500, DWARF: 0x77CFC
+  signed int mot_tumbling;               // Offset: 0x504, DWARF: 0x77D24
+  signed int mot_reserve_tumble_standup; // Offset: 0x508, DWARF: 0x77D4D
+  signed int mot_tumble_standup;         // Offset: 0x50C, DWARF: 0x77D84
+  signed int mot_tumble_standup_already; // Offset: 0x510, DWARF: 0x77DB3
+  signed int mot_end_tumble;             // Offset: 0x514, DWARF: 0x77DEA
+  float mot_flip_rot[4]
+      __attribute__((aligned(16))); // Offset: 0x520, DWARF: 0x77E15
+  float mot_flip_roty_base;         // Offset: 0x530, DWARF: 0x77E40
+  signed int mot_flip_mode;         // Offset: 0x534, DWARF: 0x77E6F
+  // Size: 0x98, DWARF: 0x791A9
+  TrickLink trick_link; // Offset: 0x538, DWARF: 0x77E99
+  signed int trk_doing; // Offset: 0x5D0, DWARF: 0x77EC2
   // DWARF: 0x80EBF
   ETS_Trick_State trk_state; // Offset: 0x5D4, DWARF: 0x77EE8
   signed int trk_grab_no;    // Offset: 0x5D8, DWARF: 0x77F10
   signed int trk_trick_no;   // Offset: 0x5DC, DWARF: 0x77F38
   // DWARF: 0x81DE1
-  Trick_Link_State trk_link_state;
-  // Offset: 0x5E0,
-  DWARF : 0x77F61 signed int num_set_gap;
-  // Offset: 0x5E4,
-  DWARF : 0x77F8E signed short set_gap[64];
-  // Offset: 0x5E8,
-  DWARF : 0x77FB6 signed int special_num;
-  // Offset: 0x668,
-  DWARF : 0x77FDC signed int special_charge;
-  // Offset: 0x66C,
-  DWARF : 0x78004 signed int special_charge_cnt;
-  // Offset: 0x670,
-  DWARF : 0x7802F signed int special_charge_maxcnt;
-  // Offset: 0x674,
-  DWARF : 0x7805E signed int special_left_time;
-  // Offset: 0x678,
-  DWARF : 0x78090 signed int special_total_time;
-  // Offset: 0x67C,
-  DWARF : 0x780BE signed int special_remainder_tp;
-  // Offset: 0x680,
-  DWARF : 0x780ED signed int boost;
-  // Offset: 0x684,
-  DWARF : 0x7811E signed int boost_num;
-  // Offset: 0x688,
-  DWARF : 0x78140 signed int boost_charge;
-  // Offset: 0x68C,
-  DWARF : 0x78166 signed int boost_left_time;
-  // Offset: 0x690,
-  DWARF : 0x7818F signed int boost_total_time;
-  // Offset: 0x694,
-  DWARF : 0x781BB signed int balance_cnt_adj;
-  // Offset: 0x698,
-  DWARF : 0x781E8 float balance_ang_adj;
-  // Offset: 0x69C,
-  DWARF : 0x78214 float balance_roty_adj;
-  // Offset: 0x6A0,
-  DWARF : 0x78240 signed int balance_bigair;
-  // Offset: 0x6A4,
-  DWARF : 0x7826D float balance_pole[4] __attribute__((aligned(16)));
-  // Offset: 0x6B0,
-  DWARF : 0x78298 float hang_rate;
-  // Offset: 0x6C0,
-  DWARF : 0x782C3 signed int num_hit;
-  // Offset: 0x6C4,
-  DWARF : 0x782E9 signed int num_vec;
-  // Offset: 0x6C8,
-  DWARF : 0x7830D signed int num_obj;
-  // Offset: 0x6CC,
-  DWARF : 0x78331
-      // Size: 0x60, DWARF: 0x75E44
-      Col col_hit[0x10]; // Offset: 0x6D0, DWARF: 0x78355
+  Trick_Link_State trk_link_state;  // Offset: 0x5E0, DWARF: 0x77F61
+  signed int num_set_gap;           // Offset: 0x5E4, DWARF: 0x77F8E
+  signed short set_gap[64];         // Offset: 0x5E8, DWARF: 0x77FB6
+  signed int special_num;           // Offset: 0x668, DWARF: 0x77FDC
+  signed int special_charge;        // Offset: 0x66C, DWARF: 0x78004
+  signed int special_charge_cnt;    // Offset: 0x670, DWARF: 0x7802F
+  signed int special_charge_maxcnt; // Offset: 0x674, DWARF: 0x7805E
+  signed int special_left_time;     // Offset: 0x678, DWARF: 0x78090
+  signed int special_total_time;    // Offset: 0x67C, DWARF: 0x780BE
+  signed int special_remainder_tp;  // Offset: 0x680, DWARF: 0x780ED
+  signed int boost;                 // Offset: 0x684, DWARF: 0x7811E
+  signed int boost_num;             // Offset: 0x688, DWARF: 0x78140
+  signed int boost_charge;          // Offset: 0x68C, DWARF: 0x78166
+  signed int boost_left_time;       // Offset: 0x690, DWARF: 0x7818F
+  signed int boost_total_time;      // Offset: 0x694, DWARF: 0x781BB
+  signed int balance_cnt_adj;       // Offset: 0x698, DWARF: 0x781E8
+  float balance_ang_adj;            // Offset: 0x69C, DWARF: 0x78214
+  float balance_roty_adj;           // Offset: 0x6A0, DWARF: 0x78240
+  signed int balance_bigair;        // Offset: 0x6A4, DWARF: 0x7826D
+  float balance_pole[4]
+      __attribute__((aligned(16))); // Offset: 0x6B0, DWARF: 0x78298
+  float hang_rate;                  // Offset: 0x6C0, DWARF: 0x782C3
+  signed int num_hit;               // Offset: 0x6C4, DWARF: 0x782E9
+  signed int num_vec;               // Offset: 0x6C8, DWARF: 0x7830D
+  signed int num_obj;               // Offset: 0x6CC, DWARF: 0x78331
+  // Size: 0x60, DWARF: 0x75E44
+  Col col_hit[0x10]; // Offset: 0x6D0, DWARF: 0x78355
   // Size: 0x60, DWARF: 0x75E44
   Col col_vec[0x10]; // Offset: 0xCD0, DWARF: 0x7837B
   // Size: 0x60, DWARF: 0x75E44
@@ -782,91 +696,60 @@ typedef struct Act {
   float reserve_tumble_ang;   // Offset: 0x18D4, DWARF: 0x783F2
   float reserve_tumble_speed; // Offset: 0x18D8, DWARF: 0x78421
   // DWARF: 0x7E931
-  Tumble_Type reserve_tumble_type;
-  // Offset: 0x18DC,
-  DWARF : 0x78452 signed int reserve_trick_no[16];
-  // Offset: 0x18E0,
-  DWARF : 0x78484 signed int reserve_trick_is_flip[16];
-  // Offset: 0x1920,
-  DWARF : 0x784B3 signed int reserve_trick_is_special[16];
-  // Offset: 0x1960,
-  DWARF : 0x784E7 signed int num_reserve_trick;
-  // Offset: 0x19A0,
-  DWARF : 0x7851E signed int top_reserve_trick;
-  // Offset: 0x19A4,
-  DWARF : 0x7854C signed int reserve_stance_change;
-  // Offset: 0x19A8,
-  DWARF : 0x7857A signed int num_reserve_grab;
-  // Offset: 0x19AC,
-  DWARF : 0x785AC unsigned char num_play_trick[2][160];
-  // Offset: 0x19B0,
-  DWARF : 0x785D9 unsigned char num_play_trick_in_link[2][160];
-  // Offset: 0x1AF0,
-  DWARF : 0x78606 float mat_head[4][4];
-  // Offset: 0x1C30,
-  DWARF : 0x7863B float mat_hip[4][4];
-  // Offset: 0x1C70,
-  DWARF : 0x78662
-      // Size: 0x60, DWARF: 0x75E44
-      Col col_rail; // Offset: 0x1CB0, DWARF: 0x78688
+  Tumble_Type reserve_tumble_type;         // Offset: 0x18DC, DWARF: 0x78452
+  signed int reserve_trick_no[16];         // Offset: 0x18E0, DWARF: 0x78484
+  signed int reserve_trick_is_flip[16];    // Offset: 0x1920, DWARF: 0x784B3
+  signed int reserve_trick_is_special[16]; // Offset: 0x1960, DWARF: 0x784E7
+  signed int num_reserve_trick;            // Offset: 0x19A0, DWARF: 0x7851E
+  signed int top_reserve_trick;            // Offset: 0x19A4, DWARF: 0x7854C
+  signed int reserve_stance_change;        // Offset: 0x19A8, DWARF: 0x7857A
+  signed int num_reserve_grab;             // Offset: 0x19AC, DWARF: 0x785AC
+  unsigned char num_play_trick[2][160];    // Offset: 0x19B0, DWARF: 0x785D9
+  unsigned char num_play_trick_in_link[2]
+                                      [160]; // Offset: 0x1AF0, DWARF: 0x78606
+  float mat_head[4][4];                      // Offset: 0x1C30, DWARF: 0x7863B
+  float mat_hip[4][4];                       // Offset: 0x1C70, DWARF: 0x78662
+  // Size: 0x60, DWARF: 0x75E44
+  Col col_rail; // Offset: 0x1CB0, DWARF: 0x78688
   // Size: 0x60, DWARF: 0x75E44
   Col col_plant; // Offset: 0x1D10, DWARF: 0x786AF
   // Size: 0x60, DWARF: 0x75E44
   Col col_hp; // Offset: 0x1D70, DWARF: 0x786D7
   // Size: 0x60, DWARF: 0x75E44
-  Col col_zhp;                              // Offset: 0x1DD0,
-  DWARF : 0x786FC float recover_pos[4];     // Offset: 0x1E30,
-  DWARF : 0x78722 float recover_roty;       // Offset: 0x1E40,
-  DWARF : 0x7874C float recover_speed;      // Offset: 0x1E44,
-  DWARF : 0x78775 signed int recover;       // Offset: 0x1E48,
-  DWARF : 0x7879F signed int trg_recovered; // Offset: 0x1E4C,
-  DWARF : 0x787C3 signed int reserve_fall;  // Offset: 0x1E50,
-  DWARF : 0x787ED signed int cnt_fall;      // Offset: 0x1E54,
-  DWARF : 0x78816 signed int cnt_warp;      // Offset: 0x1E58,
-  DWARF : 0x7883B signed int water_manual;  // Offset: 0x1E5C,
-  DWARF : 0x78860 signed int sptrk[2];      // Offset: 0x1E60,
-  DWARF : 0x78889 signed int num_total_gap; // Offset: 0x1E68,
-  DWARF : 0x788AD signed int num_total_break;
-  // Offset: 0x1E6C, DWARF: 0x788D7
-  signed int reserve_quit;
-  // Offset: 0x1E70,
-  DWARF : 0x78903 signed int allow_tlink;
-  // Offset: 0x1E74,
-  DWARF : 0x7892C signed int no_trick;
-  // Offset: 0x1E78,
-  DWARF : 0x78954 signed int trg_quit;
-  // Offset: 0x1E7C,
-  DWARF : 0x78979 signed int cnt_quit;
-  // Offset: 0x1E80,
-  DWARF : 0x7899E signed int cnt_reserve_quit;
-  // Offset: 0x1E84,
-  DWARF : 0x789C3 signed int pass_finish_line;
-  // Offset: 0x1E88,
-  DWARF : 0x789F0 signed int pass_finish_line2;
-  // Offset: 0x1E8C,
-  DWARF : 0x78A1D signed int wait_motion;
-  // Offset: 0x1E90,
-  DWARF : 0x78A4B signed int wait_vs;
-  // Offset: 0x1E94,
-  DWARF : 0x78A73 signed int noheight_reflect;
-  // Offset: 0x1E98,
-  DWARF : 0x78A97 signed int cnt_noheight_reflect;
-  // Offset: 0x1E9C,
-  DWARF : 0x78AC4 signed int cnt_brank_noheight_reflect;
-  // Offset: 0x1EA0,
-  DWARF : 0x78AF5 signed int forced_bailout;
-  // Offset: 0x1EA4,
-  DWARF : 0x78B2C signed int cnt_hit_wall;
-  // Offset: 0x1EA8,
-  DWARF : 0x78B57 signed int cnt_brank_hit_wall;
-  // Offset: 0x1EAC,
-  DWARF : 0x78B80 signed int cnt_forced_bailout;
-  // Offset: 0x1EB0,
-  DWARF : 0x78BAF float last_hit_plane[10][4] __attribute__((aligned(16)));
-  // Offset: 0x1EC0,
-  DWARF : 0x78BDE
-      // Size: 0x10, DWARF: 0x7A4D2
-      Cmd cmd_trick[25]; // Offset: 0x1F60, DWARF: 0x78C0B
+  Col col_zhp;                           // Offset: 0x1DD0, DWARF: 0x786FC
+  float recover_pos[4];                  // Offset: 0x1E30, DWARF: 0x78722
+  float recover_roty;                    // Offset: 0x1E40, DWARF: 0x7874C
+  float recover_speed;                   // Offset: 0x1E44, DWARF: 0x78775
+  signed int recover;                    // Offset: 0x1E48, DWARF: 0x7879F
+  signed int trg_recovered;              // Offset: 0x1E4C, DWARF: 0x787C3
+  signed int reserve_fall;               // Offset: 0x1E50, DWARF: 0x787ED
+  signed int cnt_fall;                   // Offset: 0x1E54, DWARF: 0x78816
+  signed int cnt_warp;                   // Offset: 0x1E58, DWARF: 0x7883B
+  signed int water_manual;               // Offset: 0x1E5C, DWARF: 0x78860
+  signed int sptrk[2];                   // Offset: 0x1E60, DWARF: 0x78889
+  signed int num_total_gap;              // Offset: 0x1E68, DWARF: 0x788AD
+  signed int num_total_break;            // Offset: 0x1E6C, DWARF: 0x788D7
+  signed int reserve_quit;               // Offset: 0x1E70, DWARF: 0x78903
+  signed int allow_tlink;                // Offset: 0x1E74, DWARF: 0x7892C
+  signed int no_trick;                   // Offset: 0x1E78, DWARF: 0x78954
+  signed int trg_quit;                   // Offset: 0x1E7C, DWARF: 0x78979
+  signed int cnt_quit;                   // Offset: 0x1E80, DWARF: 0x7899E
+  signed int cnt_reserve_quit;           // Offset: 0x1E84, DWARF: 0x789C3
+  signed int pass_finish_line;           // Offset: 0x1E88, DWARF: 0x789F0
+  signed int pass_finish_line2;          // Offset: 0x1E8C, DWARF: 0x78A1D
+  signed int wait_motion;                // Offset: 0x1E90, DWARF: 0x78A4B
+  signed int wait_vs;                    // Offset: 0x1E94, DWARF: 0x78A73
+  signed int noheight_reflect;           // Offset: 0x1E98, DWARF: 0x78A97
+  signed int cnt_noheight_reflect;       // Offset: 0x1E9C, DWARF: 0x78AC4
+  signed int cnt_brank_noheight_reflect; // Offset: 0x1EA0, DWARF: 0x78AF5
+  signed int forced_bailout;             // Offset: 0x1EA4, DWARF: 0x78B2C
+  signed int cnt_hit_wall;               // Offset: 0x1EA8, DWARF: 0x78B57
+  signed int cnt_brank_hit_wall;         // Offset: 0x1EAC, DWARF: 0x78B80
+  signed int cnt_forced_bailout;         // Offset: 0x1EB0, DWARF: 0x78BAF
+  float last_hit_plane[10][4]
+      __attribute__((aligned(16))); // Offset: 0x1EC0, DWARF: 0x78BDE
+  // Size: 0x10, DWARF: 0x7A4D2
+  Cmd cmd_trick[25]; // Offset: 0x1F60, DWARF: 0x78C0B
   // Size: 0x10, DWARF: 0x7A4D2
   Cmd cmd_flip[25]; // Offset: 0x20F0, DWARF: 0x78C33
   // Size: 0x10, DWARF: 0x7A4D2
@@ -884,6 +767,7 @@ typedef struct Act {
   // Size: 0x10, DWARF: 0x7A4D2
   Cmd cmd_revert[2]; // Offset: 0x2560, DWARF: 0x78D49
 } Act;
+
 // Size: 0x140, DWARF: 0x16DBF7
 typedef struct Matrix {
   float local_screen[4][4]; // Offset: 0x0, DWARF: 0x16DC13
@@ -892,6 +776,7 @@ typedef struct Matrix {
   float local_clip[4][4];   // Offset: 0xC0, DWARF: 0x16DC92
   float clip_screen[4][4];  // Offset: 0x100, DWARF: 0x16DCBB
 } Matrix;
+
 // Size: 0x20, DWARF: 0x16D961
 typedef struct Fog {
   float min;         // Offset: 0x0, DWARF: 0x16D97D
@@ -900,6 +785,7 @@ typedef struct Fog {
   float near;        // Offset: 0xC, DWARF: 0x16D9DD
   signed int col[4]; // Offset: 0x10, DWARF: 0x16D9FE
 } Fog;
+
 // Size: 0x30, DWARF: 0x16C801
 typedef struct ScreenInfo {
   float aspect_x;   // Offset: 0x0, DWARF: 0x16C81D
@@ -915,6 +801,7 @@ typedef struct ScreenInfo {
   float screen_z;   // Offset: 0x28, DWARF: 0x16C988
   float res;        // Offset: 0x2C, DWARF: 0x16C9AD
 } ScreenInfo;
+
 // Size: 0x340, DWARF: 0x167DF5
 typedef struct SysMat {
   // Size: 0x30, DWARF: 0x16C801
@@ -933,6 +820,7 @@ typedef struct SysMat {
   float cam_trans[4];       // Offset: 0x320, DWARF: 0x167F9F
   float view_angle;         // Offset: 0x330, DWARF: 0x167FC7
 } SysMat;
+
 // Size: 0x24, DWARF: 0x167A72
 typedef struct Key {
   signed int vibration; // Offset: 0x0, DWARF: 0x167A8D
@@ -945,6 +833,7 @@ typedef struct Key {
   signed int jump;      // Offset: 0x1C, DWARF: 0x167B82
   signed int flip;      // Offset: 0x20, DWARF: 0x167BA3
 } Key;
+
 // Size: 0x3C, DWARF: 0x167640
 typedef struct Rider_State {
   signed int no;     // Offset: 0x0, DWARF: 0x16765B
@@ -956,6 +845,7 @@ typedef struct Rider_State {
   // Size: 0x10, DWARF: 0x16DA24
   Board_Param brd_param; // Offset: 0x2C, DWARF: 0x167708
 } Rider_State;
+
 // Size: 0x14, DWARF: 0x16D54F
 typedef struct Se {
   float splen;            // Offset: 0x0, DWARF: 0x16D56B
@@ -964,6 +854,7 @@ typedef struct Se {
   float anggap_board_rot; // Offset: 0xC, DWARF: 0x16D5DC
   signed int side_slide;  // Offset: 0x10, DWARF: 0x16D609
 } Se __attribute__((aligned(16)));
+
 // Size: 0x190, DWARF: 0x16B9B7
 typedef struct Cam // Offset 2A40
 {
@@ -1010,8 +901,10 @@ typedef struct Cam // Offset 2A40
   signed int trg_plant;          // Offset: 0x17C, DWARF: 0x16BEAD
   signed int grind_goto;         // Offset: 0x180, DWARF: 0x16BED3
 } Cam;
+
 // DWARF: 0x16ECC4
 typedef enum FlipMode { eflReady, eflFlipping, eflEnd } FlipMode;
+
 // Size: 0x20, DWARF: 0x16E73E
 typedef struct KeyList {
   float rot[4];     // Offset: 0x0, DWARF: 0x16E75A
@@ -1019,6 +912,7 @@ typedef struct KeyList {
   signed int pad;   // Offset: 0x14, DWARF: 0x16E79E
   char padding[4];  // Not originally in struct
 } KeyList;
+
 // Size: 0x50, DWARF: 0x16F172
 typedef struct Flip // Offset 28B0 + 110 = 29C0
 {
@@ -1034,6 +928,7 @@ typedef struct Flip // Offset 28B0 + 110 = 29C0
   signed int play_mot; // Offset: 0x40, DWARF: 0x16F26E
   int padding[7];      // Not originally in struct
 } Flip __attribute__((aligned(16)));
+
 // Size: 0x2C, DWARF: 0x16DF3B
 typedef struct MotFrames // Offset 0x28B0
 {
@@ -1049,6 +944,7 @@ typedef struct MotFrames // Offset 0x28B0
   float adj_rot;             // Offset: 0x24, DWARF: 0x16E09B
   signed int cannot_control; // Offset: 0x28, DWARF: 0x16E0BF
 } MotFrames;
+
 // Size: 0x190, DWARF: 0x1677E9
 typedef struct Mot // Offset 28B0
 {
@@ -1076,6 +972,7 @@ typedef struct Mot // Offset 28B0
   signed int trg_to_calc_flip;         // Offset: 0x17C, DWARF: 0x167A18
   signed int to_calc_flip;             // Offset: 0x180, DWARF: 0x167A45
 } Mot;
+
 // Size: 0x2C00, DWARF: 0x16AA87, 0xBAAA7, 0xDB58D
 typedef struct Ctrl {
   float rot[4];                  // Offset: 0x0, DWARF: 0x16AAA3
@@ -1130,11 +1027,13 @@ typedef struct Ctrl {
   // Size: 0x340, DWARF: 0x167DF5
   SysMat *sys_mat; // Offset: 0x2BF0, DWARF: 0x16AF5C
 } Ctrl;
+
 // Size: 0x20, DWARF: 0x7EE12, 0xBA133
 typedef struct ModelData {
   float pos[4]; // Offset: 0x0, DWARF: 0xBA14E
   float rot[4]; // Offset: 0x10, DWARF: 0xBA170
 } ModelData;
+
 // Size: 0x10, DWARF: 0x813DF, 0xBCA3C
 typedef struct PosAddress //: const volatile float[4]
 {
@@ -1144,18 +1043,21 @@ typedef struct PosAddress //: const volatile float[4]
   signed short non;  // Offset: 0xA, DWARF: 0xBCABB
   float *data[4];    // Offset: 0xC, DWARF: 0xBCADB
 } PosAddress;
+
 // Size: 0x140, DWARF: 0x7DA36
 typedef struct Wind {
-  signed int count[8][3] __attribute__((aligned(16))); // Offset: 0x0,
-  DWARF : 0x7DA52 signed int speed[8][3];              // Offset: 0x60,
-  DWARF : 0x7DA76 float wave[8][4];                    // Offset: 0xC0,
-  DWARF : 0x7DA9A
+  signed int count[8][3]
+      __attribute__((aligned(16))); // Offset: 0x0, DWARF: 0x7DA52
+  signed int speed[8][3];           // Offset: 0x60, DWARF: 0x7DA76
+  float wave[8][4];                 // Offset: 0xC0, DWARF: 0x7DA9A
 } Wind;
+
 // Size: 0x8, DWARF: 0x7E8D5
 typedef struct EnvFog {
   float a; // Offset: 0x0, DWARF: 0x7E8F1
   float b; // Offset: 0x4, DWARF: 0x7E90F
 } EnvFog;
+
 // Size: 0xF0, DWARF: 0x80315, 0xBB2C0
 typedef struct Seq {
   unsigned int model_id;    // Offset: 0x0, DWARF: 0xBB2DC
@@ -1190,10 +1092,12 @@ typedef struct Seq {
   signed int vertexLoopFlg;     // Offset: 0xE4, DWARF: 0xBB69B
   signed int pad[2];            // Offset: 0xE8, DWARF: 0xBB6C5
 } Seq;
+
 // Size: 0x8, DWARF: 0x7EB45
 typedef struct EnvMap {
   unsigned long tex0; // Offset: 0x0, DWARF: 0x7EB61
 } EnvMap;
+
 // Size: 0x160, DWARF: 0x7D512
 typedef struct Vmenv {
   unsigned int enable; // Offset: 0x0, DWARF: 0x7D52E
@@ -1204,6 +1108,7 @@ typedef struct Vmenv {
   // Size: 0x8, DWARF: 0x7EB45
   EnvMap envmap; // Offset: 0x158, DWARF: 0x7D596
 } Vmenv;
+
 // Size: 0x230, DWARF: 0xFB1A1, 0x81827
 typedef struct IkParam {
   float rot[4];               // Offset: 0x0, DWARF: 0xCE04C
@@ -1233,6 +1138,7 @@ typedef struct IkParam {
   sceVu0FMATRIX board;        // Offset: 0x1B0, DWARF: 0xCE409
   sceVu0FMATRIX board_world;  // Offset: 0x1F0, DWARF: 0xCE42D
 } IkParam;
+
 // Size: 0x2E0, DWARF: 0x7CF19
 typedef struct UmdCtrl {
   float rot[4];         // Offset: 0x0, DWARF: 0x7CF35
@@ -1243,6 +1149,7 @@ typedef struct UmdCtrl {
   // Size: 0x230, DWARF: 0x81827
   IkParam ikparam; // Offset: 0xB0, DWARF: 0x7CFEB
 } UmdCtrl;
+
 // Size: 0x24, DWARF: 0x80BCF
 typedef struct UadList {
   __int128 *regular;  // Offset: 0x0, DWARF: 0x80BEB
@@ -1255,6 +1162,7 @@ typedef struct UadList {
   __int128 *special5; // Offset: 0x1C, DWARF: 0x80CFB
   __int128 *special6; // Offset: 0x20, DWARF: 0x80D23
 } UadList;
+
 // Size: 0x1A0, DWARF: 0x7C011
 typedef struct SmdCtrl {
   signed int type;              // Offset: 0x0, DWARF: 0x7C02D
@@ -1268,6 +1176,7 @@ typedef struct SmdCtrl {
   unsigned int *tailAddress[5]; // Offset: 0x180, DWARF: 0x7C14A
   signed int pad[3];            // Offset: 0x194, DWARF: 0x7C174
 } SmdCtrl;
+
 // Size: 0x90, DWARF: 0x7BE99
 typedef struct ModelChange {
   float original[4][4];  // Offset: 0x0, DWARF: 0x7BEB5
@@ -1276,6 +1185,7 @@ typedef struct ModelChange {
   float *address2[4][4]; // Offset: 0x84, DWARF: 0x7BF2D
   signed int pad[2];     // Offset: 0x88, DWARF: 0x7BF57
 } ModelChange;
+
 // Size: 0x2A30, DWARF: 0x7F8F0
 typedef struct Disp {
   void *umd; // Offset: 0x0, DWARF: 0x7F90C
@@ -1300,83 +1210,54 @@ typedef struct Disp {
   // Size: 0x60, DWARF: 0x79DD3
   Pos prepos __attribute__((aligned(16))); // Offset: 0x2780, DWARF: 0x7FAAD
   // Size: 0x3C, DWARF: 0x7600B
-  Inp nowinp __attribute__((aligned(16)));
-  // Offset: 0x27E0,
-  DWARF : 0x7FAD2 float speed[4] __attribute__((aligned(16)));
-  // Offset: 0x2820,
-  DWARF : 0x7FAF7 float splen;
-  // Offset: 0x2830,
-  DWARF : 0x7FB1B float splenxz;
-  // Offset: 0x2834,
-  DWARF : 0x7FB3D float shadow_posy;
-  // Offset: 0x2838,
-  DWARF : 0x7FB61 signed int disp_char;
-  // Offset: 0x283C,
-  DWARF : 0x7FB89 signed int disp_shadow;
-  // Offset: 0x2840,
-  DWARF : 0x7FBAF signed int in_screen;
-  // Offset: 0x2844,
-  DWARF : 0x7FBD7 signed int reset_effect2;
-  // Offset: 0x2848,
-  DWARF : 0x7FBFD signed int detail;
-  // Offset: 0x284C,
-  DWARF : 0x7FC27 signed int set_sub_data;
-  // Offset: 0x2850,
-  DWARF : 0x7FC4A signed int sub_detail;
-  // Offset: 0x2854,
-  DWARF : 0x7FC73 void *sub_umd;
-  // Offset: 0x2858,
-  DWARF : 0x7FC9A
-      // Size: 0x2E0, DWARF: 0x7CF19
-      UmdCtrl *sub_umd_ctrl; // Offset: 0x285C, DWARF: 0x7FCC1
+  Inp nowinp __attribute__((aligned(16)));     // Offset: 0x27E0, DWARF: 0x7FAD2
+  float speed[4] __attribute__((aligned(16))); // Offset: 0x2820, DWARF: 0x7FAF7
+  float splen;                                 // Offset: 0x2830, DWARF: 0x7FB1B
+  float splenxz;                               // Offset: 0x2834, DWARF: 0x7FB3D
+  float shadow_posy;                           // Offset: 0x2838, DWARF: 0x7FB61
+  signed int disp_char;                        // Offset: 0x283C, DWARF: 0x7FB89
+  signed int disp_shadow;                      // Offset: 0x2840, DWARF: 0x7FBAF
+  signed int in_screen;                        // Offset: 0x2844, DWARF: 0x7FBD7
+  signed int reset_effect2;                    // Offset: 0x2848, DWARF: 0x7FBFD
+  signed int detail;                           // Offset: 0x284C, DWARF: 0x7FC27
+  signed int set_sub_data;                     // Offset: 0x2850, DWARF: 0x7FC4A
+  signed int sub_detail;                       // Offset: 0x2854, DWARF: 0x7FC73
+  void *sub_umd;                               // Offset: 0x2858, DWARF: 0x7FC9A
+  // Size: 0x2E0, DWARF: 0x7CF19
+  UmdCtrl *sub_umd_ctrl; // Offset: 0x285C, DWARF: 0x7FCC1
   // Size: 0x1A0, DWARF: 0x7C011
-  SmdCtrl *sub_smd_ctrl;
-  // Offset: 0x2860,
-  DWARF : 0x7FCEF float normal_light0[4] __attribute__((aligned(16)));
-  // Offset: 0x2870,
-  DWARF : 0x7FD1D float normal_light1[4];
-  // Offset: 0x2880,
-  DWARF : 0x7FD49 float normal_light2[4];
-  // Offset: 0x2890,
-  DWARF : 0x7FD75 float light_color0[4];
-  // Offset: 0x28A0,
-  DWARF : 0x7FDA1 float light_color1[4];
-  // Offset: 0x28B0,
-  DWARF : 0x7FDCC float light_color2[4];
-  // Offset: 0x28C0,
-  DWARF : 0x7FDF7 float ambient[4];
-  // Offset: 0x28D0,
-  DWARF : 0x7FE22 float shadow[4];
-  // Offset: 0x28E0,
-  DWARF : 0x7FE48 float mat_base_lw[4][4];
-  // Offset: 0x28F0,
-  DWARF : 0x7FE6D float mat_board[4][4];
-  // Offset: 0x2930,
-  DWARF : 0x7FE97 float mat_hand_l[4][4];
-  // Offset: 0x2970,
-  DWARF : 0x7FEBF float mat_hand_r[4][4];
-  // Offset: 0x29B0,
-  DWARF : 0x7FEE8 float mat_head[4][4];
-  // Offset: 0x29F0,
-  DWARF : 0x7FF11
+  SmdCtrl *sub_smd_ctrl; // Offset: 0x2860, DWARF: 0x7FCEF
+  float normal_light0[4]
+      __attribute__((aligned(16))); // Offset: 0x2870, DWARF: 0x7FD1D
+  float normal_light1[4];           // Offset: 0x2880, DWARF: 0x7FD49
+  float normal_light2[4];           // Offset: 0x2890, DWARF: 0x7FD75
+  float light_color0[4];            // Offset: 0x28A0, DWARF: 0x7FDA1
+  float light_color1[4];            // Offset: 0x28B0, DWARF: 0x7FDCC
+  float light_color2[4];            // Offset: 0x28C0, DWARF: 0x7FDF7
+  float ambient[4];                 // Offset: 0x28D0, DWARF: 0x7FE22
+  float shadow[4];                  // Offset: 0x28E0, DWARF: 0x7FE48
+  float mat_base_lw[4][4];          // Offset: 0x28F0, DWARF: 0x7FE6D
+  float mat_board[4][4];            // Offset: 0x2930, DWARF: 0x7FE97
+  float mat_hand_l[4][4];           // Offset: 0x2970, DWARF: 0x7FEBF
+  float mat_hand_r[4][4];           // Offset: 0x29B0, DWARF: 0x7FEE8
+  float mat_head[4][4];             // Offset: 0x29F0, DWARF: 0x7FF11
 } Disp;
+
 // Size: 0x5640, DWARF: 0x78FAB, 0x1BFCC8 // vspRider from  ktact.c
 typedef struct Rider {
   // Size: 0x2A30, DWARF: 0x7F8F0, 0xBB1F1
   Disp disp; // Offset: 0x0, DWARF: 0x78FC6
   // Size: 0x2C00, DWARF: 0x7627B, 0xDB58D
-  Ctrl ctrl;
-  // Offset: 0x2A30, DWARF: 0x78FE9
-  // char padding[48];
-  // This does not exist in the original struct,
-  this is added to match the expected offsets.Ctrl is supposed to be
-      size 0x2C00. signed int pid;
-  // Offset: 0x5630, DWARF: 0x7900C
-  signed int secondly;
-  // Offset: 0x5634, DWARF: 0x7902C
+  Ctrl ctrl; // Offset: 0x2A30, DWARF: 0x78FE9
+  // char padding[48]; // This does not exist in the original struct, this is
+  // added to match the expected offsets. Ctrl is supposed to be size 0x2C00.
+  signed int pid;      // Offset: 0x5630, DWARF: 0x7900C
+  signed int secondly; // Offset: 0x5634, DWARF: 0x7902C
 } Rider;
+
 // tmevent.c structs
-////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////
+
 // Size: 0x20, DWARF: 0xDFB4F
 // typedef struct Fog
 // {
@@ -1386,6 +1267,7 @@ typedef struct Rider {
 //     float near; // Offset: 0xC, DWARF: 0xDFBCB
 //     signed int col[4]; // Offset: 0x10, DWARF: 0xDFBEC
 // } Fog;
+
 // Size: 0x10, DWARF: 0xE2A01
 typedef struct Course {
   // Size: 0x20, DWARF: 0xDFB4F
@@ -1393,6 +1275,7 @@ typedef struct Course {
   signed int no;     // Offset: 0x4, DWARF: 0xE2A42
   signed int res[2]; // Offset: 0x8, DWARF: 0xE2A61
 } Course;
+
 // Size: 0x60, DWARF: 0xD845C
 typedef struct Object {
   float normal[4];       // Offset: 0x0, DWARF: 0xD8477
@@ -1407,7 +1290,9 @@ typedef struct Object {
   signed int obj_attr;   // Offset: 0x3C, DWARF: 0xD85B3
   signed int obj_type;   // Offset: 0x40, DWARF: 0xD85D8
   signed int res[4];     // Offset: 0x44, DWARF: 0xD85FD
+  signed int padding[3];
 } Object;
+
 // Size: 0x34, DWARF: 0xD7BEE
 typedef struct Character {
   signed int no;        // Offset: 0x0, DWARF: 0xD7C09
@@ -1428,6 +1313,7 @@ typedef struct Character {
   // Size: 0x2C00, DWARF: 0xDB58D
   Ctrl *ctrl; // Offset: 0x30, DWARF: 0xD7DB2
 } Character;
+
 // Size: 0x14, DWARF: 0xDC00E
 typedef struct Game {
   signed int player;  // Offset: 0x0, DWARF: 0xDC02A
@@ -1436,6 +1322,7 @@ typedef struct Game {
   signed int mode;    // Offset: 0xC, DWARF: 0xDC093
   signed int wid;     // Offset: 0x10, DWARF: 0xDC0B4
 } Game;
+
 // Size: 0x8C, DWARF: 0xD7795
 typedef struct Event {
   // Size: 0x10, DWARF: 0xE2A01
@@ -1445,6 +1332,7 @@ typedef struct Event {
   // Size: 0x14, DWARF: 0xDC00E
   Game game; // Offset: 0x78, DWARF: 0xD77FD
 } Event;
+
 // Size: 0x50, DWARF: 0xE1190
 typedef struct VtmevSystem {
   signed int crs_no;               // Offset: 0x0, DWARF: 0xE11AC
@@ -1458,16 +1346,19 @@ typedef struct VtmevSystem {
   signed int vs;                   // Offset: 0x44, DWARF: 0xE12DF
   signed int finish[2];            // Offset: 0x48, DWARF: 0xE12FE
 } VtmevSystem;
+
 // Size: 0x8, DWARF: 0xD8898
 typedef struct VtmevVibData {
   char **common; // Offset: 0x0, DWARF: 0xD88B3
   char **event;  // Offset: 0x4, DWARF: 0xD88DA
 } VtmevVibData;
+
 // Size: 0x84, DWARF: 0xDEA19
 typedef struct ObjectList {
   signed int nobj;       // Offset: 0x0, DWARF: 0xDEA35
   signed int obj_no[32]; // Offset: 0x4, DWARF: 0xDEA56
 } ObjectList;
+
 // Size: 0x320, DWARF: 0xDEB94
 typedef struct VtmevObject {
   signed int get_logo; // Offset: 0x0, DWARF: 0xDEBB0
@@ -1485,6 +1376,7 @@ typedef struct VtmevObject {
   // Size: 0x84, DWARF: 0xDEA19
   ObjectList warp; // Offset: 0x29C, DWARF: 0xDECAD
 } VtmevObject;
+
 // Size: 0x30, DWARF: 0xDF534
 typedef struct Warp {
   signed int no;     // Offset: 0x0, DWARF: 0xDF550
@@ -1496,6 +1388,7 @@ typedef struct Warp {
   char padding[8];   // pads rec_pos to 0x20, not originally here.
   float rec_pos[4];  // Offset: 0x20, DWARF: 0xDF617
 } Warp;
+
 // Size: 0x2A0, DWARF: 0xE0525
 typedef struct VtmevVs {
   signed int lap[2];      // Offset: 0x0, DWARF: 0xE0541
@@ -1510,6 +1403,7 @@ typedef struct VtmevVs {
   float warp_pos[2][4];    // Offset: 0x1C0, DWARF: 0xE0667
   float horse_pos[12][4];  // Offset: 0x1E0, DWARF: 0xE068E
 } VtmevVs;
+
 // Size: 0x30, DWARF: 0xE264F
 typedef struct VtmevCourse {
   signed int mipmdl_block; // Offset: 0x0, DWARF: 0xE266B
@@ -1522,6 +1416,7 @@ typedef struct VtmevCourse {
   signed int bg_no;        // Offset: 0x1C, DWARF: 0xE2776
   signed int bg_col[4];    // Offset: 0x20, DWARF: 0xE2798
 } VtmevCourse;
+
 // Size: 0x5C, DWARF: 0xDB198
 typedef struct VspModeData {
   // DWARF: 0xE1376
@@ -1551,10 +1446,12 @@ typedef struct VspModeData {
   signed int next_replay_speed; // Offset: 0x54, DWARF: 0xDB4E8
   signed int next_pause;        // Offset: 0x58, DWARF: 0xDB516
 } VspModeData;
+
 // Size: 0x4, DWARF: 0xE08FD
 typedef struct CourseNo {
   signed int no; // Offset: 0x0, DWARF: 0xE0919
 } CourseNo;
+
 // Size: 0x1C, DWARF: 0xDEDC6
 // typedef struct Character_Param
 // {
@@ -1566,6 +1463,7 @@ typedef struct CourseNo {
 //     signed int stability; // Offset: 0x14, DWARF: 0xDEE8F
 //     signed int stance; // Offset: 0x18, DWARF: 0xDEEB5
 // } Character_Param;
+
 // Size: 0x10, DWARF: 0xDFC64
 // typedef struct Board_Param
 // {
@@ -1574,6 +1472,7 @@ typedef struct CourseNo {
 //     signed int balance; // Offset: 0x8, DWARF: 0xDFCC8
 //     signed int turning; // Offset: 0xC, DWARF: 0xDFCEC
 // } Board_Param;
+
 // Size: 0x3C, DWARF: 0xD7AD4
 typedef struct RiderState {
   signed int no;     // Offset: 0x0, DWARF: 0xD7AEF
@@ -1585,6 +1484,7 @@ typedef struct RiderState {
   // Size: 0x10, DWARF: 0xDFC64
   Board_Param brd_param; // Offset: 0x2C, DWARF: 0xD7B9C
 } RiderState;
+
 // Size: 0x18, DWARF: 0xE0C5F
 typedef struct Mode {
   signed int num_player;  // Offset: 0x0, DWARF: 0xE0C7B
@@ -1593,6 +1493,7 @@ typedef struct Mode {
   signed int divide;      // Offset: 0xC, DWARF: 0xE0CEF
   signed int handicap[2]; // Offset: 0x10, DWARF: 0xE0D12
 } Mode;
+
 // Size: 0xA0, DWARF: 0xDF7C0
 typedef struct VspenvGame {
   // Size: 0x4, DWARF: 0xE08FD
@@ -1605,12 +1506,14 @@ typedef struct VspenvGame {
   signed int ending;   // Offset: 0x98, DWARF: 0xDF871
   signed int bgm_no;   // Offset: 0x9C, DWARF: 0xDF894
 } VspenvGame;
+
 // Size: 0x50, DWARF: 0xD8B96
 typedef struct VtmevLight {
   float light_color[2][4];  // Offset: 0x0, DWARF: 0xD8BB2
   float normal_light[2][4]; // Offset: 0x20, DWARF: 0xD8BDC
   float ambient[4];         // Offset: 0x40, DWARF: 0xD8C07
 } VtmevLight;
+
 // Size: 0x74, DWARF: 0xDF98C
 typedef struct CharacterCareer {
   signed int secret;          // Offset: 0x0, DWARF: 0xDF9A8
@@ -1624,6 +1527,7 @@ typedef struct CharacterCareer {
   // Size: 0x1C, DWARF: 0xDEDC6
   Character_Param parameter; // Offset: 0x58, DWARF: 0xDFAD1
 } CharacterCareer;
+
 // Size: 0x18, DWARF: 0xE1BF4
 typedef struct Clock {
   signed int year;   // Offset: 0x0, DWARF: 0xE1C10
@@ -1633,6 +1537,7 @@ typedef struct Clock {
   signed int minute; // Offset: 0x10, DWARF: 0xE1C94
   signed int second; // Offset: 0x14, DWARF: 0xE1CB7
 } Clock;
+
 // Size: 0xEC, DWARF: 0xE021A
 typedef struct Create_Character {
   // Size: 0x74, DWARF: 0xDF98C
@@ -1656,10 +1561,12 @@ typedef struct Create_Character {
   signed int board_type;  // Offset: 0xE4, DWARF: 0xE044D
   signed int trick_type;  // Offset: 0xE8, DWARF: 0xE0474
 } Create_Character;
+
 // Size: 0x8, DWARF: 0xE19D1
 typedef struct CourseGap {
   unsigned long gap; // Offset: 0x0, DWARF: 0xE19ED
 } CourseGap;
+
 // Size: 0xEF8, DWARF: 0xE0970
 typedef struct VspenvSecret {
   // Size: 0x74, DWARF: 0xDF98C
@@ -1672,6 +1579,7 @@ typedef struct VspenvSecret {
   signed int old_char;    // Offset: 0xEEC, DWARF: 0xE0A2F
   signed int first_clear; // Offset: 0xEF0, DWARF: 0xE0A54
 } VspenvSecret;
+
 // Size: 0x20, DWARF: 0xDC12A
 typedef struct VspDispEnv {
   signed int mode;      // Offset: 0x0, DWARF: 0xDC146
@@ -1681,12 +1589,14 @@ typedef struct VspDispEnv {
   signed int div_exp;   // Offset: 0x10, DWARF: 0xDC1D3
   signed int res[3];    // Offset: 0x14, DWARF: 0xDC1F7
 } VspDispEnv;
+
 // Size: 0x38, DWARF: 0xE299A
 typedef struct File {
   // Size: 0x18, DWARF: 0xE1BF4
   Clock clock;   // Offset: 0x0, DWARF: 0xE29B6
   char name[32]; // Offset: 0x18, DWARF: 0xE29DA
 } File;
+
 // Size: 0x8, DWARF: 0xD89AF
 typedef struct Pad_Data {
   unsigned short cnt; // Offset: 0x0, DWARF: 0xD89CB
@@ -1694,6 +1604,7 @@ typedef struct Pad_Data {
   signed char lv;     // Offset: 0x3, DWARF: 0xD8A0A
   signed int analog;  // Offset: 0x4, DWARF: 0xD8A29
 } Pad_Data;
+
 // Size: 0x24, DWARF: 0xD808E
 typedef struct KeyInputs {
   signed int vibration; // Offset: 0x0, DWARF: 0xD80A9
@@ -1706,6 +1617,7 @@ typedef struct KeyInputs {
   signed int jump;      // Offset: 0x1C, DWARF: 0xD819E
   signed int flip;      // Offset: 0x20, DWARF: 0xD81BF
 } KeyInputs;
+
 // Size: 0x30, DWARF: 0xD827B
 // typedef struct Cheats
 // {
@@ -1722,6 +1634,7 @@ typedef struct KeyInputs {
 //     signed int replay_view; // Offset: 0x28, DWARF: 0xD840A
 //     signed int partition; // Offset: 0x2C, DWARF: 0xD8432
 // } Cheats;
+
 // Size: 0x2DCEC, DWARF: 0xDBDC5
 typedef struct VspenvReplay {
   // Size: 0x38, DWARF: 0xE299A
@@ -1746,6 +1659,7 @@ typedef struct VspenvReplay {
   // Size: 0x10, DWARF: 0xDFC64
   Board_Param brd_param; // Offset: 0x2DCDC, DWARF: 0xDBFE2
 } VspenvReplay;
+
 // Size: 0x210, DWARF: 0xDDA21
 typedef struct VtmevCounter {
   signed int i_cnt[64]; // Offset: 0x0, DWARF: 0xDDA3D
@@ -1753,6 +1667,7 @@ typedef struct VtmevCounter {
   unsigned long i_flag; // Offset: 0x200, DWARF: 0xDDA85
   unsigned long f_flag; // Offset: 0x208, DWARF: 0xDDAA8
 } VtmevCounter;
+
 // Size: 0x190, DWARF: 0xE0156
 typedef struct VtmevWarpSystem {
   signed int nwarp; // Offset: 0x0, DWARF: 0xE0172
@@ -1760,6 +1675,7 @@ typedef struct VtmevWarpSystem {
   // Size: 0x30, DWARF: 0xDF534
   Warp warp[8]; // Offset: 0x10, DWARF: 0xE0194
 } VtmevWarpSystem;
+
 // Size: 0x9C, DWARF: 0xDDFEA
 typedef struct EvData {
   unsigned int *link;           // Offset: 0x0, DWARF: 0xDE006
@@ -1771,8 +1687,10 @@ typedef struct EvData {
   char *vib_com[16];            // Offset: 0x1C, DWARF: 0xDE0F9
   char *vib_evt[16];            // Offset: 0x5C, DWARF: 0xDE11F
 } EvData;
+
 //// Variables
-///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
 void(tmevDefEnd)();                   // Address: 0x1A4280
 signed int(tmevDefFinishPlayerEvent)( // Size: 0x8C, DWARF: 0xD7795
     Event *);                         // Address: 0x1A4260
@@ -1921,8 +1839,10 @@ extern signed int vsptblLevelGoalValue[8][7]; // Address: 0x2B6A60
 extern VspDispEnv vspDispEnv; // Address: 0x3BE570
 // Size: 0x2DCEC, DWARF: 0xDBDC5
 extern VspenvReplay *vspenvReplay[2]; // Address: 0x2E7B08
+
 //// Function Declarations
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
 signed int tmevInit( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
 signed int tmevReset( // Size: 0x8C, DWARF: 0xD7795
@@ -1937,7 +1857,7 @@ signed int tmevDrawPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
 signed int tmevFinishPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
-void tmevEnd(void);
+void tmevEnd();
 static void tmevInitSystem( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
 static void tmevResetSystem( // Size: 0x8C, DWARF: 0xD7795
@@ -1950,14 +1870,14 @@ static void tmevCheckGap( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
 unsigned int tmevGetLevelGoal(signed int player);
 signed int tmevGetLevelGoalFlag(signed int no);
-static void tmevInitCounter(void);
-static void tmevCountCounter(void);
+static void tmevInitCounter();
+static void tmevCountCounter();
 void tmevResetICounter(signed int no);
 signed int tmevGetICounter(signed int no);
 void tmevSetICounter(signed int no, signed int value);
 void tmevStartICounter(signed int no);
 void tmevStopICounter(signed int no);
-void tmevResetFlag(void);
+void tmevResetFlag();
 void tmevSetFlag(signed int no, signed int value);
 signed int tmevGetFlag(signed int no);
 void tmevSetFog(signed int fog, signed int player);
@@ -1968,37 +1888,37 @@ void tmevSetDrawLength(float length, signed int player);
 float tmevGetDrawLength(signed int player);
 void tmevSetObjectDrawLength(float length, signed int player);
 void tmevSetMiPModelLevel(signed int block, signed int player);
-static void tmevResetObject(void);
+static void tmevResetObject();
 static void tmevMoveObject( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
 void tmevSetCourseLogo(signed int no);
-static void tmevRollCourseLogo(void);
+static void tmevRollCourseLogo();
 void tmevSetSponsor(signed int sp_no, signed int obj_no);
-static void tmevResetSponsor(void);
-static void tmevRollSponsor(void);
+static void tmevResetSponsor();
+static void tmevRollSponsor();
 void tmevSetWarpArrow(signed int no);
-static void tmevMoveWarpArrow(void);
+static void tmevMoveWarpArrow();
 void tmevSetVsObject(signed int no);
 void tmevSet1PlayObject(signed int no);
 void tmevSetVsWarpObject(signed int no);
 signed int tmevGetEventMdlHit( // Size: 0x2C00, DWARF: 0xDB58D
     Ctrl *rider, signed int no, float len, signed int unused);
-static void tmevInitWarp(void);
+static void tmevInitWarp();
 void tmevSetWarp(float *rec_pos, float angle, signed int hit, signed int se,
                  float speed);
 static void tmevCheck1PWarp( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
 static void tmevCheckReset( // Size: 0x8C, DWARF: 0xD7795
     Event *event);
-static void tmevInitVs(void);
-static void tmevResetVs(void);
+static void tmevInitVs();
+static void tmevResetVs();
 void tmevSetWarpNo(signed int no, signed int se);
 void tmevSetStartPosition(float x, float y, float z, float angle,
                           signed int player);
 void tmevSetWarpPosition(float x, float y, float z, float angle,
                          signed int player);
 void tmevSetHorsePosition(float x, float y, float z, float angle);
-signed int tmevGetNowHorsePos(void);
+signed int tmevGetNowHorsePos();
 signed int tmevGetLap(signed int player);
 void tmevResetHorsePosition(signed int first);
 static void tmevCheckVsWarp( // Size: 0x8C, DWARF: 0xD7795
@@ -2009,30 +1929,34 @@ void tmevSetVib( // Size: 0x8C, DWARF: 0xD7795
 void tmevSetVibPlayer( // Size: 0x8C, DWARF: 0xD7795
     Event *event, signed int type, signed int no, signed int id,
     signed int player);
-signed int tmevGetIntroCut(void);
+signed int tmevGetIntroCut();
 void tmevSetLightVector(float *light_color, float *normal_light, signed int id,
                         signed int player);
 void tmevSetAmbient(float *ambient, signed int player);
 void tmevGetLightVector(sceVu0FMATRIX light_color, sceVu0FMATRIX normal_light,
                         float *ambient, signed int player);
-static signed int tmevDefInit(void);
-static signed int tmevDefResetEvent(void);
-static signed int tmevDefMainEvent(void);
-static signed int tmevDefPlayerEvent(void);
-static signed int tmevDefDrawEvent(void);
-static signed int tmevDefDrawPlayerEvent(void);
-static signed int tmevDefFinishPlayerEvent(void);
-static void tmevDefEnd(void);
+static signed int tmevDefInit();
+static signed int tmevDefResetEvent();
+static signed int tmevDefMainEvent();
+static signed int tmevDefPlayerEvent();
+static signed int tmevDefDrawEvent();
+static signed int tmevDefDrawPlayerEvent();
+static signed int tmevDefFinishPlayerEvent();
+static void tmevDefEnd();
+
 // Included functions //////////////////////////
 void tmcrsSetViewAngle(float angle);
 void tmcrsSetDrawLength(float length);
 void tmcrsSetObjectDrawLength(float length);
+
 void spRiderSetPos2(Rider *rider, float *pos, float roty);
 void ktactSetRecover(signed int pid, float *pos, float roty, float speed,
                      signed int warp);
 void nmeventPlayWarp(signed int player, signed int se);
+
 //// tmevent bss and sbss, declared highest address first
-////////////////////////////
+///////////////////////////////
+
 // Size: 0x50, DWARF: 0xE1190
 VtmevSystem vtmevSystem; // Address: 0x3C0B90
 // Size: 0x190, DWARF: 0xE0156
@@ -2047,7 +1971,8 @@ VtmevObject vtmevObject; // Address: 0x3BFE30
 // Size: 0x30, DWARF: 0xE264F
 VtmevCourse vtmevCourse[2]; // Address: 0x3BFDD0
 // Size: 0x50, DWARF: 0xD8B96
-VtmevLight vtmevLight[2];                 // Address: 0x3BFD30
+VtmevLight vtmevLight[2]; // Address: 0x3BFD30
+
 signed int (*vtmevInit)(Event *);         // Address: 0x2E7BB0
 signed int (*vtmevReset)(Event *);        // Address: 0x2E7BAC
 signed int (*vtmevMain)(Event *);         // Address: 0x2E7BA8
@@ -2059,15 +1984,20 @@ void (*vtmevEnd)();                       // Address: 0x2E7B94
 void (*vtmevWarp)(Event *);               // Address: 0x2E7B90
 // Size: 0x8, DWARF: 0xD8898
 VtmevVibData vtmevVibData; // Address: 0x2E7B88
+
 //// Function Definitions ///////////////////////////////////////////
-EvData *sploadGetGameEtc(void);
+
+EvData *sploadGetGameEtc();
+
 int tmevInit(Event *event) {
   // Size: 0x9C, DWARF: 0xDDFEA
   EvData *data; // r16
+
   vtmevWarp = 0;
   data = sploadGetGameEtc();
   vtmevVibData.common = (data)[0].vib_com;
   vtmevVibData.event = data->vib_evt;
+
   vtmevSystem.crs_no = event->course.no;
   if (1 < event->game.nplayer) {
     vtmevSystem.vs = 1;
@@ -2171,23 +2101,20 @@ int tmevInit(Event *event) {
   nmeventInit();
   tmevInitSystem(event);
   vtmevInit(event);
-  return (0);
+  return 0;
 }
 
 s32 tmevReset(Event *event) {
-  unsigned int *timetbl_ptr;
-  unsigned int *vstimetbl_ptr;
-  signed int ii;
-
-  // r16
+  signed int ii; // r16
   unsigned int time_tbl[8] = {0x2BF20, 0x2BF20, 0x33450, 0x33450,
                               0x3A980, 0x3A980, 0x493E0, 0x493E0}; // 0x50(r29)
-  timetbl_ptr = time_tbl;
+  unsigned int *timetbl_ptr = time_tbl;
   unsigned int vs_time[8] = {0x50910, 0x493E0, 0x493E0, 0x4E200,
                              0x51C98, 0x53020, 0x57E40, 0x4E200}; // 0x70(r29)
-  vstimetbl_ptr = vs_time;
+  unsigned int *vstimetbl_ptr = vs_time;
   signed int ret; // r19
   float tmp[4];   // 0x90(r29)
+
   (void)timetbl_ptr;
   (void)vstimetbl_ptr;
   ret = 0;
@@ -2275,7 +2202,7 @@ s32 tmevReset(Event *event) {
   } else {
     vtmevSystem.gap = 1;
   }
-  return (ret);
+  return ret;
 }
 
 s32 tmevMainEvent(Event *event) {
@@ -2283,6 +2210,7 @@ s32 tmevMainEvent(Event *event) {
   signed int id;      // r17
   signed int draw;    // r18
   signed int ret = 0; // r19
+
   tmcrsResetScrollAnimTex();
   if (event->game.pause == 0) {
     tmevMoveObject(event);
@@ -2318,6 +2246,7 @@ s32 tmevMainEvent(Event *event) {
   } else {
     id = 0;
   }
+
   tmcrsSetBGFog(vtmevCourse[id].bg_fog);
   tmcrsSetBGDrawFlag(vtmevCourse[id].bg_draw);
   tmcrsSetBGColor(vtmevCourse[id].bg_col[0], vtmevCourse[id].bg_col[1],
@@ -2328,12 +2257,13 @@ s32 tmevMainEvent(Event *event) {
   tmcrsSetDrawLength(vtmevCourse[id].draw_length);
   tmcrsSetObjectDrawLength(vtmevCourse[id].draw_length);
   tmcrsSetMipModelLevel(vtmevCourse[id].mipmdl_block);
-  return (ret);
+  return ret;
 }
 
 s32 tmevPlayerEvent(Event *event) {
   signed int player;  // r16
   signed int ret = 0; // r17
+
   // event = event;
   player = event->game.player;
   if ((event->character[player].old_rail != -1) &&
@@ -2372,21 +2302,21 @@ s32 tmevPlayerEvent(Event *event) {
   } else {
     tmevCheck1PWarp(event);
   }
-  return (ret);
+  return ret;
 }
 
 s32 tmevDrawEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *event) {
   signed int ret = 0; // r16
   ret = vtmevDraw(event);
-  return (ret);
+  return ret;
 }
 
 s32 tmevDrawPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *event) {
   signed int ret = 0; // r16
   ret = vtmevDrawPlayer(event);
-  return (ret);
+  return ret;
 }
 
 s32 tmevFinishPlayerEvent(Event *event) {
@@ -2396,6 +2326,7 @@ s32 tmevFinishPlayerEvent(Event *event) {
   signed int ret;          // r19
   unsigned int level_goal; // r20
   signed int score;        // r21
+
   ret = 0;
   player = event->game.player;
   vtmevSystem.finish[player] = 1;
@@ -2425,14 +2356,15 @@ s32 tmevFinishPlayerEvent(Event *event) {
     }
     vspenvSecret->course[event->course.no].gap |= vtmevSystem.gaps[player];
   }
-  return (ret);
+  return ret;
 }
 
-void tmevEnd(void) { vtmevEnd(); }
+void tmevEnd() { vtmevEnd(); }
 
 static void tmevInitSystem(Event *event) {
   signed int ii;  // r16
   signed int tmp; // r17
+
   for (ii = 0; ii < 2; ii++) {
     vtmevSystem.level_goals[ii] = 0;
     vtmevSystem.level_goals_tmp[ii] = 0;
@@ -2449,6 +2381,7 @@ static void tmevInitSystem(Event *event) {
 
 static void tmevResetSystem(Event *event) {
   signed int ii; // r16
+
   if (event->game.mode == 0) {
     for (ii = 0; ii < 2; ii++) {
       vtmevSystem.level_goals_tmp[ii] |= vtmevSystem.level_goals[ii];
@@ -2495,8 +2428,10 @@ static void tmevCheckLevelGoal(Event *event /* sp70 */) {
   signed int score;        // r18 // s2
   signed int tmp;          // r19 // s3
   unsigned int level_goal; // r20 // s4
+
   // Size: 0xEF8, DWARF: 0xE0970
   VspenvSecret *secret; // Not in the dwarf info // s5
+
   player = event->game.player;
   tmp = event->character[player].no;
   score = event->character[player].ctrl->act.trick_link.total_trick_point;
@@ -2507,6 +2442,7 @@ static void tmevCheckLevelGoal(Event *event /* sp70 */) {
     }
   }
   if (tmp < 0xC) {
+
     secret = &vspenvSecret->character[tmp].secret + event->course.no;
     level_goal = tmevGetLevelGoal(player) | secret->character[0].level_goal[0];
   } else {
@@ -2515,8 +2451,10 @@ static void tmevCheckLevelGoal(Event *event /* sp70 */) {
     level_goal =
         (tmevGetLevelGoal(player) | secret->character[12].level_goal[0]);
   }
+
   if (level_goal == 0x1FF) {
   }
+
   (void)level_goal;
   (void)level_goal;
   (void)tmp;
@@ -2524,6 +2462,7 @@ static void tmevCheckLevelGoal(Event *event /* sp70 */) {
 
 void tmevCheckGap(Event *event) {
   signed int player = event->game.player; // r16
+
   if (vtmevSystem.gaps_tmp[player] != 0) {
     if (event->character[player].ctrl->act.trk_link_state == elsSuccess) {
       vtmevSystem.gaps[player] |= vtmevSystem.gaps_tmp[player];
@@ -2537,22 +2476,24 @@ void tmevCheckGap(Event *event) {
 }
 
 unsigned int tmevGetLevelGoal(s32 player) {
-  return (vtmevSystem.level_goals[player]);
+  return vtmevSystem.level_goals[player];
 }
 
 s32 tmevGetLevelGoalFlag(s32 no) {
   signed int ret; // r16
+
   ret = 0;
   if (((vspenvGame->mode.game_mode == 0) ||
        (vspenvGame->mode.game_mode == 2)) &&
       (vtmevSystem.level_goals_tmp[0] & (1 << no))) {
     ret = 1;
   }
-  return (ret);
+  return ret;
 }
 
-void tmevInitCounter(void) {
+void tmevInitCounter() {
   signed int ii; // r16
+
   for (ii = 0; ii < 0x40; ii++) {
     vtmevCounter.i_cnt[ii] = 0;
     vtmevCounter.f_cnt[ii] = 0.0f;
@@ -2561,8 +2502,9 @@ void tmevInitCounter(void) {
   vtmevCounter.f_flag = 1;
 }
 
-void tmevCountCounter(void) {
+void tmevCountCounter() {
   signed int ii; // r16
+
   for (ii = 0; ii < 0x40; ii++) {
     if ((vtmevCounter.i_flag >> ii) & 1) {
       vtmevCounter.i_cnt[ii] += 1;
@@ -2579,7 +2521,7 @@ void tmevResetICounter(s32 no) {
   }
 }
 
-s32 tmevGetICounter(s32 no) { return (vtmevCounter.i_cnt[no]); }
+s32 tmevGetICounter(s32 no) { return vtmevCounter.i_cnt[no]; }
 
 void tmevSetICounter(s32 no, s32 value) {
   if (no != 0) {
@@ -2599,8 +2541,9 @@ void tmevStopICounter(s32 no) {
   }
 }
 
-void tmevResetFlag(void) {
+void tmevResetFlag() {
   signed int ii; // r16
+
   for (ii = 0; ii < 256; ii++) {
     vtmevFlag[ii] = 0;
   }
@@ -2608,7 +2551,7 @@ void tmevResetFlag(void) {
 
 void tmevSetFlag(s32 no, s32 value) { vtmevFlag[no] = value; }
 
-s32 tmevGetFlag(s32 no) { return (vtmevFlag[no]); }
+s32 tmevGetFlag(s32 no) { return vtmevFlag[no]; }
 
 void tmevSetFog(s32 fog, s32 player) { vtmevCourse[player].fog = fog; }
 
@@ -2625,7 +2568,7 @@ void tmevSetDrawLength(f32 length, s32 player) {
   vtmevCourse[player].obj_draw_length = length;
 }
 
-f32 tmevGetDrawLength(s32 player) { return (vtmevCourse[player].draw_length); }
+f32 tmevGetDrawLength(s32 player) { return vtmevCourse[player].draw_length; }
 
 void tmevSetObjectDrawLength(f32 length, s32 player) {
   vtmevCourse[player].obj_draw_length = length;
@@ -2635,8 +2578,9 @@ void tmevSetMiPModelLevel(s32 block, s32 player) {
   vtmevCourse[player].mipmdl_block = block;
 }
 
-void tmevResetObject(void) {
+void tmevResetObject() {
   signed int ii; // r16
+
   vtmevObject.logo.nobj = 0;
   vtmevObject.get_logo = 0;
   for (ii = 0; ii < 0x20; ii++) {
@@ -2669,6 +2613,7 @@ void tmevMoveObject(Event *event) {
   signed int ii; // r17
   float tmp[4];  // 0x30(r29)
   float pos[4];  // 0x40(r29)
+
   // event = event; // sp50
   for (ii = 0; ii < event->character[0].nobj; ii++) {
     for (jj = 0; jj < vtmevObject.logo.nobj; jj++) {
@@ -2751,6 +2696,7 @@ static void tmevRollCourseLogo(void) {
   signed int ii;  // r16
   float rot[4];   // 0x20(r29)
   float trans[4]; // 0x30(r29)
+
   rot[0] = 0.0f;
   rot[1] = 0.01f;
   rot[2] = 0.0f;
@@ -2770,11 +2716,8 @@ void tmevSetSponsor(signed int sp_no, signed int obj_no) {
   tmcrsSetObjectAttr(obj_no, 0);
 }
 
-static void tmevResetSponsor(void) {
-  signed int *sp_tbl_ptr;
-  signed int chr_no;
-
-  // r16
+static void tmevResetSponsor() {
+  signed int chr_no; // r16
   signed int sp_tbl[8][13] = {
       {1, 3, 5, 2, 9, 7, 7, 13, 16, 18, 19, 21, 21},
       {2, 4, 6, 7, 10, 11, 12, 14, 17, 22, 20, 22, 22},
@@ -2784,9 +2727,11 @@ static void tmevResetSponsor(void) {
       {2, 4, 6, 8, 10, 11, 12, 0xF, 17, 22, 22, 22, 22},
       {1, 3, 5, 2, 9, 7, 7, 13, 16, 18, 19, 21, 21},
       {2, 4, 6, 7, 10, 11, 12, 14, 17, 22, 20, 22, 22}}; // 0x40(r29)
-  sp_tbl_ptr = &sp_tbl[0][0];
+  signed int *sp_tbl_ptr = &sp_tbl[0][0];
   signed int sp_no; // r18
+
   (void)sp_tbl_ptr;
+
   if ((vtmevSystem.level_goals_tmp[0] & 0x20) == 0 &&
       (vspenvGame->mode.game_mode == 0)) {
     if (vspenvGame->character[0].no < 12) {
@@ -2794,15 +2739,17 @@ static void tmevResetSponsor(void) {
     } else {
       chr_no = 12;
     }
+
     sp_no = sp_tbl[vtmevSystem.crs_no][chr_no] - 1;
     tmcrsSetObjectDrawFlag(vtmevObject.sponsor.obj_no[sp_no], 1);
   }
 }
 
-static void tmevRollSponsor(void) {
+static void tmevRollSponsor() {
   signed int ii;  // r16
   float rot[4];   // 0x20(r29)
   float trans[4]; // 0x30(r29)
+
   rot[0] = 0.0f;
   rot[1] = 0.01f;
   rot[2] = 0.0f;
@@ -2825,11 +2772,12 @@ void tmevSetWarpArrow(signed int no) {
   tmcrsSetObjectAttr(no, 0);
 }
 
-static void tmevMoveWarpArrow(void) {
+static void tmevMoveWarpArrow() {
   signed int ii;  // r16
   float rot[4];   // 0x20(r29)
   float trans[4]; // 0x30(r29)
   float mov;      // 0x4C(r29)
+
   if (tmevGetICounter(0) % 0x20 < 0x10) {
     mov = -0.9375f;
   } else {
@@ -2853,11 +2801,13 @@ void tmevSetVsObject(signed int no) {
   vtmevObject.vs.nobj++;
 }
 
+// tmevent.c
 void tmevSet1PlayObject(signed int no) {
   vtmevObject.non_vs.obj_no[vtmevObject.non_vs.nobj] = no;
   vtmevObject.non_vs.nobj++;
 }
 
+// tmevent.c
 void tmevSetVsWarpObject(signed int no) {
   vtmevObject.warp.obj_no[vtmevObject.warp.nobj] = no;
   vtmevObject.warp.nobj++;
@@ -2869,11 +2819,12 @@ s32 tmevGetEventMdlHit( // Size: 0x2C00, DWARF: 0xDB58D
     Ctrl *rider, signed int no, float len, signed int unused) {
   signed int ret; // r16
   ret = tmcrsGetEventModelHit(rider->nowpos.pos, no, len);
-  return (ret);
+  return ret;
 }
 
-void tmevInitWarp(void) {
+void tmevInitWarp() {
   signed int ii; // r16
+
   vtmevWarpSystem.nwarp = 0;
   for (ii = 0; ii < 8; ii++) {
     vtmevWarpSystem.warp[ii].hit_no = 0;
@@ -2890,6 +2841,7 @@ void tmevInitWarp(void) {
 void tmevSetWarp(float *rec_pos, f32 angle, s32 hit, s32 se, f32 speed) {
   // Size: 0x30, DWARF: 0xDF534
   Warp *warp = &vtmevWarpSystem.warp[vtmevWarpSystem.nwarp]; // r16
+
   sceVu0CopyVector(warp->rec_pos, rec_pos);
   warp->angle = angle;
   warp->hit_no = hit;
@@ -2901,6 +2853,7 @@ void tmevSetWarp(float *rec_pos, f32 angle, s32 hit, s32 se, f32 speed) {
 static void tmevCheck1PWarp(Event *event) {
   signed int jj; // r16
   signed int ii; // r17
+
   for (ii = 0; ii < event->character[0].nhit; ii++) {
     for (jj = 0; jj < vtmevWarpSystem.nwarp; jj++) {
       if (vtmevWarpSystem.warp[jj].hit_no == event->character[0].hit[ii].no) {
@@ -2923,6 +2876,7 @@ static void tmevCheckReset( // Size: 0x8C, DWARF: 0xD7795
   // Size: 0x60, DWARF: 0xD845C
   Object *vector; // r18
   float tmp[4];   // 0x40(r29)
+
   // event = event; // 50
   player = event->game.player;
   vector = event->character[player].vector;
@@ -2943,6 +2897,7 @@ static void tmevCheckReset( // Size: 0x8C, DWARF: 0xD7795
 
 static void tmevInitVs(int unused) {
   signed int ii; // r16
+
   for (ii = 0; ii < 2; ii++) {
     vtmevVs.lap[ii] = 1;
   }
@@ -2972,6 +2927,7 @@ void spRiderSetPos2(Rider *rider, float *pos, float roty);
 static void tmevResetVs(int unused) {
   signed int ii; // r16
   float pos[4];  // 0x20(r29)
+
   switch (vspenvGame->mode.match_rule) {
   case 1:
     for (ii = 0; ii < 2; ii++) {
@@ -3047,14 +3003,15 @@ void tmevSetHorsePosition(float x, float y, float z, float angle) {
   vtmevVs.nhorse++;
 }
 
-s32 tmevGetNowHorsePos(void) { return (vtmevVs.now_pos); }
+s32 tmevGetNowHorsePos() { return vtmevVs.now_pos; }
 
-s32 tmevGetLap(signed int player /* r29 */) { return (vtmevVs.lap[player]); }
+s32 tmevGetLap(signed int player /* r29 */) { return vtmevVs.lap[player]; }
 
 void tmevResetHorsePosition(s32 first) {
   signed int tmp;  // r16
   signed int ii;   // r17
   signed int flag; // r18
+
   flag = 0;
   for (ii = 0; ii < 0xC; ii++) {
     flag |= 1 << ii;
@@ -3089,6 +3046,7 @@ static void tmevCheckVsWarp(Event *event) {
   signed int ii;     // r18
   signed int warp;   // r19
   float tmp[4];      // 0x50(r29)
+
   warp = 0;
   player = event->game.player;
   tmp[0] = vtmevVs.warp_pos[player][0];
@@ -3138,7 +3096,7 @@ static void tmevCheckVsWarp(Event *event) {
   }
 }
 
-s32 tmevGetFinish(signed int player) { return (vtmevSystem.finish[player]); }
+s32 tmevGetFinish(signed int player) { return vtmevSystem.finish[player]; }
 
 void tmevSetVib( // Size: 0x8C, DWARF: 0xD7795
     Event *event, signed int type, signed int no, signed int id) {
@@ -3163,9 +3121,10 @@ void tmevSetVibPlayer( // Size: 0x8C, DWARF: 0xD7795
   }
 }
 
-s32 tmevGetIntroCut(void) {
+s32 tmevGetIntroCut() {
   signed int frame; // r16
   signed int ret;   // r17
+
   ret = 0;
   if (vtmevSystem.vs == 1) {
     frame = tmevGetICounter(0) % 720;
@@ -3181,7 +3140,7 @@ loop_3:
   if (0x78 < frame) {
     ret += 1;
   }
-  return (ret);
+  return ret;
 }
 
 void tmevSetLightVector(float *light_color, float *normal_light, signed int id,
@@ -3197,6 +3156,7 @@ void tmevSetAmbient(float *ambient, signed int player) {
 void tmevGetLightVector(sceVu0FMATRIX light_color, sceVu0FMATRIX normal_light,
                         float *ambient, signed int player) {
   signed int ii; // r16
+
   for (ii = 0; ii < 2; ii++) {
     sceVu0CopyVector(light_color[ii], vtmevLight[player].light_color[ii]);
     sceVu0CopyVector(normal_light[ii], vtmevLight[player].normal_light[ii]);
@@ -3206,28 +3166,28 @@ void tmevGetLightVector(sceVu0FMATRIX light_color, sceVu0FMATRIX normal_light,
 
 s32 tmevDefInit( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
-  return (0);
+  return 0;
 }
 
-s32 tmevDefResetEvent(Event *event) { return (0); }
+s32 tmevDefResetEvent(Event *event) { return 0; }
 
-s32 tmevDefMainEvent(Event *event) { return (0); }
+s32 tmevDefMainEvent(Event *event) { return 0; }
 
-s32 tmevDefPlayerEvent(Event *event) { return (0); }
+s32 tmevDefPlayerEvent(Event *event) { return 0; }
 
 s32 tmevDefDrawEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
-  return (0);
+  return 0;
 }
 
 s32 tmevDefDrawPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
-  return (0);
+  return 0;
 }
 
 s32 tmevDefFinishPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
-  return (0);
+  return 0;
 }
 
-static void tmevDefEnd(void) {}
+static void tmevDefEnd() {}
