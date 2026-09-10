@@ -323,11 +323,12 @@
       "name": "E/tam/ps2/sppbx/tmgraph",
       "target_path": "build/target/E/tam/ps2/sppbx/tmgraph.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tmgraph.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmcrs",
@@ -343,11 +344,12 @@
       "name": "E/tam/ps2/sppbx/tmalpha",
       "target_path": "build/target/E/tam/ps2/sppbx/tmalpha.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tmalpha.o"
     },
     {
       "name": "E/tam/ps2/sppbx/maanim",
@@ -619,7 +621,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmdisp.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmdraw",
@@ -836,11 +839,12 @@
       "name": "E/tam/ps2/sppbx/nmtrick",
       "target_path": "build/target/E/tam/ps2/sppbx/nmtrick.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmtrick.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tiutill",
@@ -856,11 +860,12 @@
       "name": "E/tam/ps2/sppbx/akSpSub",
       "target_path": "build/target/E/tam/ps2/sppbx/akSpSub.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/akSpSub.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmetc",
