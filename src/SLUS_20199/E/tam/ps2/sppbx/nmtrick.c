@@ -5,16 +5,6 @@ typedef float sceVu0FVECTOR[4] __attribute__((aligned (16)));
 typedef float sceVu0FMATRIX[4][4] __attribute__((aligned (16)));
 
 // Static data ///////////////////////////////////////////////////////////////////////
-static char d460[] = "%s";     // @460
-static char d461[] = " %s";    // @461
-static char d462[] = " ...";   // @462
-static char d463[] = "...";    // @463
-static char d464[] = " ";      // @464
-static char d465[] = "%s + ";  // @465
-static char d466[] = "%s ";    // @466
-static char d467[] = "%d";     // @467
-static char d468[] = " -";     // @468
-static char d469[] = " +";     // @469
 
 //////// vspRider (from ktact.c)/////////////////////////////////////////
 
@@ -1595,22 +1585,24 @@ typedef struct Info
 
 //// Variables ///////////////////////////////////////////////////////////////////////
 
-signed int* vnmtrickLang; // Address: 0x2E80CC
 // Size: 0xA0, DWARF: 0x2275F5
-VspenvGame* vspenvGame; // Address: 0x2E7B14
-// Size: 0x18, DWARF: 0x22694A
-Mode* vnmtrickModeEnv; // Address: 0x2E80D0
-// Size: 0x3C, DWARF: 0x225FB8
-Character* vnmtrickCharEnv; // Address: 0x2E80D4
-// Size: 0x4, DWARF: 0x225C4E
-Course* vnmtrickCrsEnv; // Address: 0x2E80D8
+extern VspenvGame* vspenvGame; // Address: 0x2E7B14
+// Size: 0x5640, DWARF: 0x22501D
+extern Rider* vspRider[8]; // Address: 0x3BD480
+extern char* vsptblTrickName[160]; // Address: 0x2B6C60
+extern char* vsptblGapList[8][64]; // Address: 0x2B5A60
+extern char* vnmtblTrickAcce[3][7]; // Address: 0x2CE400
+
+// nmtrick bss and sbss, declared highest address first.
 // Size: 0x810, DWARF: 0x223E39
 VnmtrickInfo vnmtrickInfo[2]; // Address: 0x3C8840
-// Size: 0x5640, DWARF: 0x22501D
-Rider* vspRider[8]; // Address: 0x3BD480
-char* vsptblTrickName[160]; // Address: 0x2B6C60
-char* vsptblGapList[8][64]; // Address: 0x2B5A60
-char* vnmtblTrickAcce[3][7]; // Address: 0x2CE400
+// Size: 0x4, DWARF: 0x225C4E
+Course* vnmtrickCrsEnv; // Address: 0x2E80D8
+// Size: 0x3C, DWARF: 0x225FB8
+Character* vnmtrickCharEnv; // Address: 0x2E80D4
+// Size: 0x18, DWARF: 0x22694A
+Mode* vnmtrickModeEnv; // Address: 0x2E80D0
+signed int* vnmtrickLang; // Address: 0x2E80CC
 
 //// Function Declarations ///////////////////////////////////////////////////////////
 
@@ -2411,48 +2403,48 @@ void nmtrickMakeStr(signed int id, Info* info, List* list) {
     }
 }
 
-signed int nmtrickSetSpType(signed int num)
-{
-  signed int type; // r16
-  switch(num) {
-  case 0x54:
-  case 0x57:
-  case 0x5b:
-  case 0x63:
-  case 0x65:
-  case 0x66:
-    type = 1;
-    break;
-  case 0x55:
-  case 0x68:
-    type = 2;
-    break;
-  case 0x56:
-  case 0x59:
-  case 0x5a:
-  case 0x5d:
-  case 0x5f:
-  case 0x60:
-  case 0x61:
-  case 0x62:
-  case 0x64:
-  case 0x6a:
-    type = 3;
-    break;
-  case 0x58:
-  case 0x5c:
-  case 0x5e:
-  case 0x67:
-  case 0x6b:
-    type = 4;
-    break;
-  case 0x69:
-    type = 5;
-    break;
-  default:
-    type = 1;
-  }
-  return type;
+signed int nmtrickSetSpType(signed int num) {
+    signed int type; // r16
+
+    switch (num) {
+    case 0x54:
+    case 0x57:
+    case 0x5B:
+    case 0x63:
+    case 0x65:
+    case 0x66:
+        type = 1;
+        break;
+    case 0x56:
+    case 0x59:
+    case 0x5A:
+    case 0x5D:
+    case 0x5F:
+    case 0x60:
+    case 0x61:
+    case 0x62:
+    case 0x64:
+    case 0x6A:
+        type = 2;
+        break;
+    case 0x58:
+    case 0x5C:
+    case 0x5E:
+    case 0x67:
+    case 0x6B:
+        type = 3;
+        break;
+    case 0x55:
+    case 0x68:
+        type = 4;
+        break;
+    case 0x69:
+        type = 5;
+        break;
+    default:
+        type = 1;
+    }
+    return type;
 }
 
 
