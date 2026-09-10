@@ -1,3 +1,14 @@
+# Shaun Palmer's Pro Snowboarder Decompilation
+
+<sup>US Final Progress</sup></br>
+[![Build Status]][actions] <a href="https://decomp.dev/Daniel-McCarthy/SPPS"><img src="https://decomp.dev/projects/767134329.svg?mode=shield&version=SLUS_201.99&labelColor=%23626262&color=%23ff373d"/></a><a href="https://decomp.dev/Daniel-McCarthy/SPPS"> <a href="https://decomp.dev/Daniel-McCarthy/SPPS"><sup> Summary at decomp.dev</sup></a>
+
+[<img src="https://decomp.dev/projects/767134329.svg?w=512&h=256" width="512" height="256">][Progress]
+
+[Build Status]: https://github.com/Daniel-McCarthy/SPPS/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/Daniel-McCarthy/SPPS/actions/workflows/build.yml
+[progress]: https://decomp.dev/Daniel-McCarthy/SPPS
+
 ## Prerequisites:
 - The SPPS SLUS_201.99 or SLPM_651.98 elf binary.
 - Linux or WSL

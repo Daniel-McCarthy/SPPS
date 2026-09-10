@@ -1,7 +1,5 @@
 # The NTSC-U release of SPPS (201.99) - Configuration for splat
 
-# Rom is generated with: tools/binutils/mips-ps2-decompals-objcopy -O binary --gap-fill=0x00 iso/extract/SLUS_201.99 SLUS_201.99.rom
-
 name: SPPS 201-99 (US)
 sha1: a299494580e009bca242d5a9773013fdb08d2fff
 options:
@@ -148,7 +146,7 @@ segments:
   - [0x041BF0, asm, Z/ul/ul/source/strconv]
   - [0x041F00, c, E/tam/ps2/sppbx/tmgraph]
   - [0x043660, asm, E/tam/ps2/sppbx/tmcrs]
-  - [0x055FA0, asm, E/tam/ps2/sppbx/tmalpha]
+  - [0x055FA0, c, E/tam/ps2/sppbx/tmalpha]
   - [0x056340, asm, E/tam/ps2/sppbx/maanim]
   - [0x05DE00, asm, E/tam/ps2/sppbx/ktmot]
   - [0x063CA0, asm, E/tam/ps2/sppbx/ktact]
@@ -196,9 +194,9 @@ segments:
   - [0x1966C0, asm, E/tam/ps2/sppbx/akEvEfct]
   - [0x19A610, asm, E/tam/ps2/sppbx/akSelEff]
   - [0x19B470, asm, E/tam/ps2/sppbx/akShadow]
-  - [0x19C250, asm, E/tam/ps2/sppbx/nmtrick]
+  - [0x19C250, c, E/tam/ps2/sppbx/nmtrick]
   - [0x1A1960, asm, E/tam/ps2/sppbx/tiutill]
-  - [0x1A1E70, asm, E/tam/ps2/sppbx/akSpSub]
+  - [0x1A1E70, c, E/tam/ps2/sppbx/akSpSub]
   - [0x1A2430, c, E/tam/ps2/sppbx/tmetc]
   - [0x1A2D00, asm, E/tam/ps2/sppbx/tievent]
 
@@ -336,7 +334,7 @@ segments:
   - [0x1E7450, rodata, E/tam/ps2/sppbx/kncore]
   - [0x1E7490, rodata, E/tam/ps2/sppbx/nmevent]
   - [0x1E74B0, rodata, E/tam/ps2/sppbx/akEvEfct]
-  - [0x1E74D0, rodata, E/tam/ps2/sppbx/nmtrick]
+  - [0x1E74D0, .rodata, E/tam/ps2/sppbx/nmtrick]
   - [0x1E75F0, rodata, sdk2]
 
   # - [0x1E7704, databin] # __data_end
@@ -421,7 +419,7 @@ segments:
   - { type: sbss, vram: 0x2e8060, name: E/tam/ps2/sppbx/spev07 }
   - { type: sbss, vram: 0x2e8080, name: E/tam/ps2/sppbx/spev05 }
   - { type: sbss, vram: 0x2e80c8, name: E/tam/ps2/sppbx/nmevent }
-  - { type: sbss, vram: 0x2e80cc, name: E/tam/ps2/sppbx/nmtrick }
+  - { type: .sbss, vram: 0x2e80cc, name: E/tam/ps2/sppbx/nmtrick }
 
   # Bss section (Same location as __bss_start)
 
@@ -465,7 +463,7 @@ segments:
   - { type: bss, vram: 0x3c7ad0, name: E/tam/ps2/sppbx/spev05 }
   - { type: bss, vram: 0x3c8010, name: E/tam/ps2/sppbx/kncore }
   - { type: bss, vram: 0x3c8110, name: E/tam/ps2/sppbx/akEvEfct }
-  - { type: bss, vram: 0x3c8840, name: E/tam/ps2/sppbx/nmtrick }
+  - { type: .bss, vram: 0x3c8840, name: E/tam/ps2/sppbx/nmtrick }
   - { type: .bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }
   - { type: bss, vram: 0x3c9888, name: libc_errno }
 - [0x1E7A00, bin, shstrtab]

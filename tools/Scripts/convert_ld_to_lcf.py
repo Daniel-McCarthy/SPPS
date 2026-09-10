@@ -99,15 +99,32 @@ def section_alignments(config):
 	return alignments
 
 
+def section_end(sections, section):
+	"""Where a section stops: the first address of the section after it."""
+	order = [name for name in BOUNDARY_SECTIONS if name in sections]
+	if section not in order:
+		return None
+	index = order.index(section)
+	if index + 1 >= len(order):
+		return None
+	return sections[order[index + 1]][0][0]
+
+
 def tail_alignments(config):
 	alignments = {}
-	for section, entries in subsegment_sections(config).items():
+	sections = subsegment_sections(config)
+	for section, entries in sections.items():
+		end = section_end(sections, section)
 		for index, (_, kind, name) in enumerate(entries):
 			if not kind.startswith("."):
 				continue
-			align = DEFAULT_TAIL_ALIGN
 			if index + 1 < len(entries):
-				align = alignment_of(entries[index + 1][0], TAIL_ALIGN_CANDIDATES)
+				next_address = entries[index + 1][0]
+			else:
+				next_address = end
+			align = DEFAULT_TAIL_ALIGN
+			if next_address is not None:
+				align = alignment_of(next_address, TAIL_ALIGN_CANDIDATES)
 			alignments[(section, os.path.basename(name) + ".o")] = align
 	return alignments
 

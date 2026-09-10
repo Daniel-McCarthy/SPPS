@@ -157,7 +157,7 @@ Scissor* data);
 static void tmgraphDivideSub(// Size: 0x40, DWARF: 0x3FA98
 Scissor* dst, // Size: 0x40, DWARF: 0x3FA98
 Scissor* src1, // Size: 0x40, DWARF: 0x3FA98
-Scissor* src2, float sign, unsigned int field);
+Scissor* src2, float sign, signed int field);
 void tmgraphRTPSpriteAddAlphaBufT__(// Size: 0x20, DWARF: 0x3FB40
 Alpha* alpha, float screen_z, // Size: 0x20, DWARF: 0x3F7B1
 Data* data, // Size: 0x140, DWARF: 0x3FF8A
@@ -391,7 +391,7 @@ static signed int tmgraphDivideMain(Scissor* data) {
     return cnt;
 }
 
-static void tmgraphDivideSub(Scissor* dst, Scissor* src1, Scissor* src2, float sign, unsigned int field) {
+static void tmgraphDivideSub(Scissor* dst, Scissor* src1, Scissor* src2, float sign, signed int field) {
     unsigned int flag; // r3
     float tmp1;
     float tmp2;
