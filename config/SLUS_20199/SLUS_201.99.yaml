@@ -118,7 +118,7 @@ segments:
   - [0x028A70, c, E/tam/ps2/sppbx/main]
   - [0x029BE0, c, Z/ul/ul/source/cdvd]
   - [0x02A7E0, asm, Z/ul/ul/source/coord]
-  - [0x02AAA0, asm, Z/ul/ul/source/gif]
+  - [0x02AAA0, c, Z/ul/ul/source/gif]
   - [0x02ACA0, asm, Z/ul/ul/source/gifpkt]
   - [0x02B100, asm, Z/ul/ul/source/graph]
   - [0x02E200, asm, Z/ul/ul/source/heap]
@@ -131,9 +131,9 @@ segments:
   - [0x031650, asm, Z/ul/ul/source/mdlprSdw]
   - [0x031980, asm, Z/ul/ul/source/model]
   - [0x032B00, asm, Z/ul/ul/source/pad]
-  - [0x036010, asm, Z/ul/ul/source/sd]
+  - [0x036010, c, Z/ul/ul/source/sd]
   - [0x0365F0, asm, Z/ul/ul/source/sprintf]
-  - [0x036FA0, asm, Z/ul/ul/source/system]
+  - [0x036FA0, c, Z/ul/ul/source/system]
   - [0x037470, asm, Z/ul/ul/source/vif1]
   - [0x0374E0, asm, Z/ul/ul/source/mv2ext]
   - [0x03BE80, asm, Z/ul/ul/source/movie2]
@@ -142,7 +142,7 @@ segments:
   - [0x03F360, asm, Z/ul/ul/source/mdlprTon]
   - [0x03F940, asm, Z/ul/ul/source/vumodel]
   - [0x041490, asm, Z/ul/ul/source/xmem]
-  - [0x041B20, asm, Z/ul/ul/source/spr]
+  - [0x041B20, c, Z/ul/ul/source/spr]
   - [0x041BF0, c, Z/ul/ul/source/strconv]
   - [0x041F00, c, E/tam/ps2/sppbx/tmgraph]
   - [0x043660, asm, E/tam/ps2/sppbx/tmcrs]
@@ -277,7 +277,7 @@ segments:
   - [0x1D9700, rodata, Z/ul/ul/source/heap]
   - [0x1D9830, .rodata, Z/ul/ul/source/mcard]
   - [0x1D9870, rodata, Z/ul/ul/source/sprintf]
-  - [0x1D98F0, rodata, Z/ul/ul/source/system]
+  - [0x1D98F0, .rodata, Z/ul/ul/source/system]
   - [0x1D99C0, rodata, Z/ul/ul/source/mv2ext]
   - [0x1D9B50, rodata, Z/ul/ul/source/movie2]
   - [0x1D9B70, rodata, Z/ul/ul/source/graph2]
@@ -380,8 +380,8 @@ segments:
   - { type: .sbss, vram: 0x2e79d0, name: Z/ul/ul/source/cdvd }
   - { type: sbss, vram: 0x2e79d8, name: Z/ul/ul/source/coord }
   - { type: sbss, vram: 0x2e79e0, name: Z/ul/ul/source/pad }
-  - { type: sbss, vram: 0x2e79f4, name: Z/ul/ul/source/sd }
-  - { type: sbss, vram: 0x2e7a00, name: Z/ul/ul/source/system }
+  - { type: .sbss, vram: 0x2e79f4, name: Z/ul/ul/source/sd }
+  - { type: .sbss, vram: 0x2e7a00, name: Z/ul/ul/source/system }
   - { type: sbss, vram: 0x2e7a04, name: Z/ul/ul/source/mv2ext }
   - { type: sbss, vram: 0x2e7a20, name: Z/ul/ul/source/movie2 }
   - { type: sbss, vram: 0x2e7a30, name: Z/ul/ul/source/TEX }
@@ -430,8 +430,8 @@ segments:
   - { type: bss, vram: 0x2f23d0, name: Z/ul/ul/source/heap }
   - { type: .bss, vram: 0x2f2400, name: Z/ul/ul/source/mcard }
   - { type: bss, vram: 0x2f3350, name: Z/ul/ul/source/pad }
-  - { type: bss, vram: 0x2f3850, name: Z/ul/ul/source/sd }
-  - { type: bss, vram: 0x2f3a50, name: Z/ul/ul/source/system }
+  - { type: .bss, vram: 0x2f3850, name: Z/ul/ul/source/sd }
+  - { type: .bss, vram: 0x2f3a50, name: Z/ul/ul/source/system }
   - { type: bss, vram: 0x2f3db0, name: Z/ul/ul/source/mv2ext }
   - { type: bss, vram: 0x2f3f00, name: Z/ul/ul/source/movie2 }
   - { type: bss, vram: 0x2f4740, name: E/tam/ps2/sppbx/tmcrs }
