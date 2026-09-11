@@ -850,11 +850,12 @@
       "name": "E/tam/ps2/sppbx/tiutill",
       "target_path": "build/target/E/tam/ps2/sppbx/tiutill.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tiutill.o"
     },
     {
       "name": "E/tam/ps2/sppbx/akSpSub",

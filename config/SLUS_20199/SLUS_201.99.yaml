@@ -195,7 +195,7 @@ segments:
   - [0x19A610, asm, E/tam/ps2/sppbx/akSelEff]
   - [0x19B470, asm, E/tam/ps2/sppbx/akShadow]
   - [0x19C250, c, E/tam/ps2/sppbx/nmtrick]
-  - [0x1A1960, asm, E/tam/ps2/sppbx/tiutill]
+  - [0x1A1960, c, E/tam/ps2/sppbx/tiutill]
   - [0x1A1E70, c, E/tam/ps2/sppbx/akSpSub]
   - [0x1A2430, c, E/tam/ps2/sppbx/tmetc]
   - [0x1A2D00, asm, E/tam/ps2/sppbx/tievent]
@@ -260,7 +260,7 @@ segments:
   - [0x1D6BF0, data, E/tam/ps2/sppbx/akEvEfct]
   - [0x1D6C30, data, E/tam/ps2/sppbx/akSelEff]
   - [0x1D6C50, data, E/tam/ps2/sppbx/akShadow]
-  - [0x1D6DC0, data, E/tam/ps2/sppbx/tiutill]
+  - [0x1D6DC0, .data, E/tam/ps2/sppbx/tiutill]
   - [0x1D6F50, data, E/tam/ps2/sppbx/tievent]
   - [0x1D7210, data, sdk_data]
 
@@ -367,7 +367,7 @@ segments:
   - [0x1E7980, sdata, E/tam/ps2/sppbx/spev07]
   - [0x1E7998, sdata, E/tam/ps2/sppbx/spev05]
   - [0x1E79A0, sdata, E/tam/ps2/sppbx/kncore]
-  - [0x1E79B4, sdata, E/tam/ps2/sppbx/tiutill]
+  - [0x1E79B4, .sdata, E/tam/ps2/sppbx/tiutill]
   - [0x1E79B8, sdata, E/tam/ps2/sppbx/tievent]
 
   # - [0x1E7A00, sdata, sdk_lib_sdata]
