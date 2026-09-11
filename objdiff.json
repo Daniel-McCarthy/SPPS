@@ -313,11 +313,12 @@
       "name": "Z/ul/ul/source/strconv",
       "target_path": "build/target/Z/ul/ul/source/strconv.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/strconv.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmgraph",
