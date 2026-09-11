@@ -62,11 +62,12 @@
       "name": "Z/ul/ul/source/gif",
       "target_path": "build/target/Z/ul/ul/source/gif.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/gif.o"
     },
     {
       "name": "Z/ul/ul/source/gifpkt",
@@ -193,11 +194,12 @@
       "name": "Z/ul/ul/source/sd",
       "target_path": "build/target/Z/ul/ul/source/sd.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/sd.o"
     },
     {
       "name": "Z/ul/ul/source/sprintf",
@@ -213,11 +215,12 @@
       "name": "Z/ul/ul/source/system",
       "target_path": "build/target/Z/ul/ul/source/system.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/system.o"
     },
     {
       "name": "Z/ul/ul/source/vif1",
@@ -303,21 +306,23 @@
       "name": "Z/ul/ul/source/spr",
       "target_path": "build/target/Z/ul/ul/source/spr.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/spr.o"
     },
     {
       "name": "Z/ul/ul/source/strconv",
       "target_path": "build/target/Z/ul/ul/source/strconv.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/strconv.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmgraph",
@@ -850,11 +855,12 @@
       "name": "E/tam/ps2/sppbx/tiutill",
       "target_path": "build/target/E/tam/ps2/sppbx/tiutill.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tiutill.o"
     },
     {
       "name": "E/tam/ps2/sppbx/akSpSub",
