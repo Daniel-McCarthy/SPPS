@@ -19,8 +19,8 @@ options:
 
   asm_path: ./config/Proto_SLUS_20199_08-24-2001/out/asm
   asset_path: ./config/Proto_SLUS_20199_08-24-2001/out/assets
-  build_path: ./build
-  src_path: ./src/SLUS_20199/
+  build_path: ./build/proto
+  src_path: ./src/SLUS_20199_Proto_9_01_2001
 
   ld_script_path: ./config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.ld
   ld_dependencies: True
