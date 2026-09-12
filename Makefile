@@ -293,11 +293,9 @@ report: objdiff-base objdiff-config
 	$(OBJDIFF_CLI) report generate -o $(REPORT_FILE)
 	@$(PYTHON) tools/Scripts/summarize_report.py $(REPORT_FILE)
 
-proto-objdiff-base: $(PROTO_OBJDIFF_BASE_DIR)/E/tam/ps2/sppbx/aymodsel.o \
-	$(PROTO_OBJDIFF_BASE_DIR)/E/tam/ps2/sppbx/tmlink.o
+proto-objdiff-base: $(PROTO_OBJDIFF_BASE_DIR)/E/tam/ps2/sppbx/tmlink.o
 
-proto-objdiff-target: $(PROTO_TARGET_DIR)/E/tam/ps2/sppbx/aymodsel.o \
-	$(PROTO_TARGET_DIR)/E/tam/ps2/sppbx/tmlink.o
+proto-objdiff-target: $(PROTO_TARGET_O_FILES)
 
 proto-objdiff-config: proto-objdiff-base proto-objdiff-target
 	$(PYTHON) tools/Scripts/generate_objdiff_config.py \
