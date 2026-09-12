@@ -1,4 +1,4 @@
-.PHONY: install splat-us build-us clean-us
+.PHONY: install splat-us splat-proto build-us clean-us proto-objdiff-base proto-objdiff-target proto-objdiff-config proto-report
 
 INCLUDE_DIR     := include
 ISO_DIR         := iso
@@ -82,6 +82,8 @@ S_FILES := $(filter-out $(FULL_DISASM_S_FILES),$(ALL_S_FILES))
 OBJDIFF_BASE_DIR := $(BUILD_DIR)/objdiff
 OBJDIFF_BASE_O_FILES := $(patsubst $(US_SRC_DIR)/%.c,$(OBJDIFF_BASE_DIR)/%.o,$(ALL_C_FILES))
 
+PROTO_ALL_S_FILES := $(shell find $(PROTO_ASM_DIR) -name '*.s' -not -path *nonmatchings* -not -path '$(PROTO_ASM_DIR)/data/*' 2>/dev/null)
+PROTO_TARGET_O_FILES := $(patsubst $(PROTO_ASM_DIR)/%.s,$(PROTO_TARGET_DIR)/%.o,$(PROTO_ALL_S_FILES))
 ASM_O_FILES := $(patsubst %.s,$(BUILD_DIR)/%.o,$(S_FILES))
 C_O_FILES := $(patsubst %.c,$(BUILD_DIR)/%.o,$(C_FILES))
 
