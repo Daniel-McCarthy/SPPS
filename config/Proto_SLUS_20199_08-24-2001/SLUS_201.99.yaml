@@ -125,7 +125,7 @@ segments:
   - [0x085F70, asm, E/tam/ps2/sppbx/ktmnufnc]
   - [0x0862A0, asm, E/tam/ps2/sppbx/spinit]
   - [0x0870B0, asm, E/tam/ps2/sppbx/spload]
-  - [0x0933C0, asm, E/tam/ps2/sppbx/tmlink]
+  - [0x0933C0, c, E/tam/ps2/sppbx/tmlink]
   - [0x093450, asm, E/tam/ps2/sppbx/gmpad]
   - [0x0939E0, asm, E/tam/ps2/sppbx/ktrider]
   - [0x094BE0, asm, E/tam/ps2/sppbx/spfree]
