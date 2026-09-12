@@ -50,6 +50,7 @@ def main():
     parser.add_argument("--target-dir", default="build/target", help="Where the objdiff target objects live.")
     parser.add_argument("--base-dir", default="build/objdiff", help="Where the plain-MWCC base objects live.")
     parser.add_argument("--output", default="objdiff.json")
+    parser.add_argument("--project-dir", help="Directory relative to the repository where ObjDiff reads the generated config.")
     parser.add_argument("--make-args", default="rebuild-link", help="Make target objdiff runs to rebuild.")
     parser.add_argument("--include-library", action="store_true", help="Also report crt0 and the SDK blobs, which are never decompiled.")
     args = parser.parse_args()
@@ -73,6 +74,11 @@ def main():
             "(make rebuild-link, or at least make merge-objects)."
         )
 
+    project_dir = base_dir / args.project_dir if args.project_dir else base_dir
+
+    def project_path(path):
+        return os.path.relpath(path, project_dir)
+
     units = []
     skipped = 0
     missing = []
@@ -82,23 +88,25 @@ def main():
             skipped += 1
             continue
 
-        target_path = f"{args.target_dir}/{name}.o"
-        if not (base_dir / target_path).is_file():
+        target_file = base_dir / args.target_dir / f"{name}.o"
+        if not target_file.is_file():
             missing.append(name)
             continue
 
+        source_file = src_path / f"{name}.c"
+        source_text = source_file.read_text() if source_file.is_file() else ""
         unit = {
             "name": name,
-            "target_path": target_path,
+            "target_path": project_path(target_file),
             "metadata": {
-                "complete": kind == "c",
+                "complete": kind == "c" and "INCLUDE_ASM(" not in source_text,
                 "progress_categories": [categorize(name)],
             },
         }
-        if (src_path / f"{name}.c").is_file():
-            base_path = f"{args.base_dir}/{name}.o"
-            if (base_dir / base_path).is_file():
-                unit["base_path"] = base_path
+        if source_file.is_file():
+            base_file = base_dir / args.base_dir / f"{name}.o"
+            if base_file.is_file():
+                unit["base_path"] = project_path(base_file)
             else:
                 missing_bases.append(name)
         units.append(unit)

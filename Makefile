@@ -28,6 +28,16 @@ JP_ROM_FILE		:= config/SLPM_65198/SLPM_651.98
 JP_UNDEF_SYMS_AUTO 	:= $(JP_DIR)/undefined_syms_auto.yaml
 JP_UNDEF_FUNCS_AUTO := $(JP_DIR)/undefined_funcs_auto.yaml
 
+PROTO_DIR               := config/Proto_SLUS_20199_08-24-2001
+PROTO_ASM_DIR           := $(PROTO_DIR)/out/asm
+PROTO_SRC_DIR           := src/SLUS_20199_Proto_9_01_2001
+PROTO_YAML_FILE         := $(PROTO_DIR)/SLUS_201.99.yaml
+PROTO_BUILD_DIR         := build/proto
+PROTO_TARGET_DIR        := $(PROTO_BUILD_DIR)/target
+PROTO_OBJDIFF_BASE_DIR  := $(PROTO_BUILD_DIR)/objdiff
+PROTO_OBJDIFF_CONFIG    := $(PROTO_BUILD_DIR)/objdiff.json
+PROTO_REPORT_FILE       := $(PROTO_BUILD_DIR)/report.json
+
 BUILD_DIR		:= build
 LINK_DIR		:= $(BUILD_DIR)/link
 TARGET_DIR		:= $(BUILD_DIR)/target
@@ -105,6 +115,10 @@ splat-jp:
 	@echo "Running Splat for SLPM 651.98"
 	$(PYTHON) -m splat split ./$(JP_YAML_FILE)
 
+splat-proto:
+	@echo "Running Splat for prototype 201.99"
+	$(PYTHON) -m splat split ./$(PROTO_YAML_FILE)
+
 # Clean the build dir then compile and assemble the .c and .s files into .o files
 build: clean-build-dir compile assemble
 
@@ -137,6 +151,14 @@ $(BUILD_DIR)/$(US_SRC_DIR)/%.o: $(US_SRC_DIR)/%.c
 $(OBJDIFF_BASE_DIR)/%.o: $(US_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(MWCC) $(MWCC_ARGS) -c -o $@ $<
+
+$(PROTO_OBJDIFF_BASE_DIR)/%.o: $(PROTO_SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(MWCC) $(MWCC_ARGS) -c -o $@ $<
+
+$(PROTO_TARGET_DIR)/%.o: $(PROTO_ASM_DIR)/%.s
+	@mkdir -p $(dir $@)
+	$(AS) $(AS_FLAGS) -o $@ $<
 
 
 
@@ -270,6 +292,23 @@ report: objdiff-base objdiff-config
 	@echo "Generating progress report"
 	$(OBJDIFF_CLI) report generate -o $(REPORT_FILE)
 	@$(PYTHON) tools/Scripts/summarize_report.py $(REPORT_FILE)
+
+proto-objdiff-base: $(PROTO_OBJDIFF_BASE_DIR)/E/tam/ps2/sppbx/tmlink.o
+
+proto-objdiff-target: $(PROTO_TARGET_O_FILES)
+
+proto-objdiff-config: proto-objdiff-base proto-objdiff-target
+	$(PYTHON) tools/Scripts/generate_objdiff_config.py \
+		--splat-yaml-path $(PROTO_YAML_FILE) \
+		--target-dir $(PROTO_TARGET_DIR) \
+		--base-dir $(PROTO_OBJDIFF_BASE_DIR) \
+		--output $(PROTO_OBJDIFF_CONFIG) \
+		--project-dir $(PROTO_BUILD_DIR) \
+		--make-args "-C ../.. proto-report"
+
+proto-report: proto-objdiff-config
+	@echo "Generating prototype progress report"
+	$(OBJDIFF_CLI) report generate -p $(PROTO_BUILD_DIR) -o $(PROTO_REPORT_FILE)
 
 # Configure an MWLD .lcf file from the Splat generated GNU .ld file.
 convert-ld:

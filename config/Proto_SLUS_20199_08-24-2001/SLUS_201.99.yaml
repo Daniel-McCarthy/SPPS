@@ -1,10 +1,10 @@
 # The NTSC-U prototype build of SPPS (201.99) from Aug 24,2001 - Configuration for splat
 # Rom is generated with: tools/binutils/mips-ps2-decompals-objcopy -O binary --gap-fill=0x00 iso/extract/SLUS_201.99 SLUS_201.99.rom
 name: SPPS Proto 201-99 (US)
-sha1: a46c824eaeb701c49c2058db14c89936a9e38cbf
+sha1: 01b52d630de210bc4da7b7db9d931c1ff23d4d92
 options:
   basename: SLUS_201.99
-  target_path: ./config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.rom
+  target_path: ./config/Proto_SLUS_20199_08-24-2001/SLUS_201.99
   elf_path: build/SLUS_201.99.elf
   base_path: ../../
   platform: ps2
@@ -19,8 +19,8 @@ options:
 
   asm_path: ./config/Proto_SLUS_20199_08-24-2001/out/asm
   asset_path: ./config/Proto_SLUS_20199_08-24-2001/out/assets
-  build_path: ./build
-  src_path: ./src/SLUS_20199/
+  build_path: ./build/proto
+  src_path: ./src/SLUS_20199_Proto_9_01_2001
 
   ld_script_path: ./config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.ld
   ld_dependencies: True
@@ -125,7 +125,7 @@ segments:
   - [0x085F70, asm, E/tam/ps2/sppbx/ktmnufnc]
   - [0x0862A0, asm, E/tam/ps2/sppbx/spinit]
   - [0x0870B0, asm, E/tam/ps2/sppbx/spload]
-  - [0x0933C0, asm, E/tam/ps2/sppbx/tmlink]
+  - [0x0933C0, c, E/tam/ps2/sppbx/tmlink]
   - [0x093450, asm, E/tam/ps2/sppbx/gmpad]
   - [0x0939E0, asm, E/tam/ps2/sppbx/ktrider]
   - [0x094BE0, asm, E/tam/ps2/sppbx/spfree]
@@ -170,41 +170,61 @@ segments:
   - [0x18B7E0, asm, E/tam/ps2/sppbx/tmetc]
   - [0x18C0B0, asm, E/tam/ps2/sppbx/tievent]
 
-  # Vutext (.vutext 0x18EB80-0x196230)
+  # Vutext (.vutext 0x18EB80-0x196230), SDK/lib data (__data_start 0x196230),
+
+
+
+
 
   - [0x18EB80, data, vutext]
-
-  # SDK/Lib data (__data_start)
-
   - [0x196230, data, data_start]
-
-  # Game data
-
   - [0x1999F0, data, E/tam/ps2/sppbx/main]
+  - [0x199A00, data, Z/ul/ul/source/mdlprSdw]
+  - [0x199A20, data, Z/ul/ul/source/model]
+  - [0x199AD0, data, Z/ul/ul/source/strconv]
+  - [0x199B00, data, E/tam/ps2/sppbx/tmgraph]
   - [0x199B40, data, E/tam/ps2/sppbx/tmcrs]
   - [0x199BB0, data, E/tam/ps2/sppbx/maanim]
+  - [0x199C60, data, E/tam/ps2/sppbx/ktmot]
   - [0x19BC90, data, E/tam/ps2/sppbx/ktact]
-  - [0x19ECF0, data, E/tam/ps2/sppbx/spload]
+  - [0x19C410, data, E/tam/ps2/sppbx/ktmnufnc]
+  - [0x19C490, data, E/tam/ps2/sppbx/spinit]
+  - [0x19EBA0, data, E/tam/ps2/sppbx/spload]
+  - [0x19F080, data, E/tam/ps2/sppbx/ktrider]
+  - [0x19F090, data, E/tam/ps2/sppbx/spfree]
+  - [0x19F0A0, data, E/tam/ps2/sppbx/tmevent]
+  - [0x19F200, data, E/tam/ps2/sppbx/aycomfnk]
   - [0x19F260, data, E/tam/ps2/sppbx/aymcard]
   - [0x1A2B20, data, E/tam/ps2/sppbx/aymodsel]
   - [0x1A2C20, data, E/tam/ps2/sppbx/aymovie]
   - [0x1A2D40, data, E/tam/ps2/sppbx/aychrsel]
+  - [0x1A3090, data, E/tam/ps2/sppbx/kncamera]
   - [0x1A30E0, data, E/tam/ps2/sppbx/ayoption]
   - [0x1AF940, data, E/tam/ps2/sppbx/nmbgm]
   - [0x1B0040, data, E/tam/ps2/sppbx/nmdisp]
-  - [0x1B1220, data, E/tam/ps2/sppbx/nmdraw]
+  - [0x1B1140, data, E/tam/ps2/sppbx/nmdraw]
+  - [0x1B1260, data, E/tam/ps2/sppbx/knreplay]
+  - [0x1B13D0, data, E/tam/ps2/sppbx/spev01]
   - [0x1B19A0, data, E/tam/ps2/sppbx/ktsbcore]
   - [0x1B19D0, data, E/tam/ps2/sppbx/aycreate]
+  - [0x1B22F0, data, E/tam/ps2/sppbx/akEffect]
   - [0x1B2310, data, E/tam/ps2/sppbx/ayresult]
-  - [0x1B2C60, data, E/tam/ps2/sppbx/spev04]
-  - [0x1B3330, data, E/tam/ps2/sppbx/spev08]
-  - [0x1B3B60, data, E/tam/ps2/sppbx/spev02]
-  - [0x1B3FA0, data, E/tam/ps2/sppbx/spev03]
-  - [0x1B5360, data, E/tam/ps2/sppbx/spev06]
-  - [0x1B55D0, data, E/tam/ps2/sppbx/spev07]
+  - [0x1B2730, data, E/tam/ps2/sppbx/spev04]
+  - [0x1B2DC0, data, E/tam/ps2/sppbx/tieffect]
+  - [0x1B2F80, data, E/tam/ps2/sppbx/spev08]
+  - [0x1B3830, data, E/tam/ps2/sppbx/spev02]
+  - [0x1B3D60, data, E/tam/ps2/sppbx/spev03]
+  - [0x1B4B00, data, E/tam/ps2/sppbx/spev06]
+  - [0x1B5570, data, E/tam/ps2/sppbx/spev07]
   - [0x1B7410, data, E/tam/ps2/sppbx/spev05]
+  - [0x1B8060, data, E/tam/ps2/sppbx/kncore]
+  - [0x1B8080, data, E/tam/ps2/sppbx/akEvEfct]
+  - [0x1B80C0, data, E/tam/ps2/sppbx/akSelEff]
+  - [0x1B80E0, data, E/tam/ps2/sppbx/akShadow]
+  - [0x1B8250, data, E/tam/ps2/sppbx/tiutill]
+  - [0x1B83E0, data, E/tam/ps2/sppbx/tievent]
 
-  # rodata start (SDK rodata first)
+  # rodata (SDK rodata first)
 
   - [0x1B8580, rodata, sdk]
   - [0x1BA9E8, rodata, E/tam/ps2/sppbx/main]
@@ -222,14 +242,15 @@ segments:
   - [0x1BB080, rodata, E/tam/ps2/sppbx/ktmot]
   - [0x1BB4A0, rodata, E/tam/ps2/sppbx/ktact]
   - [0x1BB740, rodata, E/tam/ps2/sppbx/nmfont]
-  - [0x1BEB48, rodata, E/tam/ps2/sppbx/spinit]
+  - [0x1BB940, rodata, E/tam/ps2/sppbx/ktmnufnc]
+  - [0x1BB988, rodata, E/tam/ps2/sppbx/spinit]
   - [0x1BEB60, rodata, E/tam/ps2/sppbx/spload]
   - [0x1BF840, rodata, E/tam/ps2/sppbx/ktrider]
   - [0x1BF860, rodata, E/tam/ps2/sppbx/spfree]
   - [0x1BF8B0, rodata, E/tam/ps2/sppbx/tmevent]
-  - [0x1BF9A0, rodata, E/tam/ps2/sppbx/aycomfnk]
+  - [0x1BF8D0, rodata, E/tam/ps2/sppbx/aycomfnk]
   - [0x1BF9B8, rodata, E/tam/ps2/sppbx/aymcard]
-  - [0x1BFE50, rodata, E/tam/ps2/sppbx/aymodsel]
+  - [0x1BFE50, .rodata, E/tam/ps2/sppbx/aymodsel]
   - [0x1BFEB0, rodata, E/tam/ps2/sppbx/aymovie]
   - [0x1C02F0, rodata, E/tam/ps2/sppbx/aychrsel]
   - [0x1C09D8, rodata, E/tam/ps2/sppbx/ayoption]
@@ -237,8 +258,8 @@ segments:
   - [0x1C15C0, rodata, E/tam/ps2/sppbx/nmsnd]
   - [0x1C1880, rodata, E/tam/ps2/sppbx/nmbgm]
   - [0x1C19A0, rodata, E/tam/ps2/sppbx/nmsq]
-  - [0x1C1C18, rodata, E/tam/ps2/sppbx/nmdisp]
-  - [0x1C3EF8, rodata, E/tam/ps2/sppbx/nmdraw]
+  - [0x1C1AC8, rodata, E/tam/ps2/sppbx/nmdisp]
+  - [0x1C3DB8, rodata, E/tam/ps2/sppbx/nmdraw]
   - [0x1C3F30, rodata, E/tam/ps2/sppbx/knreplay]
   - [0x1C4140, rodata, E/tam/ps2/sppbx/spev01]
   - [0x1C41C0, rodata, E/tam/ps2/sppbx/aycreate]
@@ -262,98 +283,112 @@ segments:
   - [0x1C7310, sdata, Z/ul/ul/source/pad]
   - [0x1C7318, sdata, Z/ul/ul/source/mv2ext]
   - [0x1C731C, sdata, E/tam/ps2/sppbx/ktact]
+  - [0x1C73B8, sdata, E/tam/ps2/sppbx/ktmnufnc]
+  - [0x1C73D8, sdata, E/tam/ps2/sppbx/spload]
+  - [0x1C73E4, sdata, E/tam/ps2/sppbx/aymcard]
   - [0x1C73E8, sdata, E/tam/ps2/sppbx/aychrsel]
-  - [0x1C7410, sdata, E/tam/ps2/sppbx/kncamera]
+  - [0x1C7400, sdata, E/tam/ps2/sppbx/kncamera]
   - [0x1C7424, sdata, E/tam/ps2/sppbx/ayoption]
   - [0x1C7430, sdata, E/tam/ps2/sppbx/nmdisp]
   - [0x1C7448, sdata, E/tam/ps2/sppbx/nmdraw]
+  - [0x1C7458, sdata, E/tam/ps2/sppbx/knreplay]
+  - [0x1C745C, sdata, E/tam/ps2/sppbx/spev01]
   - [0x1C7470, sdata, E/tam/ps2/sppbx/ayresult]
+  - [0x1C747C, sdata, E/tam/ps2/sppbx/tieffect]
   - [0x1C74C0, sdata, E/tam/ps2/sppbx/spev02]
-  - [0x1C74EC, sdata, E/tam/ps2/sppbx/spev07]
+  - [0x1C74D0, sdata, E/tam/ps2/sppbx/spev03]
+  - [0x1C74D8, sdata, E/tam/ps2/sppbx/spev06]
+  - [0x1C74E8, sdata, E/tam/ps2/sppbx/spev07]
   - [0x1C7500, sdata, E/tam/ps2/sppbx/spev05]
+  - [0x1C7508, sdata, E/tam/ps2/sppbx/kncore]
+  - [0x1C7510, sdata, E/tam/ps2/sppbx/tiutill]
+  - [0x1C7514, sdata, E/tam/ps2/sppbx/tievent]
 
   # sbss (_fbss = 0x2C7580)
 
-  - { type: sbss, vram: 0x2C7580, name: E/tam/ps2/sppbx/main }
-  - { type: sbss, vram: 0x2C75D0, name: Z/ul/ul/source/cdvd }
-  - { type: sbss, vram: 0x2C75D8, name: Z/ul/ul/source/coord }
-  - { type: sbss, vram: 0x2C75E0, name: Z/ul/ul/source/pad }
-  - { type: sbss, vram: 0x2C75F4, name: Z/ul/ul/source/sd }
-  - { type: sbss, vram: 0x2C7600, name: Z/ul/ul/source/system }
-  - { type: sbss, vram: 0x2C7604, name: Z/ul/ul/source/mv2ext }
-  - { type: sbss, vram: 0x2C7624, name: Z/ul/ul/source/movie2 }
-  - { type: sbss, vram: 0x2C762C, name: Z/ul/ul/source/TEX }
-  - { type: sbss, vram: 0x2C7640, name: E/tam/ps2/sppbx/ktact }
-  - { type: sbss, vram: 0x2C76E8, name: E/tam/ps2/sppbx/ktmenu }
-  - { type: sbss, vram: 0x2C7710, name: E/tam/ps2/sppbx/spload }
-  - { type: sbss, vram: 0x2C7718, name: E/tam/ps2/sppbx/gmpad }
-  - { type: sbss, vram: 0x2C7748, name: E/tam/ps2/sppbx/spfree }
-  - { type: sbss, vram: 0x2C7780, name: E/tam/ps2/sppbx/tmevent }
-  - { type: sbss, vram: 0x2C77B4, name: E/tam/ps2/sppbx/aymcard }
-  - { type: sbss, vram: 0x2C77B8, name: E/tam/ps2/sppbx/aymodsel }
-  - { type: sbss, vram: 0x2C77C8, name: E/tam/ps2/sppbx/aymovie }
-  - { type: sbss, vram: 0x2C77D4, name: E/tam/ps2/sppbx/aychrsel }
-  - { type: sbss, vram: 0x2C77D8, name: E/tam/ps2/sppbx/kncamera }
-  - { type: sbss, vram: 0x2C77DC, name: E/tam/ps2/sppbx/ayoption }
-  - { type: sbss, vram: 0x2C77E0, name: E/tam/ps2/sppbx/nmvc }
-  - { type: sbss, vram: 0x2C77E4, name: E/tam/ps2/sppbx/nmbgm }
-  - { type: sbss, vram: 0x2C77F4, name: E/tam/ps2/sppbx/nmsq }
-  - { type: sbss, vram: 0x2C7820, name: E/tam/ps2/sppbx/nmdisp }
-  - { type: sbss, vram: 0x2C7A98, name: E/tam/ps2/sppbx/knreplay }
-  - { type: sbss, vram: 0x2C7AB0, name: E/tam/ps2/sppbx/spev01 }
-  - { type: sbss, vram: 0x2C7AEC, name: E/tam/ps2/sppbx/aycreate }
-  - { type: sbss, vram: 0x2C7AF0, name: E/tam/ps2/sppbx/akEffect }
-  - { type: sbss, vram: 0x2C7AF4, name: E/tam/ps2/sppbx/ayresult }
-  - { type: sbss, vram: 0x2C7AF8, name: E/tam/ps2/sppbx/spev04 }
-  - { type: sbss, vram: 0x2C7B58, name: E/tam/ps2/sppbx/spev08 }
-  - { type: sbss, vram: 0x2C7B5C, name: E/tam/ps2/sppbx/nmact }
-  - { type: sbss, vram: 0x2C7B88, name: E/tam/ps2/sppbx/spev02 }
-  - { type: sbss, vram: 0x2C7BF0, name: E/tam/ps2/sppbx/spev03 }
-  - { type: sbss, vram: 0x2C7C1C, name: E/tam/ps2/sppbx/spev06 }
-  - { type: sbss, vram: 0x2C7C24, name: E/tam/ps2/sppbx/spev07 }
-  - { type: sbss, vram: 0x2C7C38, name: E/tam/ps2/sppbx/spev05 }
-  - { type: sbss, vram: 0x2C7C80, name: E/tam/ps2/sppbx/nmevent }
-  - { type: sbss, vram: 0x2C7C88, name: E/tam/ps2/sppbx/nmtrick }
+  - { type: sbss, vram: 0x002C7580, name: E/tam/ps2/sppbx/main }
+  - { type: sbss, vram: 0x002C75D0, name: Z/ul/ul/source/cdvd }
+  - { type: sbss, vram: 0x002C75D8, name: Z/ul/ul/source/coord }
+  - { type: sbss, vram: 0x002C75E0, name: Z/ul/ul/source/pad }
+  - { type: sbss, vram: 0x002C75F4, name: Z/ul/ul/source/sd }
+  - { type: sbss, vram: 0x002C7600, name: Z/ul/ul/source/system }
+  - { type: sbss, vram: 0x002C7604, name: Z/ul/ul/source/mv2ext }
+  - { type: sbss, vram: 0x002C7624, name: Z/ul/ul/source/movie2 }
+  - { type: sbss, vram: 0x002C762C, name: Z/ul/ul/source/TEX }
+  - { type: sbss, vram: 0x002C7630, name: E/tam/ps2/sppbx/ktact }
+  - { type: sbss, vram: 0x002C76E8, name: E/tam/ps2/sppbx/ktmenu }
+  - { type: sbss, vram: 0x002C7710, name: E/tam/ps2/sppbx/spload }
+  - { type: sbss, vram: 0x002C7718, name: E/tam/ps2/sppbx/gmpad }
+  - { type: sbss, vram: 0x002C7738, name: E/tam/ps2/sppbx/spfree }
+  - { type: sbss, vram: 0x002C7780, name: E/tam/ps2/sppbx/tmevent }
+  - { type: sbss, vram: 0x002C77B4, name: E/tam/ps2/sppbx/aymcard }
+  - { type: sbss, vram: 0x002C77B8, name: E/tam/ps2/sppbx/aymodsel }
+  - { type: sbss, vram: 0x002C77C8, name: E/tam/ps2/sppbx/aymovie }
+  - { type: sbss, vram: 0x002C77D4, name: E/tam/ps2/sppbx/aychrsel }
+  - { type: sbss, vram: 0x002C77D8, name: E/tam/ps2/sppbx/kncamera }
+  - { type: sbss, vram: 0x002C77DC, name: E/tam/ps2/sppbx/ayoption }
+  - { type: sbss, vram: 0x002C77E0, name: E/tam/ps2/sppbx/nmvc }
+  - { type: sbss, vram: 0x002C77E4, name: E/tam/ps2/sppbx/nmbgm }
+  - { type: sbss, vram: 0x002C77F4, name: E/tam/ps2/sppbx/nmsq }
+  - { type: sbss, vram: 0x002C7820, name: E/tam/ps2/sppbx/nmdisp }
+  - { type: sbss, vram: 0x002C7A98, name: E/tam/ps2/sppbx/knreplay }
+  - { type: sbss, vram: 0x002C7AA8, name: E/tam/ps2/sppbx/spev01 }
+  - { type: sbss, vram: 0x002C7AEC, name: E/tam/ps2/sppbx/aycreate }
+  - { type: sbss, vram: 0x002C7AF0, name: E/tam/ps2/sppbx/akEffect }
+  - { type: sbss, vram: 0x002C7AF4, name: E/tam/ps2/sppbx/ayresult }
+  - { type: sbss, vram: 0x002C7AF8, name: E/tam/ps2/sppbx/spev04 }
+  - { type: sbss, vram: 0x002C7B54, name: E/tam/ps2/sppbx/tieffect }
+  - { type: sbss, vram: 0x002C7B58, name: E/tam/ps2/sppbx/spev08 }
+  - { type: sbss, vram: 0x002C7B5C, name: E/tam/ps2/sppbx/nmact }
+  - { type: sbss, vram: 0x002C7B88, name: E/tam/ps2/sppbx/spev02 }
+  - { type: sbss, vram: 0x002C7BE8, name: E/tam/ps2/sppbx/spev03 }
+  - { type: sbss, vram: 0x002C7C1C, name: E/tam/ps2/sppbx/spev06 }
+  - { type: sbss, vram: 0x002C7C24, name: E/tam/ps2/sppbx/spev07 }
+  - { type: sbss, vram: 0x002C7C38, name: E/tam/ps2/sppbx/spev05 }
+  - { type: sbss, vram: 0x002C7C80, name: E/tam/ps2/sppbx/nmevent }
+  - { type: sbss, vram: 0x002C7C88, name: E/tam/ps2/sppbx/nmtrick }
 
-  # bss (__bss_start = 0x2C7CA0)
 
-  - { type: bss, vram: 0x2CE650, name: E/tam/ps2/sppbx/main }
-  - { type: bss, vram: 0x2CEEA0, name: Z/ul/ul/source/cdvd }
-  - { type: bss, vram: 0x2D1F00, name: Z/ul/ul/source/coord }
-  - { type: bss, vram: 0x2D1F80, name: Z/ul/ul/source/heap }
-  - { type: bss, vram: 0x2D1FC0, name: Z/ul/ul/source/mcard }
-  - { type: bss, vram: 0x2D2F10, name: Z/ul/ul/source/pad }
-  - { type: bss, vram: 0x2D3410, name: Z/ul/ul/source/sd }
-  - { type: bss, vram: 0x2D3970, name: Z/ul/ul/source/mv2ext }
-  - { type: bss, vram: 0x2D3AC0, name: Z/ul/ul/source/movie2 }
-  - { type: bss, vram: 0x2D3AD0, name: E/tam/ps2/sppbx/tmcrs }
-  - { type: bss, vram: 0x324620, name: E/tam/ps2/sppbx/ktact }
-  - { type: bss, vram: 0x325E80, name: E/tam/ps2/sppbx/nmfont }
-  - { type: bss, vram: 0x325F20, name: E/tam/ps2/sppbx/ktmenu }
-  - { type: bss, vram: 0x383500, name: E/tam/ps2/sppbx/spload }
-  - { type: bss, vram: 0x39C140, name: E/tam/ps2/sppbx/gmpad }
-  - { type: bss, vram: 0x39E460, name: E/tam/ps2/sppbx/spfree }
-  - { type: bss, vram: 0x39EB10, name: E/tam/ps2/sppbx/tmevent }
-  - { type: bss, vram: 0x39F980, name: E/tam/ps2/sppbx/aymodsel }
-  - { type: bss, vram: 0x39F9E0, name: E/tam/ps2/sppbx/aychrsel }
-  - { type: bss, vram: 0x39FA60, name: E/tam/ps2/sppbx/kncamera }
-  - { type: bss, vram: 0x39FCC0, name: E/tam/ps2/sppbx/nmvc }
-  - { type: bss, vram: 0x39FE40, name: E/tam/ps2/sppbx/nmsnd }
-  - { type: bss, vram: 0x3A15B0, name: E/tam/ps2/sppbx/nmbgm }
-  - { type: bss, vram: 0x3A1600, name: E/tam/ps2/sppbx/nmsq }
-  - { type: bss, vram: 0x3A1870, name: E/tam/ps2/sppbx/nmdisp }
-  - { type: bss, vram: 0x3A5770, name: E/tam/ps2/sppbx/nmdraw }
-  - { type: bss, vram: 0x3A57A0, name: E/tam/ps2/sppbx/knreplay }
-  - { type: bss, vram: 0x3A5B40, name: E/tam/ps2/sppbx/spev01 }
-  - { type: bss, vram: 0x3A5E00, name: E/tam/ps2/sppbx/spev04 }
-  - { type: bss, vram: 0x3A6140, name: E/tam/ps2/sppbx/spev08 }
-  - { type: bss, vram: 0x3A6230, name: E/tam/ps2/sppbx/spev02 }
-  - { type: bss, vram: 0x3A6590, name: E/tam/ps2/sppbx/spev03 }
-  - { type: bss, vram: 0x3A6690, name: E/tam/ps2/sppbx/spev07 }
-  - { type: bss, vram: 0x3A68E0, name: E/tam/ps2/sppbx/spev05 }
-  - { type: bss, vram: 0x3A6DB0, name: E/tam/ps2/sppbx/kncore }
-  - { type: bss, vram: 0x3A6E90, name: E/tam/ps2/sppbx/akEvEfct }
-  - { type: bss, vram: 0x3A7800, name: E/tam/ps2/sppbx/nmtrick }
-  - { type: bss, vram: 0x3A8820, name: E/tam/ps2/sppbx/tmetc }
+  - { type: bss, vram: 0x002C7CA0, name: sdk }
+  - { type: bss, vram: 0x002CE650, name: E/tam/ps2/sppbx/main }
+  - { type: bss, vram: 0x002CEEA0, name: Z/ul/ul/source/cdvd }
+  - { type: bss, vram: 0x002D1F00, name: Z/ul/ul/source/coord }
+  - { type: bss, vram: 0x002D1F80, name: Z/ul/ul/source/heap }
+  - { type: bss, vram: 0x002D1FC0, name: Z/ul/ul/source/mcard }
+  - { type: bss, vram: 0x002D2F10, name: Z/ul/ul/source/pad }
+  - { type: bss, vram: 0x002D3410, name: Z/ul/ul/source/sd }
+  - { type: bss, vram: 0x002D3970, name: Z/ul/ul/source/mv2ext }
+  - { type: bss, vram: 0x002D3AC0, name: Z/ul/ul/source/movie2 }
+  - { type: bss, vram: 0x002D3AD0, name: E/tam/ps2/sppbx/tmcrs }
+  - { type: bss, vram: 0x002E6DD0, name: E/tam/ps2/sppbx/ktact }
+  - { type: bss, vram: 0x00325E80, name: E/tam/ps2/sppbx/nmfont }
+  - { type: bss, vram: 0x00325F20, name: E/tam/ps2/sppbx/ktmenu }
+  - { type: bss, vram: 0x003263C0, name: vspenvEnv }
+  - { type: bss, vram: 0x00383500, name: E/tam/ps2/sppbx/spload }
+  - { type: bss, vram: 0x0039C140, name: E/tam/ps2/sppbx/gmpad }
+  - { type: bss, vram: 0x0039E460, name: E/tam/ps2/sppbx/spfree }
+  - { type: bss, vram: 0x0039EB10, name: E/tam/ps2/sppbx/tmevent }
+  - { type: bss, vram: 0x0039F980, name: E/tam/ps2/sppbx/aymodsel }
+  - { type: bss, vram: 0x0039F9E0, name: E/tam/ps2/sppbx/aychrsel }
+  - { type: bss, vram: 0x0039FA48, name: E/tam/ps2/sppbx/kncamera }
+  - { type: bss, vram: 0x0039FCC0, name: E/tam/ps2/sppbx/nmvc }
+  - { type: bss, vram: 0x0039FE40, name: E/tam/ps2/sppbx/nmsnd }
+  - { type: bss, vram: 0x003A15B0, name: E/tam/ps2/sppbx/nmbgm }
+  - { type: bss, vram: 0x003A1600, name: E/tam/ps2/sppbx/nmsq }
+  - { type: bss, vram: 0x003A1870, name: E/tam/ps2/sppbx/nmdisp }
+  - { type: bss, vram: 0x003A5770, name: E/tam/ps2/sppbx/nmdraw }
+  - { type: bss, vram: 0x003A5790, name: E/tam/ps2/sppbx/knreplay }
+  - { type: bss, vram: 0x003A5B40, name: E/tam/ps2/sppbx/spev01 }
+  - { type: bss, vram: 0x003A5E00, name: E/tam/ps2/sppbx/spev04 }
+  - { type: bss, vram: 0x003A6140, name: E/tam/ps2/sppbx/spev08 }
+  - { type: bss, vram: 0x003A6230, name: E/tam/ps2/sppbx/spev02 }
+  - { type: bss, vram: 0x003A6580, name: E/tam/ps2/sppbx/spev03 }
+  - { type: bss, vram: 0x003A6640, name: E/tam/ps2/sppbx/spev06 }
+  - { type: bss, vram: 0x003A6690, name: E/tam/ps2/sppbx/spev07 }
+  - { type: bss, vram: 0x003A68E0, name: E/tam/ps2/sppbx/spev05 }
+  - { type: bss, vram: 0x003A6DB0, name: E/tam/ps2/sppbx/kncore }
+  - { type: bss, vram: 0x003A6E90, name: E/tam/ps2/sppbx/akEvEfct }
+  - { type: bss, vram: 0x003A7800, name: E/tam/ps2/sppbx/nmtrick }
+  - { type: bss, vram: 0x003A8820, name: E/tam/ps2/sppbx/tmetc }
 
 - [0x1C7580]

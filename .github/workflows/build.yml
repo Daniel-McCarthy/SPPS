@@ -75,6 +75,34 @@ jobs:
           path: build/report.json
           if-no-files-found: error
 
+      - name: Fetch the prototype ROM
+        env:
+          FILE_URL: ${{ secrets.FILE_URL_USP }}
+        run: |
+          if [ -z "$FILE_URL" ]; then
+            echo "Secret FILE_URL_USP is not set."
+            exit 1
+          fi
+          rom=config/Proto_SLUS_20199_08-24-2001/SLUS_201.99
+          curl -sSfL -o "$rom" "$FILE_URL"
+          expected=$(grep -m1 '^sha1:' config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.yaml | awk '{print $2}')
+          actual=$(sha1sum "$rom" | cut -d' ' -f1)
+          if [ "$actual" != "$expected" ]; then
+            echo "Downloaded prototype ROM sha1 $actual, expected $expected."
+            exit 1
+          fi
+
+      - name: Generate prototype progress report
+        run: |
+          make splat-proto
+          make proto-report
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prototype_report
+          path: build/proto/report.json
+          if-no-files-found: error
+
       - name: Fail if the rebuilt binary does not match
         if: steps.link.outcome != 'success'
         run: |
