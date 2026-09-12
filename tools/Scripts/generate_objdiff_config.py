@@ -93,6 +93,7 @@ def main():
             missing.append(name)
             continue
 
+        source_file = src_path / f"{name}.c"
         source_text = source_file.read_text() if source_file.is_file() else ""
         unit = {
             "name": name,
