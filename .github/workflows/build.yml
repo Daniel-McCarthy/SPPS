@@ -76,6 +76,8 @@ jobs:
           if-no-files-found: error
 
       - name: Fetch the prototype ROM
+        id: proto_fetch
+        continue-on-error: true
         env:
           FILE_URL: ${{ secrets.FILE_URL_USP }}
         run: |
@@ -93,11 +95,15 @@ jobs:
           fi
 
       - name: Generate prototype progress report
+        id: proto_report
+        if: steps.proto_fetch.outcome == 'success'
+        continue-on-error: true
         run: |
           make splat-proto
           make proto-report
 
       - uses: actions/upload-artifact@v4
+        if: steps.proto_report.outcome == 'success'
         with:
           name: prototype_report
           path: build/proto/report.json
@@ -107,4 +113,10 @@ jobs:
         if: steps.link.outcome != 'success'
         run: |
           echo "::error::The rebuilt binary does not match the original. The progress report was still generated and uploaded."
+          exit 1
+
+      - name: Fail if the prototype report was not generated
+        if: steps.proto_fetch.outcome != 'success' || steps.proto_report.outcome != 'success'
+        run: |
+          echo "::error::The prototype progress report was not generated, so prototype_report was not uploaded. See the 'Fetch the prototype ROM' and 'Generate prototype progress report' steps above."
           exit 1
