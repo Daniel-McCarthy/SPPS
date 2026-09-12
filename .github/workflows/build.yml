@@ -83,7 +83,7 @@ jobs:
             echo "Secret FILE_URL_USP is not set."
             exit 1
           fi
-          rom=config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.rom
+          rom=config/Proto_SLUS_20199_08-24-2001/SLUS_201.99
           curl -sSfL -o "$rom" "$FILE_URL"
           expected=$(grep -m1 '^sha1:' config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.yaml | awk '{print $2}')
           actual=$(sha1sum "$rom" | cut -d' ' -f1)
