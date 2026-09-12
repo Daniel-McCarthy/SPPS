@@ -32,11 +32,15 @@ PROTO_DIR               := config/Proto_SLUS_20199_08-24-2001
 PROTO_ASM_DIR           := $(PROTO_DIR)/out/asm
 PROTO_SRC_DIR           := src/SLUS_20199_Proto_9_01_2001
 PROTO_YAML_FILE         := $(PROTO_DIR)/SLUS_201.99.yaml
+PROTO_ROM_FILE          := $(PROTO_DIR)/SLUS_201.99
+PROTO_LD_SCRIPT         := $(PROTO_DIR)/SLUS_201.99.ld
 PROTO_BUILD_DIR         := build/proto
 PROTO_TARGET_DIR        := $(PROTO_BUILD_DIR)/target
+PROTO_LINK_DIR          := $(PROTO_BUILD_DIR)/link
 PROTO_OBJDIFF_BASE_DIR  := $(PROTO_BUILD_DIR)/objdiff
 PROTO_OBJDIFF_CONFIG    := $(PROTO_BUILD_DIR)/objdiff.json
 PROTO_REPORT_FILE       := $(PROTO_BUILD_DIR)/report.json
+PROTO_OUTPUT_ELF        := $(PROTO_BUILD_DIR)/SLUS_201.99.elf
 
 BUILD_DIR		:= build
 LINK_DIR		:= $(BUILD_DIR)/link
@@ -84,8 +88,14 @@ OBJDIFF_BASE_O_FILES := $(patsubst $(US_SRC_DIR)/%.c,$(OBJDIFF_BASE_DIR)/%.o,$(A
 
 PROTO_ALL_S_FILES := $(shell find $(PROTO_ASM_DIR) -name '*.s' -not -path *nonmatchings* -not -path '$(PROTO_ASM_DIR)/data/*' 2>/dev/null)
 PROTO_TARGET_O_FILES := $(patsubst $(PROTO_ASM_DIR)/%.s,$(PROTO_TARGET_DIR)/%.o,$(PROTO_ALL_S_FILES))
+PROTO_C_FILES := $(shell $(PYTHON) tools/Scripts/list_subsegments.py --splat-yaml-path $(PROTO_YAML_FILE) --kind c --prefix $(PROTO_SRC_DIR)/ --suffix .c 2>/dev/null)
+PROTO_FULL_DISASM_S_FILES := $(patsubst $(PROTO_SRC_DIR)/%.c,$(PROTO_ASM_DIR)/%.s,$(PROTO_C_FILES))
+PROTO_S_FILES := $(filter-out $(PROTO_FULL_DISASM_S_FILES),$(PROTO_ALL_S_FILES))
+
 ASM_O_FILES := $(patsubst %.s,$(BUILD_DIR)/%.o,$(S_FILES))
 C_O_FILES := $(patsubst %.c,$(BUILD_DIR)/%.o,$(C_FILES))
+PROTO_ASM_O_FILES := $(patsubst %.s,$(BUILD_DIR)/%.o,$(PROTO_S_FILES))
+PROTO_C_O_FILES := $(patsubst %.c,$(BUILD_DIR)/%.o,$(PROTO_C_FILES))
 
 US_LD_SCRIPT	:= $(US_DIR)/SLUS_201.99.ld
 
@@ -137,6 +147,17 @@ link:
 	$(MAKE) remove-unneeded-sections
 	$(MAKE) mwld-convert
 
+proto-compile: $(PROTO_C_O_FILES)
+
+proto-assemble: $(PROTO_ASM_O_FILES)
+
+proto-link:
+	$(MAKE) proto-convert-ld
+	$(MAKE) proto-merge-objects
+	$(MAKE) proto-strip-toolchain-sections
+	$(MAKE) proto-remove-unneeded-sections
+	$(MAKE) proto-mwld-convert
+
 # Make .o from .s in build dir
 # Assemble pattern
 $(BUILD_DIR)/$(US_ASM_DIR)/%.o: $(US_ASM_DIR)/%.s
@@ -161,6 +182,14 @@ $(PROTO_OBJDIFF_BASE_DIR)/%.o: $(PROTO_SRC_DIR)/%.c
 $(PROTO_TARGET_DIR)/%.o: $(PROTO_ASM_DIR)/%.s
 	@mkdir -p $(dir $@)
 	$(AS) $(AS_FLAGS) -o $@ $<
+
+$(BUILD_DIR)/$(PROTO_ASM_DIR)/%.o: $(PROTO_ASM_DIR)/%.s
+	@mkdir -p $(dir $@)
+	$(AS) $(AS_FLAGS) -o $@ $<
+
+$(BUILD_DIR)/$(PROTO_SRC_DIR)/%.o: $(PROTO_SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(MWCC) $(MWCC_ARGS) -c -o $@ $<
 
 
 
@@ -248,6 +277,29 @@ verify:
 		exit 1; \
 	fi
 
+proto-mwld-convert:
+	@echo "Running mwld (prototype)"
+	$(MWLD) -g -map -nodead -o $(PROTO_OUTPUT_ELF) $(PROTO_BUILD_DIR)/proto_linker.lcf \
+		$(shell find $(PROTO_LINK_DIR) -name '*.o')
+	@readelf -S $(PROTO_OUTPUT_ELF) > $(PROTO_OUTPUT_ELF).sections.txt
+	@readelf -S $(PROTO_ROM_FILE) > $(PROTO_BUILD_DIR)/SLUS_201.99.expected.sections.txt
+
+	@if [ ! -f "$(PROTO_OUTPUT_ELF)" ]; then echo "❌ Failed to build prototype ELF"; exit 1; fi
+	@echo "Built prototype ELF: $(PROTO_OUTPUT_ELF)"
+	@$(MAKE) --no-print-directory proto-verify
+
+proto-verify:
+	@$(OBJCOPY) -I elf32-little -O binary --only-section=main $(PROTO_ROM_FILE) $(PROTO_BUILD_DIR)/expected_main.bin
+	@$(OBJCOPY) -O binary --only-section=main $(PROTO_OUTPUT_ELF) $(PROTO_BUILD_DIR)/actual_main.bin
+	@if cmp -s $(PROTO_BUILD_DIR)/expected_main.bin $(PROTO_BUILD_DIR)/actual_main.bin; then \
+		echo "✅ prototype main section matches the original ($$(stat -c%s $(PROTO_BUILD_DIR)/expected_main.bin) bytes)"; \
+	else \
+		echo "❌ prototype main section differs from the original"; \
+		echo "   expected $$(stat -c%s $(PROTO_BUILD_DIR)/expected_main.bin) bytes, got $$(stat -c%s $(PROTO_BUILD_DIR)/actual_main.bin) bytes"; \
+		cmp $(PROTO_BUILD_DIR)/expected_main.bin $(PROTO_BUILD_DIR)/actual_main.bin || true; \
+		exit 1; \
+	fi
+
 # Removes uneeded sections from the object files as a work around for unresolved linker issues.
 STRIP_SECTIONS := .comment .reginfo .MIPS.abiflags .gnu.attributes
 
@@ -256,10 +308,22 @@ strip-toolchain-sections:
 	@find $(LINK_DIR) -name '*.o' -exec $(OBJCOPY) \
 		$(foreach section,$(STRIP_SECTIONS),--remove-section=$(section)) {} \;
 
+proto-strip-toolchain-sections:
+	@echo "Stripping toolchain sections from prototype link objects"
+	@find $(PROTO_LINK_DIR) -name '*.o' -exec $(OBJCOPY) \
+		$(foreach section,$(STRIP_SECTIONS),--remove-section=$(section)) {} \;
+
 remove-unneeded-sections:
 	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".o" bss
 	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".o" data
 	$(PYTHON) tools/Scripts/remove_object_section.py $(REMOVE_SECTION_ARGS) ".o" text
+
+PROTO_REMOVE_SECTION_ARGS := --objcopy_path $(OBJCOPY) --objdump_path $(OBJDUMP) --root $(PROTO_LINK_DIR)
+
+proto-remove-unneeded-sections:
+	$(PYTHON) tools/Scripts/remove_object_section.py $(PROTO_REMOVE_SECTION_ARGS) ".o" bss
+	$(PYTHON) tools/Scripts/remove_object_section.py $(PROTO_REMOVE_SECTION_ARGS) ".o" data
+	$(PYTHON) tools/Scripts/remove_object_section.py $(PROTO_REMOVE_SECTION_ARGS) ".o" text
 
 remove-unneeded-objects:
 	@echo "No unneeded objects to remove"
@@ -277,6 +341,20 @@ merge-objects:
 		--work-dir $(BUILD_DIR)/merged_sources \
 		--splat-yaml-path $(US_YAML_FILE) \
 		--target-out-dir $(TARGET_DIR)
+
+proto-merge-objects:
+	@echo "Building one object per translation unit (prototype)"
+	$(PYTHON) tools/Scripts/merge_translation_units.py \
+		--asm-dir $(PROTO_ASM_DIR) \
+		--src-dir $(PROTO_SRC_DIR) \
+		--c-obj-dir $(BUILD_DIR)/$(PROTO_SRC_DIR) \
+		--out-dir $(PROTO_LINK_DIR) \
+		--as-path $(AS) \
+		--as-flags "$(AS_FLAGS)" \
+		--ld $(GNULD) \
+		--work-dir $(PROTO_BUILD_DIR)/merged_sources \
+		--splat-yaml-path $(PROTO_YAML_FILE) \
+		--target-out-dir $(PROTO_TARGET_DIR)
 
 # Compile every .c with plain MWCC for objdiff to measure against.
 objdiff-base: $(OBJDIFF_BASE_O_FILES)
@@ -315,6 +393,9 @@ proto-report: proto-objdiff-config
 # Configure an MWLD .lcf file from the Splat generated GNU .ld file.
 convert-ld:
 	@$(PYTHON) tools/Scripts/convert_ld_to_lcf.py
+
+proto-convert-ld:
+	@$(PYTHON) tools/Scripts/convert_ld_to_lcf.py --splat-yaml-path $(PROTO_YAML_FILE) --output-name proto_linker.lcf
 
 # Freshly split, compile, and assemble to prepare for linking.
 rebuild:
@@ -358,6 +439,23 @@ rebuild-full:
 rebuild-link:
 	$(MAKE) rebuild
 	$(MAKE) mwld-convert
+
+proto-rebuild:
+	@echo "Rebuilding the prototype"
+	$(MAKE) clean-build-dir
+	$(MAKE) splat-proto
+	$(MAKE) proto-compile
+	$(MAKE) proto-assemble
+	$(MAKE) remove-unneeded-objects
+	$(MAKE) proto-convert-ld
+	$(MAKE) proto-merge-objects
+	$(MAKE) proto-strip-toolchain-sections
+	$(MAKE) proto-remove-unneeded-sections
+	@echo "✅ Prototype rebuild done."
+
+proto-rebuild-link:
+	$(MAKE) proto-rebuild
+	$(MAKE) proto-mwld-convert
 
 mwccgap:
 	@echo "Running mwccgap"
