@@ -1,10 +1,10 @@
 # The NTSC-U prototype build of SPPS (201.99) from Aug 24,2001 - Configuration for splat
 # Rom is generated with: tools/binutils/mips-ps2-decompals-objcopy -O binary --gap-fill=0x00 iso/extract/SLUS_201.99 SLUS_201.99.rom
 name: SPPS Proto 201-99 (US)
-sha1: 01b52d630de210bc4da7b7db9d931c1ff23d4d92
+sha1: bc0bd4cff92c60233a37d42acbf9ed01cd79b667
 options:
   basename: SLUS_201.99
-  target_path: ./config/Proto_SLUS_20199_08-24-2001/SLUS_201.99
+  target_path: ./config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.rom
   elf_path: build/SLUS_201.99.elf
   base_path: ../../
   platform: ps2
@@ -250,7 +250,7 @@ segments:
   - [0x1BF8B0, rodata, E/tam/ps2/sppbx/tmevent]
   - [0x1BF8D0, rodata, E/tam/ps2/sppbx/aycomfnk]
   - [0x1BF9B8, rodata, E/tam/ps2/sppbx/aymcard]
-  - [0x1BFE50, .rodata, E/tam/ps2/sppbx/aymodsel]
+  - [0x1BFE50, rodata, E/tam/ps2/sppbx/aymodsel]
   - [0x1BFEB0, rodata, E/tam/ps2/sppbx/aymovie]
   - [0x1C02F0, rodata, E/tam/ps2/sppbx/aychrsel]
   - [0x1C09D8, rodata, E/tam/ps2/sppbx/ayoption]

@@ -33,6 +33,7 @@ PROTO_ASM_DIR           := $(PROTO_DIR)/out/asm
 PROTO_SRC_DIR           := src/SLUS_20199_Proto_9_01_2001
 PROTO_YAML_FILE         := $(PROTO_DIR)/SLUS_201.99.yaml
 PROTO_ROM_FILE          := $(PROTO_DIR)/SLUS_201.99
+PROTO_ROM_FLAT          := $(PROTO_DIR)/SLUS_201.99.rom
 PROTO_LD_SCRIPT         := $(PROTO_DIR)/SLUS_201.99.ld
 PROTO_BUILD_DIR         := build/proto
 PROTO_TARGET_DIR        := $(PROTO_BUILD_DIR)/target
@@ -127,7 +128,10 @@ splat-jp:
 	@echo "Running Splat for SLPM 651.98"
 	$(PYTHON) -m splat split ./$(JP_YAML_FILE)
 
-splat-proto:
+$(PROTO_ROM_FLAT): $(PROTO_ROM_FILE)
+	$(OBJCOPY) -O binary --gap-fill=0x00 $(PROTO_ROM_FILE) $(PROTO_ROM_FLAT)
+
+splat-proto: $(PROTO_ROM_FLAT)
 	@echo "Running Splat for prototype 201.99"
 	$(PYTHON) -m splat split ./$(PROTO_YAML_FILE)
 

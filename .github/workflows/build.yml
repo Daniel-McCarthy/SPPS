@@ -21,11 +21,18 @@ jobs:
             artifact_name: SLUS_201.99_report
             elf: config/SLUS_20199/SLUS_201.99
             splat_yaml: config/SLUS_20199/SLUS_201.99.yaml
+            sha1_key: sha1
             url_secret: FILE_URL_USF
+            build_target: rebuild
+            link_target: mwld-convert
+            report_target: report
+            report_path: build/report.json
+
           - version: SLUS_201.99_Proto
             artifact_name: SLUS_201.99_Proto
             elf: config/Proto_SLUS_20199_08-24-2001/SLUS_201.99
             splat_yaml: config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.yaml
+            sha1_key: elf_sha1
             url_secret: FILE_URL_USP
             build_target: proto-rebuild
             link_target: proto-mwld-convert
@@ -58,7 +65,7 @@ jobs:
             exit 1
           fi
           curl -sSfL -o "${{ matrix.elf }}" "$FILE_URL"
-          expected=$(grep -m1 '^sha1:' "${{ matrix.splat_yaml }}" | awk '{print $2}')
+          expected=$(grep -m1 '^${{ matrix.sha1_key }}:' "${{ matrix.splat_yaml }}" | awk '{print $2}')
           actual=$(sha1sum "${{ matrix.elf }}" | cut -d' ' -f1)
           if [ "$actual" != "$expected" ]; then
             echo "Downloaded file sha1 $actual, expected $expected."
