@@ -29,7 +29,7 @@ jobs:
             report_path: build/report.json
 
           - version: SLUS_201.99_Proto
-            artifact_name: SLUS_201.99_Proto
+            artifact_name: SLUS_201.99_Proto_report
             elf: config/Proto_SLUS_20199_08-24-2001/SLUS_201.99
             splat_yaml: config/Proto_SLUS_20199_08-24-2001/SLUS_201.99.yaml
             sha1_key: elf_sha1
