@@ -2212,33 +2212,350 @@ typedef struct Time {
   signed int size[2];   // Offset: 0x58, DWARF: 0x137160
 } Time;
 
-static char *ul_performance_name[3];        // Address: 0x0
-static char *vnmtblPauseMenu[3][10];        // Address: 0x2CD980
-static char *vnmtblPauseFlag[3][2];         // Address: 0x2CDA00
-static char vnmtblPauseCareerItem[7];       // Address: 0x2E7848
-static char vnmtblPauseMatchItem[6];        // Address: 0x2E7850
-static char vnmtblPauseFreeItem[7];         // Address: 0x2E7858
-static char *vnmtblPauseDebug[22];          // Address: 0x0
-static char *vnmtblTlistCate[3][9];         // Address: 0x2CDA20
-static char vnmtblTlistNum[9];              // Address: 0x2CDA90
-static char *vnmtblTlistCom[86][2];         // Address: 0x2CDAA0
-static char *vnmtblTutoItem[3][8];          // Address: 0x2CDD50
-static char vnmtblTutoEnd[8];               // Address: 0x2E7860
-static char *vnmtblTutoMes[3][25][5];       // Address: 0x2CDDB0
-static float vnmtblCourseLogo[8][2];        // Address: 0x2CE390
-static char *vnmtblMatchRule[3][4];         // Address: 0x2CE3D0
-char *vnmtblTrickAcce[3][7];                // Address: 0x2CE400
-static char *vnmtblLevelCompMes[3][7];      // Address: 0x2CE460
-static char *vnmtblLevelIncompMes[3][8][4]; // Address: 0x2CE4C0
-static char *vnmtblResultItem[3][3];        // Address: 0x2CE640
-static char vnmtblGetSoft[9];               // Address: 0x2CE668
-static signed int vnmtblCareerItem[34][3];  // Address: 0x2CE680
-static char *vnmtblCareerMessage[3][7];     // Address: 0x2CE820
-static char *vnmtblRank[3][6];              // Address: 0x2CE880
-static char *vnmtblRank2[3][6];             // Address: 0x2CE8D0
-static char *vnmtblCommon[3][5];            // Address: 0x2CE920
-static char *vbgmtblMusic[12];              // Address: 0x2CE960
-static char *vbgmtblArtist[12];             // Address: 0x2CE990
+static char *vnmtblPauseMenu[3][10] = { // Address: 0x2CD980
+    { "CONTINUE", "RETRY", "SOUND", "TRICK LIST", "LEVEL GOALS", "TUTORIAL", "END RUN", "DEBUG", "PAUSED", "QUIT DEMO" },
+    { "WEITER", "NEUER VERSUCH", "LAUTST\220RKE", "TRICKLISTE", "LEVELZIELE", "TUTORIAL", "BEENDEN", "DEBUG", "PAUSE", "DEMO VERLASSEN" },
+    { "CONTINUER", "REESSAYER", "SON", "LISTE DES TRICKS", "OBJECTIFS DU NIVEAU", "DIDACTICIEL", "TERMINER LE RUN", "DEBUG", "PAUSE", "QUITTER LA DEMO" },
+};
+
+static char *vnmtblPauseFlag[3][2] = { // Address: 0x2CDA00
+    { "OFF", "ON" },
+    { "AUS", "EIN" },
+    { "NON", "OUI" },
+};
+
+static char vnmtblPauseCareerItem[7] = { 0, 1, 2, 3, 4, 6, 7 }; // Address: 0x2E7848
+static char vnmtblPauseMatchItem[6] = { 0, 1, 2, 3, 6, 7 }; // Address: 0x2E7850
+static char vnmtblPauseFreeItem[7] = { 0, 1, 2, 3, 5, 6, 7 }; // Address: 0x2E7858
+
+
+static char *vnmtblTlistCate[3][9] = { // Address: 0x2CDA20
+    { "GRABS", "FLIPS", "SLIDES", "HANDPLANTS", "JUMPS", "BONKS", "MANUALS", "REVERTS", "SPECIAL TRICKS" },
+    { "GRABS", "FLIPS", "SLIDES", "HANDPLANTS", "SPR\224NGE", "BONKS", "MANUALS", "REVERTS", "SPEZIALTRICKS" },
+    { "GRABS", "FLIPS", "SLIDES", "HANDPLANTS", "SAUTS", "BONKS", "MANUALS", "REVERTS", "TRICKS SPECIAUX" },
+};
+
+static char vnmtblTlistNum[9] = { 24, 24, 13, 9, 2, 4, 4, 2, 2 }; // Address: 0x2CDA90
+
+static char *vnmtblTlistCom[86][2] = { // Address: 0x2CDAA0
+    { "  ", "  " },
+    { "\205 ", "\205 " },
+    { "\212 ", "\212 " },
+    { "\210 ", "\210 " },
+    { "\214 ", "\214 " },
+    { "\206 ", "\206 " },
+    { "\213 ", "\213 " },
+    { "\207 ", "\207 " },
+    { "\211 ", "\211 " },
+    { "\205\205", "\205\205" },
+    { "\205\210", "\205\210" },
+    { "\205\206", "\205\206" },
+    { "\205\207", "\205\207" },
+    { "\210\205", "\210\205" },
+    { "\210\210", "\210\210" },
+    { "\210\206", "\210\206" },
+    { "\210\207", "\210\207" },
+    { "\206\205", "\206\205" },
+    { "\206\210", "\206\210" },
+    { "\206\206", "\206\206" },
+    { "\206\207", "\206\207" },
+    { "\207\205", "\207\205" },
+    { "\207\210", "\207\210" },
+    { "\207\206", "\207\206" },
+    { "\207\207", "\207\207" },
+    { "\205 ", "\205 " },
+    { "\212 ", "\211 " },
+    { "\210 ", "\207 " },
+    { "\214 ", "\213 " },
+    { "\206 ", "\206 " },
+    { "\213 ", "\214 " },
+    { "\207 ", "\210 " },
+    { "\211 ", "\212 " },
+    { "\205\205", "\205\205" },
+    { "\205\210", "\205\207" },
+    { "\205\206", "\205\206" },
+    { "\205\207", "\205\210" },
+    { "\210\205", "\207\205" },
+    { "\210\210", "\207\207" },
+    { "\210\206", "\207\206" },
+    { "\210\207", "\207\210" },
+    { "\206\205", "\206\205" },
+    { "\206\210", "\206\207" },
+    { "\206\206", "\206\206" },
+    { "\206\207", "\206\210" },
+    { "\207\205", "\210\205" },
+    { "\207\210", "\210\207" },
+    { "\207\206", "\210\206" },
+    { "\207\207", "\210\210" },
+    { "  ", "  " },
+    { "\205 ", "\205 " },
+    { "\212 ", "\211 " },
+    { "\210 ", "\207 " },
+    { "\214 ", "\213 " },
+    { "\206 ", "\206 " },
+    { "\213 ", "\214 " },
+    { "\207 ", "\210 " },
+    { "\211 ", "\212 " },
+    { "\206\205", "\206\205" },
+    { "\207\210", "\210\207" },
+    { "\210\207", "\207\210" },
+    { "\205\206", "\205\206" },
+    { "\205", "\205" },
+    { "\210", "\207" },
+    { "\206", "\206" },
+    { "\207", "\210" },
+    { " ", " " },
+    { "\205", "\205" },
+    { "\212", "\211" },
+    { "\210", "\207" },
+    { "\214", "\213" },
+    { "\206", "\206" },
+    { "\213", "\214" },
+    { "\207", "\210" },
+    { "\211", "\212" },
+    { "\205\206", "\205\206" },
+    { "\206\205", "\206\205" },
+    { "\205\210\206", "\205\207\206" },
+    { "\205\207\206", "\205\210\206" },
+    { "2", "," },
+    { ",", "2" },
+    { "\205 ", "\205 " },
+    { "\205\205", "\205\205" },
+    { "\206 ", "\206 " },
+    { "\207\213\206\214\210", "\207\213\206\214\210" },
+    { "\210\214\206\213\207", "\210\214\206\213\207" },
+};
+
+static char *vnmtblTutoItem[3][8] = { // Address: 0x2CDD50
+    { "SNOW", "SLIDES", "CONTROLS", "SCORING", "HANDPLANTS", "BONK", "REVERT", "LINKING" },
+    { "SCHNEE", "SLIDES", "STEUERUNG", "PUNKTE", "HANDPLANTS", "BONKEN", "REVERT", "KOMBOS" },
+    { "NEIGE", "SLIDE", "COMMANDES", "SCORES", "HANDPLANTS", "BONK", "REVERT", "ENCHAINEMENT" },
+};
+
+static char vnmtblTutoEnd[8] = { 2, 4, 9, 14, 17, 20, 22, 25 }; // Address: 0x2E7860
+
+static char *vnmtblTutoMes[3][25][5] = { // Address: 0x2CDDB0
+    {
+        { "DIFFERENT SNOW", "AFFECTS YOUR", "PERFORMANCE", "", "" },
+        { "POWDER SLOWS", "YOU DOWN", "", "", "" },
+        { "TRY SLIDING ", "EVERY EDGE", "", "", "" },
+        { "SWITCH BETWEEN", "SLIDES AND MANUALS", "TO REGAIN BALANCE", "", "" },
+        { "INCREASE YOUR SPEED", "BY HOLDING", "THE %c BUTTON", "", "" },
+        { "SQUARE YOURSELF", "TO THE DIRECTION", "YOU'RE MOVING", "WHEN YOU LAND", "" },
+        { "PRESS ALL BUTTONS", "TO GET UP FASTER", "", "", "" },
+        { "PERFORM TRICKS", "TO BOOST YOUR STATS", "", "", "" },
+        { "USE BIG OLLIE", "AND SUPER OLLIE", "TO REACH NEW LINES", "", "" },
+        { "LINK TRICKS WITH", "MANUALS, BUTTERS", "AND REVERTS", "FOR BIG POINTS", "" },
+        { "HOLD GRABS", "AND PLANTS", "FOR BIG POINTS", "", "" },
+        { "SPIN YOUR TRICKS", "WITH THE %s BUTTON", "OR %s BUTTON", "FOR BIG POINTS", "" },
+        { "GET SICK AIR", "FOR BIG POINTS", "", "", "" },
+        { "MIX UP YOUR TRICKS", "TO MAXIMIZE POINTS", "", "", "" },
+        { "DO PLANTS", "IN HALFPIPES", "", "", "" },
+        { "SQUARE YOURSELF", "TO THE LIP TO PLANT", "", "", "" },
+        { "PRESS THE %c BUTTON", "AND A DIRECTION", "AT THE LIP", "TO PLANT", "" },
+        { "TO BONK", "PRESS THE %c BUTTON", "AND A DIRECTION", "WHEN LANDING", "" },
+        { "TRY BONKING", "EVERYTHING", "", "", "" },
+        { "BONKING UNLOCKS", "MANY SECRETS", "", "", "" },
+        { "TO REVERT", "PRESS THE %s BUTTON", "OR %s BUTTON WHEN", "LANDING IN A PIPE", "" },
+        { "YOU CAN OLLIE", "MANUAL OR BUTTER", "OUT OF A REVERT", "", "" },
+        { "TO LINK TRICKS", "OLLIE AND LAND", "IN A SLIDE", "OR MANUAL", "" },
+        { "REVERT TO", "CONTINUE A LINK", "OUT OF A PIPE", "", "" },
+        { "LOOK FOR LINES", "TO LINK", "THROUGH THE LEVEL", "", "" }
+    },
+    {
+        { "DEINE LEISTUNG", "H\220NGT VON DER", "SCHNEEART AB.", "", "" },
+        { "IM PULVERSCHNEE", "F\220HRST DU", "LANGSAMER.", "", "" },
+        { "VERSUCHE SLIDES", "AN ALLEN KANTEN.", "", "", "" },
+        { "WECHSLE SLIDES UND", "MANUALS AB, UM", "DIE BALANCE ZU HALTEN.", "", "" },
+        { "BESCHLEUNIGE", "DURCH HALTEN", "DER %c-TASTE.", "", "" },
+        { "DREH DICH", "BEIM LANDEN IN", "DIE RICHTUNG,", "IN DIE DU", "DICH BEWEGST." },
+        { "DR\224CKE TASTEN,", "UM SCHNELLER", "AUFZUSTEHEN.", "", "" },
+        { "MIT TRICKS ERH\222HST", "DU DEINE STATISTIKEN.", "", "", "" },
+        { "LEG MIT BIG OLLIES", "UND SUPER OLLIES", "NEUE LINES HIN.", "", "" },
+        { "VERBINDE TRICKS MIT", "MANUALS, BUTTERS", "UND REVERTS F\224R", "MEHR PUNKTE.", "" },
+        { "HALTE GRABS", "UND PLANTS F\224R", "MEHR PUNKTE.", "", "" },
+        { "MACH MIT DER", "%s- ODER", "%s-TASTE", "TRICKS MIT SPINS", "F\224R MEHR PUNKTE." },
+        { "GEH HOCH", "IN DIE LUFT", "F\224R MEHR PUNKTE.", "", "" },
+        { "VARIIERE DEINE TRICKS", "F\224R FETTE PUNKTE.", "", "", "" },
+        { "LANDE HANDPLANTS", "IN HALFPIPES.", "", "", "" },
+        { "DREH DICH", "ZUR KANTE", "F\224R EINEN", "PLANT.", "" },
+        { "DR\224CKE DIE %c-TASTE ", "UND EINE RICHTUNG", "AN DER KANTE", "F\224R EINEN PLANT.", "" },
+        { "UM ZU BONKEN, DR\224CKE BEI DER", "LANDUNG DIE %c-TASTE", "UND EINE RICHTUNG.", "", "" },
+        { "VERSUCHE ZU", "BONKEN, WO", "IMMER ES", "GEHT.", "" },
+        { "MIT BONKS SCHALTEST", "DU VIELE GEHEIMNISSE FREI.", "", "", "" },
+        { "F\224R EINEN REVERT", "DR\224CKE DIE %s- ODER", "%s-TASTE BEI DER", "LANDUNG IN EINER PIPE.", "" },
+        { "EINEN REVERT KANNST", "DU MIT EINEM OLLIE", "MANUAL ODER BUTTER", "VERLASSEN.", "" },
+        { "VERBINDE TRICKS, INDEM", "DU EINEN OLLIE MIT", "EINEM SLIDE ODER MANUAL LANDEST.", "", "" },
+        { "MACH EINEN REVERT,", "UM EINEN TRICK AUS", "EINER PIPE FORTZUSETZEN.", "", "" },
+        { "SUCH IM LEVEL", "NACH LINES, DIE", "DU VERBINDEN KANNST.", "", "" }
+    },
+    {
+        { "TES PERFORMANCES", "DEPENDENT DU", "TYPE DE NEIGE.", "", "" },
+        { "TU RALENTIS", "DANS LA", "POUDREUSE.", "", "" },
+        { "ESSAIE DES SLIDES SUR", "TOUS LES BORDS.", "", "", "" },
+        { "ENCHAINE SLIDES", "ET MANUALS POUR TE", "REEQUILIBRER", "", "" },
+        { "ACCELERE EN", "MAINTENANT LA", "TOUCHE %c ENFONCEE.", "", "" },
+        { "APRES TA RECEPTION,", "FAIS FACE A LA", "DESCENTE.", "", "" },
+        { "APPUIE SUR LES", "TOUCHES POUR TE", "RELEVER PLUS VITE", "", "" },
+        { "FAIS DES TRICKS", "POUR AMELIORER TES", "STATS", "", "" },
+        { "FAIS DES GROS OLLIES", "ET DES SUPER OLLIES", "POUR TROUVER DE", "NOUVEAUX ENCHAINEMENTS", "" },
+        { "COMBINE TES TRICKS AVEC", "DES MANUALS, DES BUTTERS", "ET DES REVERTS POUR", "REMPORTER PLUS", "DE PTS." },
+        { "FAIS DES GRABS ET DES", "PLANTS POUR REMPORTER", "PLUS DE PTS.", "", "" },
+        { "TOURNE SUR TOI-MEME", "AVEC LA TOUCHE %s OU", "LA TOUCHE %s", "POUR REMPORTER", "PLUS DE PTS." },
+        { "FAIS UN AIR DE FOU", "POUR REMPORTER", "PLUS DE PTS.", "", "" },
+        { "VARIE TES TRICKS POUR", "REMPORTER PLUS DE PTS.", "", "", "" },
+        { "FAIS DES", "HANDPLANTS DANS", "LES HALFPIPES", "", "" },
+        { "ALIGNE-TOI SUR LE", "LIP POUR FAIRE UN", "PLANT", "", "" },
+        { "APPUIE SUR LA TOUCHE %c", "ET SUR UNE DIRECTION", "SUR LE COPING, POUR", "FAIRE UN PLANT.", "" },
+        { "POUR BONKER, APPUIE", "SUR LA TOUCHE %c", "ET UNE TOUCHE", "DIRECTIONNELLE QUAND TU", "RECEPTIONNES." },
+        { "BONKE TOUT", "CE QUI PASSE.", "", "", "" },
+        { "LE BONK DEVERROUILLE", "BEAUCOUP DE SECRETS", "", "", "" },
+        { "POUR FAIRE UN REVERT,", "APPUIE SUR LA TOUCHE %s", "OU SUR LA TOUCHE %s", "QUAND TU RECEPTIONNES DANS", "UN PIPE" },
+        { "TU PEUX FAIRE UN OLLIE,", "UN MANUAL OU UN BUTTER", "APRES UN REVERT.", "", "" },
+        { "POUR COMBINER LES TRICKS,", "FAIS UN OLLI E ET RECEPTIONNE", "EN SLIDE OU EN", "MANUAL.", "" },
+        { "FAIS UN REVERT POUR", "CONTINUER UN ECHAINEMENT", "EN SORTANT D'UN PIPE.", "", "" },
+        { "CHERCHE DES ENCHAINEMENTS", "PENDANT TOUT LE NIVEAU.", "", "", "" }
+    },
+};
+
+static float vnmtblCourseLogo[8][2] = { // Address: 0x2CE390
+    { 192.0f, 90.0f },
+    { 256.0f, 68.0f },
+    { 192.0f, 88.0f },
+    { 194.0f, 88.0f },
+    { 256.0f, 72.0f },
+    { 200.0f, 72.0f },
+    { 194.0f, 96.0f },
+    { 192.0f, 98.0f },
+};
+
+static char *vnmtblMatchRule[3][4] = { // Address: 0x2CE3D0
+    { "FREESTYLE", "PALMER X", "PUSH", "HORSE" },
+    { "FREESTYLE", "PALMER X", "PUSH", "LOSER" },
+    { "FREESTYLE", "PALMER X", "DUEL", "PENDU" },
+};
+
+char *vnmtblTrickAcce[3][7] = { // Address: 0x2CE400
+    { "PERFECT", "SLOPPY", "SICK", "SWITCH", "REWIND", "LATE", "CAB" },
+    { "PERFECT", "SLOPPY", "SICK", "SWITCH", "REWIND", "LATE", "CAB" },
+    { "PERFECT", "SLOPPY", "SICK", "SWITCH", "REWIND", "LATE", "CAB" },
+};
+
+static char *vnmtblLevelCompMes[3][7] = { // Address: 0x2CE460
+    { "BOARDER SCORE", "PRO SCORE", "SICK SCORE", "FINISH BEFORE", "COLLECT THE %s LOGOS", "FIND THE SECRET SPONSOR", "WITH" },
+    { "BOARDER-SCORE", "PROFI-SCORE", "HAMMER-SCORE", "BEENDE UNTER", "FINDE DIE %s-LOGOS!", "FINDE DEN VERSTECKTEN SPONSOR!", "MIT" },
+    { "SCORE DU SNOWBOARDER", "SCORE PRO", "SCORE DE FOU", "FINIS AVANT", "TROUVE LES LOGOS DE %s", "TROUVE LE SPONSOR SECRET.", "AVEC" },
+};
+
+static char *vnmtblLevelIncompMes[3][8][4] = { // Address: 0x2CE4C0
+    {
+        { "SLOW SIGNS", "", "PICTURES", "%s LOGOS" },
+        { "COFFEE STANDS", "", "YUPPIES", "%s LOGOS" },
+        { "ANIMALS", "CAUTION SIGNS", "SNOW MACHINES", "%s LOGOS" },
+        { "CRANES", "", "", "%s LOGOS" },
+        { "SNOWMEN", "TRAMS", "BONKS", "%s LOGOS" },
+        { "", "", "SQUAW LIGHTS", "%s LOGOS" },
+        { "", "WATER TANKS", "VEHICLES CLEARED", "%s LOGOS" },
+        { "", "BRIDGE BOLTS", "G'S", "%s LOGOS" }
+    },
+    {
+        { "SLOW-SCHILDERN", "", "BILDERN", "%s-LOGOS" },
+        { "KAFFEETHEKE", "", "YUPPIES", "%s-LOGOS" },
+        { "TIEREN", "CAUTION-SCHILDERN", "SCHNEEMASCHINEN", "%s-LOGOS" },
+        { "KR\220NEN", "", "", "%s LOGOS" },
+        { "SCHNEEM\220NNERN", "TRAMS", "BONKS", "%s-LOGOS" },
+        { "", "", "SQUAW-LICHTERN", "%s-LOGOS" },
+        { "", "WASSERTANKS", "FAHRZEUGEN BESEITIGT", "%s-LOGOS" },
+        { "", "BR\224CKENPFEILERN", "Gs", "%s-LOGOS" }
+    },
+    {
+        { "PANNEAUX \"RALENTIR\"", "", "PHOTOS", "LOGOS DE %s" },
+        { "MACHINE A CAFE", "", "YUPPIES", "LOGOS DE %s" },
+        { "ANIMAUX", "PANNEAUX \"DANGER\"", "CANONS A NEIGE", "LOGOS DE %s" },
+        { "GRUES", "", "", "LOGOS DE %s" },
+        { "BONHOMMES DE NEIGE", "TRAMS", "BONKS", "LOGOS DE %s" },
+        { "", "", "LAMPES", "LOGOS DE %s" },
+        { "", "CITERNES", "VOITURES", "LOGOS DE %s" },
+        { "", "PONTS", "G", "LOGOS DE %s" }
+    },
+};
+
+static char *vnmtblResultItem[3][3] = { // Address: 0x2CE640
+    { "Level Goals", "Statistics", "High Scores" },
+    { "Levelziele", "Statistiken", "Highscores" },
+    { "Obj. niveau", "Statistiques", "Meilleurs scores" },
+};
+
+static char vnmtblGetSoft[9] = { 1, 1, 1, 1, 1, 1, 1, 1, 1 }; // Address: 0x2CE668
+
+static signed int vnmtblCareerItem[34][3] = { // Address: 0x2CE680
+    { 2, 2, 1 },
+    { 4, 0, 1 },
+    { 6, 2, 2 },
+    { 8, 1, 1 },
+    { 9, 0, 2 },
+    { 10, 2, 3 },
+    { 14, 2, 4 },
+    { 15, 0, 3 },
+    { 17, 1, 2 },
+    { 18, 2, 5 },
+    { 22, 0, 4 },
+    { 23, 2, 6 },
+    { 26, 1, 3 },
+    { 28, 2, 7 },
+    { 29, 0, 5 },
+    { 33, 2, 8 },
+    { 35, 1, 4 },
+    { 37, 0, 6 },
+    { 38, 2, 9 },
+    { 43, 2, 10 },
+    { 45, 1, 5 },
+    { 46, 0, 7 },
+    { 48, 2, 11 },
+    { 53, 2, 12 },
+    { 55, 3, 6 },
+    { 58, 2, 13 },
+    { 63, 2, 14 },
+    { 64, 4, 0 },
+    { 66, 2, 15 },
+    { 69, 2, 16 },
+    { 72, 2, 17 },
+    { 72, 4, 1 },
+    { 72, 5, 0 },
+    { 72, 6, 0 },
+};
+
+static char *vnmtblCareerMessage[3][7] = { // Address: 0x2CE820
+    { "NEW LEVEL", "NEW BOARD", "STAT POINTS", "SPECIAL BOARD", "NEW MOVIE", "SECRET CHARACTER UNLOCKED", "NEW CHEAT" },
+    { "NEUER LEVEL", "NEUES BOARD", "STATISTIKPUNKTE", "SPECIAL BOARD", "NEUER FILM", "GEHEIMER CHARAKTER FREIGESPIELT", "NEUER CHEAT" },
+    { "NOUVEAU NIVEAU", "NOUVELLE PLANCHE", "POINTS DE STATS", "SPECIAL PLANCHE", "NOUVELLE CINEMATIQUE", "PERSO SECRET DEVERROUILLE", "NOUVEAU CHEAT" },
+};
+
+static char *vnmtblRank[3][6] = { // Address: 0x2CE880
+    { "1ST", "2ND", "3RD", "4TH", "5TH", "6TH" },
+    { "1.", "2.", "3.", "4.", "5.", "6." },
+    { "1ER", "2EME", "3EME", "4EME", "5EME", "6EME" },
+};
+
+static char *vnmtblRank2[3][6] = { // Address: 0x2CE8D0
+    { "ST", "ND", "RD", "TH", "TH", "TH" },
+    { ".", ".", ".", ".", ".", "." },
+    { "ER", "EME", "EME", "EME", "EME", "EME" },
+};
+
+static char *vnmtblCommon[3][5] = { // Address: 0x2CE920
+    { "PTS", "PTS", ":", "PLAYER", "OF" },
+    { "PKTE", "PKTE!", ":", "SPIELER", "VON" },
+    { "PTS", "PTS.", ":", "LE JOUEUR", "/" },
+};
+
+static char *vbgmtblMusic[12] = { // Address: 0x2CE960
+    "NEW DISEASE", "THIS IS NOT", "COURAGE", "WHEN YOU LIE", "DEAD CELL", "MAD FOR IT", "NATURAL HIGH", "DON'T BE AFRAID", "BOMBSHELL", "INSIDE YOU", "MOUTH FOR WAR", "THE EVIL POWERS OF ROCK 'N' ROLL"
+};
+
+static char *vbgmtblArtist[12] = { // Address: 0x2CE990
+    "SPINESHANK", "STATIC X", "ALIEN ANT FARM", "ORANGE 9MM", "PAPA ROACH", "SHOOTYZ GROOVE", "INSOLENCE", "STEREOMUD", "POWERMAN 5000", "GODHEAD", "PANTERA", "SUPERSUCKERS"
+};
 signed int vnmdispSelectIntTbl;             // Address: 0x2E7DF0
 // Size: 0x114, DWARF: 0x13759C
 VnmdispOption *vnmdispOption;  // Address: 0x2E7E94
@@ -2259,21 +2576,21 @@ float vnmdispScrCenter[2];         // Address: 0x2E7D20
 VnmdispModeEnv *vnmdispModeEnv; // Address: 0x2E7E98
 signed int vnmdispDivMode;      // Address: 0x2E7E7C
 // Size: 0xA0, DWARF: 0x138983
-VspenvGame *vspenvGame; // Address: 0x2E7B14
+extern VspenvGame *vspenvGame; // Address: 0x2E7B14
 // Size: 0xEF8, DWARF: 0x132F36
 VnmdispSecret *vnmdispSecret; // Address: 0x2E7E90
 // Size: 0xEF8, DWARF: 0x132F36
-VnmdispSecret *vspenvSecret; // Address: 0x2E7B04
+extern VnmdispSecret *vspenvSecret; // Address: 0x2E7B04
 // Size: 0x114, DWARF: 0x13759C
-VnmdispOption *vspenvOption; // Address: 0x2E7B10
+extern VnmdispOption *vspenvOption; // Address: 0x2E7B10
 // Size: 0x4, DWARF: 0x132A37
 VnmdispBestTime *vnmdispBestTime[8]; // Address: 0x3C6950
 // Size: 0x4, DWARF: 0x132A37
-VnmdispBestTime *vspenvBestTime[8]; // Address: 0x3473F0
+extern VnmdispBestTime *vspenvBestTime[8]; // Address: 0x3473F0
 // Size: 0x20, DWARF: 0x1393EA
 VspenvRecord *vnmdispRecord[8][6]; // Address: 0x3C6970
 // Size: 0x20, DWARF: 0x1393EA
-VspenvRecord *vspenvRecord[8][6]; // Address: 0x347410
+extern VspenvRecord *vspenvRecord[8][6]; // Address: 0x347410
 // Size: 0x3C, DWARF: 0x13A391
 Character *vnmdispCharEnv; // Address: 0x2E7E9C
 // Size: 0x4, DWARF: 0x13B213
@@ -2288,12 +2605,12 @@ VnmdispTexData *vnmdispTexData; // Address: 0x2E7EA8
 DisplayState vnmdispReplay; // Address: 0x2E7C38
 char vnmdispResultFlow;     // Address: 0x2E7CB8
 char vnmdispMode;           // Address: 0x2E7E88
-signed int vsppScrWidth;    // Address: 0x2E7704
+extern signed int vsppScrWidth;    // Address: 0x2E7704
 // Size: 0x8, DWARF: 0x135342
 DisplayState vnmdispBackGround; // Address: 0x2E7E60
 signed int vnmdispHorseAccept;  // Address: 0x2E7CF4
 // Size: 0x5C, DWARF: 0x13C2A3
-VspModeData vspModeData;       // Address: 0x3BF620
+extern VspModeData vspModeData;       // Address: 0x3BF620
 float vnmdispHorseMesPos[4];   // Address: 0x3C2D90
 char vnmdispHorseMesType;      // Address: 0x2E7CBC
 signed int vnmdispHorseSet;    // Address: 0x2E7CF0
@@ -2453,38 +2770,35 @@ char vnmdispScoreRank;          // Address: 0x2E7C44
 float vnmdispHighScorePos[7];   // Address: 0x3C2AB0
 // Size: 0x8, DWARF: 0x135342
 DisplayState vnmdispHighScore;         // Address: 0x2E7C48
-char *vsptblCharacterName[12];         // Address: 0x2B5880
-char *vsptblLevelGoalStr[8][3];        // Address: 0x3A45E0
-char *vsptblCourseName[24];            // Address: 0x2B5A00
-signed int vsptblLevelGoalValue[8][7]; // Address: 0x2B6A60
-signed int vsptblTrickPoint[160];      // Address: 0x2B6EE0
-char *vsptblTrickName[160];            // Address: 0x2B6C60
-signed int vgmsysPadPausePid;          // Address: 0x2E7B2C
+extern char *vsptblCharacterName[12];         // Address: 0x2B5880
+extern char *vsptblLevelGoalStr[8][3];        // Address: 0x3A45E0
+extern char *vsptblCourseName[24];            // Address: 0x2B5A00
+extern signed int vsptblLevelGoalValue[8][7]; // Address: 0x2B6A60
+extern signed int vsptblTrickPoint[160];      // Address: 0x2B6EE0
+extern char *vsptblTrickName[160];            // Address: 0x2B6C60
+extern signed int vgmsysPadPausePid;          // Address: 0x2E7B2C
 // Size: 0x5640, DWARF: 0x1384F3
-Rider *vspRider[8]; // Address: 0x3BD480
+extern Rider *vspRider[8]; // Address: 0x3BD480
 // Size: 0x60, DWARF: 0x1358D9
-VgmsysPad *vgmsysPad[2];            // Address: 0x2E7B30
-signed int vsptblCourseParam[8][5]; // Address: 0x2B77F0
-signed int vsptblGapPoint[8][64];   // Address: 0x2B6260
-char *vsptblGapList[8][64];         // Address: 0x2B5A60
+extern VgmsysPad *vgmsysPad[2];            // Address: 0x2E7B30
+extern signed int vsptblCourseParam[8][5]; // Address: 0x2B77F0
+extern signed int vsptblGapPoint[8][64];   // Address: 0x2B6260
+extern char *vsptblGapList[8][64];         // Address: 0x2B5A60
 // Size: 0x20, DWARF: 0x138C1D
-VspDispEnv vspDispEnv; // Address: 0x3BE570
+extern VspDispEnv vspDispEnv; // Address: 0x3BE570
 // Size: 0x38, DWARF: 0x134E8C
-VspDispEnvChar vspDispEnvChar[2]; // Address: 0x3BE500
+extern VspDispEnvChar vspDispEnvChar[2]; // Address: 0x3BE500
 // Size: 0x824, DWARF: 0x13471A
-VspDispResult vspDispResult[2]; // Address: 0x3BD4B0
+extern VspDispResult vspDispResult[2]; // Address: 0x3BD4B0
 // Size: 0x10, DWARF: 0x132E95
-VspDispVsScore vspDispVsScore; // Address: 0x3BD4A0
-char *vsptblMovieName[15];     // Address: 0x2B7F40
-char *vsptblCheats[10];        // Address: 0x3A45B0
-char *vsptblBoardName[12][7];  // Address: 0x2B58B0
-signed int vsppScrHeight;      // Address: 0x2E7708
+extern VspDispVsScore vspDispVsScore; // Address: 0x3BD4A0
+extern char *vsptblMovieName[15];     // Address: 0x2B7F40
+extern char *vsptblCheats[10];        // Address: 0x3A45B0
+extern char *vsptblBoardName[12][7];  // Address: 0x2B58B0
+extern signed int vsppScrHeight;      // Address: 0x2E7708
 // Size: 0x8, DWARF: 0x135342
 DisplayState vnmdispResultFade;     // Address: 0x2E7CB0
-unsigned int vgmsysPadAllowPause;   // Address: 0x2E7B24
-static unsigned int vnmdispSoftCnt; // Address: 0x0
-static char vnmdispHorseEnterNum;   // Address: 0x0
-static signed int vnmdispCrsStrip;  // Address: 0x0
+extern unsigned int vgmsysPadAllowPause;   // Address: 0x2E7B24
 
 void nmdispInit();
 void nmdispInitReplay();
