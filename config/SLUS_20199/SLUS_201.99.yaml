@@ -134,7 +134,7 @@ segments:
   - [0x036010, c, Z/ul/ul/source/sd]
   - [0x0365F0, asm, Z/ul/ul/source/sprintf]
   - [0x036FA0, c, Z/ul/ul/source/system]
-  - [0x037470, asm, Z/ul/ul/source/vif1]
+  - [0x037470, c, Z/ul/ul/source/vif1]
   - [0x0374E0, asm, Z/ul/ul/source/mv2ext]
   - [0x03BE80, asm, Z/ul/ul/source/movie2]
   - [0x03CBD0, asm, Z/ul/ul/source/graph2]
