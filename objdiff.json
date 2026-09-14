@@ -52,11 +52,12 @@
       "name": "Z/ul/ul/source/coord",
       "target_path": "build/target/Z/ul/ul/source/coord.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/coord.o"
     },
     {
       "name": "Z/ul/ul/source/gif",
@@ -73,11 +74,12 @@
       "name": "Z/ul/ul/source/gifpkt",
       "target_path": "build/target/Z/ul/ul/source/gifpkt.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/gifpkt.o"
     },
     {
       "name": "Z/ul/ul/source/graph",
@@ -93,11 +95,12 @@
       "name": "Z/ul/ul/source/heap",
       "target_path": "build/target/Z/ul/ul/source/heap.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/heap.o"
     },
     {
       "name": "Z/ul/ul/source/mcard",
@@ -296,11 +299,12 @@
       "name": "Z/ul/ul/source/xmem",
       "target_path": "build/target/Z/ul/ul/source/xmem.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/xmem.o"
     },
     {
       "name": "Z/ul/ul/source/spr",
