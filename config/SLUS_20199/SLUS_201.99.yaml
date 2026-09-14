@@ -117,11 +117,11 @@ segments:
   - [0x028030, asm, sdk_d] # second _fpadd_parts
   - [0x028A70, c, E/tam/ps2/sppbx/main]
   - [0x029BE0, c, Z/ul/ul/source/cdvd]
-  - [0x02A7E0, asm, Z/ul/ul/source/coord]
+  - [0x02A7E0, c, Z/ul/ul/source/coord]
   - [0x02AAA0, c, Z/ul/ul/source/gif]
-  - [0x02ACA0, asm, Z/ul/ul/source/gifpkt]
+  - [0x02ACA0, c, Z/ul/ul/source/gifpkt]
   - [0x02B100, asm, Z/ul/ul/source/graph]
-  - [0x02E200, asm, Z/ul/ul/source/heap]
+  - [0x02E200, c, Z/ul/ul/source/heap]
   - [0x02E6B0, c, Z/ul/ul/source/mcard]
   - [0x0300E0, asm, Z/ul/ul/source/mdlpr]
   - [0x0304B0, asm, Z/ul/ul/source/mdlpra]
@@ -141,7 +141,7 @@ segments:
   - [0x03D030, asm, Z/ul/ul/source/TEX]
   - [0x03F360, asm, Z/ul/ul/source/mdlprTon]
   - [0x03F940, asm, Z/ul/ul/source/vumodel]
-  - [0x041490, asm, Z/ul/ul/source/xmem]
+  - [0x041490, c, Z/ul/ul/source/xmem]
   - [0x041B20, c, Z/ul/ul/source/spr]
   - [0x041BF0, c, Z/ul/ul/source/strconv]
   - [0x041F00, c, E/tam/ps2/sppbx/tmgraph]
@@ -274,7 +274,7 @@ segments:
   - [0x1D8FD0, rodata, sdk_c] # jtbl_002D8F50 onwards target sdk_c
   - [0x1D9540, .rodata, E/tam/ps2/sppbx/main]
   - [0x1D96F0, .rodata, Z/ul/ul/source/cdvd]
-  - [0x1D9700, rodata, Z/ul/ul/source/heap]
+  - [0x1D9700, .rodata, Z/ul/ul/source/heap]
   - [0x1D9830, .rodata, Z/ul/ul/source/mcard]
   - [0x1D9870, rodata, Z/ul/ul/source/sprintf]
   - [0x1D98F0, .rodata, Z/ul/ul/source/system]
@@ -378,7 +378,7 @@ segments:
 
   - { type: .sbss, vram: 0x2E7980, name: E/tam/ps2/sppbx/main } # 1E7A00
   - { type: .sbss, vram: 0x2e79d0, name: Z/ul/ul/source/cdvd }
-  - { type: sbss, vram: 0x2e79d8, name: Z/ul/ul/source/coord }
+  - { type: .sbss, vram: 0x2e79d8, name: Z/ul/ul/source/coord }
   - { type: sbss, vram: 0x2e79e0, name: Z/ul/ul/source/pad }
   - { type: .sbss, vram: 0x2e79f4, name: Z/ul/ul/source/sd }
   - { type: .sbss, vram: 0x2e7a00, name: Z/ul/ul/source/system }
@@ -426,8 +426,8 @@ segments:
   - { type: bss, vram: 0x2E80DC, name: sdk }
   - { type: .bss, vram: 0x2eea90, name: E/tam/ps2/sppbx/main }
   - { type: .bss, vram: 0x2ef2e0, name: Z/ul/ul/source/cdvd }
-  - { type: bss, vram: 0x2f2350, name: Z/ul/ul/source/coord }
-  - { type: bss, vram: 0x2f23d0, name: Z/ul/ul/source/heap }
+  - { type: .bss, vram: 0x2f2350, name: Z/ul/ul/source/coord }
+  - { type: .bss, vram: 0x2f23d0, name: Z/ul/ul/source/heap }
   - { type: .bss, vram: 0x2f2400, name: Z/ul/ul/source/mcard }
   - { type: bss, vram: 0x2f3350, name: Z/ul/ul/source/pad }
   - { type: .bss, vram: 0x2f3850, name: Z/ul/ul/source/sd }
