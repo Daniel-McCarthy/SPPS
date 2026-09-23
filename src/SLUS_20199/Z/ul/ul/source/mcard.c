@@ -131,7 +131,7 @@ Info* ulmcGetCardInfo(signed int slot);
 signed int ulmcServer();
 signed int ulmcSync(signed int block);
 // Size: 0x44, DWARF: 0x142AE
-void ulmcCallBack(VulmcSysInfo* sinfo);
+static void ulmcCallBack(VulmcSysInfo* sinfo);
 signed int ulmcGetInfo(signed int slot);
 signed int ulmcChDir(signed int slot, char* path, char* pwd);
 signed int ulmcMkDir(signed int slot, char* dirname);
@@ -145,7 +145,7 @@ signed int ulmcDelete(signed int slot, char* filename);
 signed int ulmcDeleteAll(signed int slot);
 // Size: 0x3C4, DWARF: 0x14630
 void ulmcClearIconSys(Is* is, char* tname, char* fnview, char* fncopy, char* fndel);
-signed int ulmcCheckSlotNo(signed int slot);
+static signed int ulmcCheckSlotNo(signed int slot);
 
 // Function Definitions //////////////////////////////////////////////////
 
@@ -372,7 +372,7 @@ signed int ulmcSync(signed int block)
     return ret;
 }
 
-void ulmcCallBack(VulmcSysInfo* sinfo)
+static void ulmcCallBack(VulmcSysInfo* sinfo)
 {
     signed int func; // r16
     func = sinfo->reqdata->info.fnum;
@@ -591,7 +591,7 @@ void ulmcClearIconSys(Is* is /* 0x10(r29) */, char* tname /* 0x20(r29) */, char*
     }
 }
 
-signed int ulmcCheckSlotNo(signed int slot)
+static signed int ulmcCheckSlotNo(signed int slot)
 {
     if ((slot & 3) > 0) {
         slot = ((slot < 4) ^ 1) * 4;

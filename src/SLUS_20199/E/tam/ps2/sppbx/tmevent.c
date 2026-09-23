@@ -2460,7 +2460,7 @@ static void tmevCheckLevelGoal(Event *event /* sp70 */) {
   (void)tmp;
 }
 
-void tmevCheckGap(Event *event) {
+static void tmevCheckGap(Event *event) {
   signed int player = event->game.player; // r16
 
   if (vtmevSystem.gaps_tmp[player] != 0) {
@@ -2491,7 +2491,7 @@ s32 tmevGetLevelGoalFlag(s32 no) {
   return ret;
 }
 
-void tmevInitCounter() {
+static void tmevInitCounter() {
   signed int ii; // r16
 
   for (ii = 0; ii < 0x40; ii++) {
@@ -2502,7 +2502,7 @@ void tmevInitCounter() {
   vtmevCounter.f_flag = 1;
 }
 
-void tmevCountCounter() {
+static void tmevCountCounter() {
   signed int ii; // r16
 
   for (ii = 0; ii < 0x40; ii++) {
@@ -2578,7 +2578,7 @@ void tmevSetMiPModelLevel(s32 block, s32 player) {
   vtmevCourse[player].mipmdl_block = block;
 }
 
-void tmevResetObject() {
+static void tmevResetObject() {
   signed int ii; // r16
 
   vtmevObject.logo.nobj = 0;
@@ -2608,7 +2608,7 @@ void tmevResetObject() {
 void nmdispInputLevelCount(signed int now, signed int total, signed int num);
 signed int tmcrsGetObjectDrawFlag(signed int no);
 
-void tmevMoveObject(Event *event) {
+static void tmevMoveObject(Event *event) {
   signed int jj; // r16
   signed int ii; // r17
   float tmp[4];  // 0x30(r29)
@@ -2822,7 +2822,7 @@ s32 tmevGetEventMdlHit( // Size: 0x2C00, DWARF: 0xDB58D
   return ret;
 }
 
-void tmevInitWarp() {
+static void tmevInitWarp() {
   signed int ii; // r16
 
   vtmevWarpSystem.nwarp = 0;
@@ -3164,28 +3164,28 @@ void tmevGetLightVector(sceVu0FMATRIX light_color, sceVu0FMATRIX normal_light,
   sceVu0CopyVector(ambient, vtmevLight[player].ambient);
 }
 
-s32 tmevDefInit( // Size: 0x8C, DWARF: 0xD7795
+static s32 tmevDefInit( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
   return 0;
 }
 
-s32 tmevDefResetEvent(Event *event) { return 0; }
+static s32 tmevDefResetEvent(Event *event) { return 0; }
 
-s32 tmevDefMainEvent(Event *event) { return 0; }
+static s32 tmevDefMainEvent(Event *event) { return 0; }
 
-s32 tmevDefPlayerEvent(Event *event) { return 0; }
+static s32 tmevDefPlayerEvent(Event *event) { return 0; }
 
-s32 tmevDefDrawEvent( // Size: 0x8C, DWARF: 0xD7795
+static s32 tmevDefDrawEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
   return 0;
 }
 
-s32 tmevDefDrawPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
+static s32 tmevDefDrawPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
   return 0;
 }
 
-s32 tmevDefFinishPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
+static s32 tmevDefFinishPlayerEvent( // Size: 0x8C, DWARF: 0xD7795
     Event *) {
   return 0;
 }
