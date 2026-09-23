@@ -983,7 +983,6 @@ Sbcore* cd, signed int hit) {
 
 static void sbcoreGetCheckTouchArea(float* from, float* to, // Size: 0x1F0, DWARF: 0x173961
     Sbcore* cd, float* pos) {
-    f32 temp_f0;
     float area0[4]; // 0x10(r29)
     float area1[4]; // 0x20(r29)
     float lwm[4][4]; // 0x30(r29)
@@ -1192,7 +1191,6 @@ void sbcoreGetRotMatrix(sceVu0FMATRIX mat, float* pole, float rot_pole) {
 }
 
 void sbcoreGetShadowVector(float* out, float* nor, float* vec) {
-    f32 temp_f0;
 
     float v0[4]; // 0x10(r29)
     float v1[4]; // 0x20(r29)
@@ -1399,7 +1397,6 @@ f32 sbcoreGetInnerAngle90(float* vec0 /* 0x20(r29) */, float* vec1 /* 0x30(r29) 
 }
 
 f32 sbcoreGetInnerAngle180(float* vec0, float* vec1) {
-    f32 temp_f0;
 
     float v0[4]; // 0x10(r29)
     float v1[4]; // 0x20(r29)

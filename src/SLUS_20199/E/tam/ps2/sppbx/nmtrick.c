@@ -1718,7 +1718,7 @@ void nmtrickInitList(List* list) {
     list->length = 0.0f;
 }
 
-void nmtrickInitFig() {
+static void nmtrickInitFig() {
     signed int i; // r16
     vnmtrickCrsEnv = 0;
     vnmtrickCharEnv = 0;
@@ -2448,7 +2448,7 @@ signed int nmtrickSetSpType(signed int num) {
 }
 
 
-void nmtrickDelInfo(signed int id) {
+static void nmtrickDelInfo(signed int id) {
     // Size: 0x10, DWARF: 0x221233
     signed int i; // r16
     Spin spin; // 0x20(r29)

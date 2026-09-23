@@ -1364,12 +1364,12 @@ typedef struct VspModeData
 //// Function Declarations ///////////////////////////////////////////////////////////
 
 void ktmfSetMenu();
-signed int ktmfMenuFunc_continue(signed int unused);
+static signed int ktmfMenuFunc_continue(signed int unused);
 signed int ktmfMenuFunc_restart(signed int unused);
-signed int ktmfMenuFunc_retire(signed int unused);
+static signed int ktmfMenuFunc_retire(signed int unused);
 signed int ktmfMenuFunc_exit(signed int unused);
 signed int ktmfMenuFunc_finish(signed int unused);
-signed int ktmfdbgMenuFunc_2d(signed int num);
+static signed int ktmfdbgMenuFunc_2d(signed int num);
 
 // Included functions ////////////////////////////////////////////////////////////////
 void ktmenuInit();
@@ -1431,7 +1431,7 @@ void ktmfSetMenu() {
 
 // DWARF: 0xA74B3
 // Address: 0x189680
-signed int ktmfMenuFunc_continue(signed int unused) {
+static signed int ktmfMenuFunc_continue(signed int unused) {
     return 1;
 }
 
@@ -1445,7 +1445,7 @@ signed int ktmfMenuFunc_restart(signed int unused) {
 
 // DWARF: 0xA7632
 // Address: 0x1896D0
-signed int ktmfMenuFunc_retire(signed int unused) {
+static signed int ktmfMenuFunc_retire(signed int unused) {
     return 1;
 }
 
@@ -1477,7 +1477,7 @@ signed int ktmfMenuFunc_finish(signed int unused) {
 
 // DWARF: 0xA7905
 // Address: 0x1897A0
-signed int ktmfdbgMenuFunc_2d(signed int num) {
+static signed int ktmfdbgMenuFunc_2d(signed int num) {
     vspDisp2D = num ? 0 : 1;
     return 0;
 }
