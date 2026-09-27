@@ -1615,22 +1615,44 @@ typedef struct Vspev02Debug
 
 //// Variables ////////////////////////////////////////////////////////////////////////
 
-static float vspev02LiftPos[32][4]; // Address: 0x2D1FC0
-static float vspev02Gond1Pos[7][4]; // Address: 0x2D21C0
-static float vspev02Gond2Pos[7][4]; // Address: 0x2D2230
-static float vspev02HorsePos[12][4]; // Address: 0x2E6740
-static signed int vspev02Lamp[11][2]; // Address: 0x2E6800
+static const float vspev02HorsePos[12][4] = {
+    { 0.4f, -1045.3f, 1355.7f, 0.0f },
+    { 1137.3f, 1149.2f, -2238.3f, -15.59f },
+    { -299.6f, 1634.7f, -3578.2f, 28.88f },
+    { -651.9f, 2640.1f, -5294.6f, 51.04f },
+    { -1562.6f, 3510.7f, -7217.7f, -42.59f },
+    { -1176.8f, 5232.5f, -10211.4f, -55.22f },
+    { -396.8f, 4472.9f, -9690.1f, -8.17f },
+    { 145.0f, 2245.1f, -5343.2f, 40.31f },
+    { 1296.8f, 1733.1f, -4081.2f, 40.28f },
+    { -827.9f, 3229.9f, -6689.1f, 14.54f },
+    { 529.8f, 980.1f, -2757.8f, -6.44f },
+    { -2237.4f, 2733.2f, -5095.0f, 15.26f }
+}; // Address: 0x2E6740
+static const signed int vspev02Lamp[11][2] = {
+    { 82, 1 },
+    { 83, 0 },
+    { 84, 2 },
+    { 85, 3 },
+    { 89, 46 },
+    { 88, 47 },
+    { 87, 48 },
+    { 86, 49 },
+    { 90, 50 },
+    { 91, 51 },
+    { 92, 52 }
+}; // Address: 0x2E6800
 // Size: 0x60, DWARF: 0x1CE3B9
 Vspev02Smoke* vspev02Smoke; // Address: 0x2E7FDC
 // Size: 0x70, DWARF: 0x1CC2E3
 Vspev02EventMdl* vspev02EventMdl; // Address: 0x2E7FEC
 // Size: 0x30, DWARF: 0x1C82D9
 Vspev02Lift* vspev02Lift; // Address: 0x2E7FF4
-void(*vtmevWarp)(Event*); // Address: 0x2E7B90
+extern void(*vtmevWarp)(Event*); // Address: 0x2E7B90
 void(spev02MatchWarp)(Event*); // Address: 0x273A70
 float vspev02View[2]; // Address: 0x2E7FC8
 // Size: 0x20, DWARF: 0x1CB6E8
-VgmsysAbuf* vgmsysAbuf; // Address: 0x2E79C0
+extern VgmsysAbuf* vgmsysAbuf; // Address: 0x2E79C0
 // Size: 0x10, DWARF: 0x1CC767
 Vspev02SeLift vspev02SeLift; // Address: 0x3C7620
 float vspev02LiftAdd; // Address: 0x2E7FF0
@@ -1652,7 +1674,7 @@ Vspev02Gear vspev02Yuppie[5]; // Address: 0x3C7690
 Vspev02WagonMdl* vspev02YuppieMdl; // Address: 0x2E7FE4
 signed int vspev02YuppieCnt; // Address: 0x2E7FF8
 // Size: 0xA0, DWARF: 0x1CDBE3
-VspenvGame* vspenvGame; // Address: 0x2E7B14
+extern VspenvGame* vspenvGame; // Address: 0x2E7B14
 // Size: 0x30, DWARF: 0x1C8782
 Vspev02Gear vspev02Staff[2]; // Address: 0x3C7630
 // Size: 0x70, DWARF: 0x1CC2E3
@@ -1672,9 +1694,10 @@ Info* vspev02WagonClash; // Address: 0x2E7FD0
 // Size: 0x50, DWARF: 0x1CC90B
 Vspev02Light vspev02Light[2]; // Address: 0x3C7520
 // Size: 0x60, DWARF: 0x1CC539
-VgmsysPad* vgmsysPad[2]; // Address: 0x2E7B30
+extern VgmsysPad* vgmsysPad[2]; // Address: 0x2E7B30
 // Size: 0xC, DWARF: 0x1CD448
-Vspev02Debug vspev02Debug; // Address: 0x0
+extern Vspev02Debug vspev02Debug; // Address: 0x0
+
 
 // spev02.c function declarations ///////////////////////////////////////
 
@@ -1906,6 +1929,59 @@ void tmcrsSetObjectBonk(signed int no, float len, signed int bonk);
 signed int tmcrsGetObjectPosition(float* position, signed int no);
 float atan2f(float a, float b);
 float sqrtf(float a);
+
+static float vspev02LiftPos[32][4] = {
+    { 1084.797f, 1634.841f, -4079.822f, 1.0f },
+    { 976.834f, 1634.837f, -4187.862f, 1.0f },
+    { 838.453f, 1634.804f, -4326.166f, 1.0f },
+    { 301.098f, 1921.47f, -4872.988f, 1.0f },
+    { -243.597f, 2181.189f, -5427.275f, 1.0f },
+    { -790.818f, 2384.555f, -5984.035f, 1.0f },
+    { -981.412f, 2398.962f, -6320.316f, 1.0f },
+    { -1095.312f, 2497.292f, -6532.704f, 1.0f },
+    { -1362.642f, 2873.872f, -7035.488f, 1.0f },
+    { -1723.381f, 3160.517f, -7713.939f, 1.0f },
+    { -2476.925f, 3486.9f, -9131.164f, 1.0f },
+    { -2507.259f, 3495.02f, -9160.296f, 1.0f },
+    { -2545.683f, 3501.984f, -9158.057f, 1.0f },
+    { -2567.559f, 3495.02f, -9123.43f, 1.0f },
+    { -2565.725f, 3486.899f, -9083.942f, 1.0f },
+    { -1811.77f, 3160.656f, -7665.955f, 1.0f },
+    { -1451.234f, 2873.87f, -6987.881f, 1.0f },
+    { -1183.909f, 2497.191f, -6485.107f, 1.0f },
+    { -1073.127f, 2396.67f, -6279.009f, 1.0f },
+    { -871.444f, 2386.082f, -5922.666f, 1.0f },
+    { -315.328f, 2181.188f, -5356.778f, 1.0f },
+    { 229.367f, 1921.469f, -4802.492f, 1.0f },
+    { 767.34f, 1634.804f, -4255.045f, 1.0f },
+    { 905.721f, 1634.837f, -4116.742f, 1.0f },
+    { 1013.684f, 1634.841f, -4008.701f, 1.0f },
+    { 1037.602f, 1634.846f, -3995.136f, 1.0f },
+    { 1060.363f, 1634.862f, -3985.337f, 1.0f },
+    { 1082.314f, 1634.879f, -3984.011f, 1.0f },
+    { 1099.3f, 1634.879f, -3994.203f, 1.0f },
+    { 1109.488f, 1634.879f, -4011.192f, 1.0f },
+    { 1108.161f, 1634.862f, -4033.143f, 1.0f },
+    { 1098.362f, 1634.846f, -4055.904f, 1.0f }
+}; // Address: 0x2D1FC0
+static float vspev02Gond1Pos[7][4] = {
+    { 299.553f, 798.188f, -1281.363f, 1.0f },
+    { 468.242f, 798.18f, -1611.232f, 1.0f },
+    { 711.953f, 797.99f, -2100.041f, 1.0f },
+    { 1074.591f, 1027.155f, -2827.378f, 1.0f },
+    { 1432.881f, 1190.175f, -3545.998f, 1.0f },
+    { 2003.65f, 1667.935f, -4690.782f, 1.0f },
+    { 2117.804f, 1763.486f, -4919.739f, 1.0f }
+}; // Address: 0x2D21C0
+static float vspev02Gond2Pos[7][4] = {
+    { 2029.152f, 1763.484f, -4963.934f, 1.0f },
+    { 1914.998f, 1667.933f, -4734.977f, 1.0f },
+    { 1344.229f, 1190.173f, -3590.192f, 1.0f },
+    { 985.939f, 1027.154f, -2871.573f, 1.0f },
+    { 623.302f, 797.99f, -2144.235f, 1.0f },
+    { 379.59f, 798.18f, -1655.426f, 1.0f },
+    { 211.29f, 798.188f, -1326.33f, 1.0f }
+}; // Address: 0x2D2230
 
 // spev02.c
 static void spev02ResetObject(Event* event) {
@@ -4010,6 +4086,11 @@ void spev02ResetSnowSpout() {
 }
 
 static void spev02PlayerSnowSpout(Event* event) {
+    float tmp[4];
+    signed int hit_no[5] = {
+        0x12E, 0x136, 0x138, 0x13C, 0x13D
+    };
+    s32* hit_no_ptr = &hit_no;
     static float pos[5][4] = {
         { 1255.980957f, 1680.100952f, -3949.949951f, 1.0f },
         { -505.9140015f, 3815.072998f, -8082.421875f, 1.0f },
@@ -4024,11 +4105,6 @@ static void spev02PlayerSnowSpout(Event* event) {
         { -2.0f, -2.799999952f, -5.0f, 1.0f },
         { 0.0f, -2.799999952f, -6.0f, 1.0f }
     };
-    float tmp[4];
-    signed int hit_no[5] = {
-        0x12E, 0x136, 0x138, 0x13C, 0x13D
-    };
-    s32* hit_no_ptr = &hit_no;
     signed int player;
     signed int i;
     signed int j;
