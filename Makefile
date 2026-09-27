@@ -256,15 +256,16 @@ mwld:
 	fi'
 
 # Runs the MWLD linker to create an ELF using the our generated .lcf file.
-mwld-convert:
+mwld-link:
 	@echo "Running mwld"
 	$(MWLD) -g -map -nodead -o $(OUTPUT_ELF) $(BUILD_DIR)/spps_linker.lcf \
 		$(shell find $(LINK_DIR) -name '*.o')
 	@readelf -S $(OUTPUT_ELF) > $(OUTPUT_ELF).sections.txt
 	@readelf -S $(US_DIR)/SLUS_201.99 > $(BUILD_DIR)/SLUS_201.99.expected.sections.txt
-	
 	@if [ ! -f "$(OUTPUT_ELF)" ]; then echo "❌ Failed to build ELF"; exit 1; fi
 	@echo "Built ELF: $(OUTPUT_ELF)"
+
+mwld-convert: mwld-link
 	@$(MAKE) --no-print-directory verify
 
 # Fails if the loaded section does not match the original. The whole-ELF CRC
@@ -281,15 +282,16 @@ verify:
 		exit 1; \
 	fi
 
-proto-mwld-convert:
+proto-mwld-link:
 	@echo "Running mwld (prototype)"
 	$(MWLD) -g -map -nodead -o $(PROTO_OUTPUT_ELF) $(PROTO_BUILD_DIR)/proto_linker.lcf \
 		$(shell find $(PROTO_LINK_DIR) -name '*.o')
 	@readelf -S $(PROTO_OUTPUT_ELF) > $(PROTO_OUTPUT_ELF).sections.txt
 	@readelf -S $(PROTO_ROM_FILE) > $(PROTO_BUILD_DIR)/SLUS_201.99.expected.sections.txt
-
 	@if [ ! -f "$(PROTO_OUTPUT_ELF)" ]; then echo "❌ Failed to build prototype ELF"; exit 1; fi
 	@echo "Built prototype ELF: $(PROTO_OUTPUT_ELF)"
+
+proto-mwld-convert: proto-mwld-link
 	@$(MAKE) --no-print-directory proto-verify
 
 proto-verify:

@@ -33,6 +33,8 @@ options:
 
   find_file_boundaries: False
 
+  make_full_disasm_for_code: True
+
   o_as_suffix: True
 
   symbol_addrs_path: ./config/Proto_SLUS_20199_08-24-2001/symbol_addresses.txt
@@ -51,6 +53,23 @@ options:
   asm_function_macro: glabel
   asm_jtbl_label_macro: jlabel
   asm_data_macro: dlabel
+
+  generated_macro_inc_content: |
+    # Local, or the markers for same-named file statics collide at link time.
+    .purgem nonmatching
+    .macro nonmatching label, size=1
+        .local "\label\().NON_MATCHING"
+        .type "\label\().NON_MATCHING", @object
+        .size "\label\().NON_MATCHING", \size
+        "\label\().NON_MATCHING":
+    .endm
+
+    # Local, or the assembler leaves a relocation MWLD resolves one instruction short.
+    .purgem jlabel
+    .macro jlabel label, visibility=local
+        .\visibility "\label"
+        "\label":
+    .endm
 
   section_order:
     - .text
