@@ -147,7 +147,7 @@ segments:
   - [0x041F00, c, E/tam/ps2/sppbx/tmgraph]
   - [0x043660, asm, E/tam/ps2/sppbx/tmcrs]
   - [0x055FA0, c, E/tam/ps2/sppbx/tmalpha]
-  - [0x056340, asm, E/tam/ps2/sppbx/maanim]
+  - [0x056340, c, E/tam/ps2/sppbx/maanim]
   - [0x05DE00, asm, E/tam/ps2/sppbx/ktmot]
   - [0x063CA0, asm, E/tam/ps2/sppbx/ktact]
   - [0x0849A0, asm, E/tam/ps2/sppbx/nmfont]
@@ -183,7 +183,7 @@ segments:
   - [0x149230, asm, E/tam/ps2/sppbx/spev04]
   - [0x15AC40, asm, E/tam/ps2/sppbx/tieffect]
   - [0x160630, asm, E/tam/ps2/sppbx/spev08]
-  - [0x166070, asm, E/tam/ps2/sppbx/nmact]
+  - [0x166070, c, E/tam/ps2/sppbx/nmact]
   - [0x168B10, asm, E/tam/ps2/sppbx/spev02]
   - [0x173D60, asm, E/tam/ps2/sppbx/spev03]
   - [0x17B560, asm, E/tam/ps2/sppbx/spev06]
@@ -223,7 +223,7 @@ segments:
   - [0x1B2F70, .data, Z/ul/ul/source/strconv]
   - [0x1B2FA0, .data, E/tam/ps2/sppbx/tmgraph]
   - [0x1B2FE0, data, E/tam/ps2/sppbx/tmcrs]
-  - [0x1B3050, data, E/tam/ps2/sppbx/maanim]
+  - [0x1B3050, .data, E/tam/ps2/sppbx/maanim]
   - [0x1B3100, data, E/tam/ps2/sppbx/ktmot]
   - [0x1B5130, data, E/tam/ps2/sppbx/ktact]
   - [0x1B5880, .data, E/tam/ps2/sppbx/ktmnufnc]
@@ -284,7 +284,7 @@ segments:
   - [0x1D9BD0, rodata, Z/ul/ul/source/mdlprTon]
   - [0x1D9BE0, rodata, Z/ul/ul/source/vumodel]
   - [0x1D9C00, rodata, E/tam/ps2/sppbx/tmcrs]
-  - [0x1D9D00, rodata, E/tam/ps2/sppbx/maanim]
+  - [0x1D9D00, .rodata, E/tam/ps2/sppbx/maanim]
   - [0x1D9D20, rodata, E/tam/ps2/sppbx/ktmot]
   - [0x1DA260, rodata, E/tam/ps2/sppbx/ktact]
   - [0x1DA500, rodata, E/tam/ps2/sppbx/nmfont]
@@ -326,7 +326,7 @@ segments:
   - [0x1E5140, rodata, E/tam/ps2/sppbx/ayresult]
   - [0x1E5CE0, rodata, E/tam/ps2/sppbx/spev04]
   - [0x1E5EE0, rodata, E/tam/ps2/sppbx/spev08]
-  - [0x1E64E0, rodata, E/tam/ps2/sppbx/nmact]
+  - [0x1E64E0, .rodata, E/tam/ps2/sppbx/nmact]
   - [0x1E67C0, rodata, E/tam/ps2/sppbx/spev02]
   - [0x1E6900, rodata, E/tam/ps2/sppbx/spev03]
   - [0x1E6960, rodata, E/tam/ps2/sppbx/spev06]
@@ -412,7 +412,7 @@ segments:
   - { type: sbss, vram: 0x2e7f20, name: E/tam/ps2/sppbx/spev04 }
   - { type: sbss, vram: 0x2e7f8c, name: E/tam/ps2/sppbx/tieffect }
   - { type: sbss, vram: 0x2e7f90, name: E/tam/ps2/sppbx/spev08 }
-  - { type: sbss, vram: 0x2e7f94, name: E/tam/ps2/sppbx/nmact }
+  - { type: .sbss, vram: 0x2e7f94, name: E/tam/ps2/sppbx/nmact }
   - { type: sbss, vram: 0x2e7fc8, name: E/tam/ps2/sppbx/spev02 }
   - { type: sbss, vram: 0x2e8028, name: E/tam/ps2/sppbx/spev03 }
   - { type: sbss, vram: 0x2e805c, name: E/tam/ps2/sppbx/spev06 }

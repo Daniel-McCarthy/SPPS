@@ -56,4 +56,20 @@
     "\label\().NON_MATCHING":
 .endm
 
+.purgem nonmatching
+.macro nonmatching label, size=1
+    .local "\label\().NON_MATCHING"
+    .type "\label\().NON_MATCHING", @object
+    .size "\label\().NON_MATCHING", \size
+    "\label\().NON_MATCHING":
+.endm
+
+# Local, or the assembler leaves a relocation MWLD resolves one instruction short.
+.purgem jlabel
+.macro jlabel label, visibility=local
+    .\visibility "\label"
+    "\label":
+.endm
+
+
 .endif
