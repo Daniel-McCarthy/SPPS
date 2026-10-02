@@ -145,7 +145,7 @@ segments:
   - [0x041B20, c, Z/ul/ul/source/spr]
   - [0x041BF0, c, Z/ul/ul/source/strconv]
   - [0x041F00, c, E/tam/ps2/sppbx/tmgraph]
-  - [0x043660, asm, E/tam/ps2/sppbx/tmcrs]
+  - [0x043660, c, E/tam/ps2/sppbx/tmcrs]
   - [0x055FA0, c, E/tam/ps2/sppbx/tmalpha]
   - [0x056340, c, E/tam/ps2/sppbx/maanim]
   - [0x05DE00, asm, E/tam/ps2/sppbx/ktmot]
@@ -222,7 +222,7 @@ segments:
   - [0x1B2F50, data, Z/ul/ul/source/mv2ext]
   - [0x1B2F70, .data, Z/ul/ul/source/strconv]
   - [0x1B2FA0, .data, E/tam/ps2/sppbx/tmgraph]
-  - [0x1B2FE0, data, E/tam/ps2/sppbx/tmcrs]
+  - [0x1B2FE0, .data, E/tam/ps2/sppbx/tmcrs]
   - [0x1B3050, .data, E/tam/ps2/sppbx/maanim]
   - [0x1B3100, data, E/tam/ps2/sppbx/ktmot]
   - [0x1B5130, data, E/tam/ps2/sppbx/ktact]
@@ -283,7 +283,7 @@ segments:
   - [0x1D9B70, rodata, Z/ul/ul/source/graph2]
   - [0x1D9BD0, rodata, Z/ul/ul/source/mdlprTon]
   - [0x1D9BE0, rodata, Z/ul/ul/source/vumodel]
-  - [0x1D9C00, rodata, E/tam/ps2/sppbx/tmcrs]
+  - [0x1D9C00, .rodata, E/tam/ps2/sppbx/tmcrs]
   - [0x1D9D00, .rodata, E/tam/ps2/sppbx/maanim]
   - [0x1D9D20, rodata, E/tam/ps2/sppbx/ktmot]
   - [0x1DA260, rodata, E/tam/ps2/sppbx/ktact]
@@ -434,7 +434,7 @@ segments:
   - { type: .bss, vram: 0x2f3a50, name: Z/ul/ul/source/system }
   - { type: bss, vram: 0x2f3db0, name: Z/ul/ul/source/mv2ext }
   - { type: bss, vram: 0x2f3f00, name: Z/ul/ul/source/movie2 }
-  - { type: bss, vram: 0x2f4740, name: E/tam/ps2/sppbx/tmcrs }
+  - { type: .bss, vram: 0x2f4740, name: E/tam/ps2/sppbx/tmcrs }
   - { type: bss, vram: 0x307ec0, name: E/tam/ps2/sppbx/ktact }
   - { type: bss, vram: 0x346f70, name: E/tam/ps2/sppbx/nmfont }
   - { type: .bss, vram: 0x347010, name: E/tam/ps2/sppbx/ktmenu }

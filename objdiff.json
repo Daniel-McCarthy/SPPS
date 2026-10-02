@@ -121,7 +121,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlpr.o"
     },
     {
       "name": "Z/ul/ul/source/mdlpra",
@@ -131,7 +132,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlpra.o"
     },
     {
       "name": "Z/ul/ul/source/mdlprAmb",
@@ -141,7 +143,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlprAmb.o"
     },
     {
       "name": "Z/ul/ul/source/mdlprEnv",
@@ -151,7 +154,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlprEnv.o"
     },
     {
       "name": "Z/ul/ul/source/mdlprHlt",
@@ -161,7 +165,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlprHlt.o"
     },
     {
       "name": "Z/ul/ul/source/mdlprSdw",
@@ -171,7 +176,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlprSdw.o"
     },
     {
       "name": "Z/ul/ul/source/model",
@@ -229,11 +235,12 @@
       "name": "Z/ul/ul/source/vif1",
       "target_path": "build/target/Z/ul/ul/source/vif1.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/vif1.o"
     },
     {
       "name": "Z/ul/ul/source/mv2ext",
@@ -283,7 +290,8 @@
         "progress_categories": [
           "ul"
         ]
-      }
+      },
+      "base_path": "build/objdiff/Z/ul/ul/source/mdlprTon.o"
     },
     {
       "name": "Z/ul/ul/source/vumodel",
@@ -343,11 +351,12 @@
       "name": "E/tam/ps2/sppbx/tmcrs",
       "target_path": "build/target/E/tam/ps2/sppbx/tmcrs.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/tmcrs.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmalpha",
@@ -364,11 +373,12 @@
       "name": "E/tam/ps2/sppbx/maanim",
       "target_path": "build/target/E/tam/ps2/sppbx/maanim.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/maanim.o"
     },
     {
       "name": "E/tam/ps2/sppbx/ktmot",
@@ -388,7 +398,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ktact.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmfont",
@@ -441,7 +452,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/spload.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmlink",
@@ -546,7 +558,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/aymovie.o"
     },
     {
       "name": "E/tam/ps2/sppbx/aychrsel",
@@ -566,7 +579,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/kncamera.o"
     },
     {
       "name": "E/tam/ps2/sppbx/ayoption",
@@ -576,7 +590,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ayoption.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmvc",
@@ -641,7 +656,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmdraw.o"
     },
     {
       "name": "E/tam/ps2/sppbx/knreplay",
@@ -651,7 +667,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/knreplay.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spev01",
@@ -661,7 +678,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/spev01.o"
     },
     {
       "name": "E/tam/ps2/sppbx/ktsbcore",
@@ -732,17 +750,19 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/spev08.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmact",
       "target_path": "build/target/E/tam/ps2/sppbx/nmact.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmact.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spev02",
@@ -752,7 +772,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/spev02.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spev03",
