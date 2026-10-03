@@ -2451,7 +2451,7 @@ Cam* chr) {
     sq_tmp = tmp[0] + tmp[2];
     asm("sqrt.s xz, sq_tmp");
     xrot = atan2f(nor[1], xz);
-    xrot = fabsf(xrot) - 1.5707964f;
+    xrot = -1.5707964f + fabsf(xrot);
     xrot = 0.2f * xrot;
     xrot = xrot - cam->old_tilt;
     xrot = 0.5f * xrot;
