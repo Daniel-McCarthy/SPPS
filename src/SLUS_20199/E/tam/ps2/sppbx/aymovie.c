@@ -464,6 +464,7 @@ static signed int ayMovieModFrame(signed int modnum) {
     unsigned int padVal; // s0
     unsigned int padFlg = 0xF7FF; // s3
     signed int step = 0; // s4
+    (void)&pad;
     {
         char* strList[3][16] = {
             {
@@ -559,10 +560,9 @@ static signed int ayMovieModFrame(signed int modnum) {
                             sceGsSyncPath(0, 0);
                             break;
                         case 1:
-                            addr = sploadGetCommonOffset();
                             ulmov2SetMovie_DRIVE("\\MOVIE\\O2.PSS",
                                                  (vspenvEnv.mc.option.volume.bgm * 200) / 255,
-                                                 addr, GetThreadId());
+                                                 sploadGetCommonOffset(), GetThreadId());
                             FlushCache(0);
                             while (ulmov2IsPlaying() == 0) {
                                 ulmov2SyncPlay();
@@ -663,10 +663,9 @@ static signed int ayMovieModFrame(signed int modnum) {
                             }
                             vayMovCount++;
                             if (vayMovCount >= 0x16C) {
-                                addr = sploadGetCommonOffset();
                                 ulmov2SetMovie_DRIVE("\\MOVIE\\OPENING.PSS",
                                                      (vspenvEnv.mc.option.volume.bgm * 200) / 255,
-                                                     addr, GetThreadId());
+                                                     sploadGetCommonOffset(), GetThreadId());
                                 FlushCache(0);
                                 while (ulmov2IsPlaying() == 0) {
                                     ulmov2SyncPlay();
