@@ -4,6 +4,7 @@
 
 import argparse
 import os
+import re
 import shutil
 import struct
 import subprocess
@@ -25,6 +26,16 @@ SECTION_SUFFIXES = (
     ".gcc_except_table",
 )
 
+
+LOCAL_DLABEL = re.compile(r"^(dlabel [^,\n]+), local$", re.M)
+PAD_BLOCK = re.compile(
+    r"nonmatching (\S+)\n\n/\* Automatically generated and unreferenced pad \*/\n"
+    r"dlabel \1\n((?:[ \t]+/\*.*\*/ \.\w+ .*\n)+)enddlabel \1\n\.size \1, \. - \1\n"
+)
+
+def prepare_target_source(text: str) -> str:
+    text = LOCAL_DLABEL.sub(r"\1", text)
+    return PAD_BLOCK.sub(r"\2", text)
 
 def strip_section_suffix(stem: str) -> str:
     for suffix in SECTION_SUFFIXES:
@@ -195,7 +206,7 @@ def main():
         destination.parent.mkdir(parents=True, exist_ok=True)
         concatenated = work_dir / f"{unit}.target.s"
         concatenated.parent.mkdir(parents=True, exist_ok=True)
-        concatenated.write_text("".join(p.read_text() for p in sources))
+        concatenated.write_text(prepare_target_source("".join(p.read_text() for p in sources)))
         run([args.as_path, *as_flags, "-o", str(destination), str(concatenated)])
         targets += 1
 
