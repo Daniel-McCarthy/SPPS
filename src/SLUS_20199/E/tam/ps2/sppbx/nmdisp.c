@@ -9478,231 +9478,283 @@ static void nmdispRankHor(VgmsysGifPkt* packet, signed int id) {
     }
 }
 
-static void nmdispLevelMes(VgmsysGifPkt* packet) {
-    signed int i; // r16
-    float tmp; // 0x158(r29)
-    char str_tmp[128]; // 0x40(r29)
-    float font_pos[4]; // 0xC0(r29)
-    signed int font_col[1][4]; // 0xD0(r29)
-    float font_size; // 0x15C(r29)
-    signed int min; // r17
-    signed int sec; // r18
-    // Size: 0x70, DWARF: 0x137FF4
-    Point point; // 0xE0(r29)
+static void nmdispLevelMes(VgmsysGifPkt *packet) {
+  signed int i;              // r16
+  float tmp;                 // 0x158(r29)
+  char str_tmp[128];         // 0x40(r29)
+  float font_pos[4];         // 0xC0(r29)
+  signed int font_col[1][4]; // 0xD0(r29)
+  float font_size;           // 0x15C(r29)
+  signed int min;            // r17
+  signed int sec;            // r18
+  // Size: 0x70, DWARF: 0x137FF4
+  Point point; // 0xE0(r29)
 
-    nmdispInitFont();
-    for (i = 0; i < 8; i++) {
-        if (vnmdispLevelMes[i].state != 0) {
-            if (vnmdispLevelMesInfo[i].type == 0) {
-                font_col[0][0] = 0x80;
-                font_col[0][1] = 0x60;
-                font_col[0][2] = 0x40;
-                font_col[0][3] = 0x80;
-            } else {
-                font_col[0][0] = 0x80;
-                font_col[0][1] = 0x80;
-                font_col[0][2] = 0x40;
-                font_col[0][3] = 0x80;
-            }
-            nmfontSetFCol(font_col[0][0], font_col[0][1], font_col[0][2], font_col[0][3]);
-            switch (vnmdispLevelMesInfo[i].num) {
-            case 0:
-            case 1:
-            case 2:
-                point.point = vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num];
-                point.type = 0;
-                point.size[0] = 0x14;
-                point.size[1] = 0x14;
-                point.language = *vnmdispLang;
-                tmp = nmdrawGetPointLen(&point);
-                ulstdSprintf(str_tmp, "%s  %s", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num], vnmtblCommon[*vnmdispLang][0]);
-                tmp += nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                if (tmp > 576.0f) {
-                    font_size = 16.0f;
-                    point.size[0] = font_size;
-                    tmp = nmdrawGetPointLen(&point);
-                    ulstdSprintf(str_tmp, "%s  %s", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num], vnmtblCommon[*vnmdispLang][0]);
-                    tmp += nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                } else {
-                    font_size = 20.0f;
-                }
-                nmfontSetFSize(font_size, 24.0f);
-                font_pos[0] = ((640.0f - tmp) / 2.0f) + vnmdispLevelMesPos[i];
-                font_pos[1] = 88.0f + (32.0f * (f32) (i % 4));
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, "%s ", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num]);
-                tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                font_pos[0] += tmp;
-                point.pos[0] = font_pos[0];
-                point.pos[1] = font_pos[1];
-                point.col[0][0] = font_col[0][0];
-                point.col[0][1] = font_col[0][1];
-                point.col[0][2] = font_col[0][2];
-                point.col[0][3] = font_col[0][3];
-                point.point = vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num];
-                point.type = 0;
-                point.size[0] = font_size;
-                point.size[1] = 0x18;
-                point.flat = 1;
-                point.base = 0;
-                point.language = *vnmdispLang;
-                nmdrawPoint(packet, &point);
-                tmp = nmdrawGetPointLen(&point);
-                font_pos[0] += tmp;
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, " %s", vnmtblCommon[*vnmdispLang][0]);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                break;
-            case 3:
-                min = vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num] / 60;
-                sec = vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num] % 60;
-                ulstdSprintf(str_tmp, "%d%02d", min, sec);
-                tmp = nmfontGetStrFLen(str_tmp, 20.0f);
-                point.point = vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num + 1];
-                point.type = 0;
-                point.size[0] = 0x14;
-                point.size[1] = 0x18;
-                point.language = *vnmdispLang;
-                tmp += nmdrawGetPointLen(&point);
-                ulstdSprintf(str_tmp, "%s %s %s  %s", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num], vnmtblCommon[*vnmdispLang][2], vnmtblLevelCompMes[*vnmdispLang][6], vnmtblCommon[*vnmdispLang][1]);
-                tmp += nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                if (tmp > 576.0f) {
-                    font_size = 16.0f;
-                    ulstdSprintf(str_tmp, "%d%02d", min, sec);
-                    tmp = nmfontGetStrFLen(str_tmp, font_size);
-                    point.size[0] = font_size;
-                    tmp += nmdrawGetPointLen(&point);
-                    ulstdSprintf(str_tmp, "%s %s %s  %s", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num], vnmtblCommon[*vnmdispLang][2], vnmtblLevelCompMes[*vnmdispLang][6], vnmtblCommon[*vnmdispLang][1]);
-                    tmp += nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                } else {
-                    font_size = 20.0f;
-                }
-                nmfontSetFSize(font_size, 24.0f);
-                font_pos[0] = ((640.0f - tmp) / 2.0f) + vnmdispLevelMesPos[i];
-                font_pos[1] = 88.0f + (32.0f * (f32) (i % 4));
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, "%s ", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num]);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                font_pos[0] += tmp;
-                nmfontSetPack(0);
-                ulstdSprintf(str_tmp, "%d", min);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                tmp = nmfontGetStrFLen(str_tmp, font_size);
-                font_pos[0] += tmp;
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, "%s", vnmtblCommon[*vnmdispLang][2]);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                font_pos[0] += tmp;
-                nmfontSetPack(0);
-                ulstdSprintf(str_tmp, "%02d", sec);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                tmp = nmfontGetStrFLen(str_tmp, font_size);
-                font_pos[0] += tmp;
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, " %s ", vnmtblLevelCompMes[*vnmdispLang][6]);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                font_pos[0] += tmp;
-                point.pos[0] = font_pos[0];
-                point.pos[1] = font_pos[1];
-                point.col[0][0] = font_col[0][0];
-                point.col[0][1] = font_col[0][1];
-                point.col[0][2] = font_col[0][2];
-                point.col[0][3] = font_col[0][3];
-                point.point = vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num + 1];
-                point.type = 0;
-                point.size[0] = font_size;
-                point.size[1] = 0x18;
-                point.flat = 1;
-                point.base = 0;
-                point.language = *vnmdispLang;
-                nmdrawPoint(packet, &point);
-                tmp = nmdrawGetPointLen(&point);
-                font_pos[0] += tmp;
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, " %s", vnmtblCommon[*vnmdispLang][1]);
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                break;
-            case 4:
-                nmfontSetPack(1);
-                if (!vnmdispLevelMesInfo[i].type) {
-                    ulstdSprintf(str_tmp, vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num], vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
-                    tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                    if (tmp > 576.0f) {
-                        font_size = 16.0f;
-                        tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                    } else {
-                        font_size = 20.0f;
-                    }
-                    nmfontSetFSize(font_size, 24.0f);
-                    font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
-                    font_pos[1] = 88.0f + (32.0f * (f32) (i % 4));
-                    nmfontFPrintF(packet, str_tmp, font_pos);
-                } else {
-                    ulstdSprintf(str_tmp, "%d %s %d ", vnmdispLevelMesInfo[i].value[0], vnmtblCommon[*vnmdispLang][4], vnmdispLevelMesInfo[i].value[1]);
-                    tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                    ulstdSprintf(str_tmp, vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][3], vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
-                    tmp += nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                    if (tmp > 576.0f) {
-                        font_size = 16.0f;
-                        ulstdSprintf(str_tmp, "%d %s %d ", vnmdispLevelMesInfo[i].value[0], vnmtblCommon[*vnmdispLang][4], vnmdispLevelMesInfo[i].value[1]);
-                        tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                        ulstdSprintf(str_tmp, vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][3], vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
-                        tmp += nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                    } else {
-                        font_size = 20.0f;
-                    }
-                    nmfontSetFSize(font_size, 24.0f);
-                    font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
-                    font_pos[1] = 88.0f + (32.0f * (f32) (i % 4));
-                    ulstdSprintf(str_tmp, "%d %s %d ", vnmdispLevelMesInfo[i].value[0], vnmtblCommon[*vnmdispLang][4], vnmdispLevelMesInfo[i].value[1]);
-                    tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                    nmfontFPrintF(packet, str_tmp, font_pos);
-                    font_pos[0] += tmp;
-                    ulstdSprintf(str_tmp, vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][3], vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
-                    nmfontFPrintF(packet, str_tmp, font_pos);
-                }
-                break;
-            case 5:
-                nmfontSetPack(1);
-                ulstdSprintf(str_tmp, "%s", vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num]);
-                tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                if (tmp > 576.0f) {
-                    font_size = 16.0f;
-                    tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                } else {
-                    font_size = 20.0f;
-                }
-                nmfontSetFSize(font_size, 24.0f);
-                font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
-                font_pos[1] = 88.0f + (32.0f * (f32) (i % 4));
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                break;
-            default:
-                nmfontSetPack(1);
-                if (vnmdispLevelMesInfo[i].type == 0) {
-                    ulstdSprintf(str_tmp, "%s", vsptblLevelGoalStr[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num - 6]);
-                } else {
-                    ulstdSprintf(str_tmp, "%d %s %d %s", vnmdispLevelMesInfo[i].value[0], vnmtblCommon[*vnmdispLang][4], vnmdispLevelMesInfo[i].value[1], vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num - 6]);
-                }
-                tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
-                if (tmp > 576.0f) {
-                    font_size = 16.0f;
-                    tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
-                } else {
-                    font_size = 20.0f;
-                }
-                nmfontSetFSize(font_size, 24.0f);
-                font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
-                font_pos[1] = 88.0f + (32.0f * (f32) (i % 4));
-                nmfontFPrintF(packet, str_tmp, font_pos);
-                break;
-            }
+  nmdispInitFont();
+  for (i = 0; i < 8; i++) {
+    if (vnmdispLevelMes[i].state != 0) {
+      if (vnmdispLevelMesInfo[i].type == 0) {
+        font_col[0][0] = 0x80;
+        font_col[0][1] = 0x60;
+        font_col[0][2] = 0x40;
+        font_col[0][3] = 0x80;
+      } else {
+        font_col[0][0] = 0x80;
+        font_col[0][1] = 0x80;
+        font_col[0][2] = 0x40;
+        font_col[0][3] = 0x80;
+      }
+      nmfontSetFCol(font_col[0][0], font_col[0][1], font_col[0][2],
+                    font_col[0][3]);
+      switch (vnmdispLevelMesInfo[i].num) {
+      case 0:
+      case 1:
+      case 2:
+        point.point =
+            vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num];
+        point.type = 0;
+        point.size[0] = 0x14;
+        point.size[1] = 0x14;
+        point.language = *vnmdispLang;
+        tmp = nmdrawGetPointLen(&point);
+        ulstdSprintf(
+            str_tmp, "%s  %s",
+            vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num],
+            vnmtblCommon[*vnmdispLang][0]);
+        tmp += nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+        if (tmp > 576.0f) {
+          font_size = 16.0f;
+          point.size[0] = font_size;
+          tmp = nmdrawGetPointLen(&point);
+          ulstdSprintf(
+              str_tmp, "%s  %s",
+              vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num],
+              vnmtblCommon[*vnmdispLang][0]);
+          tmp += nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        } else {
+          font_size = 20.0f;
         }
+        nmfontSetFSize(font_size, 24.0f);
+        font_pos[0] = ((640.0f - tmp) / 2.0f) + vnmdispLevelMesPos[i];
+        font_pos[1] = 88.0f + (32.0f * (f32)(i % 4));
+        nmfontSetPack(1);
+        ulstdSprintf(
+            str_tmp, "%s ",
+            vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num]);
+        tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        font_pos[0] += tmp;
+        point.pos[0] = font_pos[0];
+        point.pos[1] = font_pos[1];
+        point.col[0][0] = font_col[0][0];
+        point.col[0][1] = font_col[0][1];
+        point.col[0][2] = font_col[0][2];
+        point.col[0][3] = font_col[0][3];
+        point.point =
+            vsptblLevelGoalValue[vnmdispCrsEnv->no][vnmdispLevelMesInfo[i].num];
+        point.type = 0;
+        point.size[0] = font_size;
+        point.size[1] = 0x18;
+        point.flat = 1;
+        point.base = 0;
+        point.language = *vnmdispLang;
+        nmdrawPoint(packet, &point);
+        tmp = nmdrawGetPointLen(&point);
+        font_pos[0] += tmp;
+        nmfontSetPack(1);
+        ulstdSprintf(str_tmp, " %s", vnmtblCommon[*vnmdispLang][0]);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        break;
+      case 3:
+        min = vsptblLevelGoalValue[vnmdispCrsEnv->no]
+                                  [vnmdispLevelMesInfo[i].num] /
+              60;
+        sec = vsptblLevelGoalValue[vnmdispCrsEnv->no]
+                                  [vnmdispLevelMesInfo[i].num] %
+              60;
+        ulstdSprintf(str_tmp, "%d%02d", min, sec);
+        tmp = nmfontGetStrFLen(str_tmp, 20.0f);
+        point.point = vsptblLevelGoalValue[vnmdispCrsEnv->no]
+                                          [vnmdispLevelMesInfo[i].num + 1];
+        point.type = 0;
+        point.size[0] = 0x14;
+        point.size[1] = 0x18;
+        point.language = *vnmdispLang;
+        tmp += nmdrawGetPointLen(&point);
+        ulstdSprintf(
+            str_tmp, "%s %s %s  %s",
+            vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num],
+            vnmtblCommon[*vnmdispLang][2], vnmtblLevelCompMes[*vnmdispLang][6],
+            vnmtblCommon[*vnmdispLang][1]);
+        tmp += nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+        if (tmp > 576.0f) {
+          font_size = 16.0f;
+          ulstdSprintf(str_tmp, "%d%02d", min, sec);
+          tmp = nmfontGetStrFLen(str_tmp, font_size);
+          point.size[0] = font_size;
+          tmp += nmdrawGetPointLen(&point);
+          ulstdSprintf(
+              str_tmp, "%s %s %s  %s",
+              vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num],
+              vnmtblCommon[*vnmdispLang][2],
+              vnmtblLevelCompMes[*vnmdispLang][6],
+              vnmtblCommon[*vnmdispLang][1]);
+          tmp += nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        } else {
+          font_size = 20.0f;
+        }
+        nmfontSetFSize(font_size, 24.0f);
+        font_pos[0] = ((640.0f - tmp) / 2.0f) + vnmdispLevelMesPos[i];
+        font_pos[1] = 88.0f + (32.0f * (f32)(i % 4));
+        nmfontSetPack(1);
+        ulstdSprintf(
+            str_tmp, "%s ",
+            vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num]);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        font_pos[0] += tmp;
+        nmfontSetPack(0);
+        ulstdSprintf(str_tmp, "%d", min);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        tmp = nmfontGetStrFLen(str_tmp, font_size);
+        font_pos[0] += tmp;
+        nmfontSetPack(1);
+        ulstdSprintf(str_tmp, "%s", vnmtblCommon[*vnmdispLang][2]);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        font_pos[0] += tmp;
+        nmfontSetPack(0);
+        ulstdSprintf(str_tmp, "%02d", sec);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        tmp = nmfontGetStrFLen(str_tmp, font_size);
+        font_pos[0] += tmp;
+        nmfontSetPack(1);
+        ulstdSprintf(str_tmp, " %s ", vnmtblLevelCompMes[*vnmdispLang][6]);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        font_pos[0] += tmp;
+        point.pos[0] = font_pos[0];
+        point.pos[1] = font_pos[1];
+        point.col[0][0] = font_col[0][0];
+        point.col[0][1] = font_col[0][1];
+        point.col[0][2] = font_col[0][2];
+        point.col[0][3] = font_col[0][3];
+        point.point = vsptblLevelGoalValue[vnmdispCrsEnv->no]
+                                          [vnmdispLevelMesInfo[i].num + 1];
+        point.type = 0;
+        point.size[0] = font_size;
+        point.size[1] = 0x18;
+        point.flat = 1;
+        point.base = 0;
+        point.language = *vnmdispLang;
+        nmdrawPoint(packet, &point);
+        tmp = nmdrawGetPointLen(&point);
+        font_pos[0] += tmp;
+        nmfontSetPack(1);
+        ulstdSprintf(str_tmp, " %s", vnmtblCommon[*vnmdispLang][1]);
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        break;
+      case 4:
+        nmfontSetPack(1);
+        if (vnmdispLevelMesInfo[i].type == 0) {
+          ulstdSprintf(
+              str_tmp,
+              vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num],
+              vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
+          tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+          if (tmp > 576.0f) {
+            font_size = 16.0f;
+            tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+          } else {
+            font_size = 20.0f;
+          }
+          nmfontSetFSize(font_size, 24.0f);
+          font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
+          font_pos[1] = 88.0f + (32.0f * (f32)(i % 4));
+          nmfontFPrintF(packet, str_tmp, font_pos);
+        } else {
+          ulstdSprintf(str_tmp, "%d %s %d ", vnmdispLevelMesInfo[i].value[0],
+                       vnmtblCommon[*vnmdispLang][4],
+                       vnmdispLevelMesInfo[i].value[1]);
+          tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+          ulstdSprintf(str_tmp,
+                       vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][3],
+                       vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
+          tmp += nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+          if (tmp > 576.0f) {
+            font_size = 16.0f;
+            ulstdSprintf(str_tmp, "%d %s %d ", vnmdispLevelMesInfo[i].value[0],
+                         vnmtblCommon[*vnmdispLang][4],
+                         vnmdispLevelMesInfo[i].value[1]);
+            tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+            ulstdSprintf(
+                str_tmp,
+                vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][3],
+                vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
+            tmp += nmfontGetPackStrFLen(str_tmp, font_size, 0);
+          } else {
+            font_size = 20.0f;
+          }
+          nmfontSetFSize(font_size, 24.0f);
+          font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
+          font_pos[1] = 88.0f + (32.0f * (f32)(i % 4));
+          ulstdSprintf(str_tmp, "%d %s %d ", vnmdispLevelMesInfo[i].value[0],
+                       vnmtblCommon[*vnmdispLang][4],
+                       vnmdispLevelMesInfo[i].value[1]);
+          tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+          nmfontFPrintF(packet, str_tmp, font_pos);
+          font_pos[0] += tmp;
+          ulstdSprintf(str_tmp,
+                       vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no][3],
+                       vsptblCourseName[vnmdispCrsEnv->no + 0x10]);
+          nmfontFPrintF(packet, str_tmp, font_pos);
+        }
+        break;
+      case 5:
+        nmfontSetPack(1);
+        ulstdSprintf(
+            str_tmp, "%s",
+            vnmtblLevelCompMes[*vnmdispLang][vnmdispLevelMesInfo[i].num]);
+        tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+        if (tmp > 576.0f) {
+          font_size = 16.0f;
+          tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        } else {
+          font_size = 20.0f;
+        }
+        nmfontSetFSize(font_size, 24.0f);
+        font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
+        font_pos[1] = 88.0f + (32.0f * (f32)(i % 4));
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        break;
+      default:
+        nmfontSetPack(1);
+        if (vnmdispLevelMesInfo[i].type == 0) {
+          ulstdSprintf(str_tmp, "%s",
+                       vsptblLevelGoalStr[vnmdispCrsEnv->no]
+                                         [vnmdispLevelMesInfo[i].num - 6]);
+        } else {
+          ulstdSprintf(str_tmp, "%d %s %d %s", vnmdispLevelMesInfo[i].value[0],
+                       vnmtblCommon[*vnmdispLang][4],
+                       vnmdispLevelMesInfo[i].value[1],
+                       vnmtblLevelIncompMes[*vnmdispLang][vnmdispCrsEnv->no]
+                                           [vnmdispLevelMesInfo[i].num - 6]);
+        }
+        tmp = nmfontGetPackStrFLen(str_tmp, 20.0f, 0);
+        if (tmp > 576.0f) {
+          font_size = 16.0f;
+          tmp = nmfontGetPackStrFLen(str_tmp, font_size, 0);
+        } else {
+          font_size = 20.0f;
+        }
+        nmfontSetFSize(font_size, 24.0f);
+        font_pos[0] = (320.0f + vnmdispLevelMesPos[i]) - (tmp / 2.0f);
+        font_pos[1] = 88.0f + (32.0f * (f32)(i % 4));
+        nmfontFPrintF(packet, str_tmp, font_pos);
+        break;
+      }
     }
+  }
 }
 
 static void nmdispOutMes(VgmsysGifPkt *packet, signed int id)
