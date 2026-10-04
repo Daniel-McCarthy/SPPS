@@ -496,7 +496,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/spfree.o"
     },
     {
       "name": "E/tam/ps2/sppbx/tmevent",
@@ -569,7 +570,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/aychrsel.o"
     },
     {
       "name": "E/tam/ps2/sppbx/kncamera",
@@ -700,7 +702,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/aycreate.o"
     },
     {
       "name": "E/tam/ps2/sppbx/akEffect",
@@ -720,7 +723,8 @@
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/ayresult.o"
     },
     {
       "name": "E/tam/ps2/sppbx/spev04",
