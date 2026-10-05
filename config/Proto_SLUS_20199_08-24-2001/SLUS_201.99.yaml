@@ -188,7 +188,7 @@ segments:
   - [0x186290, asm, E/tam/ps2/sppbx/nmtrick]
   - [0x18AC80, asm, E/tam/ps2/sppbx/tiutill]
   - [0x18B220, asm, E/tam/ps2/sppbx/akSpSub]
-  - [0x18B7E0, asm, E/tam/ps2/sppbx/tmetc]
+  - [0x18B7E0, c, E/tam/ps2/sppbx/tmetc]
   - [0x18C0B0, asm, E/tam/ps2/sppbx/tievent]
 
   # Vutext (.vutext 0x18EB80-0x196230), SDK/lib data (__data_start 0x196230),
@@ -410,6 +410,6 @@ segments:
   - { type: bss, vram: 0x003A6DB0, name: E/tam/ps2/sppbx/kncore }
   - { type: bss, vram: 0x003A6E90, name: E/tam/ps2/sppbx/akEvEfct }
   - { type: bss, vram: 0x003A7800, name: E/tam/ps2/sppbx/nmtrick }
-  - { type: bss, vram: 0x003A8820, name: E/tam/ps2/sppbx/tmetc }
+  - { type: .bss, vram: 0x003A8820, name: E/tam/ps2/sppbx/tmetc }
 
 - [0x1C7580]
