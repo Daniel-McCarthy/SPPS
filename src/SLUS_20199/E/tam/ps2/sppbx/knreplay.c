@@ -1282,24 +1282,24 @@ static Camera vknIntro_ChrCamData = {
         { 0.0f, 0.0f, 0.0f, 1.0f }
     }
 }; // Address: 0x2CEE40
-// Size: 0xA0, DWARF: 0x15A3DC
-static VknIntro vknIntro[2]; // Address: 0x3C6AA0
 // Size: 0x50, DWARF: 0x15DA03
 static CameraTransform vknMainData[2]; // Address: 0x3C6D60
-// Size: 0x2B0, DWARF: 0x15E450
-static VknIntro_Top* vknIntro_Top; // Address: 0x2E7EB0
-// Size: 0xA0, DWARF: 0x15FECB
-extern VspenvGame* vspenvGame; // Address: 0x2E7B14
+// Size: 0xC0, DWARF: 0x15CB8F
+static VknReplay vknReplay[2]; // Address: 0x3C6BE0
+// Size: 0xA0, DWARF: 0x15A3DC
+static VknIntro vknIntro[2]; // Address: 0x3C6AA0
 // Size: 0x40, DWARF: 0x15FDA7
 static VknEvent vknEvent; // Address: 0x3C6A60
-// Size: 0xF0, DWARF: 0x15CFE2
-static VknBlock* vknBlock; // Address: 0x2E7EB4
+// Size: 0xA0, DWARF: 0x15FECB
+extern VspenvGame* vspenvGame; // Address: 0x2E7B14
 // Size: 0x10, DWARF: 0x160D4D
 static VknHead* vknHead; // Address: 0x2E7EBC
 // Size: 0xE0, DWARF: 0x15FCFA
 static VknCube* vknCube; // Address: 0x2E7EB8
-// Size: 0xC0, DWARF: 0x15CB8F
-static VknReplay vknReplay[2]; // Address: 0x3C6BE0
+// Size: 0xF0, DWARF: 0x15CFE2
+static VknBlock* vknBlock; // Address: 0x2E7EB4
+// Size: 0x2B0, DWARF: 0x15E450
+static VknIntro_Top* vknIntro_Top; // Address: 0x2E7EB0
 // Size: 0x340, DWARF: 0x15F953
 extern VspSystemMatrix vspSystemMatrix[2]; // Address: 0x3BF6B0
 
