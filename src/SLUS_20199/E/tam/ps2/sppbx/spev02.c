@@ -4279,7 +4279,8 @@ static void spev02CheckWarp(Event* event) {
         player = event->game.player;
         for (i = 0; i < event->character[player].nhit; i++) {
             switch (event->character[player].hit[i].no) {
-            case 0x1F:
+            case 0x1F: {
+                signed int unused1;
                 tmp[0] = 1.6f;
                 tmp[1] = -1013.3f;
                 tmp[2] = 1298.3f;
@@ -4288,6 +4289,7 @@ static void spev02CheckWarp(Event* event) {
                 spev02ResetYuppie(event);
                 nmeventPlayWarp(player, 0x23);
                 break;
+            }
             case 0x20:
                 tmp[0] = -1646.2f;
                 tmp[1] = 3490.9f;
@@ -4297,7 +4299,10 @@ static void spev02CheckWarp(Event* event) {
                 spev02ResetYuppie(event);
                 nmeventPlayWarp(player, 0x24);
                 break;
-            case 0x21:
+            case 0x21: {
+                signed int unused1;
+                signed int unused2;
+                signed int unused3;
                 tmp[0] = 416.6f;
                 tmp[1] = 524.0f;
                 tmp[2] = -264.2f;
@@ -4306,6 +4311,7 @@ static void spev02CheckWarp(Event* event) {
                 spev02ResetYuppie(event);
                 nmeventPlayWarp(player, 0x25);
                 break;
+            }
             }
         }
     }
