@@ -190,7 +190,7 @@ segments:
   - [0x183060, asm, E/tam/ps2/sppbx/spev07]
   - [0x18AC70, asm, E/tam/ps2/sppbx/spev05]
   - [0x194160, asm, E/tam/ps2/sppbx/kncore]
-  - [0x1962A0, asm, E/tam/ps2/sppbx/nmevent]
+  - [0x1962A0, c, E/tam/ps2/sppbx/nmevent]
   - [0x1966C0, asm, E/tam/ps2/sppbx/akEvEfct]
   - [0x19A610, asm, E/tam/ps2/sppbx/akSelEff]
   - [0x19B470, asm, E/tam/ps2/sppbx/akShadow]
@@ -332,7 +332,7 @@ segments:
   - [0x1E6960, rodata, E/tam/ps2/sppbx/spev06]
   - [0x1E7410, rodata, E/tam/ps2/sppbx/spev07]
   - [0x1E7450, rodata, E/tam/ps2/sppbx/kncore]
-  - [0x1E7490, rodata, E/tam/ps2/sppbx/nmevent]
+  - [0x1E7490, .rodata, E/tam/ps2/sppbx/nmevent]
   - [0x1E74B0, rodata, E/tam/ps2/sppbx/akEvEfct]
   - [0x1E74D0, .rodata, E/tam/ps2/sppbx/nmtrick]
   - [0x1E75F0, rodata, sdk2]
@@ -418,7 +418,7 @@ segments:
   - { type: sbss, vram: 0x2e805c, name: E/tam/ps2/sppbx/spev06 }
   - { type: sbss, vram: 0x2e8060, name: E/tam/ps2/sppbx/spev07 }
   - { type: sbss, vram: 0x2e8080, name: E/tam/ps2/sppbx/spev05 }
-  - { type: sbss, vram: 0x2e80c8, name: E/tam/ps2/sppbx/nmevent }
+  - { type: .sbss, vram: 0x2e80c8, name: E/tam/ps2/sppbx/nmevent }
   - { type: .sbss, vram: 0x2e80cc, name: E/tam/ps2/sppbx/nmtrick }
 
   # Bss section (Same location as __bss_start)

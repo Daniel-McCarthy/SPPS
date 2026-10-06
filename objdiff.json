@@ -833,11 +833,12 @@
       "name": "E/tam/ps2/sppbx/nmevent",
       "target_path": "build/target/E/tam/ps2/sppbx/nmevent.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/nmevent.o"
     },
     {
       "name": "E/tam/ps2/sppbx/akEvEfct",
