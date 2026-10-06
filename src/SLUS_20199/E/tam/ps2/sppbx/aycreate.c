@@ -2034,6 +2034,7 @@ static void ayDrawHead() {
 }
 
 static void ayDrawFileList() {
+    signed int unused1;
     signed int ii; // r16
     signed int count = vayCreate->count; // r17
     signed int dx[12]; // 0xA0(r29)
