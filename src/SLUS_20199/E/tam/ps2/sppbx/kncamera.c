@@ -1673,7 +1673,7 @@ typedef struct Rider
 
 //// Variables ///////////////////////////////////////////////////////////////////////
 
-static signed int vknViewFlg_1P; // Address: 0x2E7BE8
+static signed int vknViewFlg_1P = 0; // Address: 0x2E7BE8
 static signed int vknViewFlg_2P[2] = { 0, 0 }; // Address: 0x2E7810
 // Size: 0x5C, DWARF: 0x112744
 extern VspModeData vspModeData; // Address: 0x3BF620
@@ -2452,10 +2452,10 @@ Cam* chr) {
     asm("sqrt.s xz, sq_tmp");
     xrot = atan2f(nor[1], xz);
     xrot = -1.5707964f + fabsf(xrot);
-    xrot = 0.2f * xrot;
-    xrot = xrot - cam->old_tilt;
-    xrot = 0.5f * xrot;
-    cam->old_tilt = cam->old_tilt + xrot;
+    xrot *= 0.2f;
+    xrot -= cam->old_tilt;
+    xrot *= 0.5f;
+    return cam->old_tilt += xrot;
 }
 
 void knCameraBoostAction(VknCamera* cam, Cam* unused_cam, signed int num) {
