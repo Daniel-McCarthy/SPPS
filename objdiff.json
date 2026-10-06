@@ -577,7 +577,7 @@
       "name": "E/tam/ps2/sppbx/kncamera",
       "target_path": "build/target/E/tam/ps2/sppbx/kncamera.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
@@ -665,7 +665,7 @@
       "name": "E/tam/ps2/sppbx/knreplay",
       "target_path": "build/target/E/tam/ps2/sppbx/knreplay.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]

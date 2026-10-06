@@ -2366,6 +2366,8 @@ Ctrl* chr, // Size: 0xC0, DWARF: 0x15CB8F
 VknReplay* rep /* 0x40(r29) */) {
     float len[4]; // 0x10(r29)
     float sub; // 0x2C(r29)
+    signed int unused1;
+    signed int unused2;
 
     knReplayBlur(rep);
     if (rep->effect & 4) {
