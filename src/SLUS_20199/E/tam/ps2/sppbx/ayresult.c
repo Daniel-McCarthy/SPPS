@@ -1739,6 +1739,9 @@ static s32 ayCheckLoad(void) {
 
 static void aySelHeadDraw(// Size: 0x10, DWARF: 0x18D330
 Packet* packet) {
+    signed int unused1;
+    signed int unused2;
+    signed int unused3;
     signed int texno; // r16 // s0
     signed int moveType; // r17 // s1
     signed int count; // r18 // s2
@@ -2815,6 +2818,13 @@ static void ayAddStats() {
 }
 
 static void ayDrawConfirm(Packet* packet) {
+    signed int unused1;
+    signed int unused2;
+    signed int unused3;
+    signed int unused4;
+    signed int unused5;
+    signed int unused6;
+    signed int unused7;
     signed int count = vayResData->decidecnt; // r17 // s1
     char* strList[3][3] = {{"ARE YOU SURE?", "YES", "NO"}, {"BIST DU SICHER?", "JA", "NEIN"}, {"TU ES SUR ?", "OUI", "NON"}}; // 0xA0(r29)
     char** str = strList[vspenvGame->language]; // r20 // s4
