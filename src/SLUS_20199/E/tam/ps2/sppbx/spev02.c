@@ -1642,57 +1642,57 @@ static const signed int vspev02Lamp[11][2] = {
     { 91, 51 },
     { 92, 52 }
 }; // Address: 0x2E6800
-// Size: 0x60, DWARF: 0x1CE3B9
-Vspev02Smoke* vspev02Smoke; // Address: 0x2E7FDC
-// Size: 0x70, DWARF: 0x1CC2E3
-Vspev02EventMdl* vspev02EventMdl; // Address: 0x2E7FEC
-// Size: 0x30, DWARF: 0x1C82D9
-Vspev02Lift* vspev02Lift; // Address: 0x2E7FF4
-extern void(*vtmevWarp)(Event*); // Address: 0x2E7B90
-void(spev02MatchWarp)(Event*); // Address: 0x273A70
-float vspev02View[2]; // Address: 0x2E7FC8
-// Size: 0x20, DWARF: 0x1CB6E8
-extern VgmsysAbuf* vgmsysAbuf; // Address: 0x2E79C0
-// Size: 0x10, DWARF: 0x1CC767
-Vspev02SeLift vspev02SeLift; // Address: 0x3C7620
-float vspev02LiftAdd; // Address: 0x2E7FF0
+// Size: 0x30, DWARF: 0x1C8782
+Vspev02Gear vspev02Gear[3]; // Address: 0x3C77E0
 // Size: 0x30, DWARF: 0x1CC1D6
 Vspev02Gond vspev02Gond1; // Address: 0x3C77B0
 // Size: 0x30, DWARF: 0x1CC1D6
 Vspev02Gond vspev02Gond2; // Address: 0x3C7780
-// Size: 0x30, DWARF: 0x1C8782
-Vspev02Gear vspev02Gear[3]; // Address: 0x3C77E0
-// Size: 0x10, DWARF: 0x1CC767
-Vspev02SeLift vspev02SeWagon; // Address: 0x3C7610
-// Size: 0x70, DWARF: 0x1CC2E3
-Vspev02WagonMdl* vspev02WagonMdl; // Address: 0x2E7FE8
-// Size: 0x10, DWARF: 0x1CC767
-Vspev02SeLift vspev02SeYuppie[5]; // Address: 0x3C75C0
+extern void(*vtmevWarp)(Event*); // Address: 0x2E7B90
+void(spev02MatchWarp)(Event*); // Address: 0x273A70
 // Size: 0x30, DWARF: 0x1C8782
 Vspev02Gear vspev02Yuppie[5]; // Address: 0x3C7690
-// Size: 0x70, DWARF: 0x1CC2E3
-Vspev02WagonMdl* vspev02YuppieMdl; // Address: 0x2E7FE4
-signed int vspev02YuppieCnt; // Address: 0x2E7FF8
-// Size: 0xA0, DWARF: 0x1CDBE3
-extern VspenvGame* vspenvGame; // Address: 0x2E7B14
+// Size: 0x20, DWARF: 0x1CB6E8
+extern VgmsysAbuf* vgmsysAbuf; // Address: 0x2E79C0
 // Size: 0x30, DWARF: 0x1C8782
 Vspev02Gear vspev02Staff[2]; // Address: 0x3C7630
+// Size: 0x10, DWARF: 0x1CC767
+Vspev02SeLift vspev02SeLift; // Address: 0x3C7620
+// Size: 0x10, DWARF: 0x1CC767
+Vspev02SeLift vspev02SeWagon; // Address: 0x3C7610
+// Size: 0x10, DWARF: 0x1CC767
+Vspev02SeLift vspev02SeYuppie[5]; // Address: 0x3C75C0
+// Size: 0x50, DWARF: 0x1CC90B
+Vspev02Light vspev02Light[2]; // Address: 0x3C7520
+signed int vspev02CafeCnt; // Address: 0x2E8024
+signed int vspev02SpoutCnt; // Address: 0x2E8020
+signed int vspev02GlassCnt[2]; // Address: 0x2E8018
+signed int vspev02ChairCnt[2]; // Address: 0x2E8010
+signed int vspev02LampCnt[2]; // Address: 0x2E8008
+signed int vspev02PipeCnt[2]; // Address: 0x2E8000
+// Size: 0xA0, DWARF: 0x1CDBE3
+extern VspenvGame* vspenvGame; // Address: 0x2E7B14
+signed int vspev02YuppieCnt; // Address: 0x2E7FF8
+// Size: 0x30, DWARF: 0x1C82D9
+Vspev02Lift* vspev02Lift; // Address: 0x2E7FF4
+float vspev02LiftAdd; // Address: 0x2E7FF0
+// Size: 0x70, DWARF: 0x1CC2E3
+Vspev02EventMdl* vspev02EventMdl; // Address: 0x2E7FEC
+// Size: 0x70, DWARF: 0x1CC2E3
+Vspev02WagonMdl* vspev02WagonMdl; // Address: 0x2E7FE8
+// Size: 0x70, DWARF: 0x1CC2E3
+Vspev02WagonMdl* vspev02YuppieMdl; // Address: 0x2E7FE4
 // Size: 0x70, DWARF: 0x1CC2E3
 Vspev02WagonMdl* vspev02StaffMdl; // Address: 0x2E7FE0
-signed int vspev02SpoutCnt; // Address: 0x2E8020
-signed int vspev02CafeCnt; // Address: 0x2E8024
-signed int vspev02PipeCnt[2]; // Address: 0x2E8000
-signed int vspev02LampCnt[2]; // Address: 0x2E8008
-signed int vspev02ChairCnt[2]; // Address: 0x2E8010
-signed int vspev02GlassCnt[2]; // Address: 0x2E8018
-// Size: 0xC0, DWARF: 0x1CCACB
-Info* vspev02SnowSpout2; // Address: 0x2E7FD4
+// Size: 0x60, DWARF: 0x1CE3B9
+Vspev02Smoke* vspev02Smoke; // Address: 0x2E7FDC
 // Size: 0xC0, DWARF: 0x1CCACB
 Info* vspev02SnowSpout1; // Address: 0x2E7FD8
 // Size: 0xC0, DWARF: 0x1CCACB
+Info* vspev02SnowSpout2; // Address: 0x2E7FD4
+// Size: 0xC0, DWARF: 0x1CCACB
 Info* vspev02WagonClash; // Address: 0x2E7FD0
-// Size: 0x50, DWARF: 0x1CC90B
-Vspev02Light vspev02Light[2]; // Address: 0x3C7520
+float vspev02View[2]; // Address: 0x2E7FC8
 // Size: 0x60, DWARF: 0x1CC539
 extern VgmsysPad* vgmsysPad[2]; // Address: 0x2E7B30
 // Size: 0xC, DWARF: 0x1CD448
@@ -2641,6 +2641,9 @@ static void spev02CheckWagon(Event* event) {
 
 static void spev02MoveWagon(Event* event) {
     signed int player;
+    signed int unused1;
+    signed int unused2;
+    signed int unused3;
 
     if (event->game.nplayer == 1) {
         player = event->game.player;
