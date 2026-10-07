@@ -10744,16 +10744,17 @@ static void ktactSetHeadHipMatrix(Rider* rider) {
 
 static void ktactSetHeadHipOffset(float* head, float* hip, Rider* rider) {
     sceVu0FVECTOR* t;
-    signed int kids; // r21 $s5
     Ctrl* rc = &rider->ctrl; // r16 $s0
     Disp* rdd = &rider->disp; // r19 $s3
     Pos* nowpos = &rdd->nowpos; // r20 $s4
     Act* act = &rc->act; // r17 $s1
+    signed int kids; // r21 $s5
     Sbcore* cd = &act->sbcore; // r22 $s6
     sceVu0FVECTOR pos = {0.0f, 0.0f, 0.0f, 1.0f}; // 0x80(r29)
     sceVu0FMATRIX mat; // 0x90(r29)
     sceVu0FMATRIX rev; // 0xD0(r29)
     float ftmp; // 0x11C(r29)
+    (void)t;
     t = &pos;
     kids = rc->cheats->kids;
 
