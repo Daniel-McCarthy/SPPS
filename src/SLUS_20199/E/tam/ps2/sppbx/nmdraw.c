@@ -580,8 +580,8 @@ typedef struct Poly5
 
 extern signed int vsppScrHeight; // Address: 0x2E7708
 extern signed int vsppScrWidth; // Address: 0x2E7704
-static float vnmdrawScrRate[4]; // Address: 0x3C6A30
 static float vnmdrawScrSize[4]; // Address: 0x3C6A40
+static float vnmdrawScrRate[4]; // Address: 0x3C6A30
 
 //// Function Declarations ///////////////////////////////////////////////////////////
 
@@ -1660,8 +1660,7 @@ Ice* info) {
         nmfontSwitchBil(packet, 1);
         qwc = ((s32)((str_len * sizeof(Poly6)) + sizeof(Alpha_Tag)) + 0xF) >> 4;
         addr = (void*)ulgifAddCNTReserve(packet, qwc);
-        alpha = addr;
-        addr = alpha + 1;
+        alpha = ((Alpha_Tag*)addr)++;
         ulpktInitALPHA(alpha, 1);
         tex_data = info->data;
         rate = info->width / 16.0f;
@@ -1696,8 +1695,7 @@ Ice* info) {
                 sceVu0FTOI4Vector(ipos[j], bpos2[j]);
                 ipos[j][2] = 0xFFFFFF;
             }
-            poly = addr;
-            addr = poly + 1;
+            poly = ((Poly6*)addr)++;
             ulpktInitGT4(poly, 1, 1);
             if (i == (str_len - 1)) {
                 poly->sceGifTag.sce.EOP = 1;
