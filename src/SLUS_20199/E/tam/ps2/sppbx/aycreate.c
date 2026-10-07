@@ -1817,6 +1817,13 @@ void ayCreateEnd() {
 }
 
 static void ayDrawHead() {
+    signed int unused1;
+    signed int unused2;
+    signed int unused3;
+    signed int unused4;
+    signed int unused5;
+    signed int unused6;
+    signed int unused7;
     Poly* poly; // r21
     AlphaTag* alpha; // r22
     void* addr; // r19
@@ -3118,6 +3125,9 @@ static void ayDrawParam(TexData* texData) {
 }
 
 static float ayCalcBarMove(signed int count, signed int id) {
+    signed int unused1;
+    signed int unused2;
+    signed int unused3;
     float dx; // 0x1C(r29)
 
     if (count < id) {
