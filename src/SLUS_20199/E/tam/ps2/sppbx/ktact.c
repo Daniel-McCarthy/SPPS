@@ -4574,6 +4574,10 @@ static void ktactSetSlidingState( // Size: 0x2C00, DWARF: 0x7627B
     signed int revert_no; // r29+0xBC
     signed int jump_no; // r29+0xC0
     signed int kkk; // r29+0xC4
+    (void)j;
+    (void)j;
+    (void)pre;
+    (void)pre;
     act = &rc->act;
     cd = &act->sbcore;
     pre = &rc->prepos;
@@ -4759,18 +4763,10 @@ static void ktactSetSlidingState( // Size: 0x2C00, DWARF: 0x7627B
             }
             if (req->accel_brake == eraBrake || req->stance_change) {
                 act->sliding_state = essSliding;
-                // goto block_70;
+            } else if (req->command != ercGrind && now->hit != 0) {
                 break;
             }
-            if (req->command == ercGrind || now->hit != 0) {
-                break;
-            }
-            // 🤔
-            // if (req->command == ercGrind || now->hit == 0) {
-            //     break;
-            // }
         case essOnAir:
-            // block_70:
             if (act->sliding_state != essSliding) {
                 req->accel_brake = eraNone;
                 req->stance_change = erscNone;
