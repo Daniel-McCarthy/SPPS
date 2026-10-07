@@ -615,9 +615,9 @@ static signed int ayMovieModFrame(signed int modnum) {
                             texData.y = -1;
                             ultexTransTexTag(vgmsysGifPkt, loaddata->addr, &texData, 0);
                             addr = ulgifAddCNTReserve(vgmsysGifPkt, 9);
-                            alpha = (AyAlphaPkt*)addr;
-                            poly = (AyPolyPkt*)((char*)addr + 32);
+                            alpha = ((AyAlphaPkt*)addr)++;
                             ulpktInitALPHA(alpha, 1);
+                            poly = (AyPolyPkt*)addr;
                             data.texData = &texData;
                             data.rgba[0] = 0x80;
                             data.rgba[1] = 0x80;
