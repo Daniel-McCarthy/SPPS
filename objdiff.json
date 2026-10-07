@@ -555,7 +555,7 @@
       "name": "E/tam/ps2/sppbx/aymovie",
       "target_path": "build/target/E/tam/ps2/sppbx/aymovie.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
@@ -654,7 +654,7 @@
       "name": "E/tam/ps2/sppbx/nmdraw",
       "target_path": "build/target/E/tam/ps2/sppbx/nmdraw.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
@@ -772,7 +772,7 @@
       "name": "E/tam/ps2/sppbx/spev02",
       "target_path": "build/target/E/tam/ps2/sppbx/spev02.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]

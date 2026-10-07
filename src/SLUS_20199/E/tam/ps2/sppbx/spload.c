@@ -2020,7 +2020,7 @@ static void sploadDrawRule(VgmsysGifPkt* packet, signed int rule) {
     col[3][2] = 0x80;
     col[3][3] = 0x80;
     nmfontSetCol(&col[0][0]);
-    nmfontGPrintF(packet, rule_tbl[rule], pos);
+    nmfontGPrintF(packet, (char*)rule_tbl[rule], pos);
     pos[1] += 64.0f;
     nmfontInitOption();
     nmfontSetSize(0x14, 0x14);

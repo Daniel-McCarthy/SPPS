@@ -4574,6 +4574,10 @@ static void ktactSetSlidingState( // Size: 0x2C00, DWARF: 0x7627B
     signed int revert_no; // r29+0xBC
     signed int jump_no; // r29+0xC0
     signed int kkk; // r29+0xC4
+    (void)j;
+    (void)j;
+    (void)pre;
+    (void)pre;
     act = &rc->act;
     cd = &act->sbcore;
     pre = &rc->prepos;
@@ -4759,18 +4763,10 @@ static void ktactSetSlidingState( // Size: 0x2C00, DWARF: 0x7627B
             }
             if (req->accel_brake == eraBrake || req->stance_change) {
                 act->sliding_state = essSliding;
-                // goto block_70;
+            } else if (req->command != ercGrind && now->hit != 0) {
                 break;
             }
-            if (req->command == ercGrind || now->hit != 0) {
-                break;
-            }
-            // 🤔
-            // if (req->command == ercGrind || now->hit == 0) {
-            //     break;
-            // }
         case essOnAir:
-            // block_70:
             if (act->sliding_state != essSliding) {
                 req->accel_brake = eraNone;
                 req->stance_change = erscNone;
@@ -10744,16 +10740,17 @@ static void ktactSetHeadHipMatrix(Rider* rider) {
 
 static void ktactSetHeadHipOffset(float* head, float* hip, Rider* rider) {
     sceVu0FVECTOR* t;
-    signed int kids; // r21 $s5
     Ctrl* rc = &rider->ctrl; // r16 $s0
     Disp* rdd = &rider->disp; // r19 $s3
     Pos* nowpos = &rdd->nowpos; // r20 $s4
     Act* act = &rc->act; // r17 $s1
+    signed int kids; // r21 $s5
     Sbcore* cd = &act->sbcore; // r22 $s6
     sceVu0FVECTOR pos = {0.0f, 0.0f, 0.0f, 1.0f}; // 0x80(r29)
     sceVu0FMATRIX mat; // 0x90(r29)
     sceVu0FMATRIX rev; // 0xD0(r29)
     float ftmp; // 0x11C(r29)
+    (void)t;
     t = &pos;
     kids = rc->cheats->kids;
 
