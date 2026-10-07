@@ -991,7 +991,7 @@ float ayCalcTotalMove(signed int frame, signed int count, float totalmove, signe
 void ayDrawBG(Packet* packet, TexData* texData, signed int col, signed int mark);
 signed int ayDrawCredits(Packet* packet, VaytblEnding* namelst, float* dy, signed int num);
 void ayDrawKeyOparate(signed int kind, signed int count, signed int flg, TexData* texData, Packet* packet);
-float ayDrawNum(Packet* packet, QuadData* data, signed int flg);
+float ayDrawNum(Packet* packet, FData* data, signed int flg);
 void ayFontInit(signed int x, signed int y, signed int* fcol);
 void ayFontInitmin();
 signed int ayMcCareerSave(Packet* packet);
@@ -1928,6 +1928,8 @@ Packet* packet) {
 }
 
 static void ayDrawMenu(Packet* packet) {
+    signed int unused1;
+    signed int unused2;
     signed int ii; // r16 // s0
     signed int count = vayResData->count; // r17 // s1
     signed int size; // r18 // s2
@@ -2476,6 +2478,8 @@ static void aySetKeyOparate(Packet* packet) {
 }
 
 static void ayDrawCsLogo(Packet* packet) {
+    signed int unused1;
+    signed int unused2;
     signed int dx; // r16 // s0
     signed int count; // r17 // s1
     void* addr; // r18 // s2
@@ -2584,7 +2588,7 @@ static void ayDrawScore(Packet* packet) {
         nmfontFPrint(packet, rec[ii].name, dx + 0x68, dy);
         nmfontSetPack(1);
         if (rec[ii].chr_no < 0xC) {
-            nmfontFPrint(packet, vsptblCharacterName[rec[ii].chr_no], dx + 0xB0, dy);
+            nmfontFPrint(packet, (char*)vsptblCharacterName[rec[ii].chr_no], dx + 0xB0, dy);
         } else {
             nmfontFPrint(packet, vspenvSecret->create_character[rec[ii].chr_no - 0xC].name, dx + 0xB0, dy);
         }
@@ -3993,7 +3997,7 @@ static void ayDrawChCs(Packet* packet, float dx, float dy, signed int flg) {
     aySetVert(data.vert[0], xy, 0xFFFFFF);
     aySetPolyComFT4(poly, &data, 1);
     ayFontInit(0x10, 0x10, data.col[0]);
-    nmfontFPrint(packet, vsptblCourseName[cs], dx, 48.0f + 2.0f * dy);
+    nmfontFPrint(packet, (char*)vsptblCourseName[cs], dx, 48.0f + 2.0f * dy);
     data.texdata = &texData[1];
     if (csflg == 0) {
         data.col[0][0] = 0x40, data.col[0][1] = 0x40, data.col[0][2] = 0x40, data.col[0][3] = 0x80;
