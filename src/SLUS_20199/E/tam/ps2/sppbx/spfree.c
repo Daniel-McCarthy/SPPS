@@ -3029,7 +3029,6 @@ VspSystemMatrix* mtx /* 0x190(r29) */);
 //     Ctrl* rc; // r19
 // }
 
-
 static void spDrawRider2(// Size: 0x5640, DWARF: 0xC81B4
 Rider* rider /* 0x160(r29) */, // Size: 0x340, DWARF: 0xC7FB6
 VspSystemMatrix* mtx /* 0x170(r29) */);
@@ -4367,7 +4366,6 @@ block_238:
     return md->modnum;
 }
 
-
 // s32 spUpdateMode(void* arg0) {
 //     void* spC0;
 //     s32 spBC;
@@ -5175,6 +5173,231 @@ void spFlowBoost(VspModeData* md) {
     vspDispEnv.div = vspVsData.center;
 }
 
+static void spFlowPush(VspModeData* md) {
+    signed int i; // r16
+    signed int tmp; // r17
+    Act* act; // r18
+    signed int center_to; // r19
+    signed int num_player; // r20
+    unsigned int pts; // r21
+    signed int center; // r22
+    signed int line_center; // r23
+    TrickLink* tl; // r30
+    signed int div_side; // 0xAC(r29)
+    signed int scr_size; // 0xB0(r29)
+    signed int scr_size0; // 0xB4(r29)
+    signed int move_length; // 0xB8(r29)
+    signed int dead_line0; // 0xBC(r29)
+    signed int dead_line1; // 0xC0(r29)
+    signed int cnt_move; // 0xC4(r29)
+    signed int line_center_to; // 0xC8(r29)
+    signed int push_cnt; // 0xCC(r29)
+    signed int set_result; // 0xD0(r29)
+    signed int cnt[2]; // 0xA0(r29)
+
+    div_side = vspVsData.div_side;
+    num_player = vspenvGame->mode.num_player;
+    scr_size = (div_side != 0) ? vsppScrWidth : vsppScrHeight;
+    scr_size0 = 640;
+    move_length = (scr_size * 32) / scr_size0;
+    dead_line0 = (scr_size - move_length * 6 * 2) / 2;
+    dead_line1 = scr_size - dead_line0;
+    center = vspVsData.center_pos_id;
+    center_to = vspVsData.center_to_pos_id;
+    cnt_move = vspVsData.cnt_center_move;
+    if ((md->flow_mode == 3) || (md->flow_mode == 6)) {
+        for (i = 0; i < num_player; i++) {
+            act = &vspRider[i]->ctrl.act;
+            tl = &act->trick_link;
+            cnt[i] = 0;
+            if (act->trk_link_state == 2) {
+                pts = tl->last_link_trick_point;
+                pts = pts * vspDispEnvChar[i].match.push;
+                pts = pts / 100;
+                cnt[i] = pts / 2000;
+            }
+        }
+        push_cnt = cnt[0] - cnt[1];
+        if ((center_to == -6) && (push_cnt < 0)) {
+            center_to--;
+            md->next_flow_mode = (md->flow_mode == 3) ? 4 : 7;
+            for (i = 0; i < num_player; i++) {
+                vspRider[i]->ctrl.act.allow_tlink = 0;
+            }
+        } else if ((center_to == 6) && (push_cnt > 0)) {
+            center_to++;
+            md->next_flow_mode = (md->flow_mode == 3) ? 4 : 7;
+            for (i = 0; i < num_player; i++) {
+                vspRider[i]->ctrl.act.allow_tlink = 0;
+            }
+        } else {
+            center_to += push_cnt;
+            if (center_to < -6) {
+                center_to = -6;
+            } else if (center_to > 6) {
+                center_to = 6;
+            }
+        }
+    }
+    if (md->flow_mode == 4) {
+        set_result = 0;
+        if ((md->flow_count == 1) && (vspEndRun == 0)) {
+            set_result = 1;
+        } else if (vspEndRun != 0) {
+            md->fade = 1;
+        }
+        if (set_result != 0) {
+            if (center_to == 0) {
+                vspDispEnvChar[0].rank = 0;
+                vspDispEnvChar[1].rank = 0;
+                vspDispVsScore.draw += 1;
+            } else if (center_to > 0) {
+                vspDispEnvChar[0].rank = 0;
+                vspDispEnvChar[1].rank = 1;
+                vspDispVsScore.win += 1;
+                center_to = 10;
+            } else {
+                vspDispEnvChar[0].rank = 1;
+                vspDispEnvChar[1].rank = 0;
+                vspDispVsScore.lose += 1;
+                center_to = -10;
+            }
+            nmdispInputResult();
+        }
+    }
+    if (cnt_move > 0) {
+        cnt_move--;
+    }
+    if (cnt_move == 0) {
+        if (center_to < center) {
+            center--;
+        } else if (center < center_to) {
+            center++;
+        }
+        if (center != center_to) {
+            cnt_move = 15;
+        }
+    }
+    if (center < -6) {
+        if (center == -10) {
+            line_center = 0;
+        } else {
+            line_center = dead_line0 - (dead_line0 * (-center - 6)) / 4;
+        }
+    } else if (center > 6) {
+        if (center == 10) {
+            line_center = scr_size;
+        } else {
+            line_center = dead_line1 + (dead_line0 * (center - 6)) / 4;
+        }
+    } else {
+        line_center = scr_size / 2 + (center * (dead_line1 - dead_line0)) / 12;
+    }
+    line_center_to = scr_size / 2 + (center_to * (dead_line1 - dead_line0)) / 12;
+    if (center_to == -10) {
+        line_center_to = 0;
+    } else if (center_to == 10) {
+        line_center_to = scr_size;
+    }
+    if ((md->flow_mode == 6) || (md->flow_mode == 7)) {
+        line_center_to = line_center = scr_size / 2;
+    }
+    vspVsData.center = line_center;
+    vspVsData.center_pos_id = center;
+    vspVsData.center_to_pos_id = center_to;
+    vspVsData.cnt_center_move = cnt_move;
+    vspDispEnv.div = vspVsData.center;
+    vspDispEnv.div_exp = line_center_to;
+    for (i = 0; i < num_player; i++) {
+        act = &vspRider[i]->ctrl.act;
+        tmp = vspVsData.center_pos_id;
+        if (i == 0) {
+            if (tmp < 0) {
+                tmp = -tmp * 50;
+            } else {
+                tmp = -tmp * 10;
+            }
+        } else {
+            if (tmp > 0) {
+                tmp = tmp * 50;
+            } else {
+                tmp = tmp * 10;
+            }
+        }
+        tmp += 100;
+        tmp += act->num_total_gap * 30;
+        tmp += act->num_total_break * 10;
+        if (tmp < 10) {
+            tmp = 10;
+        }
+        vspDispEnvChar[i].match.push = tmp;
+    }
+}
+
+static void spFlowHorse(VspModeData* md) {
+    signed int set_result; // r21
+    signed int pid0; // r17
+    signed int pid1; // r19
+    unsigned int pts0; // r20
+    unsigned int pts1; // r22
+    signed int state; // r18
+    Act* act; // r16
+
+    pid0 = md->horse_pid;
+    pid1 = (pid0 + 1) % 2;
+    if (md->flow_mode == 3) {
+        act = &vspRider[pid0]->ctrl.act;
+        if (act->trk_link_state == 2) {
+            act->reserve_quit = 1;
+            act->allow_tlink = 0;
+            act->no_trick = 1;
+        } else if (act->trk_link_state == 3) {
+            act->reserve_quit = 1;
+            act->allow_tlink = 0;
+            act->no_trick = 1;
+        }
+    } else if (md->flow_mode == 4) {
+        if ((md->to_end_sliding != 0) || (md->end_sliding != 0)) {
+            set_result = 0;
+            if ((md->to_end_sliding != 0) && (vspEndRun == 0)) {
+                set_result = 1;
+            } else if (vspEndRun != 0) {
+                md->fade = 1;
+            }
+            if (set_result != 0) {
+                pts0 = vspRider[pid0]->ctrl.act.trick_link.total_trick_point;
+                pts1 = vspVsData.result[pid1].point;
+                vspVsData.result[pid0].point = pts0;
+                if (pts0 < pts1) {
+                    state = 0;
+                    vspDispEnvChar[pid0].rank = 1;
+                    vspDispEnvChar[pid1].rank = 0;
+                    if (pts1 != 0) {
+                        vspVsData.horse_end_one_round = 1;
+                        vspVsData.result[pid0].cnt_horse += 1;
+                        if (vspVsData.result[pid0].cnt_horse >= vspVsData.horse_num_round) {
+                            if (pid0 == 0) {
+                                vspDispVsScore.lose += 1;
+                            } else {
+                                vspDispVsScore.win += 1;
+                            }
+                        }
+                    }
+                } else {
+                    state = (pts0 != 0) ? 1 : 0;
+                    vspDispEnvChar[pid0].rank = 0;
+                    vspDispEnvChar[pid1].rank = 1;
+                }
+                nmdispInputHorseResult(state);
+            }
+            state = nmdispCheckHorse();
+            if (state != 0) {
+                md->fade = 1;
+            }
+        }
+    }
+}
+
 void spSetWndClip(VspLocalGifPkt* gifpkt, signed int wid, signed int nwnd, signed int center, signed int send) {
     unsigned long scx0; // r16
     unsigned long scy0; // r17
@@ -5292,6 +5515,9 @@ void spUpdateDispState(Rider* rider, VspSystemMatrix* mtx, signed int wid, signe
     signed int type; // r18
     float width;
     float height;
+    signed int unused1;
+    signed int unused2;
+    signed int unused3;
 
     // rider = rider; // 50
     // mtx = mtx; // 60
@@ -5618,231 +5844,6 @@ void spSetWndFade(signed int wid, signed int per) {
         }
     }
     vspWndFadePercent[wid] = per;
-}
-
-static void spFlowHorse(VspModeData* md) {
-    signed int set_result; // r21
-    signed int pid0; // r17
-    signed int pid1; // r19
-    unsigned int pts0; // r20
-    unsigned int pts1; // r22
-    signed int state; // r18
-    Act* act; // r16
-
-    pid0 = md->horse_pid;
-    pid1 = (pid0 + 1) % 2;
-    if (md->flow_mode == 3) {
-        act = &vspRider[pid0]->ctrl.act;
-        if (act->trk_link_state == 2) {
-            act->reserve_quit = 1;
-            act->allow_tlink = 0;
-            act->no_trick = 1;
-        } else if (act->trk_link_state == 3) {
-            act->reserve_quit = 1;
-            act->allow_tlink = 0;
-            act->no_trick = 1;
-        }
-    } else if (md->flow_mode == 4) {
-        if ((md->to_end_sliding != 0) || (md->end_sliding != 0)) {
-            set_result = 0;
-            if ((md->to_end_sliding != 0) && (vspEndRun == 0)) {
-                set_result = 1;
-            } else if (vspEndRun != 0) {
-                md->fade = 1;
-            }
-            if (set_result != 0) {
-                pts0 = vspRider[pid0]->ctrl.act.trick_link.total_trick_point;
-                pts1 = vspVsData.result[pid1].point;
-                vspVsData.result[pid0].point = pts0;
-                if (pts0 < pts1) {
-                    state = 0;
-                    vspDispEnvChar[pid0].rank = 1;
-                    vspDispEnvChar[pid1].rank = 0;
-                    if (pts1 != 0) {
-                        vspVsData.horse_end_one_round = 1;
-                        vspVsData.result[pid0].cnt_horse += 1;
-                        if (vspVsData.result[pid0].cnt_horse >= vspVsData.horse_num_round) {
-                            if (pid0 == 0) {
-                                vspDispVsScore.lose += 1;
-                            } else {
-                                vspDispVsScore.win += 1;
-                            }
-                        }
-                    }
-                } else {
-                    state = (pts0 != 0) ? 1 : 0;
-                    vspDispEnvChar[pid0].rank = 0;
-                    vspDispEnvChar[pid1].rank = 1;
-                }
-                nmdispInputHorseResult(state);
-            }
-            state = nmdispCheckHorse();
-            if (state != 0) {
-                md->fade = 1;
-            }
-        }
-    }
-}
-
-static void spFlowPush(VspModeData* md) {
-    signed int i; // r16
-    signed int tmp; // r17
-    Act* act; // r18
-    signed int center_to; // r19
-    signed int num_player; // r20
-    unsigned int pts; // r21
-    signed int center; // r22
-    signed int line_center; // r23
-    TrickLink* tl; // r30
-    signed int div_side; // 0xAC(r29)
-    signed int scr_size; // 0xB0(r29)
-    signed int scr_size0; // 0xB4(r29)
-    signed int move_length; // 0xB8(r29)
-    signed int dead_line0; // 0xBC(r29)
-    signed int dead_line1; // 0xC0(r29)
-    signed int cnt_move; // 0xC4(r29)
-    signed int line_center_to; // 0xC8(r29)
-    signed int push_cnt; // 0xCC(r29)
-    signed int set_result; // 0xD0(r29)
-    signed int cnt[2]; // 0xA0(r29)
-
-    div_side = vspVsData.div_side;
-    num_player = vspenvGame->mode.num_player;
-    scr_size = (div_side != 0) ? vsppScrWidth : vsppScrHeight;
-    scr_size0 = 640;
-    move_length = (scr_size * 32) / scr_size0;
-    dead_line0 = (scr_size - move_length * 6 * 2) / 2;
-    dead_line1 = scr_size - dead_line0;
-    center = vspVsData.center_pos_id;
-    center_to = vspVsData.center_to_pos_id;
-    cnt_move = vspVsData.cnt_center_move;
-    if ((md->flow_mode == 3) || (md->flow_mode == 6)) {
-        for (i = 0; i < num_player; i++) {
-            act = &vspRider[i]->ctrl.act;
-            tl = &act->trick_link;
-            cnt[i] = 0;
-            if (act->trk_link_state == 2) {
-                pts = tl->last_link_trick_point;
-                pts = pts * vspDispEnvChar[i].match.push;
-                pts = pts / 100;
-                cnt[i] = pts / 2000;
-            }
-        }
-        push_cnt = cnt[0] - cnt[1];
-        if ((center_to == -6) && (push_cnt < 0)) {
-            center_to--;
-            md->next_flow_mode = (md->flow_mode == 3) ? 4 : 7;
-            for (i = 0; i < num_player; i++) {
-                vspRider[i]->ctrl.act.allow_tlink = 0;
-            }
-        } else if ((center_to == 6) && (push_cnt > 0)) {
-            center_to++;
-            md->next_flow_mode = (md->flow_mode == 3) ? 4 : 7;
-            for (i = 0; i < num_player; i++) {
-                vspRider[i]->ctrl.act.allow_tlink = 0;
-            }
-        } else {
-            center_to += push_cnt;
-            if (center_to < -6) {
-                center_to = -6;
-            } else if (center_to > 6) {
-                center_to = 6;
-            }
-        }
-    }
-    if (md->flow_mode == 4) {
-        set_result = 0;
-        if ((md->flow_count == 1) && (vspEndRun == 0)) {
-            set_result = 1;
-        } else if (vspEndRun != 0) {
-            md->fade = 1;
-        }
-        if (set_result != 0) {
-            if (center_to == 0) {
-                vspDispEnvChar[0].rank = 0;
-                vspDispEnvChar[1].rank = 0;
-                vspDispVsScore.draw += 1;
-            } else if (center_to > 0) {
-                vspDispEnvChar[0].rank = 0;
-                vspDispEnvChar[1].rank = 1;
-                vspDispVsScore.win += 1;
-                center_to = 10;
-            } else {
-                vspDispEnvChar[0].rank = 1;
-                vspDispEnvChar[1].rank = 0;
-                vspDispVsScore.lose += 1;
-                center_to = -10;
-            }
-            nmdispInputResult();
-        }
-    }
-    if (cnt_move > 0) {
-        cnt_move--;
-    }
-    if (cnt_move == 0) {
-        if (center_to < center) {
-            center--;
-        } else if (center < center_to) {
-            center++;
-        }
-        if (center != center_to) {
-            cnt_move = 15;
-        }
-    }
-    if (center < -6) {
-        if (center == -10) {
-            line_center = 0;
-        } else {
-            line_center = dead_line0 - (dead_line0 * (-center - 6)) / 4;
-        }
-    } else if (center > 6) {
-        if (center == 10) {
-            line_center = scr_size;
-        } else {
-            line_center = dead_line1 + (dead_line0 * (center - 6)) / 4;
-        }
-    } else {
-        line_center = scr_size / 2 + (center * (dead_line1 - dead_line0)) / 12;
-    }
-    line_center_to = scr_size / 2 + (center_to * (dead_line1 - dead_line0)) / 12;
-    if (center_to == -10) {
-        line_center_to = 0;
-    } else if (center_to == 10) {
-        line_center_to = scr_size;
-    }
-    if ((md->flow_mode == 6) || (md->flow_mode == 7)) {
-        line_center_to = line_center = scr_size / 2;
-    }
-    vspVsData.center = line_center;
-    vspVsData.center_pos_id = center;
-    vspVsData.center_to_pos_id = center_to;
-    vspVsData.cnt_center_move = cnt_move;
-    vspDispEnv.div = vspVsData.center;
-    vspDispEnv.div_exp = line_center_to;
-    for (i = 0; i < num_player; i++) {
-        act = &vspRider[i]->ctrl.act;
-        tmp = vspVsData.center_pos_id;
-        if (i == 0) {
-            if (tmp < 0) {
-                tmp = -tmp * 50;
-            } else {
-                tmp = -tmp * 10;
-            }
-        } else {
-            if (tmp > 0) {
-                tmp = tmp * 50;
-            } else {
-                tmp = tmp * 10;
-            }
-        }
-        tmp += 100;
-        tmp += act->num_total_gap * 30;
-        tmp += act->num_total_break * 10;
-        if (tmp < 10) {
-            tmp = 10;
-        }
-        vspDispEnvChar[i].match.push = tmp;
-    }
 }
 
 static void spFade(VspLocalGifPkt* pkt, signed int per, signed int col) {
