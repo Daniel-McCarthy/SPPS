@@ -162,7 +162,7 @@ segments:
   - [0x09FAA0, c, E/tam/ps2/sppbx/tmevent]
   - [0x0A4310, c, E/tam/ps2/sppbx/ayselect]
   - [0x0A4F80, asm, E/tam/ps2/sppbx/aycomfnk]
-  - [0x0A7AD0, asm, E/tam/ps2/sppbx/aymcard]
+  - [0x0A7AD0, c, E/tam/ps2/sppbx/aymcard]
   - [0x0B15B0, c, E/tam/ps2/sppbx/aymodsel]
   - [0x0B4370, c, E/tam/ps2/sppbx/aymovie]
   - [0x0B4E70, asm, E/tam/ps2/sppbx/aychrsel]
@@ -189,7 +189,7 @@ segments:
   - [0x17B560, asm, E/tam/ps2/sppbx/spev06]
   - [0x183060, asm, E/tam/ps2/sppbx/spev07]
   - [0x18AC70, asm, E/tam/ps2/sppbx/spev05]
-  - [0x194160, asm, E/tam/ps2/sppbx/kncore]
+  - [0x194160, c, E/tam/ps2/sppbx/kncore]
   - [0x1962A0, c, E/tam/ps2/sppbx/nmevent]
   - [0x1966C0, asm, E/tam/ps2/sppbx/akEvEfct]
   - [0x19A610, asm, E/tam/ps2/sppbx/akSelEff]
@@ -256,7 +256,7 @@ segments:
   - [0x1D32B0, data, E/tam/ps2/sppbx/spev06]
   - [0x1D3E10, data, E/tam/ps2/sppbx/spev07]
   - [0x1D5E50, data, E/tam/ps2/sppbx/spev05]
-  - [0x1D6BD0, data, E/tam/ps2/sppbx/kncore]
+  - [0x1D6BD0, .data, E/tam/ps2/sppbx/kncore]
   - [0x1D6BF0, data, E/tam/ps2/sppbx/akEvEfct]
   - [0x1D6C30, data, E/tam/ps2/sppbx/akSelEff]
   - [0x1D6C50, data, E/tam/ps2/sppbx/akShadow]
@@ -331,7 +331,7 @@ segments:
   - [0x1E6900, rodata, E/tam/ps2/sppbx/spev03]
   - [0x1E6960, rodata, E/tam/ps2/sppbx/spev06]
   - [0x1E7410, rodata, E/tam/ps2/sppbx/spev07]
-  - [0x1E7450, rodata, E/tam/ps2/sppbx/kncore]
+  - [0x1E7450, .rodata, E/tam/ps2/sppbx/kncore]
   - [0x1E7490, .rodata, E/tam/ps2/sppbx/nmevent]
   - [0x1E74B0, rodata, E/tam/ps2/sppbx/akEvEfct]
   - [0x1E74D0, .rodata, E/tam/ps2/sppbx/nmtrick]
@@ -366,7 +366,7 @@ segments:
   - [0x1E7970, sdata, E/tam/ps2/sppbx/spev03]
   - [0x1E7980, sdata, E/tam/ps2/sppbx/spev07]
   - [0x1E7998, sdata, E/tam/ps2/sppbx/spev05]
-  - [0x1E79A0, sdata, E/tam/ps2/sppbx/kncore]
+  - [0x1E79A0, .sdata, E/tam/ps2/sppbx/kncore]
   - [0x1E79B4, .sdata, E/tam/ps2/sppbx/tiutill]
   - [0x1E79B8, sdata, E/tam/ps2/sppbx/tievent]
 
@@ -461,7 +461,7 @@ segments:
   - { type: bss, vram: 0x3c7870, name: E/tam/ps2/sppbx/spev03 }
   - { type: bss, vram: 0x3c78e0, name: E/tam/ps2/sppbx/spev07 }
   - { type: bss, vram: 0x3c7ad0, name: E/tam/ps2/sppbx/spev05 }
-  - { type: bss, vram: 0x3c8010, name: E/tam/ps2/sppbx/kncore }
+  - { type: .bss, vram: 0x3c8010, name: E/tam/ps2/sppbx/kncore }
   - { type: bss, vram: 0x3c8110, name: E/tam/ps2/sppbx/akEvEfct }
   - { type: .bss, vram: 0x3c8840, name: E/tam/ps2/sppbx/nmtrick }
   - { type: .bss, vram: 0x3c9860, name: E/tam/ps2/sppbx/tmetc }

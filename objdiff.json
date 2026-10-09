@@ -824,11 +824,12 @@
       "name": "E/tam/ps2/sppbx/kncore",
       "target_path": "build/target/E/tam/ps2/sppbx/kncore.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/kncore.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmevent",
