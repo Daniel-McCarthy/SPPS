@@ -162,7 +162,7 @@ segments:
   - [0x09FAA0, c, E/tam/ps2/sppbx/tmevent]
   - [0x0A4310, c, E/tam/ps2/sppbx/ayselect]
   - [0x0A4F80, asm, E/tam/ps2/sppbx/aycomfnk]
-  - [0x0A7AD0, c, E/tam/ps2/sppbx/aymcard]
+  - [0x0A7AD0, asm, E/tam/ps2/sppbx/aymcard]
   - [0x0B15B0, c, E/tam/ps2/sppbx/aymodsel]
   - [0x0B4370, c, E/tam/ps2/sppbx/aymovie]
   - [0x0B4E70, asm, E/tam/ps2/sppbx/aychrsel]
