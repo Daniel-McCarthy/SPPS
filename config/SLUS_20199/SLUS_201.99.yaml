@@ -162,7 +162,7 @@ segments:
   - [0x09FAA0, c, E/tam/ps2/sppbx/tmevent]
   - [0x0A4310, c, E/tam/ps2/sppbx/ayselect]
   - [0x0A4F80, asm, E/tam/ps2/sppbx/aycomfnk]
-  - [0x0A7AD0, asm, E/tam/ps2/sppbx/aymcard]
+  - [0x0A7AD0, c, E/tam/ps2/sppbx/aymcard]
   - [0x0B15B0, c, E/tam/ps2/sppbx/aymodsel]
   - [0x0B4370, c, E/tam/ps2/sppbx/aymovie]
   - [0x0B4E70, asm, E/tam/ps2/sppbx/aychrsel]
@@ -193,7 +193,7 @@ segments:
   - [0x1962A0, c, E/tam/ps2/sppbx/nmevent]
   - [0x1966C0, asm, E/tam/ps2/sppbx/akEvEfct]
   - [0x19A610, asm, E/tam/ps2/sppbx/akSelEff]
-  - [0x19B470, asm, E/tam/ps2/sppbx/akShadow]
+  - [0x19B470, c, E/tam/ps2/sppbx/akShadow]
   - [0x19C250, c, E/tam/ps2/sppbx/nmtrick]
   - [0x1A1960, c, E/tam/ps2/sppbx/tiutill]
   - [0x1A1E70, c, E/tam/ps2/sppbx/akSpSub]
@@ -233,7 +233,7 @@ segments:
   - [0x1B8620, data, E/tam/ps2/sppbx/spfree]
   - [0x1B8630, .data, E/tam/ps2/sppbx/tmevent]
   - [0x1B8810, data, E/tam/ps2/sppbx/aycomfnk]
-  - [0x1C7E20, data, E/tam/ps2/sppbx/aymcard]
+  - [0x1C7E20, .data, E/tam/ps2/sppbx/aymcard]
   - [0x1CC8E0, .data, E/tam/ps2/sppbx/aymodsel]
   - [0x1CC9F0, .data, E/tam/ps2/sppbx/aymovie]
   - [0x1CCB20, data, E/tam/ps2/sppbx/aychrsel]
@@ -259,7 +259,7 @@ segments:
   - [0x1D6BD0, .data, E/tam/ps2/sppbx/kncore]
   - [0x1D6BF0, data, E/tam/ps2/sppbx/akEvEfct]
   - [0x1D6C30, data, E/tam/ps2/sppbx/akSelEff]
-  - [0x1D6C50, data, E/tam/ps2/sppbx/akShadow]
+  - [0x1D6C50, .data, E/tam/ps2/sppbx/akShadow]
   - [0x1D6DC0, .data, E/tam/ps2/sppbx/tiutill]
   - [0x1D6F50, data, E/tam/ps2/sppbx/tievent]
   - [0x1D7210, data, sdk_data]
@@ -305,7 +305,7 @@ segments:
   - [0x1DE900, rodata, E/tam/ps2/sppbx/spfree]
   - [0x1DE950, .rodata, E/tam/ps2/sppbx/tmevent]
   - [0x1DE970, rodata, E/tam/ps2/sppbx/aycomfnk]
-  - [0x1DEAB8, rodata, E/tam/ps2/sppbx/aymcard]
+  - [0x1DEAB8, .rodata, E/tam/ps2/sppbx/aymcard]
   - [0x1DEFD0, .rodata, E/tam/ps2/sppbx/aymodsel]
   - [0x1DF050, .rodata, E/tam/ps2/sppbx/aymovie]
 
@@ -352,7 +352,7 @@ segments:
   - [0x1E7848, .sdata, E/tam/ps2/sppbx/ktmnufnc]
   - [0x1E7868, sdata, E/tam/ps2/sppbx/spload]
   - [0x1E7870, sdata, E/tam/ps2/sppbx/spfree]
-  - [0x1E7874, sdata, E/tam/ps2/sppbx/aymcard]
+  - [0x1E7874, .sdata, E/tam/ps2/sppbx/aymcard]
   - [0x1E7878, sdata, E/tam/ps2/sppbx/aychrsel]
   - [0x1E7890, .sdata, E/tam/ps2/sppbx/kncamera]
   - [0x1E78BC, sdata, E/tam/ps2/sppbx/ayoption]
@@ -394,7 +394,7 @@ segments:
   - { type: sbss, vram: 0x2e7b40, name: E/tam/ps2/sppbx/spfree }
   - { type: .sbss, vram: 0x2e7b88, name: E/tam/ps2/sppbx/tmevent }
   - { type: .sbss, vram: 0x2e7bb4, name: E/tam/ps2/sppbx/ayselect }
-  - { type: sbss, vram: 0x2e7bbc, name: E/tam/ps2/sppbx/aymcard }
+  - { type: .sbss, vram: 0x2e7bbc, name: E/tam/ps2/sppbx/aymcard }
   - { type: .sbss, vram: 0x2e7bc8, name: E/tam/ps2/sppbx/aymodsel }
   - { type: .sbss, vram: 0x2e7bd8, name: E/tam/ps2/sppbx/aymovie }
   - { type: sbss, vram: 0x2e7be4, name: E/tam/ps2/sppbx/aychrsel }
