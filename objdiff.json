@@ -535,11 +535,12 @@
       "name": "E/tam/ps2/sppbx/aymcard",
       "target_path": "build/target/E/tam/ps2/sppbx/aymcard.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/aymcard.o"
     },
     {
       "name": "E/tam/ps2/sppbx/aymodsel",
