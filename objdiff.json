@@ -866,11 +866,12 @@
       "name": "E/tam/ps2/sppbx/akShadow",
       "target_path": "build/target/E/tam/ps2/sppbx/akShadow.o",
       "metadata": {
-        "complete": false,
+        "complete": true,
         "progress_categories": [
           "game"
         ]
-      }
+      },
+      "base_path": "build/objdiff/E/tam/ps2/sppbx/akShadow.o"
     },
     {
       "name": "E/tam/ps2/sppbx/nmtrick",
